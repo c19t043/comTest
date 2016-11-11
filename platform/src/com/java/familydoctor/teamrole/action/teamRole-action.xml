@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package namespace="/familydoctor/teamRole" name="FdTeamRoleAction" extends="com.java.platform">
+		<!-- 信息列表  -->
+		<action name="getFdServiceTeamRoleList" class="fdTeamRoleAction" method="getFdServiceTeamRoleList">
+			<result name="success">/familydoctor/teamrole/teamrole_list.jsp</result>
+		</action>
+		<!-- 医生信息列表  -->
+		<action name="getDoctorInfoList" class="fdTeamRoleAction" method="getDoctorInfoList">
+			<result name="success">/familydoctor/teamrole/doctor_select_list.jsp</result>
+		</action>
+		<!-- 医生成员信息列表  -->
+		<action name="getFdServiceMemberList" class="fdTeamRoleAction" method="getFdServiceMemberList">
+			<result name="success">/familydoctor/teamrole/fd_member_list.jsp</result>
+		</action>
+		<!-- 跳转到添加页面  -->
+		<action name="toJumpFdServiceTeamRole" class="fdTeamRoleAction" method="toJumpFdServiceTeamRole">
+			<result name="success">/familydoctor/teamrole/teamrole_add.jsp</result>
+		</action>
+		<!-- 保存分配的人员信息-->
+		<action name="addFdServiceMemberList" class="fdTeamRoleAction" method="addFdServiceMemberList">
+			<result name="teamRoleList_action" type="stateRedirectAction"> 
+ 				<param name="actionName">getFdServiceTeamRoleList.action</param>
+			</result>
+		</action>
+		
+		<!-- 跳转家庭成员页面  -->
+		<action name="toJumpFdServiceMember" class="fdTeamRoleAction" method="toJumpFdServiceMember">
+			<result name="success">/familydoctor/teamrole/fd_member_add.jsp</result>
+		</action>
+		<!-- 更新家庭医生成员技能 -->
+		<action name="updateServiceskill" class="fdTeamRoleAction" method="updateServiceskill">
+			<result name="getFdServiceMemberList_action" type="stateRedirectAction"> 
+ 				<param name="actionName">getFdServiceMemberList.action</param> 
+			</result>
+		</action>
+		<!-- 选择技能的list页面 -->
+		<action name="getFdMemberSkillList" class="fdTeamRoleAction" method="getFdMemberSkillList">
+			<result name="success">/familydoctor/teamrole/fd_member__list.jsp</result>
+		</action>
+		
+	</package>
+</struts>

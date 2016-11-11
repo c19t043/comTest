@@ -1,0 +1,336 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>苏坡社区儿保套餐</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/config.js"></script>
+    <!------------时间控件--------------->
+    <script src="js/mobiscroll_002.js" type="text/javascript"></script>
+    <script src="js/mobiscroll_004.js" type="text/javascript"></script>
+    <link href="js/mobiscroll_002.css" rel="stylesheet" type="text/css">
+    <link href="js/mobiscroll.css" rel="stylesheet" type="text/css">
+    <script src="js/mobiscroll.js" type="text/javascript"></script>
+    <script src="js/mobiscroll_003.js" type="text/javascript"></script>
+    <script src="js/mobiscroll_005.js" type="text/javascript"></script>
+    <script src="js/package_confirm.js" type="text/javascript"></script>
+    <link href="js/mobiscroll_003.css" rel="stylesheet" type="text/css">
+    <style>
+        #packageInfo{
+            overflow: hidden;
+            padding: 15px;
+        }
+        .packageImg{
+            float: left;
+            width: 25%;
+        }
+        .packageImg img{
+            width: 64px;
+            height: 64px;
+        }
+        .packageCon{
+            float: left;
+            width: 75%;
+            line-height: 26px;
+            padding: 6px 0;
+        }
+        .packageCon .money{
+            font-size: 13px;
+        }
+        #buyFor,.packageType,.chooseTime,.packageInstruction{
+            padding: 5px 15px;
+        }
+        #buyFor>p,.packageType>p,.chooseTime>p,.packageInstruction>p{
+            color: #FF813d;
+            margin-bottom: 12px;
+        }
+        #babyInfo{
+            background: url("images/images_icon/next.png") no-repeat center right;
+            background-size: 9px 9px;
+            line-height: 40px;
+        }
+        #packageType,#chooseTime{
+            overflow: hidden;
+            padding-top: 10px;
+        }
+        #packageType>li,#chooseTime>li{
+            float: left;
+            line-height: 36px;
+            width: 41%;
+            margin-left: 6%;
+            margin-bottom:10px;
+            text-align: center;
+            border-radius:40px;
+            border:  1px solid white;
+            position: relative;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        #packageType>li.active,#chooseTime>li.active{
+            border:  1px solid #FF813d;
+        }
+        #packageType>li.active>img,#chooseTime>li.active>img{
+           position: absolute;
+            right: -5px;
+            top: -5px;
+            width: 15px;
+        }
+        #packageInstruction{
+            text-indent: 24px;
+            overflow: hidden;
+        }
+        #chooseBabyCover,#addBabyCover{
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: white;
+            left: 0;
+            top: 0;
+            z-index: 1100;
+            display: none;
+        }
+        #addBabyCover{
+            z-index: 1101;
+        }
+        #back,#backAddBabyCover{
+            height: 45px;
+            line-height: 45px;
+            color: #FF813d;
+            background: url(images/images_main/return_arrow.png)no-repeat 18px center;
+            background-size: 9px;
+            padding-left: 38px;
+        }
+        #problem_baby{
+            padding: 12px 12px 3px 12px;
+        }
+        .baby_information>img,#add_baby>img,#problem_symptoms img{
+            width: 65px;
+            height: 65px;
+            overflow: hidden;
+        }
+        #baby_list{
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        #baby_list>li{
+            display: inline-block;
+            float: left;
+            width: 33.3%;
+            text-align: center;
+            font-size: 14px;
+        }
+        #baby_list p{
+            margin-top: 10px;
+        }
+        #chooseBabyFooter,#addBabyFooter{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+        }
+        .information_div{
+            padding: 0 18px;
+            height: 55px;
+            border-bottom: 1px solid #e8e8e8;
+            line-height: 55px;
+            overflow: hidden;
+        }
+        .information_div>label{
+            float: left;
+            width: 40%;
+            display: inline-block;
+        }
+        .information_div>p{
+            float: left;
+            width: 60%;
+            display: inline-block;
+        }
+        .information_div input{
+            border: none;
+            width: 100%;
+        }
+        .select_option{
+            background: #fff;
+            border: 1px solid #ff813d;
+            border-radius: 4px;
+            width: 4px;
+            height: 4px;
+            display: inline-block;
+            vertical-align: 2px;
+        }
+        .selected>.select_option{
+            background: #ff813d;
+        }
+        .select_sex{
+            margin: 0 20px 0 15px;
+            display: inline-block;
+        }
+        /*.right_arrow{*/
+        /*display: inline-block;*/
+        /*float: right;*/
+        /*width: 10%;*/
+        /*height: 50px;*/
+        /*background: url("images/images_icon/next.png")no-repeat right 22px;*/
+        /*background-size: 9px;*/
+        /*}*/
+        #add_photo img {
+            width: 65px;
+            max-height: 65px;
+            overflow: hidden;
+        }
+        #add_photo{
+            padding: 18px;
+        }
+        #add_photo>div{
+            margin: 8px 0;
+        }
+        #sendImg{
+            display: block;
+            width: 65px;
+            height: 65px;
+            position: relative;
+            top: -65px;
+            opacity: 0;
+            z-index: 2;
+        }
+        #updateImg{
+            display: inline-block;
+            float: left;
+        }
+        #add_photo>p{
+            display: inline-block;
+            float: left;
+            margin-left: 15px;
+            line-height: 60px;
+            color: #909090;
+            font-size: 14px;
+        }
+        #baby_sex>li{
+            display: inline-block;
+            float: left;
+            width: auto;
+        }
+        .baby_information>img{
+            margin-top: 1px;
+        }
+        .baby_information.select>img{
+            outline: 1px solid #FF813d;
+        }
+    </style>
+</head>
+<body>
+<div id="header">
+    <div class="header-left" onclick="return_before()"><span>苏坡社区儿保套餐</span></div>
+    <div class="header-center"></div>
+    <div class="header-right"></div>
+</div>
+<div id="container">
+    <p class="gray_3"></p>
+    <div id="packageInfo">
+        <div class="packageImg">
+            <img src="" alt=""/>
+        </div>
+        <div class="packageCon">
+            <p class="packageName"></p>
+            <p class="money"></p>
+        </div>
+    </div>
+    <p class="gray_3"></p>
+    <div id="buyFor">
+        <p>为谁购买</p>
+        <div id="babyInfo" onclick="packageConfirm.showChooseBaby()">
+
+        </div>
+    </div>
+    <p class="gray_3"></p>
+    <div class="packageType">
+        <p>套餐类别</p>
+        <ul id="packageType">
+            <!--<li>A1套餐</li>-->
+            <!--<li>A2套餐</li>-->
+            <!--<li>A3套餐</li>-->
+            <!--<li>D1套餐</li>-->
+        </ul>
+    </div>
+    <p class="gray_3"></p>
+    <div class="chooseTime">
+        <p>选择服务时间</p>
+        <ul id="chooseTime">
+            <!--<li>1个月</li>-->
+        </ul>
+    </div>
+    <p class="gray_3"></p>
+    <div class="packageInstruction">
+        <p>套餐说明</p>
+        <div id="packageInstruction">
+            <!--你说你爱丁香花，因为我的名字就是它，多么美丽的话，多愁善感的人啊，那坟前开满鲜花-->
+            <!--是你多么渴望的美啊，尘世间多少欢乐。-->
+        </div>
+    </div>
+    <div id="chooseBabyCover"><!--选择宝宝遮罩-->
+        <div id="back" onclick="$('#chooseBabyCover').hide();">选择宝宝</div>
+        <p class="gray_3"></p>
+        <div id="problem_baby">
+            <ul id="baby_list">
+                <!--<li class="baby_information select">-->
+                <!--<img src="images/img_pro01.jpg" alt="图片"/>-->
+                <!--<p>宋仲基</p>-->
+                <!--</li>-->
+                <!--<li id="add_baby" onclick="consult_add_baby.addBaby()">-->
+                    <!--<img src="images/images_main/add.png" alt="图片"/>-->
+                    <!--<p>添加宝宝</p>-->
+                <!--</li>-->
+            </ul>
+        </div>
+        <div id="chooseBabyFooter">
+            <p class="login_button" onclick="packageConfirm.confirmBaby()">确定</p>
+        </div>
+    </div>
+    <div id="addBabyCover"><!--添加宝宝遮罩-->
+        <div id="backAddBabyCover" onclick="$('#addBabyCover').hide();">选择宝宝</div>
+        <p class="gray_3"></p>
+        <div id="babyMessage">
+            <div class="information_div">
+                <label>宝宝姓名</label>
+                <p><input type="text" id="baby_name" placeholder="宝宝姓名"/></p>
+            </div>
+            <div class="information_div">
+                <label>宝宝性别</label>
+                <ul id="baby_sex">
+                    <li class="selected" id="boy"><span class="select_option" data-sex="1"></span><span class="select_sex">男孩</span></li>
+                    <li id="girl"><span class="select_option" data-sex="0"></span><span class="select_sex">女孩</span></li>
+                </ul>
+            </div>
+            <div class="information_div">
+                <label>出生日期</label>
+                <p><input type="text" class="baby_birthday" placeholder="请选择" name="time" id="appDate"></p>
+            </div>
+            <div id="add_photo">
+                <form id="updateImg" action="" method="post" enctype="multipart/form-data" style="height: 65px">
+                    <img src="images/images_main/add.png" alt=""/>
+                    <canvas id="myCanvas" style="display:none;" width="65" height="65"></canvas>
+                    <input type="file" id="sendImg" accept="image/*" name="updateMyHeadFileElem" onchange="loadImage(this)" />
+                </form>
+                <p>上传宝宝照片</p>
+            </div>
+            <div style="clear: both"></div>
+        </div>
+        <div id="addBabyFooter">
+            <p class="login_button" onclick="packageConfirm.addBabyConfirm()">确定添加</p>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <p class="login_button" onclick="packageConfirm.buyRightAway()">立即购买</p>
+</footer>
+<!--container-->
+<script src="js/main.js"></script>
+<script src="js/plugins.js"></script>
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>医生资料</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/Doctorauthentication.css">
+    <link rel="stylesheet" href="css/org_doctorDataManage.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/config.js"></script>
+    <style>
+        #doc_portrait img{
+            margin: 0;
+        }
+        #layer_box{
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1000;
+            background: rgba(0,0,0,.3);
+            display: none;
+        }
+        #layer_div{
+            position: absolute;
+            width: 80%;
+            top:15%;
+            left: 10%;
+            max-width: 380px;
+            height: 70%;
+            max-height: 480px;
+            background: #fff;
+        }
+        #layer_div>div{
+            display: none;
+        }
+        .layer_title{
+            background: #1CBA93;
+            line-height: 45px;
+            font-size: 17px;
+            text-align: center;
+            color: #fff;
+        }
+        #layer_div ul{
+            overflow: auto;
+        }
+        .layer_list li,.layer_list_two li{
+            padding: 0 18px;
+            border-bottom: 1px solid #e8e8e8;
+            line-height: 45px;
+        }
+        .bottom_button{
+            margin: 10px 0;
+            position: absolute;
+            left: 10%;
+            bottom: 0px;
+            width: 80%;
+            line-height: 35px;
+            background: #fff;
+            border: 1px solid #1CBA93;
+            border-radius: 20px;
+            color: #1CBA93;
+            font-size: 17px;
+            text-align: center;
+        }
+        /*yjl*/
+        .text{
+            border: 1px solid #e8e8e8;
+        }
+        .updateImg{
+            margin: 8px 10px 0 0;
+            width: 40px;
+            height: 40px;
+            display: inline-block;
+            position: relative;
+        }
+        .hidden{
+            display: none;
+        }
+        form.file .canvas {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 1;
+        }
+        form.file .canvas1 {
+            display: none;
+        }
+        form.file {
+            width: 40px;
+            height: 40px;
+        }
+        form.file>.h_img{
+            margin: 0;
+        }
+        .file > input {
+            opacity: 0;
+            filter: alpha(opacity=0);
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            padding: 0;
+        }
+        .removeImg{
+            position: absolute;
+            top: -9px;
+            z-index: 10;
+            width: 18px;
+            height: 18px;
+            color: #505050;
+            line-height: 18px;
+            right: -9px;
+            text-align: center;
+            border-radius: 100%;
+            background: #e8e8e8;
+        }
+
+    </style>
+</head>
+<body>
+<!--header-->
+<div id="header" class="doctor_header">
+    <div class="header-left" onclick="link_to('org_doctorDataMan_begin.html')"><p></p></div>
+    <div class="header-center">医生资料</div>
+    <div class="header-right">
+        <span class="right_topButton" onclick="doctorDataMan.saveOrUpdateDoctorLifInfo();">保存</span>
+    </div>
+</div>
+<div id="container">
+    <div>
+        <ul class="header_nav flex_cont">
+            <li class="flex_item" onclick="link_to('org_doctorDataMan_docInfo_basic.html')">基本信息</li>
+            <li class="interval"><span>|</span></li>
+            <li class="flex_item" onclick="link_to('org_doctorDataMan_docInfo_identity.html')">身份提交</li>
+            <li class="interval"><span>|</span></li>
+            <li class="flex_item header_nav_select">生活信息</li>
+            <li class="interval"><span>|</span></li>
+            <li class="flex_item" onclick="link_to('org_doctorDataMan_docInfo_evaluation.html')">评价</li>
+        </ul>
+    </div>
+    <div class="doctor_information">
+        <div>
+            <div class="information_div flex_cont">
+                <label>毕业学校：</label>
+                <p class="flex_item"><input type="text" id="school" placeholder="毕业学校"/></p>
+            </div>
+            <p class="gray_3"></p>
+            <div class="information_div flex_cont">
+                <label>学位：</label>
+                <p id="degree" class="flex_item text-right">请选择</p>
+                <i class="s_icon n_icon"></i>
+            </div>
+            <p class="gray_3"></p>
+            <div class="information_div flex_cont">
+                <label>院内月收入：</label>
+                <p class="flex_item" id="salary"><input type="number"></p>
+                <span class="s_text">K</span>
+            </div>
+            <p class="gray_3"></p>
+            <div class="information_div flex_cont">
+                <label>是否离异：</label>
+                <ul id="divorced" class="flex_item choose_ul">
+                    <li data-sex="Y"><span class="select_option"></span><span class="choose_item">是</span></li>
+                    <li class="c_selected" data-sex="N"><span class="select_option"></span><span class="choose_item">否</span></li>
+                </ul>
+            </div>
+            <p class="gray_1"></p>
+        </div>
+        <div>
+            <p class="info_title">特殊爱好：</p>
+            <p class="gray_1"></p>
+            <div class="information_div flex_cont">
+                <p class="flex_item text" id="hobby" contenteditable="true"></p>
+            </div>
+            <p class="gray_1"></p>
+        </div>
+        <div>
+            <p class="info_title">其他：</p>
+            <p class="gray_1"></p>
+            <div class="information_div flex_cont">
+                <p class="flex_item text" id="other" contenteditable="true"></p>
+            </div>
+            <p class="gray_1"></p>
+        </div>
+    </div>
+</div>
+<div id="layer_box">
+    <div id="layer_div">
+        <div id="layer_list_degree">
+            <p class="layer_title">银行卡开户行</p>
+            <div>
+                <div class="layer_list direction_information">
+                    <ul>
+                        <li>博士后</li>
+                        <li>博士</li>
+                        <li>硕士</li>
+                        <li>双学士</li>
+                        <li>本科</li>
+                        <li>大专</li>
+                        <li>高中(中专)</li>
+                        <li>初中</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $.ajax({
+            type: 'post',
+            url: urlWay.doctorDataGather+'doctorDataGather.action',
+            cache: false,
+            async: true,
+            data: {
+                action: "initDoctorInfoPage",
+                professionFlag: "医生",
+                "doctorInfo.id": 316
+            },
+            success: function (result) {
+                if (result.mes == '请登录') {
+                    ale('请登录', '24px');
+                    link_to("login.html");
+                }
+                else if (result.mes == "成功") {
+                    //有医生数据，渲染页面
+                    var doctorLifeInfo=result.doctorLifeInfo;
+                    if(doctorLifeInfo != null){
+                        $('#school').val(doctorLifeInfo.graduateSchool);
+                        $('#salary>input').val(doctorLifeInfo.hospitalMonthlIncome);
+                        if(doctorLifeInfo.degree == ''){
+                            $('#degree').text('请选择');
+                        }else{
+                            $('#degree').text(doctorLifeInfo.degree);
+                        }
+                        if(doctorLifeInfo.isDivorce=='Y'){
+                            $('#divorced>li').removeClass('c_selected');
+                            $('#divorced>li[data-sex="Y"]').addClass('c_selected');
+                        }
+                        $('#school').val(doctorLifeInfo.graduateSchool);
+                        if(doctorLifeInfo.specialInterests != null){
+                            $('#hobby').text(doctorLifeInfo.specialInterests);
+                        }
+                        if(doctorLifeInfo.remark != null){
+                            $('#other').text(doctorLifeInfo.remark);
+                        }
+                    }
+
+                }else {
+                    ale(result.mes);
+                }
+            },
+            error: function () {
+                layer();
+            }
+        });
+        doctorDataMan.divorced();
+    });
+    var doctorDataMan={
+        doctorInfoId:302,
+        divorced: function () {
+            //    是否离异
+            $("#divorced li").click(function(){
+                $(this).addClass("c_selected").siblings("li").removeClass("c_selected");
+            });
+        },
+        saveOrUpdateDoctorLifInfo: function () {
+            var graduateSchool=$('#school').val();
+            var degree=$('#degree').text();
+            if(degree=='请选择'){
+                degree='';
+            }
+            var hospitalMonthlIncome=$('#salary>input').val();
+            if(hospitalMonthlIncome != ''){
+                hospitalMonthlIncome+='K';
+            }
+            var isDivorce=$('#divorced>.c_selected').attr('data-sex');
+            if(isDivorce == undefined){
+                isDivorce='';
+            }
+            var specialInterests=$('#hobby').text();
+            var remark=$('#other').text();
+            //保存生活信息
+            $.ajax({
+                type:"post",
+                url:urlWay.doctorDataGather+"doctorDataGather.action",
+                async:true,
+                cache:false,
+                data:{
+                    action:"saveOrUpdateDoctorLifInfo",
+                    "doctorInfo.id":doctorDataMan.doctorInfoId,
+                    "doctorLifeInfo.graduateSchool":graduateSchool,
+                    "doctorLifeInfo.degree":degree,
+                    "doctorLifeInfo.hospitalMonthlIncome":hospitalMonthlIncome,
+                    "doctorLifeInfo.isDivorce":isDivorce,
+                    "doctorLifeInfo.specialInterests":specialInterests,
+                    "doctorLifeInfo.remark":remark
+                },
+                success: function (result) {
+                    if(result.mes=="成功"){
+                        ale('生活信息保存成功');
+                    }
+                },
+                error: function () {
+
+                }
+            });
+        }
+    };
+</script>
+</body>
+</html>

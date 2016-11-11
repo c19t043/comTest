@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  - 该配置文件用于 系统日志和一般的打印日志管理
+  - aop方面的配置个参照该配置文件
+  -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	
+	<aop:config>
+		
+		<aop:aspect id="adaspect" ref="sysLog">
+			<!-- service包以及子包下的所有方法作为pointcut -->
+			<aop:pointcut id="logpiontAll" expression="execution(* *..service..*.*(..)) 
+			and !execution(* com.java.platform.role.service.DomainService.*(..))
+			and !execution(* com.java.platform.syslog.service.invoke.imp.annotation.SysLogImp.*(..))" />		
+			<!-- 切点方法执行前 先执行 beforeAspectLog方法-->
+			<aop:before pointcut-ref="logpiontAll" method="beforeAspectLog"/>
+			<!-- 切点方法执行后 执行 afterAspectLog方法-->
+			<aop:after  pointcut-ref="logpiontAll" method="afterAspectLog"/>
+			<!-- 切点方法执行时抛出异常时 执行 afterThrowAspectLog方法-->
+			<aop:after-throwing pointcut-ref="logpiontAll"  method="afterThrowAspectLog"    arg-names="jp,ex" throwing="ex"/>
+
+		</aop:aspect>
+		
+	</aop:config>
+
+	<bean id="sysLog" class="com.java.platform.syslog.service.aspect.SysLogExcutor">
+		<property name="dblog" value="true"></property>
+		<property name="sysLogExcutor" ref="syslogService"></property>
+	</bean>
+
+</beans>

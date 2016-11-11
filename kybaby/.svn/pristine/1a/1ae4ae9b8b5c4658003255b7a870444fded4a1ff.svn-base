@@ -1,0 +1,267 @@
+﻿<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>身高体重头围记录</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/heightweightheadrecord.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+
+<div id="header">
+    <div class="headerLeft" onclick="window.location.replace('personalcenter.html')"><p></p></div>
+    <div class="header-center">身高体重头围记录</div>
+    <div class="header-right"></div>
+</div>
+<!--header-->
+
+<div id="container">
+    <p class="gray_2"></p>
+
+    <div class="top_box">
+        <ul>
+            <li class="height_list" onclick="changeType('身高',this,true)">身高</li>
+            <li class="weight_list center" onclick="changeType('体重',this,true)">体重</li>
+            <li class="head_list" onclick="changeType('头围',this,true)">头围</li>
+        </ul>
+    </div>
+
+    <!--身高-->
+    <div class="height_box">
+        <div class="record_round"
+             onclick="newRecord('height',$('#babyLatestHeight').text(),$('#height_normal_range').attr('data_range'),'身高');">
+            <p id="babyLatestHeight"></p>
+
+            <p>cm</p>
+        </div>
+        <p id="height_normal_range" class="normal_range"></p>
+
+        <p id="height_record_note" class="record_note">宝宝身高正常，继续保持哦！</p>
+
+        <p class="gray_1"></p>
+
+        <div class="tu_box">
+            <div class="tu_tab">
+                <div class="qushitu">趋势图</div>
+                <div class="lishijilu">历史记录</div>
+            </div>
+            <!--趋势图-->
+            <div class="qushi_box">
+                <!--0~11个月 男-->
+                <div class="height_011" style="display:none">
+                    <div class="height_po height_point_011"></div>
+                </div>
+                <!--0~11个月 女-->
+                <div class="height_011nv" style="display:none">
+                    <div class="height_po height_point_011nv"></div>
+                </div>
+                <!--12~23个月 男-->
+                <div class="height_1223" style="display:none">
+                    <div class="height_po height_point_1223"></div>
+                </div>
+                <!--12~23个月 女-->
+                <div class="height_1223nv" style="display:none">
+                    <div class="height_po height_point_1223nv"></div>
+                </div>
+                <!--24~35个月 男-->
+                <div class="height_2435" style="display:none">
+                    <div class="height_po height_point_2435"></div>
+                </div>
+                <!--24~35个月 女-->
+                <div class="height_2435nv" style="display:none">
+                    <div class="height_po height_point_2435nv"></div>
+                </div>
+                <p class="small">数据来源：2006年WHO儿童发育体格指标标准</p></div>
+            <!--历史纪录-->
+            <div class="lishi_box">
+                <div class="lishi_tit">
+                    <p>记录日期</p>
+
+                    <p>宝宝月龄</p>
+
+                    <p>身高</p>
+
+                    <p>状态</p>
+                </div>
+                <!--lishi_list-->
+                <div id="lishi_box_height" style="font-size:14px">
+                    <!-- 				<div class="lishi_list">
+                    <p>15-10-15</p>
+                    <p class="center">24个月</p>
+                    <p>75cm</p>
+                    </div>
+                    <div class="lishi_list">
+                    <p>15-10-15</p>
+                    <p class="center">24个月</p>
+                    <p>75cm</p>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--体重-->
+    <div class="weight_box">
+        <div class="record_round"
+             onclick="newRecord('weight',$('#babyLatestWeight').text(),$('#weight_normal_range').attr('data_range'),'体重');">
+            <p id="babyLatestWeight"></p>
+
+            <p>kg</p>
+        </div>
+        <p id="weight_normal_range" class="normal_range"></p>
+
+        <p id="weight_record_note" class="record_note">宝宝体重不正常，防止肥胖！建议控制饮食多运动。</p>
+
+        <p class="gray_1"></p>
+
+        <div class="tu_box">
+            <div class="tu_tab">
+                <div class="qushitu">趋势图</div>
+                <div class="lishijilu">历史记录</div>
+            </div>
+            <!--趋势图-->
+            <div class="qushi_box">
+                <div class="weight_011" style="display:none">  <!--0~11个月 男-->
+                    <div class="weight_po weight_point_011"></div>
+                </div>
+                <div class="weight_011nv" style="display:none">  <!--0~11个月 女-->
+                    <div class="weight_po weight_point_011nv"></div>
+                </div>
+                <div class="weight_1223" style="display:none"> <!--12~23个月 男-->
+                    <div class="weight_po weight_point_1223"></div>
+                </div>
+                <div class="weight_1223nv" style="display:none"> <!--12~23个月 女-->
+                    <div class="weight_po weight_point_1223nv"></div>
+                </div>
+                <div class="weight_2435" style="display:none"> <!--23~35个月 男-->
+                    <div class="weight_po weight_point_2435"></div>
+                </div>
+                <div class="weight_2435nv" style="display:none"> <!--23~35个月 女-->
+                    <div class="weight_po weight_point_2435nv"></div>
+                </div>
+                <p class="small">数据来源：2006年WHO儿童发育体格指标标准</p>
+            </div>
+            <!--历史纪录-->
+            <div class="lishi_box">
+                <div class="lishi_tit">
+                    <p>记录日期</p>
+
+                    <p>宝宝月龄</p>
+
+                    <p>体重</p>
+
+                    <p>状态</p>
+                </div>
+                <!--lishi_list-->
+                <div id="lishi_box_weight" style="font-size:14px">
+                    <!-- 				<div class="lishi_list">
+                    <p>15-10-15</p>
+                    <p class="center">18个月</p>
+                    <p>11kg</p>
+                    </div>
+                    <div class="lishi_list">
+                    <p>15-10-15</p>
+                    <p class="center">18个月</p>
+                    <p>11kg</p>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!--头围-->
+    <div class="head_box">
+        <div class="record_round"
+             onclick="newRecord('head',$('#babyLatestHead').text(),$('#head_normal_range').attr('data_range'),'头围');">
+            <p id="babyLatestHead"></p>
+
+            <p>cm</p>
+        </div>
+        <p id="head_normal_range" class="normal_range"></p>
+
+        <p id="head_record_note" class="record_note">宝宝头围正常，继续保持哦！</p>
+
+        <p class="gray_1"></p>
+
+        <div class="tu_box">
+            <div class="tu_tab">
+                <div class="qushitu">趋势图</div>
+                <div class="lishijilu">历史记录</div>
+            </div>
+            <!--趋势图-->
+            <div class="qushi_box">
+                <!--0~11个月 男-->
+                <div class="head_011" style="display:none">
+                    <div class="head_po head_point_011"></div>
+                </div>
+                <!--0~11个月 女-->
+                <div class="head_011nv" style="display:none">
+                    <div class="head_po head_point_011nv"></div>
+                </div>
+                <!--12~23个月 男-->
+                <div class="head_1223" style="display:none">
+                    <div class="head_po head_point_1223"></div>
+                </div>
+                <!--12~23个月 女-->
+                <div class="head_1223nv" style="display:none">
+                    <div class="head_po head_point_1223nv"></div>
+                </div>
+                <!--23~35个月 男-->
+                <div class="head_2435" style="display:none">
+                    <div class="head_po head_point_2435"></div>
+                </div>
+                <!--23~35个月 女-->
+                <div class="head_2435nv" style="display:none">
+                    <div class="head_po head_point_2435nv"></div>
+                </div>
+                <p class="small">数据来源：2006年WHO儿童发育体格指标标准</p>
+            </div>
+            <!--历史纪录-->
+            <div class="lishi_box">
+                <div class="lishi_tit">
+                    <p>记录日期</p>
+
+                    <p>宝宝月龄</p>
+
+                    <p>头围</p>
+
+                    <p>状态</p>
+                </div>
+                <!--lishi_list-->
+                <div id="lishi_box_head" style="font-size:14px">
+                    <!-- 			<div class="lishi_list">
+                    <p>15-10-15</p>
+                    <p class="center">31个月</p>
+                    <p>49cm</p>
+                    </div>
+                    <div class="lishi_list">
+                    <p>15-10-15</p>
+                    <p class="center">31个月</p>
+                    <p>49cm</p>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<!--container-->
+
+
+<script src="js/main.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/headerweightheadrecord.js"></script>
+<script src="js/config.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,402 @@
+﻿<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<title>产后访视</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/main.css">
+	<script src="js/modernizr-2.8.3.min.js"></script>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/config.js"></script>
+	<script src="js/autoLogin.js"></script>
+    <script src="js/main.js"></script>
+    <!------------时间控件--------------->
+    <script src="js/mobiscroll_002.js" type="text/javascript"></script>
+    <script src="js/mobiscroll_004.js" type="text/javascript"></script>
+    <link href="js/mobiscroll_002.css" rel="stylesheet" type="text/css">
+    <link href="js/mobiscroll.css" rel="stylesheet" type="text/css">
+    <script src="js/mobiscroll.js" type="text/javascript"></script>
+    <script src="js/mobiscroll_003.js" type="text/javascript"></script>
+    <script src="js/mobiscroll_005.js" type="text/javascript"></script>
+    <link href="js/mobiscroll_003.css" rel="stylesheet" type="text/css">
+    <!------------时间控件end--------------->
+
+</head>
+<body>
+
+<div id="header">
+	<div class="header-left"><p></p></div>
+	<div class="header-center">产后访视</div>
+	<div class="header-right"></div>
+</div>
+<!--header-->
+<style>
+    body{
+        background: #ffffff;
+    }
+    .personal_list{
+        width: 100%;
+        height: 50px;
+        padding: 0px 15px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        line-height: 50px;
+    }
+    .personal_list .personal_left {
+        float: left;
+        height: 50px;
+        line-height: 50px;
+        width: 35%;
+    }
+    .personal_list .personal_right {
+        float: right;
+        color: #c8c8c8;
+        width: 65%;
+        height: 50px;
+        line-height: 50px;
+        text-align: right;
+    }
+    .personal_right>span{
+        border: 1px solid #eeeeee;
+    }
+    .personal_right>input{
+        border: none;
+        width: 100px;
+        text-align: right;
+    }
+
+    .normal{
+        padding: 4px 4px;
+    }
+    .abnormal{
+        padding: 4px 20px;
+    }
+    .personal_list>input{
+        border: none;
+        line-height: 30px;
+        width: 100%;
+        background: #ffffff;
+        padding: 10px 0px;
+    }
+    .gray_s{
+        width: 100%;
+        height: 10px;
+        background: #f7f7f7;
+        clear: both;
+    }
+    .gray_ss{
+        width: 100%;
+        height: 2px;
+        background: #f7f7f7;
+        clear: both;
+    }
+    .blue{
+        background: #4FC1E9;
+        color: #ffffff;
+    }
+    .guidance{
+        width: 100%;
+        padding: 10px 15px 30px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        background: #F7F7F7;
+        line-height: 34px;
+        overflow: hidden;
+    }
+    .guidance>div{
+        float: left;
+        margin:5px 0px;
+        width: 32%;
+        background: #ffffff;
+        text-align: center;
+    }
+    .guidance>.sec{
+        margin-left: 2%;
+    }
+    .guidance>.thi{
+        margin-left: 2%;
+    }
+    .guidance>.fif{
+         margin-left: 2%;
+         width: 66%;
+     }
+    .guidance>input{
+        width: 100%;
+        border: none;
+        line-height: 34px;
+    }
+    #footer {
+        width: 100%;
+        height: 50px;
+        padding: 10px 15px 5px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        text-align: center;
+        line-height: 35px;
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+        background: #F7F7F7;
+    }
+    .guidance>div.blue{
+        background: #4FC1E9;
+        color: #ffffff;
+    }
+    #footer p{
+        color: white;
+        font-size: 22px;
+        width: 100%;
+        background: #4FC1E9;
+    }
+
+</style>
+<p class="gray_s"></p>
+<div id="container">
+	<!--personal_list01-->
+	<div class="personal_list">
+        <p class="personal_left">随访日期</p>
+        <p class="personal_right">
+            <input type="text" placeholder="请选择随访日期" readonly name="time" id="appDate"/>
+        </p>
+	</div>
+	<p class="gray_ss"></p>
+
+	<!--personal_list02-->
+	<div class="personal_list">
+		<div class="list02">
+			<p class="personal_left">体温</p>
+			<p class="personal_right"><input type="text" placeholder="请填写体温"/>℃</p>
+		</div>
+	</div>
+	<p class="gray_ss"></p>
+
+    <!--personal_list02-->
+    <div class="personal_list">
+        <input type="text" placeholder="一般健康情况"/>
+    </div>
+    <p class="gray_ss"></p>
+
+    <!--personal_list02-->
+    <div class="personal_list">
+        <input type="text" placeholder="一般心理情况"/>
+    </div>
+    <p class="gray_s"></p>
+    <p class="gray_s"></p>
+
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">血压</p>
+            <p class="personal_right"><input type="text" placeholder="请填写血压"/>mmHg</p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">乳房</p>
+            <p class="personal_right">
+                <span class="normal">未见异常</span>
+                <span class="abnormal">异常</span>
+            </p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+
+    <!--personal_list02-->
+    <div class="personal_list">
+        <input type="text" placeholder="有异常则在此填写"/>
+    </div>
+    <p class="gray_ss"></p>
+
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">乳房</p>
+            <p class="personal_right">
+                <span class="normal">未见异常</span>
+                <span class="abnormal">异常</span>
+            </p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+
+    <!--personal_list02-->
+    <div class="personal_list">
+        <input type="text" placeholder="有异常则在此填写"/>
+    </div>
+    <p class="gray_ss"></p>
+
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">恶露</p>
+            <p class="personal_right">
+                <span class="normal">未见异常</span>
+                <span class="abnormal">异常</span>
+            </p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+
+    <!--personal_list02-->
+    <div class="personal_list">
+        <input type="text" placeholder="有异常则在此填写"/>
+    </div>
+    <p class="gray_ss"></p>
+
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">子宫</p>
+            <p class="personal_right">
+                <span class="normal">未见异常</span>
+                <span class="abnormal">异常</span>
+            </p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+
+    <!--personal_list02-->
+    <div class="personal_list">
+        <input type="text" placeholder="有异常则在此填写"/>
+    </div>
+    <p class="gray_ss"></p>
+
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">伤口</p>
+            <p class="personal_right">
+                <span class="normal">未见异常</span>
+                <span class="abnormal">异常</span>
+            </p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+
+    <!--personal_list02-->
+    <div class="personal_list">
+        <input type="text" placeholder="有异常则在此填写"/>
+    </div>
+    <p class="gray_ss"></p>
+
+    <!--personal_list02-->
+    <div class="personal_list">
+        <input type="text" placeholder="其他"/>
+    </div>
+    <p class="gray_ss"></p>
+
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">分类</p>
+            <p class="personal_right">
+                <span class="normal">未见异常</span>
+                <span class="abnormal">异常</span>
+            </p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+
+    <!--personal_list02-->
+    <div class="personal_list">
+        <input type="text" placeholder="有异常则在此填写"/>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="guidance">
+        <p>指导</p>
+        <div class="fir">个人卫生</div>
+        <div class="sec">心理</div>
+        <div class="thi">营养</div>
+        <div class="fou">母乳喂养</div>
+        <div class="fif">新生儿护理与喂养</div>
+        <input type="text" placeholder="其他"/>
+    </div>
+    <p class="gray_ss"></p>
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">转诊</p>
+            <p class="personal_right">
+                <span class="normal" style="padding: 4px 28px">无</span>
+                <span class="abnormal" style="padding: 4px 28px">有</span>
+            </p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+
+    <!--personal_list02-->
+    <div class="personal_list">
+        <input type="text" placeholder="原因"/>
+    </div>
+    <p class="gray_ss"></p>
+    <!--personal_list02-->
+    <div class="personal_list">
+        <input type="text" placeholder="机构及科室"/>
+    </div>
+    <p class="gray_s"></p>
+    <p class="gray_s"></p>
+
+    <!--personal_list01-->
+    <div class="personal_list" style="padding-bottom: 50px">
+        <p class="personal_left">下次随访日期</p>
+        <p class="personal_right">
+            <input type="text" placeholder="请选择下次随访日期" readonly name="time" id="appDate1"/>
+        </p>
+    </div>
+</div>
+<footer id="footer">
+    <p>保存</p>
+</footer>
+<script src="js/plugins.js"></script>
+<script>
+    $(function () {
+        var currYear = (new Date()).getFullYear();
+
+        var opt = {};
+        opt.date = {preset: 'date'};
+        opt.datetime = {preset: 'datetime'};
+        opt.time = {preset: 'time'};
+        opt.default = {
+            theme: 'android-ics light', //皮肤样式
+            display: 'modal', //显示方式
+            mode: 'scroller', //日期选择模式
+            dateFormat: 'yyyy-mm-dd',
+            lang: 'zh',
+            showNow: true,
+            nowText: "今天",
+            startYear: currYear - 50, //开始年份
+            endYear: currYear//结束年份
+        };
+
+        $("#appDate").mobiscroll($.extend(opt['date'], opt['default']));
+        $("#appDate1").mobiscroll($.extend(opt['date'], opt['default']));
+        var optDateTime = $.extend(opt['datetime'], opt['default']);
+        var optTime = $.extend(opt['time'], opt['default']);
+//		$("#appDate").mobiscroll(optDateTime).datetime(optDateTime);
+//		 $("#appTime").mobiscroll(optTime).time(optTime);
+    });
+
+    $(function () {
+        $('.personal_right>span').click(function () {
+            $(this).addClass('blue').siblings().removeClass('blue');
+        });
+        $('.guidance>div').click(function () {
+            $(this).toggleClass('blue');
+        });
+        $('#footer>p').click(function () {
+            ale('保存成功');
+            setTimeout(function () {
+                window.history.back();
+            },2000);
+        });
+    });
+</script>
+</body>
+</html>

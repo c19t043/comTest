@@ -1,0 +1,191 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>订单确认</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/swiper-3.3.1.min.css"/>
+    <link rel="stylesheet" href="css/mall.css"/>
+    <link rel="stylesheet" href="css/mall_order_confirm.css"/>
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/MD5.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/swiper-3.3.1.jquery.min.js"></script>
+    <script src="js/jquery.area.js"></script>
+    <script src="js/mall_service_order_confirm.js"></script>
+    <style>
+        .specification{
+            padding: 10px 15px 0;
+            border-bottom: 1px solid #E8E8E8;
+        }
+        #specification{
+            overflow: hidden;
+            font-size: 14px;
+        }
+        #specification>li{
+            border: none;
+            padding: 5px 15px;
+        }
+        .product_content>p.product_specifications{
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="header">
+    <div class="header-left"><span>订单确认</span></div>
+    <div class="header-center"></div>
+    <div class="header-right"></div>
+</div>
+<!--header-->
+<div id="container">
+    <p class="gray_s"></p>
+    <div id="address" style="display: none">
+        <p id="no_address"><span id="add_icon"></span>请添加收货地址</p>
+        <div id="admin_address"></div>
+    </div>
+    <div class="mall_line" style="display: none"></div>
+    <p class="border_line" style="display: none"></p>
+    <div id="order_information">
+        <ul>
+            <li id="order_content">
+                <!--<div id="product_img"><img src="images/adminManage.jpg" alt=""/></div>-->
+                <!--<div class="product_content">-->
+                <!--<p class="product_name">良品铺子猪肉脯小包装零食小吃肉干肉脯猪肉干猪肉铺蜜汁休闲食品良品铺子猪肉脯小包装零食小吃肉干肉脯猪肉干猪肉铺蜜汁休闲食品</p>-->
+                <!--<p class="product_specifications"><span>M号</span><span>白色</span></p>-->
+                <!--<p class="product_price">￥500.00</p>-->
+                <!--</div>-->
+            </li>
+            <div class="specification" style="display: none">
+                <p>详细信息</p>
+                <ul id="specification"></ul>
+            </div>
+            <li id="pay_number" style="display: none">
+                <p>购买数量</p>
+                <p id="num_control">
+                    <span id="num_reduce"><img src="images/images_icon/num_reduce.png" alt=""/></span><input readonly type="text" id="number" value="1"/><span id="num_add"><img src="images/images_icon/num_add.png" alt=""/></span>
+                </p>
+            </li>
+            <li id="post_way" style="display: none">
+                <p>配送方式</p>
+                <p >
+                    <select name="" id="send_way">
+                        <!--<option value="自取提货">自取提货</option>-->
+                        <!--<option value="快递">快递</option>-->
+                    </select>
+                </p>
+            </li>
+            <li style="display: none">
+                <p>运费</p>
+                <p id="freight" class="red">￥<span></span></p>
+            </li>
+            <li>
+                <p>服务价格</p>
+                <p id="amount" class="red">￥<span></span></p>
+            </li>
+            <li style="display: none">
+                <p>预售订金</p>
+                <p id="yushou" class="red">￥<span></span></p>
+            </li>
+        </ul>
+    </div>
+    <div id="pay_type">
+        <ul>
+            <li style="background: #f4f4f4">选择支付方式</li>
+            <p class="gray_s"></p>
+            <li class="pay_type selected">
+                <img src="images/images_family_doctor/weixin_color.png" alt=""/>微信支付
+            </li>
+            <!--<p class="gray_s"></p>-->
+            <!--<li class="pay_type">-->
+            <!--<img src="images/images_family_doctor/zhifubao_color.png" alt=""/>支付宝支付-->
+            <!--<span></span>-->
+            <!--</li>-->
+            <p class="gray_s"></p>
+            <li id="balance">
+                可用余额&nbsp;&nbsp;&nbsp;￥<span id="span"></span>
+                <span></span>
+            </li>
+
+        </ul>
+    </div>
+</div>
+<footer>
+    <p id="cont">实付：￥<span></span></p>
+    <p id="submit">提交订单</p>
+</footer>
+<div id="select_address">
+    <ul>
+        <!--<li>-->
+        <!--<div class="address_information">-->
+        <!--<div class="admin_name"><p>土豆豆<small>[默认]</small></p><p class="admin_phone">15264524269</p></div>-->
+        <!--<p class="admin_address">四川省成都市高新区盛邦街汇金广场C座一单元1919号四川省成</p>-->
+        <!--</div>-->
+        <!--<p class="gray_s"></p>-->
+        <!--<div class="address_button">-->
+        <!--<p>-->
+        <!--<button class="color_button">修改</button>-->
+        <!--<button>删除</button>-->
+        <!--</p>-->
+        <!--</div>-->
+        <!--</li>-->
+    </ul>
+    <footer><p id="add_button" class="button">新增收货地址</p></footer>
+</div>
+<div id="save_address">
+    <div id="my_address">
+        <ul id="about_address">
+            <li><label>收货人：</label><input type="text" id="name" required="required" autofocus/></li>
+            <li><label>手&nbsp;&nbsp;&nbsp;机：</label><input type="number" id="phone" pattern="/^13\d{9}$/gi" required="required"/></li>
+            <!--<li><label>地&nbsp;&nbsp;&nbsp;区：</label><p class="select" id=a_address">省份 <span>|</span> 城市 <span>|</span> 地区</p></li>-->
+            <li id="select_address_li">
+                <div class="iphone">
+                    <div class="browser">
+                        <!--选择地区-->
+                        <section class="express-area">
+                            <a id="expressArea" href="javascript:void(0)">
+                                <dl>
+                                    <dt>选择地区：</dt>
+                                    <dd>省 > 市 > 区/县</dd>
+                                </dl>
+                            </a>
+                        </section>
+                        <!--选择地区弹层-->
+                        <section id="areaLayer" class="express-area-box">
+                            <header>
+                                <h3>选择地区</h3>
+                                <a id="backUp" class="back" href="javascript:void(0)" title="返回"></a>
+                                <a id="closeArea" class="close" href="javascript:void(0)" title="关闭"></a>
+                            </header>
+                            <article id="areaBox">
+                                <ul id="areaList" class="area-list"></ul>
+                            </article>
+                        </section>
+                        <!--遮罩层-->
+                        <div id="areaMask" class="mask"></div>
+                        <script src="js/jquery.area.js"></script>
+                    </div>
+                </div>
+            </li>
+            <p class="gray_s"></p>
+            <li><label>街&nbsp;&nbsp;&nbsp;道：</label><input type="text" id="street" required="required"/></li>
+            <li><label>详细地址：</label><input type="text" id="detailed_address" required="required"/></li>
+            <li><label>邮&nbsp;&nbsp;&nbsp;编：</label><input id="zip_code" type="number" pattern="[1-9]d{5}(?!d)"/></li>
+            <li id="last_li"><label id="default">设为默认地址</label><label id="switch"><input type="checkbox" class="ios-switch green bigswitch" checked /><div><div></div></div></label></li>
+        </ul>
+    </div>
+    <footer>
+        <!--<input type="submit" value="保存地址" id="button" class="save"/>-->
+        <p id="save_button" class="save button">保存地址</p>
+    </footer>
+</div>
+<script src="js/main.js"></script>
+<script src="js/plugins.js"></script>
+</body>
+</html>

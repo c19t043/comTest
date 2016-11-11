@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	
+	<bean id="goodsServiceImpl" class="com.java.b2cGoods.service.impl.GoodsServiceImpl" parent="service">
+	</bean>
+	<bean id="goodsOrderServiceImpl" class="com.java.b2cGoods.service.impl.GoodsOrderServiceImpl" parent="service">
+	</bean>
+	<bean id="goodsDeliverServiceImpl" class="com.java.b2cGoods.service.impl.GoodsDeliverServiceImpl" parent="service">
+	</bean>
+	<bean id="goodsPresaleModelServiceImpl" class="com.java.b2cGoods.service.impl.GoodsPresaleModelServiceImpl" parent="service">
+	</bean>
+	<bean id="goodsTypeServiceImpl" class="com.java.b2cGoods.service.impl.GoodsTypeServiceImpl" parent="service">
+	</bean>
+	<bean id="goodsPropAndValServiceImpl" class="com.java.b2cGoods.service.impl.GoodsPropAndValServiceImpl" parent="service">
+	</bean>
+</beans>

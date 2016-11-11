@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package namespace="/operationmanage" name="communityBussinessManagement" extends="struts-default">
+		<result-types>
+			<result-type name="json" class="org.apache.struts2.json.JSONResult" />
+		</result-types>
+		
+		<interceptors>
+			<interceptor name="json" class="org.apache.struts2.json.JSONInterceptor" />
+		</interceptors>
+		
+		<action name="json_*" class="operationmanageAction" method="{1}">
+			<result name="success" type="json"></result>
+		</action>
+		
+		<action name="exportExcel" class="operationmanageAction">
+            <result name="success" type="stream">
+                <param name="contentType">application/vnd.ms-excel</param>
+                <param name="inputName">inputStream</param>
+                <param name="contentDisposition">attachment;filename="${operaBaseSchedule.fileName}"</param>
+                <param name="bufferSize">4096</param>
+            </result>
+        </action>
+	</package>
+
+
+	<package namespace="/operationmanage" name="com.java.operationmanage" extends="com.java.platform">
+		<!-- 查询排班基本信息列表 -->
+		<action name="toList" class="operationmanageAction" method="queryBaseSchedule">
+			<result name="success">/operationmanage/communitySchedule/baseSchedule_list.jsp</result>
+		</action>
+		<!-- 跳转到添加or编辑页面 -->
+		<action name="toAdd" class="operationmanageAction" method="toAddWithBaseSchedule">
+			<result name="success">/operationmanage/communitySchedule/baseSchedule_add.jsp</result>
+		</action>
+		<!-- 添加or更新 -->
+		<action name="saveOrUpdate" class="operationmanageAction" method="saveOrUpdateBaseSchedule">
+			<result name="success">/operationmanage/communitySchedule/baseSchedule_add.jsp</result>
+			<result name="queryOperaBaseSchedule_action" type="stateRedirectAction">
+				<param name="actionName">toList.action</param>
+			</result>
+		</action>
+		<!-- 跳转到排班详细信息页面 -->
+		<action name="toCBMDetailPage" class="operationmanageAction" method="toCBMDetailPage">
+			<result name="success">/operationmanage/communitySchedule/personSchedule_list.jsp</result>
+		</action>
+		<!-- 跳转到医生排班添加or编辑页面 -->
+		<action name="toDoctorSchedulePage" class="operationmanageAction" method="queryDoctorSchedule">
+			<result name="success">/operationmanage/communitySchedule/doctorSchedule_add.jsp</result>
+		</action>
+		<!-- 保存or更新医生排班信息 -->
+		<action name="saveOrUpdateDoctorSchedule" class="operationmanageAction" method="saveOrUpdateDoctorSchedule">
+			<result name="success">/operationmanage/communitySchedule/doctorSchedule_add.jsp</result>
+		</action>
+		<!-- 跳转到工作人员排班添加or编辑信息 -->
+		<action name="toWorkerSchedulePage" class="operationmanageAction" method="queryWorkerSchedule">
+			<result name="success">/operationmanage/communitySchedule/workerSchedule_add.jsp</result>
+		</action>
+		<!-- 保存or更新工作人员排班信息 -->
+		<action name="saveOrUpdateWorkerSchedule" class="operationmanageAction" method="saveOrUpdateWorkerSchedule">
+			<result name="success">/operationmanage/communitySchedule/workerSchedule_add.jsp</result>
+		</action>
+		<!-- 医院列表  -->
+ 		<action name="getHospitalInfoList" class="operationmanageAction" method="queryHospitalInfoList"> 
+ 			<result name="success">/operationmanage/communitySchedule/hospital_select_single_list.jsp</result> 
+ 		</action> 
+		
+		
+		
+		<!-- 开通的业务列表  -->
+		<action name="openClinicInfoList" class="operationmanageAction" method="getOpenClinicInfoPageList">
+			<result name="success">/operationmanage/openclinicinfo_list.jsp</result>
+		</action>
+		<!-- 客户列表  -->
+		<action name="customerList" class="operationmanageAction" method="getCustomerPageList">
+			<result name="success">/operationmanage/customer_list.jsp</result>
+		</action>
+		<!-- 新增开通的业务 -->
+		<action name="openClinicInfoAdd" class="operationmanageAction" method="openClinicInfoAdd">
+			<result name="success">/operationmanage/openclinicinfo_add.jsp</result>
+		</action>
+		<!-- 新增客户信息 -->
+		<action name="customerAdd" class="operationmanageAction" method="customerAdd">
+			<result name="success">/operationmanage/customer_add.jsp</result>
+		</action>
+		<!-- 进入更新客户界面 -->
+		<action name="updateCustomer" class="operationmanageAction" method="updateCustomer">
+			<result name="success">/operationmanage/customer_edit.jsp</result>
+		</action>
+		<!-- 选择组件主页（单个医生） -->
+		<action name="selectSingleDoctorMain" class="operationmanageAction" method="selectSingleDoctorMain">
+			<result name="success">/operationmanage/openclinicinfo_doctor_select_main.jsp</result>
+		</action>
+		<!-- 选择组件列表（单个医生） -->
+		<action name="selectSingleDoctorList" class="operationmanageAction" method="selectSingleDoctorList">
+			<result name="success">/operationmanage/openclinicinfo_doctor_select_list.jsp</result>
+		</action>
+		<!-- 保存新增开通的业务 -->
+		<action name="addingOpenClinicInfo" class="operationmanageAction" method="addingOpenClinicInfo">
+			<result name="list_action" type="stateRedirectAction">
+				<param name="actionName">openClinicInfoList.action</param>					
+			</result>
+		</action>
+		<!-- 保存客户信息 -->
+		<action name="addingCustomer" class="operationmanageAction" method="addingCustomer">
+			<result name="list_action" type="stateRedirectAction">
+				<param name="actionName">customerList.action</param>					
+			</result>
+		</action>
+		<!-- 保存更新的客户信息 -->
+		<action name="updateingCustomer" class="operationmanageAction" method="updateingCustomer">
+			<result name="list_action" type="stateRedirectAction">
+				<param name="actionName">customerList.action</param>					
+			</result>
+		</action>
+		<!-- 查询开通业务详细信息 -->
+		<action name="openClinicInfoDetail" class="operationmanageAction" method="openClinicInfoDetail">
+			<result name="success">/operationmanage/openclinicinfo_detail.jsp</result>
+		</action>
+		<!-- 编辑开通业务详细信息 -->
+		<action name="openClinicInfoEdit" class="operationmanageAction" method="openClinicInfoEdit">
+			<result name="success">/operationmanage/openclinicinfo_edit.jsp</result>
+		</action>
+		<!-- 编辑保存新增开通的业务 -->
+		<action name="updateingOpenClinicInfo" class="operationmanageAction" method="updateingOpenClinicInfo">
+			<result name="list_action" type="stateRedirectAction">
+				<param name="actionName">openClinicInfoList.action</param>					
+			</result>
+		</action>
+	</package>
+	<!-- 排班系统模板管理 -->
+	<package namespace="/operationModelManager" name="operationModelManagerAction" extends="com.java.platform">
+		<!-- 返回医生排班添加页面-->
+		<action name="toBack" class="operationModelManagerAction" method="toBack">
+			<result name="success">/operationmanage/communitySchedule/doctorSchedule_add.jsp</result>
+		</action>
+		<!-- 选择模板-->
+		<action name="selectTemplate" class="operationModelManagerAction" method="selectTemplate">
+			<result name="success">/operationmanage/communitySchedule/doctorSchedule_add.jsp</result>
+		</action>
+		<!-- 模板信息列表 -->
+		<action name="toModelList" class="operationModelManagerAction" method="toModelList">
+			<result name="success">/operationmanage/scheduleModel/scheduleModel_list.jsp</result>
+		</action>
+		<!-- 跳转添加模板信息 -->
+		<action name="toAddModel" class="operationModelManagerAction" method="toAddModel">
+			<result name="success">/operationmanage/scheduleModel/scheduleModel_add.jsp</result>
+		</action>
+		<!-- 跳转编辑模板信息 -->
+		<action name="toEditModel" class="operationModelManagerAction" method="toEditModel">
+			<result name="success">/operationmanage/scheduleModel/scheduleModel_add.jsp</result>
+		</action>
+		<!-- 保存or更新医生排班模板信息 -->
+		<action name="saveOrUpdateDoctorSchedule" class="operationModelManagerAction" method="saveOrUpdateDoctorSchedule">
+			<result name="toModelList_action" type="stateRedirectAction">
+				<param name="actionName">toModelList.action</param>					
+			</result>
+		</action>
+	</package>
+</struts>

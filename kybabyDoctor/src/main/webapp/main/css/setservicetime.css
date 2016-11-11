@@ -1,0 +1,102 @@
+@charset "utf-8";
+
+.add_box {
+	width: 90%;
+	padding: 10px 5%;
+	clear: both;
+	overflow: hidden;
+	background: #fff;
+	color: #969696;
+}
+.add_box_left {
+	width: 90%;
+	float: left;
+	line-height: 25px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.icon_point {
+	width: 10px;
+	height: 10px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	background: #fff;
+	border: 2px solid #4fc1e9;
+	float:left;
+	margin-top: 20px;
+}
+.on {
+	background: #4fc1e9;
+
+}
+.add_details {
+	margin-left: 20px;
+}
+.add_details p {
+	width: 100%;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.add_box_right {
+	margin-left: 90%;
+	text-align: right;
+	line-height: 50px;
+	font-size: 2em;
+}
+.time_box {
+	width: 100%;
+	padding:10px 0;
+	background: #fff;
+	clear: both;
+	overflow: hidden;
+}
+.time_box_tit {
+	width: 90%;
+	margin: 0 auto;
+	line-height: 30px;
+	color: #969696;
+}
+.table_box {
+	height: 430px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+.time_table {
+	width: 100%;
+	border-top: 1px solid #f7f7f7;
+	border-bottom: 1px solid #f7f7f7;
+	border-collapse: collapse;
+	text-align: center;
+	color: #969696;
+}
+.time_table td:first-child {
+	border: none;
+	font-size: 0.875em;
+}
+.time_table td {
+	border: 1px solid #f7f7f7;
+	height: 50px;
+	padding: 5px;
+}
+.time_table td p:last-child {
+	font-size: 0.875em;
+}
+.time_table td.select {
+	background: #4fc1e9;
+	color: #fff;
+}
+.servicetime_note {
+	width: 90%;
+	margin: 0 auto;
+	text-align: right;
+	font-size: 0.875em;
+	color: #969696;
+	line-height: 40px;
+}
+.select_yellow{
+	background:#ffcc32;
+	color:#fff;
+}

@@ -1,0 +1,164 @@
+<!DOCTYPE>
+<HTML>
+<HEAD>
+	<title>快医公司接口测试页面</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=8">
+	<meta http-equiv="Expires" content="0">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Cache-control" content="no-cache">
+	<meta http-equiv="Cache" content="no-cache">
+	
+	<style type="text/css">
+		table{
+			border:1px solid black;
+			border-collapse:collapse;
+		}
+		tr{
+			border:1px solid black;
+		}
+		td{
+			height:40px;width:150px;
+			text-align: center;
+			border:1px solid black;
+		}
+	</style>
+</HEAD>
+<BODY>
+	<table id="SMFWOrder">
+		<tr>
+			<td colspan="13">	
+				<table>
+					<tr>
+						<td style="width:350px;">
+							<span>订单编号：</span>
+							<input type="text" id="orderNum_query" name="orderNum" placeholder="订单编号">
+						</td>
+						<td style="width:350px;">
+							<span>订单状态：</span>
+							<select id="orderStatus_query" name="orderStatus" style="width:80px;">
+								<option value="已下单">已下单</option>
+								<option value="已接单">已接单</option>
+								<option value="已签到">已签到</option>
+								<option value="已完成">已完成</option>
+								<option value="已确认">已确认</option>
+							</select>
+						</td>
+						<td><input type="button" id="query_order" value="查询订单"></td>
+					</tr>
+					<tr>
+						<td >
+							<span>订单编号：</span>
+							<input type="text" id="orderNum_dis" name="orderNum" placeholder="订单编号">
+						</td>
+						<td>
+							<span>医生Id:</span>
+							<input type="text" id="doctorID_dis" name="doctorID" placeholder="医生Id">
+						</td>
+						<td><input type="button" id="dis_doctor" value="分配医生"></td>
+					</tr>
+					<tr>
+						<td><span>返回信息：</span></td>
+						<td colspan="11" id="resultInfo"></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr class="tr">
+			<td>id</td>
+			<td>订单编号</td>
+			<td>下单时间</td>
+			<td>预约时间</td>
+			<td>预约时间段</td>
+			<td>分配医生ID</td>
+			<td>产品ID</td>
+			<td>订单金额</td>
+			<td>支付方式</td>
+			<td>手机号</td>
+			<td>用户姓名</td>
+			<td>订单状态</td>
+			<td>地址</td>
+		</tr>
+	</table>
+	<script type="text/javascript" src="../admin/js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			
+			list();
+			
+			$("#dis_doctor").click(dis_doctor)
+			
+			$("#query_order").click(query_order);
+		})
+		
+		function query_order(){
+			var orderNum = $("#orderNum_query").val();
+			var orderStatus = $("#orderStatus_query").val();
+			
+			list(orderNum,orderStatus);
+		}
+		
+		function dis_doctor(){
+			var orderNum = $("#orderNum_dis").val();
+			var doctorID = $("#doctorID_dis").val();
+			
+			if(orderNum=="") {
+				alert("订单编号不能为空");
+				return; 
+			}
+			
+			if(doctorID=="") {
+				alert("医生id不能为空");
+				return; 
+			}
+			
+			$.ajax({
+				url:"/kybabyBG/kyinterface/doSMFWOrder.action",
+				type:"POST",
+				async:true,
+				data:{
+					"orderInfo.orderNum":orderNum,
+					"orderInfo.doctorId":doctorID
+				},
+				success:function(result){
+					$("#resultInfo").text(result);
+					alert(result);
+				}
+			});
+		}
+		
+		function list(orderNum,orderStatus){
+			$.ajax({
+				url:"/kybabyBG/kyinterface/list.action",
+				type:"POST",
+				async:true,
+				data:{
+					"orderInfo.orderNum":orderNum,
+					"orderInfo.orderStatus":orderStatus
+				},
+				success:function(result){
+					$(".add").remove();
+					var content = "";
+					for(var i=0,len=result.length;i<len;i++){
+						content+="<tr class='tr add'>"
+							+"<td>"+result[i].id+"</td>"
+							+"<td>"+result[i].orderNum+"</td>"
+							+"<td>"+result[i].submitTime+"</td>"
+							+"<td>"+result[i].workDate+"</td>"
+							+"<td>"+result[i].workTime+"</td>"
+							+"<td>"+result[i].doctorID+"</td>"
+							+"<td>"+result[i].productID+"</td>"
+							+"<td>"+result[i].totalMoney+"</td>"
+							+"<td>"+result[i].payType+"</td>"
+							+"<td>"+result[i].phone+"</td>"
+							+"<td>"+result[i].userName+"</td>"
+							+"<td>"+result[i].orderStatus+"</td>"
+							+"<td>"+result[i].address+"</td></tr>"
+					}
+					$("#SMFWOrder").append(content);
+				}
+			});
+		}
+	</script>
+</BODY>
+</HTML>

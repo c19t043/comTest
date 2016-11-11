@@ -1,0 +1,423 @@
+﻿<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<title>产前随访</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/main.css">
+	<script src="js/modernizr-2.8.3.min.js"></script>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/config.js"></script>
+	<script src="js/autoLogin.js"></script>
+    <script src="js/main.js"></script>
+    <!------------时间控件--------------->
+    <script src="js/mobiscroll_002.js" type="text/javascript"></script>
+    <script src="js/mobiscroll_004.js" type="text/javascript"></script>
+    <link href="js/mobiscroll_002.css" rel="stylesheet" type="text/css">
+    <link href="js/mobiscroll.css" rel="stylesheet" type="text/css">
+    <script src="js/mobiscroll.js" type="text/javascript"></script>
+    <script src="js/mobiscroll_003.js" type="text/javascript"></script>
+    <script src="js/mobiscroll_005.js" type="text/javascript"></script>
+    <link href="js/mobiscroll_003.css" rel="stylesheet" type="text/css">
+    <!------------时间控件end--------------->
+</head>
+<body>
+
+<div id="header">
+    <div class="header-left"><p></p></div>
+    <div class="header-center">产前随访</div>
+    <div class="header-right"></div>
+</div>
+<!--header-->
+<style>
+    body{
+        background: #ffffff;
+    }
+    .personal_list{
+        width: 100%;
+        height: 50px;
+        padding: 0px 15px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        line-height: 50px;
+    }
+    .personal_list .personal_left {
+        float: left;
+        height: 50px;
+        line-height: 50px;
+        width: 35%;
+    }
+    .personal_list .personal_right {
+        float: right;
+        color: #c8c8c8;
+        width: 65%;
+        height: 50px;
+        line-height: 50px;
+        text-align: right;
+    }
+    .personal_right>span{
+        border: 1px solid #eeeeee;
+    }
+    .personal_right>input{
+        border: none;
+        width: 100px;
+        text-align: right;
+    }
+    .personal_right>input#appDate{
+        border: 1px solid #eeeeee;
+        width: 100px;
+        line-height: 30px;
+        text-align: center;
+    }
+    .normal{
+        padding: 4px 4px;
+    }
+    .normal1{
+        padding: 4px 9px;
+    }
+    .abnormal{
+        padding: 4px 20px;
+    }
+    .personal_list>input{
+        border: none;
+        line-height: 36px;
+        width: 100%;
+        background: #ffffff;
+    }
+    .gray_s{
+        width: 100%;
+        height: 10px;
+        background: #f7f7f7;
+        clear: both;
+    }
+    .gray_ss{
+        width: 100%;
+        height: 2px;
+        background: #f7f7f7;
+        clear: both;
+    }
+    .blue{
+        background: #4FC1E9;
+        color: #ffffff;
+    }
+    .guidance,.guidance1{
+        width: 100%;
+        padding: 0px 15px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        background: #f7f7f7;
+        line-height: 34px;
+        overflow: hidden;
+    }
+    .guidance>p,.guidance1>p{
+        background: #f7f7f7;
+    }
+    .guidance>div,.guidance1>div{
+        float: left;
+        margin:5px 0px;
+        width: 32%;
+        background: #ffffff;
+        text-align: center;
+    }
+    .guidance>.sec1,.guidance1>.sec1{
+        margin-left: 2%;
+    }
+    .guidance>.fou1,.guidance1>.fou1{
+        margin-left: 2%;
+    }
+    .guidance>.fif1,.guidance1>.fif1{
+        margin-left: 2%;
+    }
+    .guidance>.fir1,.guidance1>.fir1{
+        width: 66%;
+    }
+    .guidance>.sec,.guidance1>.sec{
+        margin-left: 2%;
+    }
+    .guidance>.thi,.guidance1>.thi{
+        margin-left: 2%;
+    }
+    .guidance>.fif,.guidance1>.fif{
+        margin-left: 2%;
+        width: 66%;
+    }
+
+    .guidance>input,.guidance1>input{
+        width: 100%;
+        border: none;
+        line-height: 34px;
+    }
+
+    .guidance>div.blue,.guidance1>div.blue{
+        background: #4FC1E9;
+        color: #ffffff;
+    }
+    #footer p{
+        color: white;
+        font-size: 22px;
+        width: 100%;
+        background: #4FC1E9;
+    }
+    textarea{
+        width: 100%;
+        padding: 10px 15px;
+        line-height: 24px;
+        background: #ffffff;
+        border: none;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        height: 110px;
+    }
+    #footer {
+        width: 100%;
+        height: 50px;
+        padding: 10px 15px 5px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        text-align: center;
+        line-height: 35px;
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+        background: #F7F7F7;
+    }
+    #footer p{
+        color: white;
+        font-size: 22px;
+        width: 100%;
+        background: #4FC1E9;
+    }
+    select{
+        -webkit-appearance: searchfield;
+        -moz-appearance: searchfield;
+        text-align: right;
+        border: none;
+        outline: none;
+    }
+
+</style>
+<p class="gray_s"></p>
+<div id="container">
+
+    <div class="personal_list">
+        <p class="personal_left">姓名</p>
+        <p class="personal_right">
+            张雯雯
+        </p>
+    </div>
+    <p class="gray_ss"></p>
+
+    <!--personal_list02-->
+    <div class="personal_list">
+        <p class="personal_left">性别</p>
+        <p class="personal_right">
+            女
+        </p>
+    </div>
+    <p class="gray_ss"></p>
+
+    <!--personal_list01-->
+    <div class="personal_list">
+        <p class="personal_left">随访日期</p>
+        <p class="personal_right">
+            <input type="text" placeholder="请选择随访日期" readonly name="time" id="appDate"/>
+        </p>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list">
+        <p class="personal_left">孕周</p>
+        <p class="personal_right">
+            5周
+        </p>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list">
+        <p class="personal_left">主诉</p>
+        <p class="personal_right">
+
+        </p>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list">
+        <p class="personal_left">体重</p>
+        <p class="personal_right">
+             kg
+        </p>
+    </div>
+    <p class="gray_ss"></p>
+
+    <div class="personal_list" style="background: #f7f7f7">
+        产科检查
+    </div>
+    <!--personal_list02-->
+    <div class="personal_list">
+        <p class="personal_left">宫底高度</p>
+        <p class="personal_right">
+            cm
+        </p>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list">
+        <p class="personal_left">腹围</p>
+        <p class="personal_right">
+            cm
+        </p>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list">
+        <p class="personal_left">胎位</p>
+        <p class="personal_right">
+
+        </p>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list">
+        <p class="personal_left">胎心率</p>
+        <p class="personal_right">
+            次/分钟
+        </p>
+    </div>
+    <p class="gray_s"></p>
+    <p class="gray_s"></p>
+    <div class="personal_list">
+        <p class="personal_left">血压</p>
+        <p class="personal_right">
+            mmHg
+        </p>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list">
+        <p class="personal_left">血红蛋白</p>
+        <p class="personal_right">
+            g/L
+        </p>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list">
+        <p class="personal_left">尿蛋白</p>
+        <p class="personal_right">
+
+        </p>
+    </div>
+    <p class="gray_ss"></p>
+    <!--personal_list02-->
+    <div class="personal_list" style="background: #f7f7f7">
+        <div class="list04">
+            <p class="personal_left">其他辅助检查</p>
+        </div>
+    </div>
+    <textarea name="" id="a" cols="30" rows="10"></textarea>
+    <p class="gray_s"></p>
+    <p class="gray_s"></p>
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">分类</p>
+            <p class="personal_right">
+                <span class="normal blue">未见异常</span>
+                <span class="abnormal">异常</span>
+            </p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        <input type="text" placeholder="异常请在此填写"/>
+    </div>
+    <p class="gray_s"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        指导
+    </div>
+
+    <div class="guidance1" id="guidance9">
+        <div class="fir blue">个人卫生</div>
+        <div class="sec">膳食</div>
+        <div class="sec">心理</div>
+        <div class="fir">运动</div>
+        <div class="sec">自我监测</div>
+        <div class="sec">分娩准备</div>
+        <div class="fir">母乳喂养</div>
+    </div>
+    <p class="gray_ss"></p>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        <input type="text" placeholder="其他请在此填写"/>
+    </div>
+    <p class="gray_s"></p>
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">转诊建议</p>
+            <p class="personal_right">
+                <span class="normal blue" style="padding: 4px 28px">无</span>
+                <span class="abnormal" style="padding: 4px 28px">有</span>
+            </p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+    <!--personal_list01-->
+    <div class="personal_list" style="padding-bottom: 50px">
+        <p class="personal_left">下次随访日期</p>
+        <p class="personal_right">
+            <input type="text" placeholder="请选择下次随访日期" readonly name="time" id="appDate1"/>
+        </p>
+    </div>
+
+</div>
+<footer id="footer">
+    <p>保存</p>
+</footer>
+
+<script src="js/plugins.js"></script>
+<script>
+    $(function () {
+        var currYear = (new Date()).getFullYear();
+
+        var opt = {};
+        opt.date = {preset: 'date'};
+        opt.datetime = {preset: 'datetime'};
+        opt.time = {preset: 'time'};
+        opt.default = {
+            theme: 'android-ics light', //皮肤样式
+            display: 'modal', //显示方式
+            mode: 'scroller', //日期选择模式
+            dateFormat: 'yyyy-mm-dd',
+            lang: 'zh',
+            showNow: true,
+            nowText: "今天",
+            startYear: currYear - 50, //开始年份
+            endYear: currYear//结束年份
+        };
+
+        $("#appDate").mobiscroll($.extend(opt['date'], opt['default']));
+        $("#appDate1").mobiscroll($.extend(opt['date'], opt['default']));
+        $("#appDate2").mobiscroll($.extend(opt['date'], opt['default']));
+        var optDateTime = $.extend(opt['datetime'], opt['default']);
+        var optTime = $.extend(opt['time'], opt['default']);
+//		$("#appDate").mobiscroll(optDateTime).datetime(optDateTime);
+//		 $("#appTime").mobiscroll(optTime).time(optTime);
+    });
+
+    $(function () {
+        $('.personal_right>span').click(function () {
+            $(this).addClass('blue').siblings().removeClass('blue');
+        });
+        $('.guidance>div').click(function () {
+            $(this).addClass('blue').siblings().removeClass('blue');
+        });
+        $('.guidance1>div,.personal_right>a').click(function () {
+            $(this).toggleClass('blue');
+        });
+        $('#footer>p').click(function () {
+            ale('保存成功');
+            setTimeout(function () {
+                window.history.back();
+            },2000);
+        });
+    });
+</script>
+</body>
+</html>

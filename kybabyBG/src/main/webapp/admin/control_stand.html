@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>控制台</title>
+	<meta charset="utf-8">
+	<meta name="renderer" content="webkit"/>
+	<meta charset="UTF-8">
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/basic.js"></script>
+	<script src="js/common.js"></script>
+	<script src="js/control_stand.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/iconfont/iconfont.css">
+	<link rel="stylesheet" type="text/css" href="css/control_stand.css">
+	<script type="text/javascript">
+		window.onload = function () {
+			getEightData();
+		};
+
+
+	</script>
+</head>
+<body>
+
+<div id="headcon" class="headcon">
+
+</div>
+
+<div class="middlecon">
+	<div id="leftcon" class="leftcon">
+
+	</div>
+
+	<div id="rightcon" class="rightcon">
+		<div class="content">
+			<div id="con_position" class="con_position">
+				<h1 id="con_tit" class="con_tit"></h1>
+
+				<div id="con_meu" class="con_meu">
+					<span>首页</span>
+					<!--<span>/</span>-->
+					<!--<span class="first"></span>-->
+					<span>/</span>
+					<span class="second"></span>
+				</div>
+				<div class="con_contral">
+				</div>
+			</div>
+		</div>
+		<div class="fj">
+			<ul class="jg">
+				<li>
+					<div class="zj">
+						<span class="tit">咨询管理</span>
+
+						<div class="img_box" style="background:url(images/ico/kzt_01.png) no-repeat center"></div>
+						<div class="text_box">
+							<span class="text">当月咨询数：</span>
+							<span class="text" id="curConsult"></span>
+						</div>
+						<div class="text_boxs">
+							<span class="text">总咨询数：</span>
+							<span class="text" id="allConsult"></span>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="zj">
+						<span class="tit">病历夹信息</span>
+
+						<div class="img_box" style="background:url(images/ico/kzt_02.png) no-repeat center"></div>
+						<div class="text_box">
+							<span class="text">当月病历夹：</span>
+							<span class="text" id="curCaseClip"></span>
+						</div>
+						<div class="text_boxs">
+							<span class="text">病历夹总数：</span>
+							<span class="text" id="allCaseClip"></span>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="zj">
+						<span class="tit">订单</span>
+
+						<div class="img_box" style="background:url(images/ico/kzt_03.png) no-repeat center"></div>
+						<div class="text_box">
+							<span class="text">当月订单数：</span>
+							<span class="text" id="curOrder"></span>
+						</div>
+						<div class="text_boxs">
+							<span class="text">总订单数：</span>
+							<span class="text" id="allOrder"></span>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="zj">
+						<span class="tit">结算管理</span>
+
+						<div class="img_box" style="background:url(images/ico/kzt_04.png) no-repeat center"></div>
+						<div class="text_box">
+							<span class="text">当月提现金额：</span>
+							<span class="text" id="curBalance"></span>
+						</div>
+						<div class="text_boxs">
+							<span class="text">总提现金额：</span>
+							<span class="text" id="allBalance"></span>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+</body>
+</html>

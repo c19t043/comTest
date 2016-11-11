@@ -1,0 +1,81 @@
+.family_doctor_list{
+    overflow: hidden;
+    margin-bottom: 25px;
+    color: #272727;
+}
+#bottom_before{
+    display: none;
+}
+.family_doctor_list>div{
+    box-sizing:border-box;
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box;
+    width: 50%;
+    display: inline-block;
+    float: left;
+    line-height: 35px;
+    padding: 25px 0 15px;
+    border-bottom: 1px solid #e8e8e8;
+    text-align: center;
+    font-size: 14px;
+    height: 125px;
+}
+.family_doctor_list>div:nth-child(odd){
+    border-right: 1px solid #e8e8e8;
+}
+.family_doctor_list img{
+    width: 50px;
+    height: 50px;
+}
+#read_text{
+    margin-top: 20px;
+    font-size: 14px;
+    text-align: center;
+    line-height: 30px;
+}
+#read_text img{
+    width: 16px;
+    margin-right: 5px;
+    vertical-align: -3px;
+}
+.doctor_information{
+    width: 96%;
+    margin: 10px auto;
+    overflow: hidden;
+    font-size: 14px;
+}
+#doctor_header{
+    overflow: hidden;
+    float: left;
+    width: 75px;
+    height: 75px;
+    background: rgba(0,0,0,.7);
+    border-radius: 75px;
+    margin-right: 8px;
+}
+#doctor_header>img{
+    border-radius: 100%;
+    width: 100%;
+}
+.doctor_introduction{
+    float: left;
+    line-height: 25px;
+    color: #272727;
+}
+.doctor_introduction span{
+    font-size: 12px;
+}
+
+#cbUserAgreement{
+    margin-right: 5px;
+    display: inline-block;
+    width: 15px;
+    height:15px;
+    margin-bottom: -2px;
+    background: url(../images/images_family_doctor/readed.png)no-repeat center;
+    background-size: 100%;
+}
+.cbUserAgreement>#cbUserAgreement{
+    background: #272636;
+}
+

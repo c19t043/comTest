@@ -1,0 +1,272 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>页面管理</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit" />
+<script src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="ueditor/ueditor.all.min.js"> </script>
+<script type="text/javascript" charset="utf-8" src="ueditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript" charset="utf-8" src="hf/hf.js"></script>
+<script src="js/basic.js"></script>
+<script src="js/common.js"></script>
+<script src="js/page_manage.js"></script>
+<link rel="stylesheet" type="text/css" href="css/common.css">
+<link rel="stylesheet" type="text/css" href="css/iconfont/iconfont.css">
+<link rel="stylesheet" type="text/css" href="css/page_manage.css">
+</head>
+<body>
+
+<div id="headcon" class="headcon">
+
+</div>
+
+<div class="middlecon">
+	<div id="leftcon" class="leftcon">
+
+	</div>
+	
+	<div id="rightcon" class="rightcon">
+		<div class="content">
+			<div id="con_position" class="con_position">
+				<h1 id="con_tit" class="con_tit"></h1>
+				<div id="con_meu" class="con_meu">
+					<span>首页</span>
+					<span>/</span>
+					<span class="first"></span>
+					<span>/</span>
+					<span class="second"></span>
+				</div>
+				<div class="con_contral">
+                    <span class="tishi">页面管理：</span>
+				</div>
+				<table id="table_title" class="table_title">
+
+				</table>
+			</div>
+			<div class="table_h">
+				<table id="table_content" class="table_content">
+          <tr onclick='click_light(this)'>
+            <td width="30%">1</td>
+            <td width="30%">用户协议</td>
+            <td width="40%">
+            	<!--
+            	<div class='td_change_button' >查看</div>&nbsp;
+            	-->
+            	<div class='td_change_button' onclick="read_info_test('1')">修改</div>
+            	
+            </td>
+          </tr>
+          <tr onclick='click_light(this)'>
+            <td width="30%">2</td>
+            <td width="30%">健康计划管理方法</td>
+            <td width="40%">
+            	<!--
+            	<div class='td_change_button' >查看</div>&nbsp;
+            	-->
+            	<div class='td_change_button' onclick="read_info_test('2')">修改</div>
+            </td>
+          </tr>
+          <tr onclick='click_light(this)'>
+            <td width="30%">3</td>
+            <td width="30%">关于我们</td>
+            <td width="40%">
+            	<!--
+            	<div class='td_change_button' >查看</div>&nbsp;
+            	-->
+            	<div class='td_change_button' onclick="read_info_test('3')">修改</div>
+            </td>
+          </tr>
+          <tr onclick='click_light(this)'>
+            <td width="30%">4</td>
+            <td width="30%">轮播banner</td>
+            <td width="40%">
+            	<!--
+            	<div class='td_change_button' >查看</div>&nbsp;
+            	-->
+            	<div class='td_change_button' onclick="read_info_test('4')">修改</div>
+            </td>
+          </tr>
+          
+          <tr onclick='click_light(this)'>
+            <td width="30%">5</td>
+            <td width="30%">医生协议</td>
+            <td width="40%">
+            	<!--
+            	<div class='td_change_button' >查看</div>&nbsp;
+            	-->
+            	<div class='td_change_button' onclick="read_info_test('5')">修改</div>
+            </td>
+          </tr>
+          
+         <tr onclick='click_light(this)'>
+            <td width="30%">6</td>
+            <td width="30%">引导页</td>
+            <td width="40%">
+            	<!--
+            	<div class='td_change_button' >查看</div>&nbsp;
+            	-->
+            	<div class='td_change_button' onclick="read_info_test('6')">修改</div>
+            </td>
+          </tr>
+				</table>
+			</div>
+			<div class="con_page">
+				<span class="a">共&nbsp;<span id="con_num" class="con_num"></span>&nbsp;条数据</span>
+				<div class="button_cli">
+					<span class="button" onclick="page_click('default','1')">首页</span>
+					<span class="button" onclick="page_click('default','prev')" >上一页</span>
+					<span class="num" id="now_page_num" >1</span>
+					<span class="button" onclick="page_click('default','next')">下一页</span>
+					<span class="button" onclick="page_click('default','end')">尾页</span>
+				</div>
+				<div class="page_go">
+					<span class="b">共&nbsp;<span id="page_num" class="page_num"></span>&nbsp;页</span>
+					<span class="c">跳转到&nbsp;<input id="go_page" type="number" value="1" min="1">&nbsp;页</span>
+					<span class="button" onclick="page_click_go()">Go</span>
+				</div>
+			</div>
+			<div id="bottom_div" class="bottom_div">
+			  <div class="bottom_div_tit">
+				  <span class="tit_info"></span>
+				  <span id="button_add_click" class="button_style button_add" style="display:none;">确认</span>
+					<span id="button_update_click" onclick="contral_info(this)" class="button_style button_change" style="display:none;">确认</span>
+					<span id="button_cancel_click" class="button_style button_cancel">取消</span>
+				</div>
+				<div id="bottom_div_con" class="bottom_div_con">
+	        <div style="display:none;" mark='1'  class="fj step_1 hf_test">
+	          <div class="tpfj">
+	          	<span>用户协议：</span>
+	          	<span id="userProtocol_edit" class='bu'>点击编辑</span>
+	          	<textarea id="userProtocol_textarea" style="display:none"></textarea>
+	          </div>
+	        </div>
+	        <div style="display:none;" mark='2' class="fj step_2 hf_test">
+	        	<form id="health_plan_manage_method" method="post" enctype="multipart/form-data" action="bannerAndPageHandle.action?action=update&modular=healthPlanManage">
+	        		
+	            <label style="position: relative;bottom: 75px">上传图片：</label>
+	            <div class="tpfj">
+	            <div class="tp" style="height:120px;">
+	            	<img onclick="show_pic_cli.click()" width="320px" height="120px" id="healthPlan_img" />
+	            	<input type="file" id="show_pic_cli" name="healthPlanManageImage" accept="image/*" onchange="handleFiles(this,'healthPlan_img')" style="display:none;">
+	            </div><br/>
+	            <span id="healthPlan_edit" class='bu'>点击编辑</span>
+	            <span style="color:red">640px * 240px&nbsp;&nbsp;8:3</span>
+	            <textarea id="healthPlan_textarea" name="comeInBodyContent" style="display:none"></textarea>
+	            </div>
+	          </form>
+	        </div>
+	        <div style="display:none;" mark='3' class="fj step_3 hf_test">
+	          <div class="tpfj">
+	          	<span>关于我们：</span>
+	          	<span id="aboutUs_edit" class='bu'>点击编辑</span>
+	            <textarea id="aboutUs_textarea" style="display:none"></textarea>
+	          </div>
+	        </div>
+	        <div mark='4' class="fj step_4 hf_test">
+	        	<form id="banner_manage_method" method="post" enctype="multipart/form-data" action="bannerAndPageHandle.action?action=update&modular=banner">
+	            <div class="banner_zx">
+		            <div class="tpfj">
+		            	<div class="tp">
+		            		<img onclick="show_pic_banner1.click()" width="384px" height="192px" id="banner_1_img" class="banner_img" />
+		            		<input type="file" id="show_pic_banner1" name="bannerFile1" accept="image/*" onchange="handleFiles(this,'banner_1_img')" style="display:none;">
+		            	</div><br/>
+		            	<span id="banner1_edit" class='bu'>点击编辑</span>
+		            	<textarea id="banner1_textarea" class="banner_textarea" name="contentList " style="display:none"></textarea>
+		            	<input name="statusList" value="Y" style="display:none;"/>
+		            	<input name="updateIdList" value="1" style="display:none;"/>
+		            </div>
+		            <div class="tpfj">
+		            	<div class="tp">
+		            		<img onclick="show_pic_banner2.click()" width="384px" height="192px" id="banner_2_img" class="banner_img" />
+		            		<input type="file" id="show_pic_banner2" name="bannerFile2" accept="image/*" onchange="handleFiles(this,'banner_2_img')" style="display:none;">
+		            	</div><br/>
+		            	<span id="banner2_edit" class='bu'>点击编辑</span>
+		            	<textarea id="banner2_textarea"  class="banner_textarea" name="contentList " style="display:none"></textarea>
+		            	<input name="statusList" value="Y" style="display:none;"/>
+		            	<input name="updateIdList" value="2" style="display:none;"/>
+		            </div>	            
+	            </div>
+	            <p>640px * 320px&nbsp;&nbsp2:1</p>
+							<div class="banner_zx">
+		            <div class="tpfj">
+		            	<div class="tp">
+		            		<img onclick="show_pic_banner3.click()" width="384px" height="192px" id="banner_3_img" class="banner_img" />
+		            		<input type="file" id="show_pic_banner3" name="bannerFile3" accept="image/*" onchange="handleFiles(this,'banner_3_img')" style="display:none;">
+		            	</div><br/>
+		            	<span id="banner3_edit" class='bu'>点击编辑</span>
+		            	<textarea id="banner3_textarea"  class="banner_textarea" name="contentList " style="display:none"></textarea>
+		            	<input name="statusList" value="Y" style="display:none;"/>
+		            	<input name="updateIdList" value="3" style="display:none;"/>
+		            </div>
+		            <div class="tpfj">
+		            	<div class="tp">
+		            		<img onclick="show_pic_banner4.click()" width="384px" height="192px" id="banner_4_img" class="banner_img" />
+		            		<input type="file" id="show_pic_banner4" name="bannerFile4" accept="image/*" onchange="handleFiles(this,'banner_4_img')" style="display:none;">
+		            	</div><br/>
+		            	<span id="banner4_edit" class='bu'>点击编辑</span>
+		            	<textarea id="banner4_textarea"  class="banner_textarea" name="contentList " style="display:none"></textarea>
+		            	<input name="statusList" value="Y" style="display:none;"/>
+		            	<input name="updateIdList" value="4" style="display:none;"/>
+		            </div>							
+							</div>
+                  </form>
+	        </div>
+	        
+	    <div style="display:none;" mark='5'  class="fj step_5 hf_test">
+	          <div class="tpfj">
+	          	<span>医生协议：</span>
+	          	<span id="doctorProtocol_edit" class='bu'>点击编辑</span>
+	          	<textarea id="doctorProtocol_textarea" style="display:none"></textarea>
+	          </div>
+	        </div>
+	      
+	         <div mark='6' class="fj step_6 hf_test">
+	        	<form id="guidePage_manage_method" method="post" enctype="multipart/form-data" action="bannerAndPageHandle.action?action=update&modular=guidePage">
+	            <div class="banner_zx">
+		            <div class="tpfj">
+		            		<img onclick="show_pic_guidePage1.click()" width="200px"  id="guidePage_1_img" class="guide_img" />
+		            		<input type="file" id="show_pic_guidePage1" name="guidePage1" accept="image/*" onchange="handleFiles(this,'guidePage_1_img')" style="display:none;">
+		            	<br/>
+		            	<input name="statusList" value="Y" style="display:none;"/>
+		            	<input name="updateIdList" value="1" style="display:none;"/>
+		            </div>
+		            <div class="tpfj">
+		            	
+		            		<img onclick="show_pic_guidePage2.click()" width="200px"  id="guidePage_2_img" class="guide_img" />
+		            		<input type="file" id="show_pic_guidePage2" name="guidePage2" accept="image/*" onchange="handleFiles(this,'guidePage_2_img')" style="display:none;">
+		            	<br/>
+		            	<input name="statusList" value="Y" style="display:none;"/>
+		            	<input name="updateIdList" value="2" style="display:none;"/>
+		            </div>	
+		            <div class="tpfj">
+		            		<img onclick="show_pic_guidePage3.click()" width="200px"  id="guidePage_3_img" class="guide_img" />
+		            		<input type="file" id="show_pic_guidePage3" name="guidePage3" accept="image/*" onchange="handleFiles(this,'guidePage_3_img')" style="display:none;">
+		            	<br/>
+		            	<input name="statusList" value="Y" style="display:none;"/>
+		            	<input name="updateIdList" value="3" style="display:none;"/>               
+	               </div>
+	            </div>
+	            <p>640px * 1136px&nbsp;&nbsp1:2</p>
+              </form>
+	        </div>
+	      
+	      
+	      
+	      
+	        
+	        
+	        
+	        
+				</div>
+			</div>
+		</div>	
+	</div>
+</div>
+</body>
+<script>
+
+</script>
+</html>
+   

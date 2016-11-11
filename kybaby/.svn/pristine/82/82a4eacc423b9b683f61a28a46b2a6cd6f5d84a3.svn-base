@@ -1,0 +1,122 @@
+﻿<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>机构门诊医生</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/servicedoctor.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/config.js"></script>
+</head>
+<body>
+
+<div id="header">
+    <div class="header-left" onclick="back()"><span>机构门诊医生</span></div>
+    <div class="header-center"></div>
+    <div class="header-right"></div>
+</div>
+<!--header-->
+
+<div id="container">
+    <div id="doctor_box_f">
+
+    </div>
+</div>
+<!--container-->
+<script src="js/main.js"></script>
+<script src="js/plugins.js"></script>
+<script>
+    var orgId=decodeURIComponent(window.location.search.substring(1)).split('&')[0];
+    function back(){
+        var txt=decodeURIComponent(window.location.search.substring(1)).split('&')[1];
+        if(txt=='社区服务'){
+            window.location.href='orgservice_main.html';
+        }else{
+            window.location.href='orgservice_page.html?'+orgId;
+        }
+    }
+    $(function () {
+        $.ajax({
+            type:'post',
+            url:clinicHost+'clinicBooking.action',
+            cache:false,
+            async:false,
+            data:{
+                action:"getClinicDoctorInfo",
+                "toClinicListFlag":'byOrg',
+                "doctorInfo.hospitalId":orgId,
+                "doctorMorePractice.doctorMorePracticeOrgInfo.hospitalBasicInfo.id":orgId
+                //"doctorInfo.id":38//得到单个医生信息传此参数，医生列表不需要传参
+            },
+            success:function(result){
+                if (result.mes == '请登录') {
+                    ale('请登录', '24px');
+                    window.location.href = "login.html";
+                }
+                else if (result.mes == "成功") {
+                    var list=result.doctorInfoFoList;
+                    var html='';
+                    if(list==null||list.length==0){
+                        $('#container').html('<p style="text-align: center">暂无可约医生</p>');
+                        return false;
+                    }
+                    for(var i= 0,len=list.length;i<len;i++){
+                        var clinicBookingDateList=list[i].clinicBookingDateList;
+                        var clinicBookingDateListHtml='';
+                        if(clinicBookingDateList==null){
+                            clinicBookingDateListHtml='<li>暂无可约时间</li>';
+                        }else{
+                            for(var k=0,l=clinicBookingDateList.length;k<l;k++){
+                                clinicBookingDateListHtml+='<li style="color: #FF813D">'+clinicBookingDateList[k]+'</li>'
+                            }
+                        }
+                        var doctor=list[i].doctorInfo;
+                        var professionalDirection=list[i].majorNameList;
+                        var majorNameListHtml='';
+                        if(professionalDirection.length==1){
+                            majorNameListHtml+=professionalDirection[0];
+                        }else if(professionalDirection.length>1){
+                            for(var j= 0;j<2;j++){
+                                majorNameListHtml+=professionalDirection[j]+' ';
+                            }
+                        }
+                        //var m='list'+i;
+                        //sessionStorage.setItem(m,professionalDirection);
+                        var hospitalLeval='<span class="iconbtn">'+list[i].hospitalLeval+'</span>';
+                        if(list[i].hospitalLeval==''){
+                            hospitalLeval='';
+                        }
+                        html+='<div class="detailinfo" data-doctor="'+doctor.doctorName+' '+doctor.doctorEmployer+'" onclick="goTo('+doctor.id+','+orgId+')"> ' +
+                        '<div class="faceicon"> <img src="'+hostBG+'images/doctorFaceIcon/'+doctor.doctorImage+'" /> ' +
+                        '<span style="font-size: 14px">'+doctor.doctorName+'</span> </div> <div class="doctordesc"> <p class="a">' +
+                        doctor.doctorEmployer+hospitalLeval+'</p>' +
+                        ' <p class="b"><span class="tag">'+doctor.department+'</span>&nbsp;|&nbsp;' +
+                        '<span class="tag">'+doctor.doctorTitle+'</span>' +
+                        '&nbsp;|&nbsp;<span>'+doctor.clinicalExperience+'年临床经验</span></p>' +
+                            // ' <div class="c"> <span>专业方向：</span> <ul>' +
+                            //majorNameListHtml+'</ul></div>' +
+                        ' <div class="d"> ' +
+                        '<ul> <li>'+majorNameListHtml+'</li> ' +
+                        '</ul> </div> <div class="e"> <ul>'+clinicBookingDateListHtml+'</ul></div></div></div><p class="gray_s"></p>';
+                    }
+                    $('#doctor_box_f').html(html);
+                }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+//                alert(XMLHttpRequest.status);
+//                alert(errorThrown);
+                layer();
+            }
+        });
+    });
+    function goTo(id,orgId){
+        window.location.href='pointPatient.html?'+id+'&'+orgId;
+    }
+</script>
+</body>
+</html>

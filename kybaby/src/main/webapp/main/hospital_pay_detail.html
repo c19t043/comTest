@@ -1,0 +1,109 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>缴费明细</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/consult.css"/>
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/plugins.js"></script>
+    <style>
+        .info{
+            overflow: hidden;
+            padding: 5px 18px;
+            color: #909090;
+            line-height: 34px;
+        }
+        .float-left{
+            width: 40%;
+            font-size: 15px;
+        }
+        .float-right{
+            width: 60%;
+            text-align: right;
+            font-size: 13px;
+        }
+        .orgname{
+            font-size: 18px;
+        }
+        .top{
+            line-height: 40px;
+        }
+        .money,.paystutas{
+            font-size: 13px;
+            color: #909090;
+        }
+        .money{
+            color: #b30000;
+        }
+
+        #container li{
+            padding: 0 15px;
+            line-height: 50px;
+            font-size: 15px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        label{
+            width: 85px;
+        }
+        #container li span{
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<div id="header">
+    <div class="header-left" onclick="return_before();"><span>缴费明细</span></div>
+    <div class="header-center"></div>
+    <div class="header-right"></div>
+</div>
+<!--header-->
+<div id="container">
+  <ul>
+    <!--<li><label>单据号：</label><span>15451567851025374</span></li>-->
+    <!--<li><label>开单科室：</label><span>肖奈</span></li>-->
+    <!--<li><label>开单人：</label><span>陈阳</span></li>-->
+    <!--<li><label>类别：</label><span>XX类</span></li>-->
+    <!--<li><label>项目：</label><span>XXXXXXXXXXXXX</span></li>-->
+    <!--<li><label>规格：</label><span>XXXXXXXXXX</span></li>-->
+    <!--<li><label>数量：</label><span>XXXXXXXXXXX</span></li>-->
+    <!--<li><label>单位：</label><span>XXXXXXXX</span></li>-->
+    <!--<li><label>金额：</label><span>XXXXXXXX</span></li>-->
+    <!--<li><label>单价：</label><span>XXXXXXXX</span></li>-->
+    <!--<li><label>执行科室：</label><span>XXXXXXXX</span></li>-->
+</ul>
+</div>
+<script>
+    $(function(){
+        var id = window.location.search.substring(1);
+        $.ajax({
+            type:'post',
+            url:spInterfaceService+'querySpCostInfo.action',
+            cache:false,
+            async:true,
+            data:{spQueryMessageID:id},
+            success:function(result){
+                if(result.mess=='成功'){
+                    var spCostInfo = result.spCostInfo;
+                    $("#container ul").html('<li><label>单据号：</label><span>'+spCostInfo.documentNo+'</span></li><li><label>开单科室：</label><span>'+spCostInfo.orderDep+'</span></li>' +
+                            '<li><label>开单人：</label><span>'+spCostInfo.order+'</span></li><li><label>类别：</label><span>'+spCostInfo.sort+'</span></li>' +
+                            '<li><label>项目：</label><span>'+spCostInfo.itemName+'</span></li><li><label>规格：</label><span>'+spCostInfo.norms+'</span></li>' +
+                            '<li><label>数量：</label><span>'+spCostInfo.amount+'</span></li><li><label>单位：</label><span>'+spCostInfo.unit+'</span></li>' +
+                            '<li><label>金额：</label><span>'+parseFloat(spCostInfo.money).toFixed(2)+'</span></li><li><label>单价：</label><span>'+parseFloat(spCostInfo.price).toFixed(2)+'</span></li>' +
+                            '<li><label>执行科室：</label><span>'+spCostInfo.exeDep+'</span></li>');
+                }else{
+
+                }
+            }
+        })
+    })
+</script>
+</body>
+</html>

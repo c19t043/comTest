@@ -1,0 +1,64 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>上门服务</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/config.js"></script>
+    <style>
+        #go_home{
+            padding: 0 18px;
+            line-height: 26px;
+        }
+        ul{
+            padding: 0 6px;
+            font-size: 14px;
+        }
+        p{
+            font-size: 14px;
+            padding:10px 18px;
+            text-align: center;
+            color: red;
+        }
+        a{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div id="header">
+    <div class="header-left" onclick="return_before()"><span>上门服务</span></div>
+    <div class="header-center"></div>
+    <div class="header-right"></div>
+</div>
+<!--header-->
+<div id="container">
+    <div id="go_home">
+        康优宝贝提供服务:
+        <ul>
+            <li>1、婴儿沐浴指导</li>
+            <li>2、小儿保健推拿</li>
+            <li>3、婴儿被动操</li>
+            <li>4、婴儿抚触</li>
+        </ul>
+    </div>
+    <p>
+        以上服务4选1，且在家庭医生服务期限内只服务一次,
+        预约以上服务请拨打<a class="ml_20" href="tel:400-0122-149">400-0122-149</a>
+    </p>
+</div>
+
+<script src="js/main.js"></script>
+<script src="js/plugins.js"></script>
+<script>
+
+</script>
+</body>
+</html>

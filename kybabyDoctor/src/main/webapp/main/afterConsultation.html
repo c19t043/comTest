@@ -1,0 +1,514 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>咨询后</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/afterConsultation.css">
+    <link rel="stylesheet" href="css/quick_consulting.css">
+    <link rel="stylesheet" href="css/showlargeimage.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/afterConsultation.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="js/sha1.js"></script>
+    <script src="js/quick_consulting.js"></script>
+    <script src="js/showlargeimage.js"></script>
+    <style>
+        #header {
+            width: 100%;
+            height: 45px;
+            background: #1cba93;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            z-index: 999;
+            color: white;
+        }
+
+        #header .header-left {
+            width: 20%;
+            float: left;
+            line-height: 45px;
+            font-size: 30px;
+            height: 45px;
+        }
+
+        #header .header-left p, #header .headerLeft p {
+            background: url("images/normalicon/return.png") no-repeat center center;
+            background-size: 18px;
+            height: 45px;
+        }
+
+        #header .header-center {
+            width: 60%;
+            float: left;
+            line-height: 45px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            font-size: 16px;
+        }
+
+        #header .header-right {
+            width: 20%;
+            float: right;
+            line-height: 45px;
+            height: 45px;
+        }
+
+        /*#header .header-right div {*/
+            /*width: 100%;*/
+            /*background: url("images/consulting/healthrecord.png") no-repeat center center;*/
+            /*background-size: 18px;*/
+            /*height: 45px;*/
+        /*}*/
+        #header .header-right span{
+            margin: 0 2px;
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            border-radius: 4px;
+            border: 1px solid #fff;
+        }
+        #more{
+            display: inline-block;
+            width: 12%;
+            height: 50px;
+            float: left;
+            background: url("images/consulting/more.png") no-repeat center center;
+            background-size: 21px;
+        }
+        #showBusiness{
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            background: #f0f0f0;
+            width: 100%;
+        }
+        #showBusiness ul{
+            overflow: hidden;
+            padding: 0 15px;
+        }
+        #showBusiness ul li{
+            width: 25%;
+            float: left;
+            padding: 5px 0;
+            text-align: center;
+            font-size: 12px;
+            line-height: 26px;
+        }
+        #showBusiness ul li img{
+            width: 40px;
+        }
+        #sendImg{
+            display: block;
+            width: 40px;
+            height: 40px;
+            position: relative;
+            top: -40px;
+            opacity: 0;
+            z-index: 2;
+        }
+        .hi{
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 45px;
+            left: 0;
+            background: white;
+            z-index: 1000;
+            overflow: auto;
+        }
+        .hi input{
+            border: none;
+        }
+        .hi input{
+            background-color:expression((this.readOnly && this.readOnly == true)? "#ffffff":"");
+        }
+        .hi input[readonly]{
+            background-color: white;
+        }
+        .text img{
+            width: 26px;
+            margin-right: 10px;
+        }
+        .zzc{
+            line-height: 34px;
+            padding: 0 16px;
+        }
+        .zzc_t1{
+            display: inline-block;
+            width: 100px;
+        }
+        .hidden_menu{
+            height: 0;
+            overflow: hidden;
+            background: #1cba93;
+        }
+        .hidden_menu>li{
+            border-top: 1px solid #ffffff;
+        }
+    </style>
+</head>
+<body style="background-color: white">
+
+<div id="header">
+    <div class="header-left"><p></p></div>
+    <div class="header-center" id="daohanglan"></div>
+    <div class="header-right" id="endButton">
+        <div><span></span><span></span><span></span></div>
+        <ul class="hidden_menu">
+            <li class="end" onclick="$('#illnessImpression').show();getAllSymptomTag();">结束</li>
+            <li class="look">健康档案</li>
+        </ul>
+    </div>
+</div>
+<!--header-->
+
+<div id="container" style="height:450px;overflow:auto;">
+    <span class="rows" style="display: none">
+        <span class="look">查看健康档案</span>
+    </span>
+
+    <div class="hi" style="display: none">
+        <div class="healthRecord">
+            <div class="header-lefts"><p></p></div>
+            <div class="header-center"></div>
+            <div class="header-right"></div>
+        </div>
+
+        <p class="gray_3"></p>
+
+        <div class="zzc">
+            <span class="zzc_t1">宝宝姓名</span>:
+            <input type="text"  readonly="readonly" disabled="disabled" id="baby_name">
+        </div>
+        <p class="gray_3"></p>
+        <div class="zzc">
+            <span class="zzc_t1">宝宝性别</span>:
+            <!--<select class="zzc_grey">-->
+            <!--<option value="">男</option>-->
+            <!--<option value="">女</option>-->
+            <!--</select>-->
+            <input type="text" readonly="readonly" disabled="disabled" id="baby_sex">
+        </div>
+        <p class="gray_3"></p>
+        <div class="zzc">
+            <span class="zzc_t1">民族</span>:
+            <input type="text" readonly="readonly" disabled="disabled" id="baby_party">
+        </div>
+        <p class="gray_3"></p>
+        <div class="zzc">
+            <span class="zzc_t1">籍贯</span>:
+            <input type="text" readonly="readonly" disabled="disabled" id="baby_province">
+        </div>
+        <p class="gray_3"></p>
+        <div class="zzc">
+            <span class="zzc_t1">胎次</span>:
+            <input type="text" readonly="readonly" disabled="disabled" id="baby_taici">
+            <spna class="zzc_grey">次</spna>
+        </div>
+        <p class="gray_3"></p>
+        <div class="zzc">
+            <span class="zzc_t1">产次</span>:
+            <input type="text" readonly="readonly" disabled="disabled" id="baby_chanci">
+            <spna class="zzc_grey">次</spna>
+        </div>
+        <p class="gray_3"></p>
+        <div class="zzc">
+            <span class="zzc_t1">胎龄</span>:
+            <input type="text" readonly="readonly" disabled="disabled" id="baby_tailing">
+            <spna class="zzc_grey">周</spna>
+        </div>
+        <p class="gray_3"></p>
+        <div class="zzc">
+            <span class="zzc_t1">出生体重</span>:
+            <input type="text" readonly="readonly" disabled="disabled" id="baby_weight">
+            <spna class="zzc_grey">kg</spna>
+        </div>
+        <p class="gray_3"></p>
+        <div class="zzc">
+            <span class="zzc_t1">出生身长</span>:
+            <input type="text" readonly="readonly" disabled="disabled" id="baby_hight">
+            <spna class="zzc_grey">cm</spna>
+        </div>
+        <p class="gray_3"></p>
+        <div class="zzc">
+            <span class="zzc_t1">1分钟的apgar</span>:
+            <input type="text" readonly="readonly" disabled="disabled" id="baby_one">
+            <spna class="zzc_grey">分</spna>
+        </div>
+        <p class="gray_3"></p>
+        <div class="zzc">
+            <span class="zzc_t1">5分钟的apgar</span>:
+            <input type="text" readonly="readonly" disabled="disabled" id="baby_five">
+            <spna class="zzc_grey">分</spna>
+        </div>
+        <p class="gray_3"></p>
+        <div class="zzc">
+            <span class="zzc_t1">10分钟的apgar</span>:
+            <input type="text" readonly="readonly" disabled="disabled" id="baby_ten">
+            <spna class="zzc_grey">分</spna>
+        </div>
+        <p class="gray_3"></p>
+        <div class="zzc">
+            <span class="zzc_t1">生产方式</span>:
+            <!--<select class="zzc_grey">-->
+            <!--<option value="">剖腹产</option>-->
+            <!--<option value="">顺产</option>-->
+            <!--</select>-->
+            <input type="text" readonly="readonly" disabled="disabled" id="baby_method">
+        </div>
+        <p class="gray_3"></p>
+        <div class="zzc">
+            <span class="zzc_t1">出生医院</span>:
+            <input type="text" readonly="readonly" disabled="disabled" id="baby_hospital">
+        </div>
+        <p class="gray_3"></p>
+        <div class="zzc">
+            <span class="zzc_t1">家族病史</span>:
+            <input type="text" readonly="readonly" disabled="disabled" id="baby_history">
+        </div>
+        <p class="gray_3"></p>
+        <div class="zzc">
+            <span class="zzc_t1">药物过敏史</span>:
+            <input type="text" readonly="readonly" disabled="disabled" id="baby_medicen">
+        </div>
+        <p class="gray_3"></p>
+        <div class="zzc">
+            <span class="zzc_t1">母亲姓名</span>:
+            <input type="text" readonly="readonly" disabled="disabled" id="baby_mothor">
+        </div>
+        <p class="gray_3"></p>
+        <div class="zzc">
+            <span class="zzc_t1">母亲身高</span>:
+            <input type="text" readonly="readonly" disabled="disabled" id="mothor_hight">
+            <spna class="zzc_grey">cm</spna>
+        </div>
+        <p class="gray_3"></p>
+        <div class="zzc">
+            <span class="zzc_t1">母亲文化程度</span>:
+            <!--<select class="zzc_grey">-->
+            <!--<option value="">大学</option>-->
+            <!--<option value="">高中</option>-->
+            <!--</select>-->
+            <input type="text" readonly="readonly" disabled="disabled" id="mothor_wenhua">
+        </div>
+        <p class="gray_3"></p>
+        <div class="zzc">
+            <span class="zzc_t1">母亲联系电话</span>:
+            <input type="text" readonly="readonly" disabled="disabled" id="mothor_phone">
+        </div>
+        <p class="gray_3"></p>
+        <div class="zzc">
+            <span class="zzc_t1">父亲姓名</span>:
+            <input type="text" readonly="readonly" disabled="disabled" id="fathor_name">
+        </div>
+        <p class="gray_3"></p>
+        <div class="zzc">
+            <span class="zzc_t1">父亲身高</span>:
+            <input type="text" readonly="readonly" disabled="disabled" id="fathor_hight">
+            <spna class="zzc_grey">cm</spna>
+        </div>
+        <p class="gray_3"></p>
+        <div class="zzc">
+            <span class="zzc_t1">父亲文化程度</span>:
+            <!--<select class="zzc_grey">-->
+            <!--<option value="">大学</option>-->
+            <!--<option value="">高中</option>-->
+            <!--</select>-->
+            <input type="text" readonly="readonly" disabled="disabled" id="fathor_wenhua">
+        </div>
+        <p class="gray_3"></p>
+        <div class="zzc">
+            <span class="zzc_t1">父亲联系电话</span>:
+            <input type="text" readonly="readonly" disabled="disabled" id="fathor_phone">
+        </div>
+        <p class="gray_3"></p>
+        <div class="zzc">
+            <span class="zzc_t1">遗传身高</span>:
+            <input type="text" readonly="readonly" disabled="disabled" id="extend">
+            <spna class="zzc_grey">cm</spna>
+        </div>
+        <p class="gray_3"></p>
+        <div class="zzc">
+            <span class="zzc_t1">同胞兄弟姐妹</span>:
+            <input type="text" readonly="readonly" disabled="disabled" id="familly">
+        </div>
+        <p class="gray_3"></p>
+        <div class="zzc">
+            <span class="zzc_t1">常住地址</span>:
+            <input type="text" readonly="readonly" disabled="disabled" id="address">
+        </div>
+        <p class="gray_3"></p>
+        <div class="zzc">
+            <span class="zzc_t1">主要照看人</span>:
+            <input type="text" readonly="readonly" disabled="disabled" id="main_pro">
+        </div>
+    </div>
+
+
+    <p class="gray_3"></p>
+
+
+
+
+    <div id="chat_records" style="position: relative">
+        <div class="text_box clearfix" id="liaotian">
+
+            <div class="bqbox" id="tagList">
+                <!--  <span class="biaoqian" ></span> -->
+            </div>
+            <!--
+            <span class="font3">2015-09-09 18:00:00</span><br/>
+            <img src="images/zxq_03.png" alt="症状图片" class="ZZimg">
+            <div class="wenben">
+                <img src="images/zxq_07.png" alt="头像">
+                <span class="yhk">我最近发现有点晕，有什么办法可以号，可以解决吗</span>
+            </div>
+            <div class="wenben">
+                <img src="images/zxq_07.png" alt="头像">
+                <span class="yhk">我最近发现有点晕，有什么办法可以号，可以解决吗</span>
+            </div>
+            <div class="wenben">
+                <img src="images/zxq_07.png" alt="头像">
+                <span class="yhk">我最近发现有点晕，有什么办法可以号，可以解决吗</span>
+            </div>
+            <div class="wenben">
+                <img src="images/zxq_07.png" alt="头像">
+                <span class="yhk">我最近发现有点晕，有什么办法可以号，可以解决吗</span>
+            </div>
+            <div class="wenben">
+                <img src="images/zxq_07.png" alt="头像">
+                <span class="yhk">我最近发现有点晕，有什么办法可以号，可以解决吗</span>
+            </div>
+            <span class="font4">2015-09-09 18:00:01</span><br/>
+            <div class="wenbens">
+                <img src="images/zxq_11.png" alt="头像">
+                <span class="ysk">没事</span>
+            </div>
+            -->
+        </div>
+    </div>
+</div>
+<footer class="fix">
+    <div class="before" style="display: none">
+        <img src="images/zxq_15.png" style="visibility:hidden" alt="语音" id="audio">
+    </div>
+    <div id="more" onclick="showBusiness(this)" class="focus"></div>
+    <div class="con">
+        <div id="msgText" contenteditable="true"></div>
+        <!--<input type="text" maxlength="1024" id="msgText" >-->
+    </div>
+    <div class="after" onclick="sendMsg('1',$('#msgText').html())">发送</div>
+</footer>
+<div id="showBusiness" style="display: none">
+    <ul>
+        <li>
+            <form id="updateImg" action="" method="post" enctype="multipart/form-data" style="height: 40px">
+                <img src="images/consulting/sendimg.png" alt=""/>
+                <canvas id="myCanvas" style="display:none;border-radius:50%" width="40" height="40"></canvas>
+                <input type="file" id="sendImg" accept="image/*" name="updateMyHeadFileElem" onchange="loadImage(this)" />
+            </form>
+            <p>图片</p>
+        </li>
+        <li onclick="buildBusiness('family_doctor_patient.html','儿科门诊预约')">
+            <div><img src="images/consulting/babypatient.png" alt=""/></div>
+            <p>儿科门诊</p>
+        </li>
+        <li onclick="buildBusiness('family_doctor_erbao.html','儿保门诊预约')">
+            <div><img src="images/consulting/babypoint.png" alt=""/></div>
+            <p>儿保门诊</p>
+        </li>
+        <li onclick="buildBusiness('family_doctor_vaccine.html','计免预约')">
+            <div><img src="images/consulting/vaccine.png" alt=""/></div>
+            <p>计免</p>
+        </li>
+        <li onclick="layer_according()">
+            <div><img src="images/consulting/fast_reply.png" alt=""/></div>
+            <p>快捷回复</p>
+        </li>
+    </ul>
+</div>
+<div id="illnessImpression" style="display: none">
+    <div id="illness_impression_content">
+        <ul class="top">
+            <li class="text-left" onclick="$('#illnessImpression').hide();$('#hasChooseTagList').html('');">×</li>
+            <li class="text-center">病情印象</li>
+            <li class="text-right" onclick="endOfCal();"><span>确定</span></li>
+        </ul>
+        <div id="search">
+            <input type="text" placeholder="搜索疾病"/>
+        </div>
+        <div id="hasChooseTag">
+            <p>已选</p>
+            <div id="hasChooseTagList">
+
+            </div>
+        </div>
+        <div id="canChooseTag">
+            <p>常用</p>
+            <div id="canChooseTagList">
+                <!--<span>多动症</span>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--container-->
+<!--<footer class="fix">-->
+<!--<div class="before">-->
+<!--<img src="images/zxq_15.png" alt="语音">-->
+<!--</div>-->
+<!--<div class="con">-->
+<!--<input type="text" >-->
+<!--</div>-->
+<!--<div class="after">-->
+<!--<img src="images/zxq_18.png" alt="加">-->
+<!--<span>发送</span>-->
+<!--</div>-->
+<!--</footer>-->
+
+<!--footer-->
+</div>
+<div id="reply_layer">
+    <div id="reply_layer_header">
+        <div class="header-lefts"><p></p></div>
+        <div class="header-center">快捷回复</div>
+        <div class="header-right"></div>
+    </div>
+    <div id="reply_layer_content">
+        <p id="title">选择一条进行回复</p>
+        <p id="title1">长按内容即可进行编辑、删除等操作</p>
+        <p class="gray_3"></p>
+        <ul id="message_list">
+            <!--<li class="message_li">-->
+                <!--<p class="message_content">1.您好，我是康宝宝</p>-->
+                <!--<p class="message_operation"><span class="editor">编辑</span><span>|</span><span class="del">删除</span></p>-->
+            <!--</li>-->
+        </ul>
+        <div id="reply_mask">
+            <div id="mask_layer">
+                <div id="mask_layer_content">
+                    <div contenteditable="true"></div>
+                </div>
+                <p class="gray_3"></p>
+                <div id="mask_layer_button">
+                    <div id="cancel" onclick="cancel()">取消</div>
+                    <div class="select" id="determine" onclick="determine()">确定</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="bottom">
+        <p class="button_01">+ 添加快捷回复</p>
+    </div>
+</div>
+<script src="js/plugins.js"></script>
+</body>
+</html>

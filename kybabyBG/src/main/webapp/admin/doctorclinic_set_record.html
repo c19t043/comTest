@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>门诊设置信息管理</title>
+	<meta charset="utf-8">
+	<meta name="renderer" content="webkit" />
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/date/WdatePicker.js"></script>
+	<script src="js/basic.js"></script>
+	<script src="js/common.js"></script>
+	<script src="js/doctorclinic_set_record.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/iconfont/iconfont.css">
+	<link rel="stylesheet" type="text/css" href="css/doctorclinic_set_record.css">
+</head>
+<body>
+
+<div id="headcon" class="headcon">
+
+</div>
+
+<div class="middlecon">
+	<div id="leftcon" class="leftcon">
+
+	</div>
+
+	<div id="rightcon" class="rightcon">
+		<div class="content">
+			<div id="con_position" class="con_position">
+				<h1 id="con_tit" class="con_tit"></h1>
+				<div id="con_meu" class="con_meu">
+					<span>首页</span>
+					<span>/</span>
+					<span class="first"></span>
+					<span>/</span>
+					<span class="second"></span>
+				</div>
+				<div class="con_contral">
+                    <label>门诊机构：</label><input style="width: 120px" id="clinicOrg_query" type="text">
+                    <label>医生姓名：</label><input style="width: 120px" id="doctorName" type="text">
+                    <label>门诊日期：</label><input style="width: 120px" onfocus="WdatePicker()" id="clinicDate_query" type="text">
+                    <label>门诊状态：</label>
+                    <select id="search_status">
+                    	<option></option>
+				    	<option>已预约</option>
+				    	<option>已上班</option>
+				    	<option>已下班</option>
+                    </select>
+                    <span onclick="search_click()" class="bu">查找</span>
+				</div>
+				<table id="table_title" class="table_title">
+
+				</table>
+			</div>
+			<div class="table_h">
+				<table id="table_content" class="table_content">
+
+				</table>
+			</div>
+			<div class="con_page">
+				<span class="a">共&nbsp;<span id="con_num" class="con_num"></span>&nbsp;条数据</span>
+				<div class="button_cli">
+					<span class="button" onclick="page_click('default','1')">首页</span>
+					<span class="button" onclick="page_click('default','prev')" >上一页</span>
+					<span class="num" id="now_page_num" >1</span>
+					<span class="button" onclick="page_click('default','next')">下一页</span>
+					<span class="button" onclick="page_click('default','end')">尾页</span>
+				</div>
+				<div class="page_go">
+					<span class="b">共&nbsp;<span id="page_num" class="page_num"></span>&nbsp;页</span>
+					<span class="c">跳转到&nbsp;<input id="go_page" type="number" value="1" min="1">&nbsp;页</span>
+					<span class="button" onclick="page_click_go()">Go</span>
+				</div>
+			</div>
+			
+			<div id="bottom_div" class="bottom_div">
+				<div class="bottom_div_tit">
+					 <span class="tit_info"></span>
+					 <span id="button_add_click" onclick="saveOrUpdate()" class="button_style button_add">确认</span>
+					<span id="button_cancel_click" class="button_style button_cancel">取消</span>
+				</div>
+				<div id="bottom_div_con" class="bottom_div_con">
+				<span style="color: red">设置前请保证医生相关的保底薪酬设置已完成，否则要出问题！</span>
+					<form id="data_form" action="" method="post" enctype="multipart/form-data">
+			            <input id="keyId" type="hidden" name="doctorMorePractice.id"/>
+			            <input id="orgId" type="hidden"/>
+			            <div class="fj">
+			            	<label>医生姓名：</label>
+			            	<span id="show_doctor"></span>
+							<input id="doctorIds" name="doctorMorePractice.doctorInfo.id" type="hidden"/>
+							<span onclick="chooseObj('doctor')" class="dzstyle">修改</span>
+							<label style="width: 140px">可约机构-日期：</label>
+							<select style="width: 250px" id="doctorMoreOrgClinicdate" name="doctorMoreOrgClinicdate.id" onchange="selectOrgDate(this)">
+							<option value="">请选择
+							</select>
+							<label style="width: 140px">可约机构-时间：</label>
+							<select style="width: 140px" id="orgClinicTimeIds" name="doctorMorePractice.orgClinicTimeIds" multiple=”multiple”>
+							</select>
+			            </div>
+						<div class="fj">
+							<label>门诊时间间隔：</label>
+							<select id="intervals" name="intervals">
+								<option value="15">15
+								<option value="20">20
+								<option value="30">30
+								<option value="12">12
+							</select>
+							<label>门诊加号数：</label>
+							<select id="isAddClinic" name="doctorMorePractice.isAddClinic">
+								<option value="0">0
+								<option value="1">1
+								<option value="2">2
+								<option value="3">3
+								<option value="4">4
+								<option value="5">5
+							</select>
+							<label>面向用户类型：</label>
+			            	<span id="show_userType"></span>
+							<input id="userTypeIds" name="doctorMorePractice.userTypeIds" type="text"/>
+							<span onclick="chooseObj('userType')" class="dzstyle">选择</span>
+						</div>
+		          	</form>
+		          	<div id="onlyShow" style="display: none">
+		          	<div class="fj">
+						<label>门诊机构：</label>
+						<input id="clinicOrg" type="text" name="doctorMorePractice.clinicOrg" placeholder="输入机构名"/>
+						
+						<label>门诊地址：</label>
+						<input id="clinicAddress" type="text" name="doctorMorePractice.clinicAddress" placeholder="输入机构地址"/>
+						
+						<label>门诊日期：</label>
+						<input id="clinicDate" type="text" name="doctorMorePractice.clinicDate" placeholder="输入门诊日期"/>
+		            </div>
+		            <div class="fj">
+						<label>开始时间：</label>
+						<input id="clinicBeganTime" name="doctorMorePractice.clinicBeganTime" />
+						
+						<label>结束时间：</label>
+						<input id="clinicEndTime" type="text" name="doctorMorePractice.clinicEndTime"/>
+						
+						<label>可接待量：</label>
+						<input id="canClinicNum" type="text" name="doctorMorePractice.canClinicNum" placeholder="输入数字"/>
+						
+			<!-- 			<label>可加号数：</label>
+						<input id="isAddClinic" type="text" name="doctorMorePractice.isAddClinic" placeholder="输入数字"/> -->
+		            </div>
+		             <div class="fj">
+		             	<label>外单位门诊状态：</label>
+						<input id="orgClinicStatus" type="text" name="doctorMorePractice.orgClinicStatus"/>
+						
+		             	<label>外单位门诊开始记录时间：</label>
+						<input id="orgClinicStartTime" type="text" name="doctorMorePractice.orgClinicStartTime"/>
+						
+		             	<label>外单位门诊开始记录地址：</label>
+						<input style="width: 200px" id="orgClinicStartAddress" type="text" name="doctorMorePractice.orgClinicStartAddress"/>
+		             </div>
+		             <div class="fj">
+		             	<label>外单位门诊结束记录时间：</label>
+						<input id="orgClinicEndTime" type="text" name="doctorMorePractice.orgClinicEndTime"/>
+		             
+		             	<label>外单位门诊结束记录地址：</label>
+						<input style="width: 200px" id="orgClinicEndAddress" type="text" name="doctorMorePractice.orgClinicEndAddress"/>
+						
+		             </div>
+		            <div class="fj">
+		                <label>其他机构开放时间：</label>
+			          	<table id="node_table_title" class="table_title">
+						</table>
+						<div class="table_h" style="overflow:auto;">
+							<table id="node_table_content" class="table_content" border="1" >
+								<tbody id="node_Tbody"></tbody>
+							</table>
+						</div>
+		            </div>
+		            </div>
+				</div>
+			</div>
+			<!-- 选择医生 -->
+			<div id="bg"></div>
+			<div class="boxZhezhao" style="display:none">
+			    <h2>选择<a href="javascript:hideMask()" class="close">关闭</a></h2>
+			    <table class="table_title" id="titalTable">
+					
+				</table>
+			    <div class="list">
+			    	<table id="selectContent" class="table_content"></table>
+			    </div>
+			</div>
+		</div>	
+	</div>
+</div>
+
+  </body>
+</html>

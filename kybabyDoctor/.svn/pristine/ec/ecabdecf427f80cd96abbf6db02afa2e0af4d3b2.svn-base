@@ -1,0 +1,72 @@
+package com.kybaby.newbussiness.doctorsign.bo;
+
+import java.util.List;
+
+import com.kybaby.common.CommonService;
+import com.kybaby.domain.DoctorGoodField;
+import com.kybaby.domain.DoctorInfo;
+import com.kybaby.domain.Position;
+import com.kybaby.newbussiness.doctorclinic.domain.DoctorServiceType;
+import com.kybaby.newbussiness.doctorclinic.domain.HospitalBasicInfo;
+import com.kybaby.newbussiness.doctorsign.domain.DoctorCardInfo;
+import com.kybaby.newbussiness.doctorsign.domain.DoctorLifeInfo;
+import com.kybaby.newbussiness.doctorsign.domain.DoctorMajor;
+import com.kybaby.newbussiness.doctorsign.domain.DoctorSignApprovalFlowRecord;
+
+public interface DoctorRegisterDataGatherService extends CommonService{
+	/*
+	 * 医生身份证明,CRU
+	 */
+	List<DoctorCardInfo> getDoctorCardInfos(DoctorCardInfo doctorCardInfo);
+	DoctorCardInfo saveOrUpdateDoctorCardInfo(DoctorCardInfo doctorCardInfo);
+	/*
+	 * 医生生活信息,CRU
+	 */
+	List<DoctorLifeInfo> getDoctorLifeInfos(DoctorLifeInfo doctorLifeInfo);
+	DoctorLifeInfo saveOrUpdateDoctorLifeInfo(DoctorLifeInfo doctorLifeInfo);
+	/*
+	 * 医生认证信息审核,CRU
+	 */
+	List<DoctorSignApprovalFlowRecord> getDoctorSignApprovalFlowRecord(DoctorSignApprovalFlowRecord doctorSignApprovalFlowRecord);
+	DoctorSignApprovalFlowRecord saveOrUpdateDoctorSignApprovalFlowRecord(DoctorSignApprovalFlowRecord doctorSignApprovalFlowRecord);
+	/**
+	 * 根据条件查询医院信息
+	 */
+	List<HospitalBasicInfo> getHospitalBasicInfos(HospitalBasicInfo hospitalBasicInfo);
+	/**
+	 * 根据条件查询职称
+	 */
+	List<Position> getPositions(Position position);
+	/**
+	 * 根据条件查询医生主专业
+	 * @param professionalFlag 专业标识(主专业first;亚专业second;病种third)
+	 */
+	List<DoctorMajor> getMajors(DoctorMajor major,String professionFlag);
+	/**
+	 * 查询签约的人
+	 * @doctorInfo 查询条件
+	 * @professionalFlag ("医生","护士","技师")
+	 */
+	List<DoctorInfo> getDoctorinfos(DoctorInfo doctorInfo,String professionFlag);
+	/**
+	 * 获取开通服务
+	 */
+	List<DoctorServiceType> getAllDoctorServiceTypes();
+	/**
+	 * 查询对应医生的身份证明
+	 */
+	List<DoctorCardInfo> getDoctorCardInfos(Long doctorID);
+	/**
+	 * 查询医生生活信息
+	 * @param doctorID
+	 */
+	List<DoctorLifeInfo> getDoctorLifeInfos(Long doctorID);
+	/**
+	 * 查询擅长领域
+	 */
+	List<DoctorGoodField> getDoctorGoodFields(String professionalFlag);
+	/**
+	 * 删除对象
+	 */
+	void deleteDoctorCardInfo(Long id);
+}

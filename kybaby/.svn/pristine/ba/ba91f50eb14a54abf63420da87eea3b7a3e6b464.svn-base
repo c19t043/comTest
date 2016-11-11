@@ -1,0 +1,280 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>健康商城</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/swiper-3.3.1.min.css"/>
+    <link rel="stylesheet" href="css/mall.css"/>
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/swiper-3.3.1.jquery.min.js"></script>
+    <style>
+        body{
+            background: #F4F4F4;
+        }
+        #market_list>ul{
+            margin-bottom: 8px;
+        }
+        #banner{
+            height:40vw;
+        }
+        #hot{
+            overflow: hidden;
+        }
+        #container img{
+            width: 100%;
+            height: 100%;
+        }
+        span{
+            display: inline-block;
+        }
+        #product_list{
+            height:40vw;
+            overflow: hidden;
+        }
+        #hot_left{
+            width: 49.5%;
+            height:40vw;
+            float: left;
+        }
+        .hot_right{
+            width: 49.5%;
+            height:19.5vw;
+            float: right;
+        }
+        #product_list>.hot_right:nth-child(2){
+            margin-bottom: 1vw;
+        }
+        h1{
+            padding: 0.5vw 0;
+            line-height: 18px;
+            font-size: 18px;
+            text-align: center;
+            font-weight: 100;
+        }
+        h1>.title{
+            padding-left: 23px;
+            margin: 0 10px;
+        }
+        h1>.line_left,h1>.line_right{
+            margin: 7px 0;
+            width: 13vw;
+            height:1px;
+        }
+        #hot .line_left,#hot .line_right{
+            background: #d66666;
+        }
+        #market .line_left,#market .line_right{
+            background: #1CBA93;
+        }
+        #hot h1,.market_li span,p.market_right{
+            color: #d66666;
+        }
+        #market h1{
+            color: #1CBA93;
+        }
+        .market_img{
+            height: 40vw;
+            position: relative;
+        }
+        .market_li{
+            overflow: hidden;
+            line-height: 20px;
+            padding:5px 15px 15px;
+            background: #fff;
+            font-size: 14px;
+        }
+        .price,.num{
+            font-size: 18px;
+        }
+        .market_li>p{
+            display: inline-block;
+        }
+        .market_left{
+            float: left;
+        }
+        .market_right{
+            float: right;
+        }
+        .market_left p{
+            color: #909090;
+        }
+        .price{
+            margin-right: 18px;
+        }
+        .num{
+            margin: 0 4px;
+        }
+        #hot_title{
+            background: url(images/images_icon/hot.png)no-repeat center left;
+            background-size: 14px;
+            text-align: right;
+        }
+        #market_title{
+            background: url(images/images_icon/market.png)no-repeat center left;
+            background-size: 16px;
+            text-align: right;
+        }
+        .open_booking{
+            position: absolute;
+            background: #F2F2F2;
+            color: #d66666;
+            padding: 8px;
+            bottom: 0;
+            left: 0;
+            z-index: 900;
+            font-size: 14px;
+        }
+        .market_name{
+            padding: 5px 15px 15px;
+            font-size: 14px;
+            background: #fff;
+        }
+        .typeName{
+            background: #888;
+            color: white;
+            line-height: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div id="header">
+    <div class="header-left">健康商城</div>
+    <div class="header-center"></div>
+    <div class="header-right"></div>
+</div>
+<!--header-->
+
+<div id="container">
+    <!--<div id="banner">-->
+    <!--<div class="swiper-container">-->
+    <!--<div class="swiper-wrapper">-->
+    <!--<div class="swiper-slide"><img src="images/banner.png" alt=""/></div>-->
+    <!--<div class="swiper-slide"><img src="images/banner.png" alt=""/></div>-->
+    <!--<div class="swiper-slide"><img src="images/banner.png" alt=""/></div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div id="hot">-->
+    <!--<h1><span class="line_left"></span><span id="hot_title" class="title">HOT</span><span class="line_right"></span></h1>-->
+    <!--<ul id="product_list">-->
+    <!--<li id="hot_left"><img src="images/1111.png" alt=""/></li>-->
+    <!--<li class="hot_right"><img src="images/2222.png" alt=""/></li>-->
+    <!--<li class="hot_right"><img src="images/2222.png" alt=""/></li>-->
+    <!--</ul>-->
+    <!--</div>-->
+    <div id="market">
+        <!--<h1><span class="line_left"></span><span id="market_title" class="title">市场</span><span class="line_right"></span></h1>-->
+        <div id="market_list">
+            <!--<ul onclick="window.location.href='mall_product_details.html'">-->
+            <!--<li class="market_img"><img src="images/4444.png" alt=""/></li>-->
+            <!--<li class="market_li">-->
+            <!--<p class="market_left"><span class="price">￥250.00</span>已售<span class="num">100000</span>件</p>-->
+            <!--<p class="market_right">前往购买 ></p>-->
+            <!--</li>-->
+            <!--</ul>-->
+        </div>
+    </div>
+</div>
+<div id="footer">
+    <ul>
+        <a href="javascript:void(0)" onclick="window.location.href='main.html'"><li><p><img src="images/images_main/main_dark.png" width="23"></p><p>首页
+        </p></li></a>
+        <a href="javascript:void(0)" onclick="window.location.href='service_products.html'"><li><p><img src="images/images_main/service_dark.png" width="23"></p><p>服务
+        </p></li></a>
+        <a href="javascript:void(0)">
+            <li class="select"><p><img src="images/images_main/member_light.png" width="23"></p>
+
+                <p>商城</p></li>
+        </a>
+        <!--<a href="javascript:void(0)" onclick="window.location.href='assistant.html'"><li><p><img src="images/footer_icon03_off.png" width="23"></p><p>助手</p></li></a>-->
+        <!--<a href="javascript:void(0)" onclick="window.location.href='chatCircle.html'"><li><p><img src="images/footer_icon05_off.png" width="23"></p><p>妈妈圈</p></li></a>-->
+        <a href="javascript:void(0)" onclick="window.location.href='personalcenter.html'"><li><p><img src="images/images_main/personal_dark.png" width="23"></p><p>我</p></li></a>
+    </ul>
+</div>
+
+<script language="javascript">
+    $.ajax({
+        type: 'post',
+        url: mall + 'goodsManage.action',
+        cache: false,
+        async: true,
+        data:  {action: "getAllGoods"},
+        success: function (result) {
+            if(result.mes=='请登录'){
+                ale('请登录', '24px');
+                window.location.href = "login.html";
+            }
+            else if(result.mes=='成功'){
+                var goodsTypeList = result.goodsTypeList;
+                var len = goodsTypeList.length;
+                for(var i=0;i<len;i++){
+                    $("#market_list").append('<div class="typeName">'+goodsTypeList[i].typeName+'</div>');
+                    for(var j= 0,l=goodsTypeList[i].b2cGoodsSet.length;j<l;j++){
+                        var goods_item = goodsTypeList[i].b2cGoodsSet[j];
+                        if(goods_item.isUp != 'Y'){
+                            continue;
+                        }
+                        var price='';
+                        var open_booking='';
+                        if(goods_item.b2cGoodsPresaleModel!=null){
+                            price='预订价：￥'+(goods_item.b2cGoodsPresaleModel.prePrice).toFixed(2);
+                            open_booking = '<span class="open_booking">预售中</span>';
+                        }else{
+                            price='￥'+(goods_item.priceSale).toFixed(2);
+                        }
+                        var saleCount=36+parseInt(goods_item.saleCount);
+                        switch (goods_item.id){
+                            case 1:
+                                saleCount=68+parseInt(goods_item.saleCount);
+                                break;
+                            case 2:
+                                saleCount=72+parseInt(goods_item.saleCount);
+                                break;
+                            case 3:
+                                saleCount=83+parseInt(goods_item.saleCount);
+                                break;
+                            case 4:
+                                saleCount=75+parseInt(goods_item.saleCount);
+                                break;
+                        }
+                        $("#market_list").append('<ul data-id='+goods_item.id+' onclick="jump(this)">' +
+                        '<li class="market_img"><img src="'+photo+goods_item.goodsImg+'" alt=""/>'+open_booking+'</li>' +
+                        '<li class="market_name">'+goods_item.goodsName+'</li>' +
+                        '<li class="market_li"><p class="market_left">' +
+                        '<span class="price">'+price+'</span>已售<span class="num">'+saleCount+'</span>'+goods_item.unit+'</p><p class="market_right">前往购买 ></p></li>' +
+                        '</ul>');
+                    }
+
+                }
+            }
+        },
+        error: function () {
+            layer();
+        }
+    });
+    function jump(org){
+        var id = $(org).data("id");
+        window.location.href="mall_product_details.html?"+id;
+    }
+    //    var mySwiper = new Swiper('.swiper-container',{
+    //        pagination : '.swiper-pagination',
+    //        paginationClickable :true,
+    //        autoplay: 5000,
+    //        loop : true,
+    //    })
+
+
+</script>
+<script src="js/main.js"></script>
+<script src="js/plugins.js"></script>
+
+</body>
+</html>

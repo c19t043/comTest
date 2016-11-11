@@ -1,0 +1,465 @@
+﻿<html lang="zh-cn"><head>
+	<title>订单详情</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/order_details.css">
+	<script src="js/modernizr-2.8.3.min.js"></script>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=AoTC2HVRMga7z2OF66sTTiqO"></script>
+	<script src="js/main.js"></script>
+	<script src="js/config.js"></script>
+	<script src="js/order_details.js"></script>
+</head>
+<body>
+
+<div id="header" class="doctor_header">
+	<div class="header-left"><p></p></div>
+	<div class="header-center">订单详情</div>
+	<div class="header-right"></div>
+</div>
+<div id="container">
+	<p class="gray_1"></p>
+	<div class="order_info none contralview" id="order_top"><!--订单信息-->
+		<ul>
+			<li>下单用户：<span id="orderinfoname"></span></li>
+			<li>联系电话：<span id="orderinfophone"></span></li>
+			<li>用户地址：<span id="orderinfoaddress"></span></li>		
+			<li>服务日期：<span id="orderinfodate"></span></li>
+			<li>订单编号：<span id="orderinfonum"></span></li>
+			<li>订单状态：<span id="orderinfostatus" class="order_detail"></span></li>
+		</ul>
+	</div>
+	<p class="gray_1"></p>
+	<div class="basic_info none contralview" id="baby_basic_info"><!--宝宝基本信息-->
+		<h4>宝宝基本信息</h4>
+<div id="editHealthRecord" onclick="healthResultAjax.getHealthRecord()" class="editHealthRecord none contralview">编辑健康档案</div>
+		<p class="gray_2"></p>
+		<ul>
+			<li class="a">姓名：<span id="babyName"></span></li>
+			<li class="b">性别：<span id="babySex"></span></li>
+			<li class="c">生日：<span id="babyBirth"></span></li>
+		</ul>
+		
+	</div>
+	<p class="gray_1"></p>
+
+	<div id="product_info" class="product_info none contralview"><!--产品信息-->
+		<div class="title">
+				<img src="/kybabyBG/admin/images/product/pic_small20151102033649.jpg" width="40" height="40" id="productImage">
+			<span id="productName"></span>
+		</div>
+		<p class="gray_2"></p>
+		<div class="product_list">
+		
+			<p class="gray_2"></p>
+			<div class="product_span" id="productItem">
+				<ul type="circle">
+					<!--
+					<li class="label_blue">腹部外观腹部外观腹部外观腹部外观</li>		
+					-->		
+				</ul>
+			</div>
+		</div>
+	</div>
+	<p class="gray_1"></p>
+	<div id="qd_button" class="qd_button none contralview" >立即签到</div>
+	<div class="none contralview" id="healthResultRecord_box">
+		<div id="resultTag" class="resultTag">
+			<ul>
+				<!--
+				<li class="tagNow">生长评估</li><li class="tagNew">提个检查</li><li class="tagNew">问诊</li><li class="tagNew">测量</li><li class="tagNew">发育检查</li><li class="tagNew">健康指导</li>
+				-->
+			</ul>
+			<h6 class="remindText">注：<span style="color:#03a9f4;font-weight:bold">蓝色</span>为已完成项，<span style="color:#8BC34A;font-weight:bold">绿色</span>为正在进行项，<span style="color:#9e9e9e;font-weight:bold">灰色</span>为未完成项</h6>
+		</div>
+		<div class="resultRecordingBox">
+			<div class="resultRecordingPage">
+				<div id="appendResultRecordingBox" class="appendResultRecordingBox">
+					<!--
+					<div data-num="1" class="resultRecordingStep none">
+					<ul>
+						<li>
+							<label>身长:</label>
+							<input type="text" />
+						</li>
+						<li>
+							<label>体重:</label>
+							<input type="text" />
+						</li>
+						<li>
+							<label>头围:</label>
+							<input type="text" />
+						</li>
+						<li>
+							<label>坐高(顶臀长):</label>
+							<input type="text" />
+						</li>
+						<li>
+							<label>坐高/身长:</label>
+							<input type="text" />
+						</li>
+						<li>
+							<label>肤色:</label>
+							<input type="text" />
+						</li>
+						<li>
+							<label>皮疹:</label>
+							<input type="text" />
+						</li>
+						<li>
+							<label>腹部皮褶厚度:</label>
+							<input type="text" />
+						</li>
+						<li>
+							<label>囟门:</label>
+							<select><option>Y</option><option>N</option></select>
+						</li>	
+						<li>
+							<label>囟门:</label>
+							<select><option>Y</option><option>N</option></select>
+						</li>
+						<li>
+							<label>囟门:</label>
+							<select><option>Y</option><option>N</option></select>
+						</li>	
+						<li>
+							<label>囟门:</label>
+							<select><option>Y</option><option>N</option></select>
+						</li>
+						<li>
+							<label>囟门:</label>
+							<select><option>Y</option><option>N</option></select>
+						</li>	
+						<li>
+							<label>囟门:</label>
+							<select><option>Y</option><option>N</option></select>
+						</li>
+						<li>
+							<label>囟门:</label>
+							<select><option>Y</option><option>N</option></select>
+						</li>	
+						<li>
+							<label>囟门:</label>
+							<select><option>Y</option><option>N</option></select>
+						</li>	
+						<li>
+							<label>皮肤弹性观察:</label>
+							<input type="text" />
+						</li>		
+						<li>
+							<label>囟门:</label>
+							<input type="text" />
+						</li>
+						<li>
+							<label>囟门:</label>
+							<select><option>Y</option><option>N</option></select>
+						</li>	
+											
+					</ul>
+				  </div>	
+				  -->				
+				</div>
+
+<div class="resultRecordingBtn" style="position: fixed;width: 100%;bottom:0px;">
+					<div onclick="HealthResult.goStep('next')" id="firstStep" class="button none">继续下一步</div>
+					<div id="otherStep" class="button none">
+						<span onclick="HealthResult.goStep('prev')" id="prevStep">返回上一步</span>
+						<span onclick="HealthResult.goStep('next')" id="nextStep">继续下一步</span>
+					</div>
+					<div id="lastStep" class="button button-blue none">
+						<span onclick="HealthResult.goStep('prev')" id="prevStep">返回上一步</span>
+						<span id="nextStep" onclick="healthResultAjax.updateHealthDirect()">完成</span>
+					</div>
+					<div id="onlyStep" class="button button-blue none" onclick="healthResultAjax.nextOrder()">完成</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	<audio id="video" >
+	  <source src="images/song.ogg" type="audio/ogg">
+	  <source src="images/song.mp3" type="audio/mpeg">
+	</audio>
+	<div class="mask" id="mask"></div>
+	<div id="baiduMap" style="display:none"></div>
+	<div class="signInConfirmBox" id="signInConfirmBox">
+		<div class="signInTime">
+			<span>签到时间：</span>
+			<span id="signInTime"></span>
+		</div>
+		<div style="display:none" class="signInAddress">
+			<span>签到地点：</span>
+			<span id="signInAddress"></span>
+		</div>
+		<div id="signInConfirmCli" class="signInConfirmCli">确认</div>
+		<div id="signInCancelCli" class="signInCancelCli">取消</div>
+	</div>
+	<div style="display:none" class="babyHealthRecord" id="babyHealthRecord">
+		<div class="babyHealthRecord_control">
+			<div id="cancelHealthRecord" onclick="healthResultAjax.updateHealthRecord()" class="healthBtnCancel cliB">跳过</div>
+			<div id="updateHealthRecord" onclick="healthResultAjax.updateHealthRecord()" class="healthBtnCurrent cliB">保存</div>
+		</div>
+		<div class="babyHealthRecord_info">
+			<div class="levelOne">
+				<ul>
+					<li data-num="0" class="liActive">出生信息</li>
+					<li data-num="1">家族信息</li>
+					<li data-num="2">健康记录</li>
+					<li data-num="3">成长环境</li>
+				</ul>
+			</div>
+            <div class="levelTwo">
+                <div class="birthInfo">
+                    <ul>
+                        <li style="display:none">
+                            <label>id:</label>
+                            <input class="val" id="id" type="text" placeholder="id" />
+                        </li>
+                        <li>
+                            <label>姓名:</label>
+                            <input class="val" id="babyName" type="text" placeholder="宝宝姓名" />
+                        </li>
+                        <li>
+                            <label>性别:</label>
+                            <select id="babySex"><option>请选择</option><option>男</option><option>女</option></select>
+                        </li>
+                        <li>
+                            <label>出生日期:</label>
+                            <input class="val" id="babyBirthday" type="date" placeholder="宝宝生日" />
+                        </li>
+                        <li>
+                            <label>民族:</label>
+                            <input class="val" id="nation" type="text" placeholder="民族" />
+                        </li>
+                        <li>
+                            <label>胎次:</label>
+                            <input class="val mustNumber" id="parity" type="text" placeholder="胎次" />
+                        </li>
+                        <li>
+                            <label>产次:</label>
+                            <input class="val mustNumber" id="para" type="text" placeholder="产次" />
+                        </li>
+                        <li>
+                            <label>胎龄(周):</label>
+                            <input class="val mustNumber" id="gestationalAge" type="text" placeholder="胎龄" />
+                        </li>
+                        <li>
+                            <label>出生体重(KG):</label>
+                            <input class="val" id="birthWeight" type="text" placeholder="出生体重" />
+                        </li>
+                        <li>
+                            <label>出生身长(CM):</label>
+                            <input class="val" id="birthBodyLength" type="text" placeholder="出生身长" />
+                        </li>
+                        <li>
+                            <label>APGAR/1min:</label>
+                            <input class="val mustNumber" id="apgarOfOneMinute" type="text" placeholder="1分钟APGAR评分" />
+                        </li>
+                        <li>
+                            <label>APGAR/5min:</label>
+                            <input class="val mustNumber" id="apgarOfFiveMinutes" type="text" placeholder="5分钟APGAR评分" />
+                        </li>
+                        <li>
+                            <label>APGAR/10min:</label>
+                            <input class="val mustNumber" id="apgarOfTenMinutes" type="text" placeholder="10分钟APGAR评分" />
+                        </li>
+                        <li>
+                            <label>生产方式:</label>
+                            <select id="bornWay"><option>请选择</option><option>自然分娩</option><option>剖腹产</option><option>异常分娩</option></select>
+                        </li>
+                        <li>
+                            <label>胎数(胎):</label>
+                            <input class="val" id="embryoNumber" type="text" placeholder="胎数" />
+                        </li>
+                        <li>
+                            <label>出生医院:</label>
+                            <input class="val" id="bornHospital" type="text" placeholder="出生医院" />
+                        </li>
+                        <li>
+                            <label>早期喂养方式:</label>
+                            <select id="earlyFeeding"><option>请选择</option><option>母乳</option><option>配方奶</option><option>混合喂养</option></select>
+                        </li>
+                        <li>
+                            <label>月子方式(月嫂):</label>
+                            <select id="monthManner"><option>请选择</option><option>否</option><option>是</option></select>
+                        </li>
+                        <li>
+                            <label>胎教:</label>
+                            <select id="prenatalEducation"><option>请选择</option><option>是</option><option>否</option></select>
+                        </li>
+                        <li>
+                            <label>孕产期高危因素:</label>
+                            <input class="val" id="maternalRiskFactors" type="text" placeholder="孕产期高危因素" />
+                        </li>
+                    </ul>
+                </div>
+                <div style="display:none" class="familyInfo">
+                    <ul>
+                        <li class="liTitle">母亲信息:</li>
+                        <li>
+                            <label>姓名:</label>
+                            <input class="val" id="motherName" type="text" placeholder="姓名" />
+                        </li>
+                        <li>
+                            <label>年龄:</label>
+                            <input class="val" id="motherAge" type="text" placeholder="年龄" />
+                        </li>
+                        <li>
+                            <label>身高(CM):</label>
+                            <input class="val" id="heightOfMother" type="text" placeholder="身高" />
+                        </li>
+                        <li>
+                            <label>文化程度:</label>
+                            <input class="val" id="degreeOfMotherEducation" type="text" placeholder="文化程度" />
+                        </li>
+                        <li>
+                            <label>家族遗传病:</label>
+                            <input class="val" id="maFamilyGeneticDisease" type="text" placeholder="家族遗传病" />
+                        </li>
+                        <li>
+                            <label>不良生活习惯:</label>
+                            <input class="val" id="motherBadHabits" type="text" placeholder="如:吸烟、喝酒等" />
+                        </li>
+                        <!--
+                        <li class="forDesc">
+                            <label>不良生活习惯</label>
+                            <div class="checkboxdiv">
+                                <label>喝酒:<input type="checkbox" /></label>
+                                <label>抽烟:<input type="checkbox" /></label>
+                                <label>打游戏:<input type="checkbox" /></label>
+                                <label>其它:<input type="checkbox" /></label>
+                            </div>
+                        </li>
+                        -->
+                        <li class="liTitle">父亲信息:</li>
+                        <li>
+                            <label>姓名:</label>
+                            <input class="val" id="fatherName" type="text" placeholder="姓名" />
+                        </li>
+                        <li>
+                            <label>年龄:</label>
+                            <input class="val" id="fatherAge" type="text" placeholder="年龄" />
+                        </li>
+                        <li>
+                            <label>身高(CM):</label>
+                            <input class="val" id="heightOfFather" type="text" placeholder="身高" />
+                        </li>
+                        <li>
+                            <label>文化程度:</label>
+                            <input class="val" id="degreeOfFatherEducation" type="text" placeholder="文化程度" />
+                        </li>
+                        <li>
+                            <label>家族遗传病:</label>
+                            <input class="val" id="fuFamilyGeneticDisease" type="text" placeholder="家族遗传病" />
+                        </li>
+                        <li>
+                            <label>不良生活习惯:</label>
+                            <input class="val" id="fatherBadHabits" type="text" placeholder="如:吸烟、喝酒等" />
+                        </li>
+                        <!--
+                        <li class="forDesc">
+                            <label>不良生活习惯</label>
+                            <div class="checkboxdiv">
+                                <label>喝酒:<input type="checkbox" /></label>
+                                <label>抽烟:<input type="checkbox" /></label>
+                                <label>打游戏:<input type="checkbox" /></label>
+                                <label>其它:<input type="checkbox" /></label>
+                            </div>
+                        </li>
+                        -->
+                    </ul>
+                </div>
+                <div style="display:none" class="healthRecord">
+                    <ul>
+                        <li>
+                            <label>定期注射疫苗:</label>
+                            <select id="regularInjections"><option>请选择</option><option>是</option><option>否</option></select>
+                        </li>
+                        <li>
+                            <label>疫苗异常反应:</label>
+                            <select id="vaccineAbnormalReaction"><option>请选择</option><option>否</option><option>是</option></select>
+                        </li>
+                        <li class="forDesc">
+                            <label>&nbsp;</label>
+                            <textarea id="vaccineAbnormalRemark" class="liTextarea" placeholder="疫苗异常反应描述"></textarea>
+                        </li>
+                        <li>
+                            <label>疫苗注射机构:</label>
+                            <select id="vaccinationAgency"><option>请选择</option><option>社区</option><option>儿童医院</option><option>综合医院</option></select>
+                        </li>
+                        <li>
+                            <label>定期儿保:</label>
+                            <select id="regularChildProtection"><option>请选择</option><option>是</option><option>否</option></select>
+                        </li>
+                        <li>
+                            <label>儿保机构:</label>
+                            <select id="childProtectionAgency"><option>请选择</option><option>社区</option><option>儿童医院</option><option>综合医院</option></select>
+                        </li>
+                        <li>
+                            <label>疾病史:</label>
+                            <input class="val" id="historyOfDisease" type="text" placeholder="疾病史" />
+                        </li>
+                        <li>
+                            <label>是否住院:</label>
+                            <select id="hospitalized"><option>请选择</option><option>否</option><option>是</option></select>
+                        </li>
+                        <li class="forDesc">
+                            <label>&nbsp;</label>
+                            <input id="hospitalizedRemark" class="val mustNumber" type="text" placeholder="住院次数" />
+                        </li>
+                        <li>
+                            <label>常去医院:</label>
+                            <input class="val" id="oftenGoHospital" type="text" placeholder="常去医院" />
+                        </li>
+                        <li>
+                            <label>过敏史:</label>
+                            <select id="allergies"><option>请选择</option><option>无</option><option>有</option></select>
+                        </li>
+                        <li class="forDesc">
+                            <label>&nbsp;</label>
+                            <textarea id="allergiesRemark" class="liTextarea" placeholder="过敏史"></textarea>
+                        </li>
+                        <li>
+                            <label>早教:</label>
+                            <select id="earlyLearning"><option>请选择</option><option>是</option><option>否</option></select>
+                        </li>
+                    </ul>
+                </div>
+                <div style="display:none" class="growthEnvironment">
+                    <ul>
+                        <li>
+                            <label>居住环境:</label>
+                            <select id="livingEnvironment"><option>请选择</option><option>无</option><option>噪音</option><option>辐射</option><option>其它</option></select>
+                        </li>
+                        <li>
+                            <label>主要照看人:</label>
+                            <select id="mainCaregivers"><option>请选择</option><option>父亲</option><option>母亲</option><option>父母</option><option>祖父母</option><option>外祖父母</option><option>保姆</option><option>其它</option></select>
+                        </li>
+                        <li>
+                            <label>资料提供者:</label>
+                            <select id="dataProvider"><option>请选择</option><option>父亲</option><option>母亲</option><option>父母</option><option>祖父母</option><option>外祖父母</option><option>保姆</option><option>其它</option></select>
+                        </li>
+                        <li>
+                            <label>独生子女:</label>
+                            <select id="whetherOnlyChild"><option>请选择</option><option>是</option><option>否</option></select>
+                        </li>
+                        <li>
+                            <label>有玩伴:</label>
+                            <select id="otherBabiesGrowTogether"><option>请选择</option><option>有</option><option>无</option></select>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+		</div>
+	
+	</div>
+
+	
+
+
+
+</body>
+
+</html>

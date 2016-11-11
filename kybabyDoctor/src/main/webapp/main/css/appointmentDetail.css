@@ -1,0 +1,248 @@
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    color: #505050;
+    line-height: 24px;
+}
+
+.confirm, .call {
+    width: 44%;
+    position: fixed;
+    bottom: 20px;
+    line-height: 46px;
+    font-size: 22px;
+    text-align: center;
+    border-radius: 3px;
+}
+
+.confirm {
+    left: 28%;
+    background: #4fc1e9;
+    color: white;
+}
+
+.call {
+    right: 3%;
+    background: #cccccc;
+    color: #fefefe;
+    display: none;
+}
+
+#user_info {
+    overflow: hidden;
+    padding: 0px 15px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    position: fixed;
+    top: 44px;
+    left: 0px;
+    width: 100%;
+    background: #f7f7f7;
+}
+
+#user_info > img.parentImg {
+    float: left;
+    width: 50px;
+    margin-left: 22%;
+    height: 50px;
+    border-radius: 100%;
+}
+
+#user_info > img.contactUs {
+    float: right;
+    width: 110px;
+    margin-top: 5px;
+    display: none;
+}
+
+#user_info > div {
+    float: left;
+    width: 40%;
+    margin-left: 20px;
+    font-size: 14px;
+    line-height: 28px;
+}
+
+.address, .time {
+    text-indent: 30px;
+    line-height: 28px;
+    color: #4fc1e9;
+    margin-top: 64px;
+}
+
+.address {
+    margin-top: 0px;
+}
+
+.address > img, .time > img {
+    margin-top: -4px;
+}
+
+#meet {
+    width: 100%;
+    overflow: hidden;
+    margin-top: 17px;
+    height: 340px;
+    padding: 0px 15px;
+    margin-bottom: 30px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 13px;
+    color: #4fc1e9;
+}
+
+#meetPro {
+    float: left;
+    width: 10%;
+    height: 340px;
+    text-align: center;
+}
+
+#dialog {
+    float: right;
+    width: 89%;
+    height: 340px;
+}
+
+#dialog > div {
+    width: 82%;
+    padding: 10px 6% 10px 12%;
+    height: 80px;
+    background: url("../images/dialog.jpg");
+    background-size: 100% 100%;
+}
+
+#start {
+    margin-top: -1px;
+    margin-bottom: 15px;
+}
+
+#ongoing {
+    margin-bottom: 14px;
+}
+
+.filter {
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+#status {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    height: 66px;
+    left: 0px;
+    background: #f7f7f7;
+}
+
+#dialog span {
+    color: #909090;
+}
+
+#cover, #cover2 {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    display: none;
+}
+
+#cover2 {
+    z-index: 1100;
+}
+
+.cover {
+    width: 96%;
+    height: 230px;
+    position: fixed;
+    left: 2%;
+    top: 50%;
+    margin-top: -115px;
+    border-radius: 6px;
+    color: #4fc1e9;
+    font-size: 16px;
+    text-align: center;
+    background: #f7f7f7;
+}
+
+.cover h4 {
+    font-size: 22px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.cover p {
+    text-align: left;
+    text-indent: 20px;
+    margin-bottom: 30px;
+}
+
+.isSure, .isSure2 {
+    width: 100%;
+    overflow: hidden;
+    line-height: 36px;
+}
+
+.cancel, .cancel2 {
+    width: 40%;
+    border-radius: 5px;
+    background: #909090;
+    color: #eee;
+    margin-left: 7%;
+    float: left;
+}
+
+.sure, .sure2 {
+    width: 40%;
+    border-radius: 5px;
+    background: #4fc1e9;
+    color: white;
+    margin-right: 7%;
+    float: right;
+}
+
+#cover1 {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+}
+
+.cancel_sure {
+    text-align: right;
+    text-indent: 20px;
+    font-size: 24px;
+    margin: 20px auto;
+    color: white;
+    width: 80%;
+}
+
+#cover1 p {
+    text-align: center;
+    font-size: 22px;
+    color: white;
+}
+
+.cover1 {
+    text-align: center;
+    width: 240px;
+    height: 240px;
+    margin-top: -120px;
+    margin-left: -120px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+}

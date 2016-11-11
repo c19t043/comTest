@@ -1,0 +1,8 @@
+package com.kybaby.newbussiness.doctorsign.dao.impl;
+
+import com.kybaby.common.CommonDaoImpl;
+import com.kybaby.newbussiness.doctorsign.dao.DoctorDataGatherDao;
+
+public class DoctorDataGatherDaoImpl  extends CommonDaoImpl implements DoctorDataGatherDao{
+
+}

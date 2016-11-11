@@ -1,0 +1,236 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>医院服务</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/layer/layer.js"></script>
+    <style>
+        .head_nav{
+            overflow: hidden;
+            padding: 12px 0;
+            background: #FF813D;
+        }
+        .head_nav>div{
+            float:left;
+            width:50%;
+            box-sizing:border-box;
+            -moz-box-sizing:border-box; /* Firefox */
+            -webkit-box-sizing:border-box; /* Safari */
+            text-align: center;
+            color: #fff;
+            font-size: 15px;
+        }
+        .head_nav>div>span{
+            padding-left: 6px;
+            padding-right: 6px;
+        }
+        .leftmeu{
+            border-right: 1px solid #fff;
+        }
+        .select>span{
+            padding-bottom: 2px;
+            border-bottom: 1px solid #fff;
+        }
+        .package_buy{
+            overflow: hidden;
+            padding: 15px;
+            border-bottom: 1px solid #e8e8e8;
+            position: relative;
+        }
+        .package_img{
+            float: left;
+            width: 20%;
+            padding-top: 5px;
+            height: 55px;
+        }
+        .package_img img{
+            width: 53px;
+            height: 53px;
+        }
+        .package_con{
+            float: left;
+            width: 62%;
+            font-size: 15px;
+            height: 50px;
+            padding-top: 10px;
+            padding-left: 1%;
+        }
+        .package_con p:nth-child(2){
+            color: #909090;
+            font-size: 13px;
+        }
+        .package_go{
+            width: 17%;
+            float: left;
+            height: 40px;
+            padding-top: 20px;
+            text-align: right;
+        }
+        .package_go span{
+            padding: 2px 4px;
+            color: #FF813d;
+            background: url("images/images_login_regist/regist_btn.png") no-repeat;
+            background-size: 100% 100%;
+            font-size: 13px;
+        }
+        .package_go img{
+            height: 100%;
+        }
+        .layui-layer-title{
+            padding: 0;
+            background: #FF813D;
+            color: #fff;
+            text-align: center;
+        }
+        .layui-layer-btn .layui-layer-btn0{
+            padding: 0;
+            margin: 0;
+            background: url("images/images_login_regist/regist_btn.png")no-repeat;
+            background-size: 100% 100%;
+            width: 100px;
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+            border:none;
+            color: #FF8543;
+        }
+        .layui-layer-btn a {
+            border: none;
+        }
+        .layui-layer-btn {
+            text-align: center;
+        }
+        .layui-layer-page{
+            max-width: 420px;
+        }
+        .layui-layer-content{
+            overflow: hidden;
+        }
+        .insHid{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="header">
+    <div class="header-left" onclick="package_hasBought.back()"><span>医院服务</span></div>
+    <div class="header-center"></div>
+    <div class="header-right"></div>
+</div>
+<div id="container">
+    <div class="head_nav">
+        <div data-name="医院服务" class="selbtn leftmeu" onclick="package_hasBought.toHospitalService()"><span>医院服务</span></div>
+        <div data-name="已购套餐" class="selbtn select rightmeu"><span>已购套餐</span></div>
+    </div>
+    <p class="gray_3"></p>
+    <div id="package_buy">
+        <!--<div class="package_buy" onclick="package_hasBought.goToAppointment()">-->
+            <!--<div class="package_img"><img src="images/1.jpg" alt=""/></div>-->
+            <!--<div class="package_con">-->
+                <!--<p>儿童保健套餐（1-12次7777777）</p>-->
+                <!--<p>有效期至：2016-12-12</p>-->
+            <!--</div>-->
+            <!--<div class="package_go">-->
+                <!--<span>去预约</span>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+</div>
+<!--container-->
+<script src="js/main.js"></script>
+<script src="js/plugins.js"></script>
+<script>
+    $(function () {
+        package_hasBought.getHasBoughtPackageList();
+    });
+    var package_hasBought= {
+        toHospitalService: function () {//
+            window.location.href='orgservice_main.html';
+        },
+        getHasBoughtPackageList: function () {//得到已购套餐列表
+            $.ajax({
+                type: 'post',
+                async: false,
+                cache: true,
+                url: hostOrgbusiness + 'orgSetMealManager.action',
+                data: {
+                    action: "getOrganSetMeatOrderList",
+                    "organSetMeatOrder.orderStatus":'已付款'
+                },
+                success: function (result) {
+                    if (result.mes == '请登录') {
+                        ale('请登录');
+                        window.location.href="login.html";
+                    }
+                    else if (result.mes == '成功') {
+                        var organSetMeatOrderList=result.organSetMeatOrderList;
+                        if(organSetMeatOrderList!=null){
+                            var html='';
+                            for(var i= 0,len=organSetMeatOrderList.length;i<len;i++){
+                                var proType='';
+                                var serviceSurplusTimes='('+organSetMeatOrderList[i].serviceSurplusTimes+'次)';
+                                if(organSetMeatOrderList[i].organSetPro.proType==0){//儿保
+                                    proType='<div class="package_go" onclick="package_hasBought.goToAppointment('+organSetMeatOrderList[i].organSetPro.hospitalBasicInfo.id+','+organSetMeatOrderList[i].id+',event)">' +
+                                    '<span>去预约</span>' +
+                                    '</div>';
+                                    serviceSurplusTimes='';
+                                }
+                                if(organSetMeatOrderList[i].isCanUse=='N'){
+                                    proType='<div style="position: absolute;top:5px;right: 10px" class="package_go"><img src="images/passed.png"/></div>';
+                                }
+                                html+='<div class="package_buy">' +
+                                '<div class="package_img"><img src="'+photo+'admin/images/familydoctor/'+organSetMeatOrderList[i].organSetMeal.packageImg+'" alt=""/></div>' +
+                                '<div class="package_con">' +
+                                '<p class="package_name">'+organSetMeatOrderList[i].organSetMeal.packageName+serviceSurplusTimes+'</p>' +
+                                '<p>有效期至：'+organSetMeatOrderList[i].serviceEndTime+'</p>' +
+                                '<div class="insHid">'+organSetMeatOrderList[i].organSetPro.parentOrganSetPro.description+'</div>' +
+                                '</div>' +
+                                proType+
+                                '</div>';
+                            }
+                            $('#package_buy').html(html);
+                            package_hasBought.packageInstruction();
+                        }
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+                }
+            });
+        },
+        goToAppointment: function (orgId,orderId,e) {//去预约
+            e.stopPropagation();
+            window.location.href='orgservice_babypoint.html?'+orgId+'&'+orderId;
+        },
+        back: function () {
+            window.location.href='main.html';
+        },
+        packageInstruction: function () {//弹出套餐详情
+            $('.package_buy').click(function(){
+                var _this=this;
+                var title=$(_this).find('.package_name').text();
+                var content=$(_this).find('.insHid').html();
+                layer.open({
+                    type: 1,
+                    area: ['80%', '360px'],
+                    title : title,
+                    btn: '关闭',
+                    closeBtn: 0,
+                    shadeClose: true, //点击遮罩关闭
+                    content: '\<\div style="padding:20px;">'+content+'\<\/div>'
+                });
+            }
+            );
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+/*宝宝信息*/
+#result_ul>li{
+    padding: 15px 18px;
+    line-height: 25px;
+    border-bottom: 1px solid #e8e8e8;
+    background: #fff;
+}
+#result_ul>li>p:nth-child(1){
+    width: 115px;
+}
+#result_ul .flex_item{
+    text-align: right;
+}
+/*发育问卷*/
+#question_information{
+    padding-bottom: 8px;
+}
+.problem_item,.project_item>div{
+    background: #fff;
+}
+#active_information>div.active_div{
+    padding: 12px 18px;
+    background: #fff;
+}
+/*信息汇总*/
+#comprehensive_problem.project_item{
+    display: none;
+}
+.project_title{
+    padding: 0 16px;
+    margin-left: 18px;
+    line-height: 55px;
+    background: url("../images/images_icon/point.png")no-repeat left center;
+    background-size: 8px;
+    color: #909090;
+    font-size: 16px;
+}
+#list_one_t{
+    padding: 0 34px;
+    border-bottom: 1px solid #e8e8e8;
+    line-height: 45px;
+    font-size: 16px;
+}
+#list_one{
+    padding: 8px 34px;
+}
+#list_one li{
+    font-weight: 100;
+    line-height: 34px
+}
+#list_one li span,#list_one_t span,#list_two span{
+    display: inline-block;
+}
+#list_one li span:nth-child(1),#list_one_t span:nth-child(1){
+    width: 33%;
+}
+#list_one li span:nth-child(2),#list_one_t span:nth-child(2){
+    width: 32%;
+    text-align: center;
+    padding-right: 5%;
+}
+#list_one li span:nth-child(3),#list_one_t span:nth-child(3){
+    width: 30%;
+}
+.list_instructions{
+    margin: 0 34px;
+    padding: 16px 40px;
+    background: url("../images/images_icon/remind.png")no-repeat left center;
+    background-size: 24px;
+    font-size: 13px;
+    line-height: 23px;
+    color: #909090;
+}
+.problem_record,.problem_item{
+    padding: 4px 18px;
+    overflow: hidden;
+}
+.problem_record,.problem_item>div{
+    margin-bottom: 20px;
+}
+.choose_ul{
+    margin: 12px 0 14px;
+    padding: 0 12px;
+}
+.problem_instructions{
+    background: #F8E7DE;
+    padding: 12px;
+    color: #909090;
+    font-size: 13px;
+    line-height: 20px;
+}
+.problem_instructions>p{
+    text-indent: 2em;
+}
+.problem_title{
+    margin-top: 16px;
+    line-height: 24px;
+}
+.doctor_interpretation{
+    padding: 16px 18px;
+    line-height: 24px;
+    text-indent: 2em;
+}
+#list_two>li{
+    padding: 0 18px;
+    border-bottom: 1px solid #e8e8e8;
+    line-height: 45px;
+}
+#list_two li span:nth-child(1){
+    width: 25%;
+    text-align: left;
+}
+#list_two li span{
+    width: 12.5%;
+    text-align: center;
+}
+#question_information,#all_information,#active_information{
+    display: none;
+}
+
+/*ASQ-SE*/
+#result_nav>#development{
+    width: 145px;
+}
+#result_analysis>ul{
+    text-align: center;
+}
+.captions{
+    padding: 12px 0;
+    background: #fff;
+}
+dt,.directory_title{
+    padding: 0 18px;
+    font-size: 16px;
+    line-height: 45px;
+    color: #ff813d;
+}
+dd{
+    padding: 0 34px;
+    color: #505050;
+    line-height: 26px;
+}
+.problem_instructions>ul{
+    padding-left: 15px;
+}
+.d_icon{
+    margin-right: 5px;
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 5px;
+    background: #505050;
+    vertical-align: 3px;
+}
+.captions_two{
+    padding: 0 36px;
+    line-height: 26px;
+    font-size: 14px;
+}
+p.s_title{
+    font-size: 15px;
+    line-height: 30px;
+}
+.question_img{
+    margin-top: 8px;
+}
+#question_information .choose_ul>li{
+    line-height: 30px;
+}
+#doctor_reading{
+    display: none;
+}

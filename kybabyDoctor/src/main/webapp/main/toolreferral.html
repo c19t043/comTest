@@ -1,0 +1,457 @@
+﻿<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<title>转诊</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/main.css">
+	<script src="js/modernizr-2.8.3.min.js"></script>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/config.js"></script>
+	<script src="js/autoLogin.js"></script>
+    <script src="js/main.js"></script>
+</head>
+<body>
+
+<div id="header">
+	<div class="header-left"><p></p></div>
+	<div class="header-center">转诊</div>
+	<div class="header-right"></div>
+</div>
+<!--header-->
+<style>
+    body{
+        background: #ffffff;
+    }
+    .personal_list>div{
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+        padding: 0px 15px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    .personal_list .personal_left {
+        float: left;
+        height: 50px;
+        line-height: 50px;
+        width: 35%;
+    }
+    .personal_list .personal_right {
+        float: right;
+        color: #c8c8c8;
+        width: 65%;
+        height: 50px;
+        line-height: 50px;
+        text-align: right;
+    }
+    .personal_right>span{
+        border: 1px solid #eeeeee;
+    }
+    .personal_right>input{
+        border: none;
+        width: 100%;
+        text-align: right;
+    }
+
+    .normal{
+        padding: 4px 4px;
+    }
+    .abnormal{
+        padding: 4px 20px;
+    }
+    .personal_list>input{
+        border: none;
+        line-height: 30px;
+        width: 100%;
+        background: #ffffff;
+        padding: 10px 0px;
+    }
+    .header-left div {
+        background: url("images/prev_01.png") no-repeat center center;
+        background-size: 25px;
+        height: 45px;
+    }
+    .gray_s{
+        width: 100%;
+        height: 10px;
+        background: #f7f7f7;
+        clear: both;
+    }
+    .gray_ss{
+        width: 100%;
+        height: 2px;
+        background: #f7f7f7;
+        clear: both;
+    }
+    .blue{
+        background: #4FC1E9;
+        color: #ffffff;
+    }
+    textarea{
+        width: 100%;
+        padding: 10px 15px;
+        line-height: 24px;
+        background: #ffffff;
+        border: none;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        height: 110px;
+    }
+    #footer {
+        width: 100%;
+        height: 50px;
+        padding: 10px 15px 5px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        text-align: center;
+        line-height: 35px;
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+        background: #F7F7F7;
+    }
+    #footer p{
+        color: white;
+        font-size: 22px;
+        width: 100%;
+        background: #4FC1E9;
+    }
+    select{
+        -webkit-appearance: searchfield;
+        -moz-appearance: searchfield;
+        text-align: right;
+        border: none;
+        outline: none;
+    }
+    .personal_right>a{
+        padding: 4px;
+        background: #dddddd;
+    }
+    .personal_left>input{
+        border: none;
+        text-align: left;
+    }
+    #cover{
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        background: rgba(0,0,0,.5);
+        left: 0px;
+        top: 0px;
+        z-index: 2000;
+        display: none;
+    }
+    #cover>div{
+        width: 70%;
+        background: #ffffff;
+        border-radius: 6px;
+        position: absolute;
+        padding: 15px 5%;
+        left: 10%;
+        top: 180px;
+    }
+    .cover{
+        overflow: hidden;
+        margin-bottom: 30px;
+    }
+    .cover input{
+        border: none;
+    }
+    #sure>span{
+        padding: 3px 30px;
+        border-radius: 3px;
+        background: #4FC1E9;
+        color: #ffffff;
+    }
+</style>
+<p class="gray_s"></p>
+<p class="gray_s"></p>
+<div id="container">
+    <div id="cover">
+        <div>
+            <div class="cover">
+                <p style="width: 60%;float: left"><input type="text" id="searchname" placeholder="请输入搜索姓名"/></p>
+                <p style="width: 40%;float: left;text-align: right">
+                    <a>查询</a>
+                </p>
+            </div>
+            <div style="text-align: center;margin-bottom: 20px">
+                <select name="" id="name" style=" padding: 3px 30px;border: 1px solid #F7F7F7;">
+                    <!--<option value="周梦丽">周梦丽</option>-->
+                    <!--<option value="赵英杰">赵英杰</option>-->
+                    <!--<option value="赵莉萍">赵莉萍</option>-->
+                    <!--<option value="李正妍">李正妍</option>-->
+                    <!--<option value="钱琳竣">钱琳竣</option>-->
+                    <!--<option value="邹若美">邹若美</option>-->
+                    <!--<option value="况娅清">况娅清</option>-->
+                    <!--<option value="范舒玉">范舒玉</option>-->
+                    <!--<option value="黄丽雅">黄丽雅</option>-->
+                    <!--<option value="王映蓉">王映蓉</option>-->
+                    <!--<option value="秦夕文">秦夕文</option>-->
+                    <!--<option value="张琳涵">张琳涵</option>-->
+                    <!--<option value="吴燕星">吴燕星</option>-->
+                    <!--<option value="高杰伟">高杰伟</option>-->
+                    <!--<option value="李俊朗">李俊朗</option>-->
+                    <!--<option value="张修杰">张修杰</option>-->
+                    <!--<option value="曹懿轩">曹懿轩</option>-->
+                    <!--<option value="李雄逸">李雄逸</option>-->
+                    <!--<option value="刘鸣">刘鸣</option>-->
+                </select>
+            </div>
+            <div style="text-align: center;" id="sure">
+                <span>确定</span>
+            </div>
+        </div>
+    </div>
+
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list01">
+            <p class="personal_left">患者</p>
+            <p class="personal_right choosepatientname" onclick="choosepatientname()">
+                选择
+            </p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">性别</p>
+            <p class="personal_right">
+                <span class="normal" style="padding: 4px 28px">男</span>
+                <span class="abnormal" style="padding: 4px 28px">女</span>
+            </p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list03">
+            <p class="personal_left">年龄</p>
+            <p class="personal_right"><input type="text" placeholder="请填写年龄"/></p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+
+    <!--personal_list02-->
+    <div class="personal_list" style="background: #f7f7f7">
+        <div class="list04">
+            <p class="personal_left">初步印象</p>
+        </div>
+    </div>
+    <textarea name="" id="a" cols="30" rows="10"></textarea>
+
+    <!--personal_list02-->
+    <div class="personal_list" style="background: #f7f7f7">
+        <div class="list05">
+            <p class="personal_left">主要既往史</p>
+        </div>
+    </div>
+    <textarea name="" id="b" cols="30" rows="10"></textarea>
+
+    <!--personal_list02-->
+    <div class="personal_list" style="background: #f7f7f7">
+        <div class="list06">
+            <p class="personal_left">治疗经过</p>
+        </div>
+    </div>
+    <textarea name="" id="c" cols="30" rows="10"></textarea>
+    <p class="gray_s"></p>
+    <p class="gray_s"></p>
+    <!--personal_list02-->
+    <!--<div class="personal_list">-->
+        <!--<div class="list07">-->
+            <!--<p class="personal_left">转出单位</p>-->
+            <!--<p class="personal_right">苏坡社区卫生服务中心</p>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<p class="gray_ss"></p>-->
+    <!--&lt;!&ndash;personal_list02&ndash;&gt;-->
+    <!--<div class="personal_list">-->
+        <!--<div class="list08">-->
+            <!--<p class="personal_left">接诊单位</p>-->
+            <!--<p class="personal_right">-->
+                <!--<select name="" id="hospital">-->
+                    <!--<option value="四川省人民医院" selected>四川省人民医院</option>-->
+                    <!--<option value="成都市妇女儿童医院">成都市妇女儿童医院</option>-->
+                <!--</select>-->
+            <!--</p>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<p class="gray_ss"></p>-->
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list07">
+            <p class="personal_left">转诊医生</p>
+            <p class="personal_right"><input type="text" placeholder="请填写转诊医生"/></p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list08">
+            <p class="personal_left">接诊医生</p>
+            <p class="personal_right choosedoctorname" onclick="choosedoctorname()">
+                选择
+            </p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list9">
+            <p class="personal_left">转诊医生电话</p>
+            <p class="personal_right"><input type="text" placeholder="请填写联系电话"/></p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+
+
+</div>
+<footer id="footer">
+    <p>确认转诊</p>
+</footer>
+
+<script src="js/plugins.js"></script>
+<script>
+    $(function () {
+        var url_str=window.location.search.substring(1);
+        if(url_str==''){
+
+        }else{
+            url_str=decodeURIComponent(url_str).split('&');
+            var text1=$('.list01 .personal_right').text(url_str[0]);
+            if(url_str[1]=='女'){
+                $('.list02 .personal_right span:nth-child(2)').addClass('blue');
+            }else{
+                $('.list02 .personal_right span:nth-child(1)').addClass('blue');
+            }
+            $('.list03 .personal_right input').val(url_str[2]);
+            $('#a').val('好');
+            $('#b').val('无');
+            $('#c').val('无');
+            $('.list08 .personal_right').text('张旭');
+            $('.list07 .personal_right input').val(url_str[3]);
+            $('.list9 .personal_right input').val('13980123564');
+            $('#footer').hide();
+        }
+
+
+        $('.personal_right>span').click(function () {
+            $(this).addClass('blue').siblings().removeClass('blue');
+        });
+        $('#cover a').click(function () {
+            var text=$('#searchname').val().trim();
+            var arr=[];
+            if($('#cover').hasClass('doctor')){
+                arr=['周梦','赵英杰','赵莉萍','李正妍','钱琳竣','邹若美','况娅清','范舒玉','黄丽雅','王映蓉','秦夕文','张琳涵','吴燕星','高杰伟','李俊朗','张修杰','曹懿轩','李雄逸','刘鸣'];
+            }else if($('#cover').hasClass('patient')){
+                arr=['周梦丽','赵英杰','赵莉萍','李正妍','钱琳竣','邹若美','况娅清','范舒玉','黄丽雅','王映蓉','秦夕文','张琳涵','吴燕星','高杰伟','李俊朗','张修杰','曹懿轩','李雄逸','刘鸣'];
+            }
+            var html='';
+            if(text==''){
+                for(var j= 0,le=arr.length;j<le;j++){
+                    html+='<option value="'+arr[j]+'">'+arr[j]+'</option>';
+                }
+                $('#name').html(html);
+                $('#name>option:nth-child(1)').attr('selected','selected');
+            }
+            else{
+//                $('#name>option').css({display:'none'});
+//                $('#name>option').filter(function () {　　　　　　　
+//                    return $(this).text().indexOf(text)!=-1;
+//                }).css({display:'block'});
+                var istrue=0;
+                for(var i= 0,len=arr.length;i<len;i++){
+                    if(arr[i].indexOf(text)!=-1){
+                        html+='<option value="'+arr[i]+'">'+arr[i]+'</option>';
+                        istrue=1;
+                    }
+                }
+                if(istrue==0){
+                    ale('没有找到相关患者姓名');
+                    for(var j= 0,le=arr.length;j<le;j++){
+                        html+='<option value="'+arr[j]+'">'+arr[j]+'</option>';
+                    }
+                }
+                $('#name').html(html);
+                $('#name>option:nth-child(1)').attr('selected','selected');
+            }
+        });
+        $('#sure>span').click(function () {
+            if($('#cover').hasClass('doctor')){
+                $('.choosedoctorname').html($('#name>option:selected').val());
+            }else if($('#cover').hasClass('patient')){
+                $('.choosepatientname').html($('#name>option:selected').val());
+            }
+            $('#cover').hide();
+        });
+        $('#footer>p').click(function () {
+            var text1=$('.list01 .personal_right').text();
+            var text2=$('.list02 .personal_right span.blue').text();
+            var text3=$('.list03 .personal_right input').val();
+            var text4=$('#a').val();
+            var text5=$('#b').val();
+            var text6=$('#c').val();
+            var text8=$('.list08 .personal_right').text();
+            var text7=$('.list07 .personal_right input').val();
+            var text9=$('.list9 .personal_right input').val();
+            var date=new Date();
+            var month=(date.getMonth()+1);
+            var day=date.getDate();
+            var hour=date.getHours();
+            var minute=date.getMinutes();
+            var second=date.getSeconds();
+            if(month<10){
+                month='0'+month;
+            }
+            if(day<10){
+                day='0'+day;
+            }
+            if(hour<10){
+                hour='0'+hour;
+            }
+            if(minute<10){
+                minute='0'+minute;
+            }
+            if(second<10){
+                second='0'+second;
+            }
+            var timeStr=date.getFullYear()+'-'+month+'-'+day+'&'+hour+':'+minute+':'+second;
+//            alert(text1+text2+text3+text4+text5+text6+text7+text8+text9+timeStr);
+            ale('确认转诊');
+            setTimeout(function () {
+                window.location.href='toolreferralrecord.html?'+timeStr+'&'+text1+'&'+text2+'&'+text3+'&'+text8;
+            },2000);
+        });
+    });
+function choosepatientname(){
+    $('#cover').show().removeClass('doctor').addClass('patient');
+    var arr=['周梦丽','赵英杰','赵莉萍','李正妍','钱琳竣','邹若美','况娅清','范舒玉','黄丽雅','王映蓉','秦夕文','张琳涵','吴燕星','高杰伟','李俊朗','张修杰','曹懿轩','李雄逸','刘鸣'];
+    var html='';
+    for(var j= 0,le=arr.length;j<le;j++){
+        html+='<option value="'+arr[j]+'">'+arr[j]+'</option>';
+    }
+    $('#name').html(html);
+    $('#name>option:nth-child(1)').attr('selected','selected');
+}
+    function choosedoctorname(){
+        $('#cover').show().removeClass('patient').addClass('doctor');
+        var arr=['周梦','赵英杰','赵莉萍','李正妍','钱琳竣','邹若美','况娅清','范舒玉','黄丽雅','王映蓉','秦夕文','张琳涵','吴燕星','高杰伟','李俊朗','张修杰','曹懿轩','李雄逸','刘鸣'];
+        var html='';
+        for(var j= 0,le=arr.length;j<le;j++){
+            html+='<option value="'+arr[j]+'">'+arr[j]+'</option>';
+        }
+        $('#name').html(html);
+        $('#name>option:nth-child(1)').attr('selected','selected');
+    }
+</script>
+</body>
+</html>

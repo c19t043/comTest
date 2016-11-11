@@ -1,0 +1,656 @@
+@charset "utf-8";
+
+/* ==========================================================================
+Author's custom styles
+========================================================================== */
+
+/*
+* common start
+*/
+* {
+	margin: 0;
+	padding: 0;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	font-size: 15px;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+	font-size: 1em;
+	font-family: Microsoft YaHei;
+	background:#fff;
+}
+label{
+	background:#fff;
+	display:inline-block;
+	color:#666;
+}
+ul li,
+ol li {
+	list-style: none;
+}
+input{
+	font-size:14px;
+}
+input:focus{
+	outline:none;
+}
+img {
+	border: 0;
+	max-width: 100%;
+}
+
+a {
+	text-decoration: none;
+	color: #222;
+}
+
+.float-left {
+	float: left;
+}
+
+.float-right {
+	float: right;
+}
+
+.text-left {
+	text-align: left;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.dis-none {
+	display: none;
+}
+
+.dis-block {
+	display: block;
+}
+
+.red {
+	color: #e95c6a;
+}
+
+.white {
+	color: white;
+}
+
+.black {
+	color: black;
+}
+
+/*
+* common end
+*/
+
+#header:before,
+#header:after,
+#banner:before,
+#banner:after,
+#container:before,
+#container:after,
+#footer:before,
+#footer:after {
+	content: " "; /* 1 */
+	display: table; /* 2 */
+}
+
+#header:after,
+#banner:after,
+#container:after,
+#footer:after {
+	clear: both;
+}
+
+/*
+* header start
+*/
+#header {
+	width: 100%;
+	height: 45px;
+	background: #fff;
+	text-align: center;
+	position: fixed;
+	top: 0;
+	z-index: 999;
+}
+#header.doctor_header{
+	background: #1cba93;
+	color:#fff;
+}
+#header_left_icon>span{
+	display: inline-block;
+	width: 30px;
+	height: 45px;
+	background: url(../images/normalicon/my.png)no-repeat center;
+	background-size: 20px;
+	font-size: 15px;
+}
+.header-right.text-center span{
+    padding: 2px 12px;
+    border-radius: 16px;
+    border: 1px solid white;
+    font-size: 12px;
+}
+
+#header .tit {
+	width: 90%;
+	margin:0 auto;
+}
+
+#header .header-left,#header .headerLeft {
+	width: 20%;
+	float: left;
+	line-height: 45px;
+	font-size:30px;
+	height:45px;
+	color: #c8c8c8;
+}
+
+/*#header .header-left p,#header .headerLeft p {*/
+	/*background: url("../images/prev_01.png") no-repeat center center;*/
+	/*background-size: 25px;*/
+	/*height: 45px;*/
+/*}*/
+#header .header-left p, #header .headerLeft p {
+	background: url("../images/normalicon/return.png") no-repeat center center;
+	background-size: 20px;
+	height: 45px;
+}
+
+#header .header-center {
+	width: 60%;
+	float: left;
+	line-height: 45px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	font-size:18px;
+}
+#header .header-right {
+	width: 20%;
+    float: right;
+    line-height: 45px;
+    height:45px;
+}
+#header .header-right p {
+	width: 80%;
+	line-height: 24px;
+	height: 24px;
+	border: 1px solid #1cba93;
+	border-radius: 3px;
+	margin: 10px 5px;
+	background: #1cba93;
+	color: #fff;
+	font-size: 0.875em;
+}
+
+.header_tab {  /*header_tab*/
+	width: 50%;
+	margin: 6px auto 0px auto;
+	height: 30px;
+	line-height: 30px;
+	clear: both;
+	overflow: hidden;
+	border: 1px solid #1cba93;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	color: #222;
+	font-size: 0.875em;
+}
+.header_tab .tab_left {
+	float: left;
+	width: 50%;
+}
+.header_tab .tab_right {
+	float: right;
+	width: 50%;
+}
+.header_tab .select {
+	background: #1cba93;
+	color: #fff;
+}
+
+/*
+* header end
+*/
+
+/*
+* banner start
+*/
+
+
+#banner {
+	width: 100%;
+	height: 150px;
+}
+#banner img {
+	display: none;
+}
+/*
+* banner end
+*/
+
+
+
+/*
+* container start
+*/
+#container {
+	width: 100%;
+	margin:45px 0 50px ;
+}
+
+
+
+/*
+* container end
+*/
+
+/*
+* footer start
+*/
+#footer {
+	width: 100%;
+	height: 45px;
+	padding-top: 5px;
+	padding-bottom: 8px;
+	background: #fff;
+	position: fixed;
+	bottom: 0;
+}
+#footer ul a {
+	display: block;
+}
+
+#footer ul li {
+	width: 25%;
+	height: 45px;
+	display: block;
+	float:left;
+	text-align: center;
+	color: #c8c8c8;
+}
+#footer ul li.select {
+	color: #1cba93;
+}
+#footer ul li p:last-child {
+	font-size: 0.875em;
+}
+
+/*
+* footer end
+*/
+/*----------button-----------*/
+/*大蓝色  登录注册*/
+.button_01{
+  width: 90%;
+  margin: 0 auto;
+  height: 45px;
+  /*background: #50c1e9;*/
+  text-align: center;
+  line-height: 45px;
+  border-radius: 5px;
+  font-size:20px;
+	border: 1px solid #6FD3BB;
+	border-radius: 25px;
+	color: #6FD3BB;
+	font-size: 18px;
+}
+#medium_button.button_01{
+	width: 60%;
+}
+.button_01_grey{
+	width: 90%;
+  margin: 0 auto;
+  height: 45px;
+  background: #c8c8c8;
+  text-align: center;
+  line-height: 45px;
+  border-radius: 5px;
+  color: #fff;
+  font-size:20px;
+}
+/*小蓝色*/
+.button_02{
+	width: 50%;
+  margin: 0 auto;
+  height: 45px;
+  background: #50c1e9;
+  text-align: center;
+  line-height: 45px;
+  border-radius: 5px;
+  color: #fff;
+  font-size:20px;
+}
+
+/*灰标签*/
+.button_03{
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 5px;
+    background: #c8c8c8;
+    text-align: center;
+    font-size: 14px;
+}
+
+
+/*医生评价标签*/
+.button_04{
+    width: 20%;
+    border-radius: 15px;
+    color: white;
+    background-color: #50c1e9;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+.button_05{
+    width: 20%;
+    border-radius: 15px;
+    color: white;
+    background-color: #6DD9FF;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+
+/*个人专栏小提交*/
+.button_06{
+    width: 70px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 5px;
+    background: #50c1e9;
+    text-align: center;
+    font-size: 14px;
+    color: white;
+}
+
+
+/*获取验证码*/
+.button_07{
+    padding: 5px 13px;
+    border-radius: 18px;
+    text-align: center;
+    font-size: 14px;
+    color: #6FD3BB;
+	border: 1px solid #6FD3BB;
+}
+/*灰色边距*/
+p.gray_1{
+	width:100%;
+	height:8px;
+	background:#f4f4f4;
+}
+p.gray_2{
+	width:100%;
+	height:2px;
+	background:#e8e8e8;
+	clear:both;
+}
+p.gray_3{
+	width:100%;
+	height:1px;
+	background:#e8e8e8;
+	clear:both;
+}
+
+/*蓝边蓝字居中小按钮*/
+.button_08 {
+	width: 30%;
+	height: 30px;
+	margin: 0 auto;
+	line-height: 30px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	text-align: center;
+	font-size: 14px;
+	color: #1cba93;
+	border: 1px solid #1cba93;
+}
+
+/*我的主页医生标签*/
+.button_09 {
+	width: 30%;
+	color: white;
+	background-color: #1cba93;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+}
+.button_10 {
+	width: 30%;
+	color: white;
+	background-color: #6FD3BB;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+}
+/*
+弹出提示
+*/
+#alert-cover{
+    position: fixed;
+    z-index: 50000;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.5);
+    left: 0;
+    top: 0;
+}
+#alert-content{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: -70%;
+    text-align: center;
+}
+#alert-line{
+    width: 2px;
+    height: 50%;
+    background: #1cba93;
+    margin: -25% auto 0;
+}
+#alert-text{
+    width: 50%;
+    height: 70px;
+    background: url("../images/images_login_regist/alert_notice.png") no-repeat;
+    background-size:100% 100% ;
+    margin: 0 auto;
+    padding: 15px 0;
+}
+#alert-gantanhao{
+    margin-bottom:10px ;
+}
+#alert-text .alert-text-show{
+    color: white;
+    font-size: 12px;
+    padding: 0 15px;
+}
+#alert-text img{
+    width: 12px;
+}
+/*404错误页面*/
+#layer{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    color: grey;
+    text-align: center;
+}
+#layer_main{
+    margin-top: 35%;
+}
+#layer_main img{
+    width: 25%;
+}
+#layer_main span{
+    display: inline-block;
+}
+#layer_return{
+    padding: 8px 15px 8px 25px;
+    background: url(../images/images_login_regist/return_arrow.png)no-repeat left;
+    background-size: 22px;
+}
+#layer_index{
+    padding: 8px 22px 8px 15px;
+    background: url(../images/images_login_regist/footer_icon01_off.png)no-repeat right;
+    background-size: 20px;
+}
+#layer_p{
+    line-height: 45px;
+}
+/*页尾*/
+#footer_nav{
+	position: fixed;
+	bottom: 0;
+	z-index: 999;
+	width: 100%;
+	height: 50px;
+	background: #e8e8e8;
+	overflow: hidden;
+	-webkit-backface-visibility: hidden;
+	text-align: center;
+	font-size: 14px;
+	color: #909090;
+}
+.footer_tab_item{
+	float: left;
+	display: inline-block;
+	width: 25%;
+	height: 50px;
+}
+.footer_tab_item.nav-active{
+	color: #13ba93;
+}
+.nav_tab_icon{
+	display: block;
+	height: 30px;
+}
+#nav_icon1{
+	background: url("../images/menuicon/consulting_dark.png")no-repeat center;
+	background-size: 28px;
+}
+#nav_icon2{
+	background: url("../images/menuicon/service_dark.png")no-repeat center;
+	background-size: 22px;
+}
+#nav_icon3{
+	background: url("../images/menuicon/circle_dark.png")no-repeat center;
+	background-size: 21px;
+}
+#nav_icon4{
+	background: url("../images/menuicon/subscribers_dark.png")no-repeat center;
+	background-size: 21px;
+}
+.nav-active>.nav_text{
+	color: #1cba93;
+}
+.nav-active>#nav_icon1{
+	background: url("../images/menuicon/consulting_light.png")no-repeat center;
+	background-size: 28px;
+}
+.nav-active>#nav_icon2{
+	background: url("../images/menuicon/service_light.png")no-repeat center;
+	background-size: 22px;
+}
+.nav-active>#nav_icon3{
+	background: url("../images/menuicon/circle_light.png")no-repeat center;
+	background-size: 21px;
+}
+.nav-active>#nav_icon4{
+	background: url("../images/menuicon/subscribers_light.png")no-repeat center;
+	background-size: 21px;
+}
+/*右边页面跳转箭头*/
+.page_jump_arrow{
+	display: inline-block;
+	float: right;
+	width: 10%;
+	height: 50px;
+	background: url("../images/menuicon/next.png")no-repeat right center;
+	background-size: 9px;
+}
+/*文字div项*/
+/*.text_div_item{*/
+	/*margin: 0 20px;*/
+	/*height: 50px;*/
+	/*line-height: 50px;*/
+/*}*/
+/*列表项*/
+.package_item{
+	overflow: hidden;
+	padding: 0 15px;
+	height: 50px;
+	line-height: 50px;
+}
+.package_name{
+	display: inline-block;
+	float: left;
+	width: 90%;
+}
+.new_message_red{
+	/*display: inline-block;*/
+	display: none;
+	width: 5px;
+	height: 5px;
+	border-radius: 5px;
+	background: #e95c6a;
+	position: absolute;
+}
+#consultation-notice{
+    width: 100%;
+    line-height: 30px;
+    position: fixed;
+    z-index: 40000;
+    background: rgba(0,0,0,0.5);
+    top: 45px;
+    left: 0;
+    color: #f5f5f5;
+    font-size: 12px;
+    height: 30px;
+    overflow: hidden;
+}
+.consultation-notice{
+    width: 80%;
+    margin-left: 18px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    float: left;
+}
+#consultation-notice>img{
+    float: right;
+    margin-right: 15px;
+    width: 12px;
+    margin-top: 10px;
+}
+.consultation-notice>img{
+    width: 18px;
+    margin-top: -3px;
+    margin-right: 10px;
+}

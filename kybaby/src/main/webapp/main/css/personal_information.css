@@ -1,0 +1,17 @@
+.row{
+    width: 100%;
+    background-color: white;
+}
+.row label{
+    display: inline-block;
+    width: 30%;
+    line-height: 50px;
+    text-indent: 1em;
+    float: left;
+}
+.row span{
+    display: inline-block;
+    width: 60%;
+    color: darkgrey;
+    line-height: 50px;
+}

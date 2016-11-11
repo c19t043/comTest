@@ -1,0 +1,50 @@
+﻿.fj{
+    width:900px;
+    margin-left:30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.fj label{
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+
+}
+.fj input{
+    width: 100px;
+}
+.xiao{
+    width: 104px;
+}
+.da{
+    width: 250px;
+}
+
+.tishi{
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    color: #009DD9;
+    font-weight: bold;
+}
+.con_contral select{
+    width: 120px;
+}
+.bu{
+    display: inline-block;
+    width: 80px;
+    height: 30px;
+    background-color: #FDB42B;
+    color: white;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+.con_contral input[type="checkbox"]{
+    position: relative;
+    top: 1px;
+}
+.con_contral input[type="text"] {
+    width: 100px;
+}

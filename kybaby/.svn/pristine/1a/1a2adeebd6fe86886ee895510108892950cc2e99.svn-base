@@ -1,0 +1,168 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>ASQ:SE结果</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/evaluate.css"/>
+    <link rel="stylesheet" href="css/evaluate_fd_qResult_allInfomation.css"/>
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/evaluate_fd_qResult_seInfomation.js"></script>
+    <style>
+        #list_one li{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div id="header">
+    <div class="header-left" onclick='return_before()'><span>ASQ:SE结果</span></div>
+    <div class="header-center"></div>
+    <div class="header-right"></div>
+</div>
+<div id="container">
+    <div id="questionnaire_title">
+        <h2>ASQ-SE年龄与发育进程问卷社交-情绪</h2>
+        <p>9个月至14个月宝宝</p>
+    </div>
+    <p class="gray_s"></p>
+    <div id="result_nav" class="flex_cont">
+        <div class="result_tit selected" data-index="0">宝宝信息</div>
+        <div class="flex_item"></div>
+        <div class="result_tit" data-index="1">发育问卷</div>
+        <div class="flex_item"></div>
+        <div class="result_tit" data-index="2">信息汇总</div>
+        <div class="flex_item"></div>
+        <div class="result_tit" id="development" data-index="3">发育目录与亲子活动</div>
+    </div>
+    <div id="content_div">
+        <!--宝宝信息-->
+        <div id="baby_information">
+            <p class="gray_1"></p>
+            <ul id="result_ul">
+                <!--<li class="flex_cont">-->
+                <!--<p>姓名：</p>-->
+                <!--<p class="flex_item">李晓明</p>-->
+                <!--</li>-->
+                <!--<li class="flex_cont">-->
+                <!--<p>性别：</p>-->
+                <!--<p class="flex_item">男</p>-->
+                <!--</li>-->
+                <!--<li class="flex_cont">-->
+                <!--<p>出生日期：</p>-->
+                <!--<p class="flex_item">2016-08-09</p>-->
+                <!--</li>-->
+                <!--<li class="flex_cont">-->
+                <!--<p>提交问卷日期：</p>-->
+                <!--<p class="flex_item">2016-11-11</p>-->
+                <!--</li>-->
+                <!--<li class="flex_cont">-->
+                <!--<p>宝宝生活龄：</p>-->
+                <!--<p class="flex_item">5月8天</p>-->
+                <!--</li>-->
+                <!--<li class="flex_cont">-->
+                <!--<p>宝宝孕周：</p>-->
+                <!--<p class="flex_item">36周0天</p>-->
+                <!--</li>-->
+                <!--<li class="flex_cont">-->
+                <!--<p>出生时情况：</p>-->
+                <!--<p class="flex_item">足月、顺产、双胎</p>-->
+                <!--</li>-->
+                <!--<li class="flex_cont">-->
+                <!--<p>早产、矫正龄：</p>-->
+                <!--<p class="flex_item">4月8天</p>-->
+                <!--</li>-->
+            </ul>
+        </div>
+        <!--发育问卷-->
+        <div id="question_information">
+        </div>
+        <!--信息汇总-->
+        <div id="all_information">
+            <div class="project_div">
+                <div class="project_item">
+                    <p class="project_title">计分</p>
+                    <div>
+                        <div id="result_analysis">
+                            <ul class="flex_cont" id="list_one_t">
+                                <li class="flex_item">总分</li>
+                                <li class="flex_item">结果分析</li>
+                            </ul>
+                            <div id="list_one">
+                                <ul class="flex_cont">
+                                    <!--<li class="flex_item">30</li>-->
+                                    <!--<li class="flex_item">低于界值</li>-->
+                                </ul>
+                            </div>
+                        </div>
+                        <p class="gray_s"></p>
+                        <div class="captions">
+                            <dl>
+                                <dt>转介标准：</dt>
+                                <dd>如果宝宝的总分等于或高于界值，请结合转介考虑因素综合分析，如有必要，建议转介心理健康评估。</dd>
+                                <dt>转介考虑因素：</dt>
+                                <dd>除上述因素以外，还需考虑宝宝的生活背景。</dd>
+                            </dl>
+                            <div class="captions_two">
+                                <p class="s_title"><i class="d_icon"></i>环境 / 时间因素</p>
+                                <p>例如，宝宝在学校和在家里的行为是否一致？宝宝最近的生活中是否存在压力事件？</p>
+                                <p class="s_title"><i class="d_icon"></i>发育因素</p>
+                                <p>例如，宝宝的行为是否与发育阶段或发育迟缓有关？</p>
+                                <p class="s_title"><i class="d_icon"></i>健康因素</p>
+                                <p>例如，宝宝的行为是否与健康或生物因素有关？</p>
+                                <p class="s_title"><i class="d_icon"></i>家庭 / 文化因素</p>
+                                <p>例如，宝宝的行为是否能被文化背景或家庭背景所接受？</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="project_item" id="doctor_reading">
+                <p class="project_title">后续措施与医生解读</p>
+                <div>
+                    <div class="doctor_interpretation">
+                    </div>
+                    <p class="gray_s"></p>
+                    <div class="list_instructions">
+                        <p>有说明的需要随访</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--亲子活动-->
+        <div id="active_information">
+            <p class="gray_1"></p>
+            <!--<p class="project_title">幼童的社交 - 情绪行为发育</p>-->
+            <!--<div>-->
+            <!--<div class="captions">-->
+            <!--<p class="directory_title">12个月社交 - 情绪行为发育目录</p>-->
+            <!--<div class="captions_two">-->
+            <!--<p class="s_title"><i class="d_icon"></i>当您叫宝宝的名字的时候，他 / 她有反应；</p>-->
+            <!--<p class="s_title"><i class="d_icon"></i>宝宝对其他的宝宝和孩子感猁趣;</p>-->
+            <!--<p class="s_title"><i class="d_icon"></i>宝宝会表达猣多感情，例如，高猁、伤狺、不舒服和生气等；</p>-->
+            <!--<p class="s_title"><i class="d_icon"></i>宝宝在生人愸前害猕，嫉妒您对别人的关佐。他 / 她猞要时间观察和熟牼陌生人和陌生环境；</p>-->
+            <!--<p class="s_title"><i class="d_icon"></i>宝宝害怕跌跤、黑暗、体猃大的动物、大的声音或日常生活规悽的改变；</p>-->
+            <!--<p class="s_title"><i class="d_icon"></i>宝宝对陌生人和家人、熟人的反应不同；</p>-->
+            <!--<p class="s_title"><i class="d_icon"></i>宝宝狃要您一直在他 / 她的视犷之内，否则他 / 她会感到不安；</p>-->
+            <!--<p class="s_title"><i class="d_icon"></i>宝宝会模仿他人的声音、猆为和愸部表情等；</p>-->
+            <!--<p class="s_title"><i class="d_icon"></i>宝宝用拥抱和亲吻表达对人、宠物和玩偶的情感；</p>-->
+            <!--<p class="s_title"><i class="d_icon"></i>宝宝会观察他人的情猭，当他 / 她看到他人痛苦时也会犬得痛苦甚至会哭；</p>-->
+            <!--<p class="s_title"><i class="d_icon"></i>宝宝开始有自己的好恶，会把不犊欢的东牱推在一边，可能会依恋一件特殊的玩具或毯子；</p>-->
+            <!--<p class="s_title"><i class="d_icon"></i>宝宝会变得更加独立，好狉有点固执，可能会因自己不能做成某件事而感到沮丧。</p>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+        </div>
+    </div>
+</div>
+<!--container-->
+<script src="js/main.js"></script>
+<script src="js/plugins.js"></script>
+</body>
+</html>

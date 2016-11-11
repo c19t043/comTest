@@ -1,0 +1,193 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>医生主页</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/pointPatient.css">
+    <link rel="stylesheet" href="css/consult.css"/>
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/config.js"></script>
+    <style>
+        #doctor{
+            padding: 15px 20px;
+            line-height: 40px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div id="header">
+        <div class="header-left" onclick="return_before();"><span>医生主页</span></div>
+        <div class="header-center"></div>
+        <div class="header-right"></div>
+    </div>
+</header>
+<!--header-->
+<div id="container">
+    <div id="doctor">
+        <div>王亚兰 <small>全新奥斯卡接电话萨克计划的空间</small></div>
+        <div>苏坡社区卫生中心</div>
+    </div>
+    <p class="gray_s"></p>
+    <div id="erke">
+
+        <div id="addressContainer">
+
+        </div>
+    </div>
+
+</div>
+<footer id="footer">
+    <p class="login_button point" onclick="goTo()">立即预约</p>
+</footer>
+<script>
+    var today = new Date();
+    var year = today.getFullYear();
+    var month = today.getMonth();
+    var day = today.getDay();//星期
+    var date = today.getDate();
+    var days;
+    var dateArr = [];
+    var serDocId = decodeURIComponent(window.location.search.substring(1).split('&')[0].trim());
+    var orgId = '';
+    var recentArr = [];
+    //得到今后一周的日期
+    $(function () {
+        $.ajax({
+            type:'post',
+            url:clinicHost+'clinicBooking.action',
+            cache:false,
+            async:false,
+            data:{action:"getCurrentTime"},
+            success:function(result){
+                if (result.mes == '请登录') {
+                    ale('请登录', '24px');
+                    link_to("login.html");
+                }
+                else if (result.mes == "成功") {
+                    var todayTimeArr=result.currentTime.split(' ')[0].split('-');
+                    year=parseInt(todayTimeArr[0]);
+                    month=parseInt(todayTimeArr[1]-1);
+                    var currentWeekDate=result.currentWeekDate;
+                    switch (currentWeekDate) {
+                        case '周日':
+                            day = 0;
+                            break;
+                        case '星期一':
+                            day =1;
+                            break;
+                        case '星期二':
+                            day =2 ;
+                            break;
+                        case '星期三':
+                            day=3 ;
+                            break;
+                        case '星期四':
+                            day =4 ;
+                            break;
+                        case '星期五':
+                            day = 5;
+                            break;
+                        case '星期六':
+                            day = 6;
+                            break;
+                    }
+                    date=parseInt(todayTimeArr[2]);
+                }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+            }
+        });
+        if (month == 0 || month == 2 || month == 4 || month == 6 || month == 7 || month == 9 || month == 11) {
+            days = 31;
+        }
+        else if (month == 3 || month == 10 || month == 5 || month == 8) {
+            days = 30;
+        }
+        else {
+            if (year % 4 != 0) {
+                days = 28
+            }
+            else {
+                if (year % 100 == 0) {
+                    if (year % 400 == 0) {
+                        days = 29;
+                    } else {
+                        days = 28;
+                    }
+                } else {
+                    days = 29
+                }
+            }
+        }
+        var dayArr = ['今天', '明天', '后天'];
+        var daySum = day + 3;
+        for (var j = 0; j < 11; j++) {
+            if (daySum > 6) {
+                daySum = daySum - 7;
+            }
+            if (daySum == 0) {
+                dayArr.push('周日');
+            }
+            else if (daySum == 1) {
+                dayArr.push('周一');
+            }
+            else if (daySum == 2) {
+                dayArr.push('周二');
+            }
+            else if (daySum == 3) {
+                dayArr.push('周三');
+            }
+            else if (daySum == 4) {
+                dayArr.push('周四');
+            }
+            else if (daySum == 5) {
+                dayArr.push('周五');
+            }
+            else if (daySum == 6) {
+                dayArr.push('周六');
+            }
+            daySum++;
+        }
+        var dateList = $('.weekdate');
+        var dayList = $('.weekday');
+        for (var i = 0; i < 14; i++) {
+            if (date < 10) {
+                if (month < 9) {
+                    dateArr.push(year + '-0' + (month + 1) + '-0' + date);
+                } else {
+                    dateArr.push(year + '-' + (month + 1) + '-0' + date);
+                }
+            } else {
+                if (month < 9) {
+                    dateArr.push(year + '-0' + (month + 1) + '-' + date);
+                } else {
+                    dateArr.push(year + '-' + (month + 1) + '-' + date);
+                }
+            }
+            $(dateList).eq(i).text(date);
+            $(dayList).eq(i).text(dayArr[i]);
+            date++;
+            if (date > days) {
+                date = date - days;
+                month++;
+                if (month > 11) {
+                    month = 0;
+                    year++;
+                }
+            }
+        }
+    });
+
+    //约Ta门诊跳转页面
+    function goTo() {
+        link_to('hospital_pay_order.html');
+    };
+</script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>支付</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/payAppointment.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/MD5.js"></script>
+    <script src="js/main.js"></script>
+    <style>
+        .gray_s{
+            width: 120%;
+            margin-left: -15px;
+        }
+    </style>
+</head>
+<body>
+<div id="header">
+    <div class="header-left" onclick="return_before()"><span>支付</span></div>
+    <div class="header-center"></div>
+    <div class="header-right">
+        <div id="menu" style="background:white;float: right;width: 24px;height: 24px;position: relative;top: -2px;right:-3px;" onclick="menu(event)">
+            <img style="width: 24px;height: 24px;" src="images/menum.png" alt=""/>
+            <div class="select" style="height:0px;line-height:40px;position: absolute;background: white;top: 44px;right: 0px;width: 90px;overflow: hidden;text-align: center">
+                <div style="color: #ff813d" onclick="cancelOrder()">取消订单</div>
+                <div onclick="modify()" style="color: #ff813d;border-top: 1px solid #ddd">修改订单</div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--header-->
+<div id="container" style="overflow: hidden">
+    <!--<div onclick="cancelOrder()">取消订单</div>-->
+
+    <!--<div id="modify" onclick="modify()" style="width: 70px;text-align: center;color: #ff813d;display: none;">修改订单</div>-->
+    <div class="description">
+        <img src="" alt=""/>
+
+        <div id="doctorMessage" class=".p">
+
+        </div>
+    </div>
+    <div class="gray_s"></div>
+    <table id="orderInfo">
+        <tbody>
+            <tr style="height: 50px">
+                <td><img style="width: 23px" src="images/images_icon/time.png" alt=""/></td>
+                <td>
+                    <span id="dateTime"></span>&nbsp;&nbsp;
+                    <!--(<span id="dayTime"></span>)&nbsp;&nbsp;-->
+                    <span id="timePeriod"></span>
+                </td>
+            </tr>
+            <tr style="height: 50px">
+                <td><img style="width: 22px" src="images/images_icon/address.png" alt=""/></td>
+                <td><div class="ad"></div></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="gray_s"></div>
+    <p>联系方式</p>
+    <div>
+        <span id="userName">
+
+        </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span id="userPhone">
+
+        </span>
+    </div>
+    <div class="gray_s"></div>
+    <p>支付方式</p>
+    <table class="payWay">
+        <tbody>
+            <!--<tr>-->
+                <!--<td><img src="images/payIcon1.jpg" alt=""/></td>-->
+                <!--<td>支付宝支付</td>-->
+                <!--<td><img class="icon" src="images/chooseAddress.jpg" alt=""/></td>-->
+            <!--</tr>-->
+            <tr class="choosePayWay">
+                <td><img style="width: 34px" src="images/images_family_doctor/weixin_color.png" alt=""/></td>
+                <td>微信支付</td>
+                <td><img class="icon" style="width: 22px" src="images/images_family_doctor/true.png" alt=""/></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="gray_s" style="margin-top: 6px"></div>
+    <p>服务价格</p>
+    <div style="overflow: hidden" id="historyPrice">
+        <div class="float-left">预约门诊服务费</div>
+        <div class="float-right">&yen;<span id="visit"></span></div>
+        <!--<div class="float-left">挂号费(需现场支付)</div>-->
+        <!--<div class="float-right">￥30.00</div>-->
+    </div>
+    <div style="overflow: hidden;" id="newPrice">
+        <!--<div class="float-left"></div>-->
+        <!--<div class="float-right"><span style="color: #ff813d">&yen;<span id="visit"></span></span></div>-->
+    </div>
+    <div class="gray_s"></div>
+    <p class="preferential1">优惠</p>
+    <div class="preferential" style="overflow: hidden">
+        <div class="float-left"><span id="discountName"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="blue">￥<span id="discountMoney" class="preferential_payment"></span></span></div>
+        <div class="float-right text-center"><img style="width: 22px" src="images/images_family_doctor/true.png" alt=""/></div>
+    </div>
+    <div class="accountBalance" style="overflow: hidden">
+        <div class="float-left"><span>可用余额</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="blue">￥<span id="accountBalance"></span></span></div>
+        <div class="float-right text-center"><img style="width: 22px" src="images/images_family_doctor/select.png" alt=""/></div>
+    </div>
+    <div class="gray_s"></div>
+    <p>就诊说明</p>
+    <div style="display: none">
+        <div class="float-left">支付后30分钟内</div>
+        <div class="float-right">全额退款</div>
+        <div class="float-left">支付后30分钟</div>
+        <div class="float-right">全额退款</div>
+        <div class="float-left">爽约</div>
+        <div class="float-right">全额退款</div>
+    </div>
+    <h5>过期的预约订单不能进行退订</h5>
+    <div class="gray_s"></div>
+    <h2 class="blue" style="color: #b30000;font-size: 22px;margin-top: 15px;">还需支付&nbsp;&nbsp;￥<span id="payTotal"></span></h2>
+    <!--<p class="spe" style="color: red">请尽快支付，以免被其他用户预约！</p>-->
+    <div id="cover2">
+        <div class="cover">
+            <h4>提示</h4>
+            <p>该门诊时间被预约或过期，<br/>请重新选择时间！</p>
+            <div class="isSure2">
+                <div class="sure2" onclick="sure2()">确定</div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <p class="login_button" onclick="payProduct()">去支付</p>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/payAppointment.js"></script>
+<script src="js/config.js"></script>
+</body>
+</html>

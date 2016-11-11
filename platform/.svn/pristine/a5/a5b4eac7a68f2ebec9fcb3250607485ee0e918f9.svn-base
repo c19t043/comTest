@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 指定STRUTS2 配置文件的DTD信息 -->
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "struts-2.0.dtd">
+<struts>
+	<package name="dynamicform-default" extends="com.java.platform">
+	
+		<interceptors>
+			<interceptor-stack name="dynamicInterceptor">
+				<interceptor-ref name="platformStack" />
+				<interceptor-ref name="token"/>
+			</interceptor-stack>
+		</interceptors>
+
+		<global-results>
+<!--			<result name="infoReminder2">/projectmanager/pages/projectManager_info2.jsp</result>-->
+<!--			<result name="infoReminder">/projectmanager/pages/projectManager_info.jsp</result>-->
+<!--			<result name="errorReminder">/projectmanager/pages/projectManager_error.jsp</result>-->
+			<result name="persistentException">/dynamicview/pages/exception/exception_persistentException.jsp</result>
+			<result name="templateException">/dynamicview/pages/exception/exception_templateException.jsp</result>
+			<result name="invalid.token">/dynamicview/pages/exception/exception_tokenException.jsp</result>
+		</global-results>
+
+		<!--   全局异常映射  -->
+		<global-exception-mappings>
+			<exception-mapping exception="com.java.dynamic.exception.PersistentException" result="persistentException" />
+			<exception-mapping exception="freemarker.template.TemplateException" result="templateException" />
+		</global-exception-mappings>
+	</package>
+</struts>

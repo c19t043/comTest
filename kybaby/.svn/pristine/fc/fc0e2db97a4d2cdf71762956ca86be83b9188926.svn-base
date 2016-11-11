@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>确认支付</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/payAppointment.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/MD5.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/hospital.js"></script>
+    <style>
+        .gray_s{
+            width: 120%;
+            margin-left: -15px;
+        }
+        #patientName{
+            background: url("images/images_icon/next.png") no-repeat center right;
+            background-size: 8px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<div id="header">
+    <div class="header-left" onclick="return_before()"><span>确认支付</span></div>
+    <div class="header-center"></div>
+    <div class="header-right">
+        <!--<div id="menu" style="background:white;float: right;width: 24px;height: 24px;position: relative;top: -2px;right:-3px;" onclick="menu(event)">-->
+            <!--<img style="width: 24px;height: 24px;" src="images/menum.png" alt=""/>-->
+            <!--<div class="select" style="height:0px;line-height:40px;position: absolute;background: white;top: 44px;right: 0px;width: 90px;overflow: hidden;text-align: center">-->
+                <!--<div style="color: #ff813d" onclick="cancelOrder()">取消订单</div>-->
+                <!--<div onclick="modify()" style="color: #ff813d;border-top: 1px solid #ddd">修改订单</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+</div>
+<!--header-->
+<div id="container" style="overflow: hidden">
+    <div class="description">
+        <img src="" alt=""/>
+
+        <div id="doctorMessage" class=".p">
+
+        </div>
+    </div>
+    <div class="gray_s"></div>
+    <table id="orderInfo">
+        <tbody>
+        <tr style="height: 50px">
+            <td><img style="width: 24px" src="images/images_icon/time.png" alt=""/></td>
+            <td>
+                <span id="dateTime"></span>&nbsp;&nbsp;
+                <span id="timePeriod"></span>
+            </td>
+        </tr>
+        <tr style="height: 50px">
+            <td><img style="width: 23px" src="images/images_icon/address.png" alt=""/></td>
+            <td><div class="ad"></div></td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="gray_s"></div>
+    <div id="patientName" onclick="chooseUser(this)">
+
+    </div>
+    <div class="gray_s"></div>
+    <p>服务价格</p>
+    <div style="overflow: hidden" id="historyPrice">
+        <div class="float-left">预约诊疗费</div>
+        <div class="float-right">&yen;<span id="visit"></span></div>
+        <!--<div class="float-left">挂号费(需现场支付)</div>-->
+        <!--<div class="float-right">￥30.00</div>-->
+    </div>
+    <div style="overflow: hidden;" id="newPrice">
+        <!--<div class="float-left"></div>-->
+        <!--<div class="float-right"><span style="color: #ff813d">&yen;<span id="visit"></span></span></div>-->
+    </div>
+    <div class="gray_s"></div>
+    <p class="preferential">优惠</p>
+    <div class="preferential" style="overflow: hidden">
+        <div class="float-left"><span id="discountName"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="blue">￥<span id="discountMoney" class="preferential_payment"></span></span></div>
+        <div class="float-right text-center"><img style="width: 22px" src="images/images_family_doctor/true.png" alt=""/></div>
+    </div>
+    <div class="accountBalance" style="overflow: hidden">
+        <div class="float-left"><span>可用余额</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="blue">￥<span id="accountBalance"></span></span></div>
+        <div class="float-right text-center"><img style="width: 22px" src="images/images_family_doctor/select.png" alt=""/></div>
+    </div>
+    <div class="gray_s"></div>
+    <p>就诊说明</p>
+    <div style="text-indent: 32px;">
+        预约成功后，如有需要请提前取消订单，就诊当天将不能取消订单
+        线下是否收取挂号费，具体以线下医院为准。
+    </div>
+    <div class="gray_s"></div>
+    <p>支付方式</p>
+    <table class="payWay">
+        <tbody>
+        <!--<tr>-->
+            <!--<td><img style="width: 42px;" src="images/images_family_doctor/zhifubao_color.png" alt=""/></td>-->
+            <!--<td>支付宝支付</td>-->
+            <!--<td><img class="icon" style="width: 22px;" src="images/images_family_doctor/select.png" alt=""/></td>-->
+        <!--</tr>-->
+        <tr class="choosePayWay">
+            <td><img style="width: 38px" src="images/images_family_doctor/weixin_color.png" alt=""/></td>
+            <td>微信支付</td>
+            <td><img class="icon" style="width: 22px" src="images/images_family_doctor/true.png" alt=""/></td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="gray_s" style="margin-top: 6px"></div>
+    <div class="blue" style="color: #b30000;font-size: 22px;margin-top: 15px;">还需支付&nbsp;&nbsp;￥<span id="payTotal"></span></div>
+    <!--<p class="spe" style="color: red">请尽快支付，以免被其他用户预约！</p>-->
+    <div id="cover2">
+        <div class="cover">
+            <h4>提示</h4>
+            <p>该门诊时间被预约或过期，<br/>请重新选择时间！</p>
+            <div class="isSure2">
+                <div class="sure2" onclick="sure2()">确定</div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <p class="login_button" onclick="payProduct()">去支付</p>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/hospital_pay_order.js"></script>
+<script src="js/config.js"></script>
+</body>
+</html>

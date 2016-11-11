@@ -1,0 +1,106 @@
+﻿<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<title>登录</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/org_login.css">
+	<script src="js/modernizr-2.8.3.min.js"></script>
+	<script src="js/jquery-1.11.3.min.js"></script>
+    <script>window.$ = window.jQuery = WLJQ;</script>
+
+    <script src="js/initOptions.js"></script>
+
+    <script src="js/main.js"></script>
+	<script src="js/config.js"></script>
+    <script src="js/versionOrgan.js"></script>
+    <script src="js/versionorganmanage.js"></script>
+    <script src="js/org_login.js"></script>
+    <style>
+        #chooseLoginType>div,#chooseLoginType>p{
+            width: 50%;
+            margin: 5px auto;
+            line-height: 45px;
+            border-radius: 6px;
+            border: 1px solid #d5d5d5;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div id="header" class="doctor_header">
+	<div class="header-left"></div>
+	<div class="header-center">登录</div>
+	<div class="header-right"></div>
+</div>
+<!--header-->
+
+<div id="container">
+    <div class="logo_box">
+        <img src='images/logo_login.jpg' />
+    </div>
+    <div id="chooseLoginType">
+        <p class="chooseAgain" style="display: none">重新选择登录方式</p>
+       <div class="org">机构登录</div>
+       <div class="doctor">签约登录</div>
+    </div>
+	<div id="org" style="display: none">
+        <div class="select">
+            <select name="" id="org_list">
+                <option value="社区医院">社区医院</option>
+                <option value="成都市省妇幼">成都市省妇幼</option>
+                <option value="华西医院">华西医院</option>
+                <option value="附二院">附二院</option>
+                <option value="四川省人民医院">四川省人民医院</option>
+            </select>
+        </div>
+        <input id="username" type="text" placeholder="请输入登录名"/>
+
+        <p class="gray_2"></p>
+        <input id="password" type="password" placeholder="请输入密码"/>
+
+        <!--<p class="com_p forget_password" onclick="wangji()">忘记密码？</p>-->
+
+        <div class="button_01 login" onclick="login('org')">登录</div>
+        <!--<p class="com_p" onclick="window.location.href='regist.html'">没有账号？去注册&gt;</p>-->
+    </div>
+    <div id="doctor" style="display: none">
+        <input id="username1" type="text" placeholder="请输入登录名"/>
+
+        <p class="gray_2"></p>
+        <input id="password1" type="password" placeholder="请输入密码"/>
+
+        <!--<p class="com_p forget_password" onclick="wangji()">忘记密码？</p>-->
+
+        <div class="button_01 login" onclick="login('doctor')">登录</div>
+        <!--<p class="com_p" onclick="window.location.href='regist.html'">没有账号？去注册&gt;</p>-->
+    </div>
+</div>
+<div id="cover">
+    <div id="covercontent">
+        <p>发现新版本</p>
+        <div class="updateversion">
+            <p>最新版本：<span></span></p>
+            <p>新版本大小：<span></span></p>
+            <p>更新日期：<span></span></p>
+        </div>
+        <div class="updatecontent">
+            <p>更新内容：</p>
+            <div id="updatecontent"></div>
+        </div>
+        <div class="chooseupdate">
+            <div class="later" onclick="noupdate()">以后再说</div>
+            <div class="rightaway" onclick="gotoupdate()">立即更新</div>
+        </div>
+    </div>
+</div>
+
+<!--container-->
+
+
+<script src="js/plugins.js"></script>
+</body>
+</html>

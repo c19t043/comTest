@@ -1,0 +1,133 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>我签的医生</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/org_doctorDataManage.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="js/sha1.js"></script>
+    <script src="js/jquery.qrcode.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/config.js"></script>
+</head>
+<body>
+<!--header-->
+<div id="header" class="doctor_header">
+    <div class="header-left"><p></p></div>
+    <div class="header-center">我签的医生</div>
+    <div class="header-right"></div>
+</div>
+<div id="container">
+    <div>
+        <ul class="header_nav flex_cont">
+            <li class="flex_item header_nav_select">全部</li>
+            <li class="interval"><span>|</span></li>
+            <li class="flex_item">已提交</li>
+            <li class="interval"><span>|</span></li>
+            <li class="flex_item">已通过</li>
+            <li class="interval"><span>|</span></li>
+            <li class="flex_item">驳回</li>
+        </ul>
+    </div>
+    <div class="search_div">
+        <div class="flex_cont">
+            <input type="text" class="flex_item" placeholder="搜索"/>
+            <span></span>
+        </div>
+    </div>
+    <div>
+        <div class="doc_list">
+            <div class="doc_title">
+                <div class="signing_time">2016年10月</div>
+                <div class="signing_num">数量：3</div>
+            </div>
+            <ul>
+                <li class="flex_cont flex_simple">
+                    <div class="doc_information">
+                        <p class="doc_name">白洛因</p>
+                        <p class="doc_time">10-28</p>
+                    </div>
+                    <div class="flex_item doc_work">
+                        <p class="doc_hospital">四川省妇幼保健院</p>
+                        <p class="doc_position"><span>副主任医师</span><span>儿童保健科</span></p>
+                    </div>
+                    <div>
+                        <p class="s_btn">提交审核</p>
+                        <p class="signing_state">未提交</p>
+                    </div>
+                </li>
+                <li class="flex_cont flex_simple">
+                    <div class="doc_information">
+                        <p class="doc_name">顾海</p>
+                        <p class="doc_time">10-28</p>
+                    </div>
+                    <div class="flex_item doc_work">
+                        <p class="doc_hospital">四川省妇幼保健院</p>
+                        <p class="doc_position"><span>副主任医师</span><span>儿童保健科</span></p>
+                    </div>
+                    <div>
+                        <p class="s_btn">提交审核</p>
+                        <p class="signing_state">已提交</p>
+                    </div>
+                </li>
+                <li class="flex_cont flex_simple">
+                    <div class="doc_information">
+                        <p class="doc_name">池骋</p>
+                        <p class="doc_time">10-28</p>
+                    </div>
+                    <div class="flex_item doc_work">
+                        <p class="doc_hospital">四川省妇幼保健院</p>
+                        <p class="doc_position"><span>副主任医师</span><span>儿童保健科</span></p>
+                    </div>
+                    <div>
+                        <p class="s_btn">提交审核</p>
+                        <p class="signing_state">已通过</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="doc_list">
+            <div class="doc_title">
+                <div class="signing_time">2016年9月</div>
+                <div class="signing_num">数量：2</div>
+            </div>
+            <ul>
+                <li class="flex_cont flex_simple">
+                    <div class="doc_information">
+                        <p class="doc_name">莫青霜</p>
+                        <p class="doc_time">10-28</p>
+                    </div>
+                    <div class="flex_item doc_work">
+                        <p class="doc_hospital">四川省妇幼保健院</p>
+                        <p class="doc_position"><span>副主任医师</span><span>儿童保健科</span></p>
+                    </div>
+                    <div>
+                        <p class="s_btn">提交审核</p>
+                        <p class="signing_state">驳回</p>
+                    </div>
+                </li>
+                <li class="flex_cont flex_simple">
+                    <div class="doc_information">
+                        <p class="doc_name">黑岩</p>
+                        <p class="doc_time">10-28</p>
+                    </div>
+                    <div class="flex_item doc_work">
+                        <p class="doc_hospital">四川省妇幼保健院</p>
+                        <p class="doc_position"><span>副主任医师</span><span>儿童保健科</span></p>
+                    </div>
+                    <div>
+                        <p class="s_btn">提交审核</p>
+                        <p class="signing_state">已通过</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

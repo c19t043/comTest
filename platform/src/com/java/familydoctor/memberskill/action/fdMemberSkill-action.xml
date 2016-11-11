@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package namespace="/familydoctor/memberskill" name="FdMemberSkillAction" extends="com.java.platform">
+		<!-- 信息列表  -->
+		<action name="getFdMemberSkillList" class="fdMemberSkillAction" method="getFdMemberSkillList">
+			<result name="success">/familydoctor/memberskill/memberskill_list.jsp</result>
+		</action>
+		
+		<!-- 跳转到添加页面  -->
+ 		<action name="toJumpFdMemberSkill" class="fdMemberSkillAction" method="toJumpFdMemberSkill"> 
+ 			<result name="success">/familydoctor/memberskill/memberskill_add.jsp</result> 
+ 		</action> 
+ 		
+ 		<!-- 保存新增信息-->
+ 		<action name="saveOrUpdateFdMemberSkill" class="fdMemberSkillAction" method="saveOrUpdateFdMemberSkill">
+ 			<result name="getFdMemberSkillList_action" type="stateRedirectAction"> 
+ 				<param name="actionName">getFdMemberSkillList.action</param> 
+			</result>
+ 		</action> 
+ 		
+	</package>
+</struts>

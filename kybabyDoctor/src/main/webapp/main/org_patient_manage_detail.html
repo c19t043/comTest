@@ -1,0 +1,367 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>新增就诊用户</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/org_patient_manage_detail.js"></script>
+    <!------------时间控件--------------->
+    <script src="js/mobiscroll_002.js" type="text/javascript"></script>
+    <script src="js/mobiscroll_004.js" type="text/javascript"></script>
+    <link href="js/mobiscroll_002.css" rel="stylesheet" type="text/css">
+    <link href="js/mobiscroll.css" rel="stylesheet" type="text/css">
+    <script src="js/mobiscroll.js" type="text/javascript"></script>
+    <script src="js/mobiscroll_003.js" type="text/javascript"></script>
+    <script src="js/mobiscroll_005.js" type="text/javascript"></script>
+    <link href="js/mobiscroll_003.css" rel="stylesheet" type="text/css">
+    <!------------时间控件end--------------->
+    <style>
+        .item_list{
+            padding:0 15px ;
+            display: -moz-box;
+            display: -webkit-box;
+            display: flex;
+            line-height: 39px;
+        }
+        .item_name{
+            -moz-box-flex: 1.0 ;
+            -webkit-box-flex: 1.0;
+            flex: 1.0;
+            font-size: 14px;
+        }
+        .item_con{
+            -moz-box-flex: 2.0 ;
+            -webkit-box-flex: 2.0;
+            flex: 2.0;
+            font-size: 14px;
+        }
+        .click{
+            width: 100%;
+            height: 39px;
+            border: none;
+            background: url("images/menu/next.png") no-repeat center right;
+            background-size: 11px;
+        }
+        .input{
+            width: 100%;
+            height: 39px;
+            border: none;
+        }
+        .item_con>span{
+            display: inline-block;
+            border: 1px solid #909090;
+            border-radius: 6px;
+            padding: 5px 18px;
+            line-height: 20px;
+        }
+        .green{
+            background: #1cba93;
+            color: #ffffff;
+        }
+        .mar{
+            margin-left: 35px;
+        }
+        .textarea{
+            min-height: 78px;
+            line-height: 20px;
+        }
+        #orgList{
+            opacity: 0;
+            filter: alpha(opacity=0);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 39px;
+        }
+        #cover{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,.7);
+            z-index: 1000;
+        }
+        .cover{
+            position: absolute;
+            top: 15%;
+            left: 10%;
+            width: 84%;
+            background: #ffffff;
+            height: 70%;
+        }
+        #search{
+            padding: 10px 45px;
+        }
+        .search,.close{
+            overflow: hidden;
+        }
+        .close>p{
+            float: right;
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url("images/iconfont-guanbi.png") no-repeat center;
+            background-size: 35px;
+        }
+        .search>input{
+            width: 92%;
+            border-radius: 6px;
+            height: 20px;
+            line-height: 20px;
+            padding: 4px 4%;
+            text-align: left;
+        }
+        #org_list{
+            overflow: auto;
+            text-align: center;
+            border-top: 1px solid #e8e8e8;
+        }
+        #org_list>li{
+            line-height: 40px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        #remark{
+            border: 1px solid #e8e8e8;
+        }
+    </style>
+</head>
+<body>
+<div id="header" class="doctor_header">
+    <div class="header-left"><p></p></div>
+    <div class="header-center">新增就诊用户</div>
+    <div class="header-right text-center" id="submit">
+        <span onclick="orgPatientManageDetail.saveOrUpdateOperaMedicalRecords()">保存</span>
+    </div>
+</div>
+<div id="cover" style="display: none;">
+    <div class="cover">
+        <div class="close"><p></p></div>
+        <div id="search">
+            <div class="search">
+                <input type="text" placeholder="请输入医院名称"/>
+            </div>
+        </div>
+        <ul id="org_list"></ul>
+    </div>
+</div>
+<div id="container">
+    <p class="gray_1"></p>
+
+    <div class="item_list">
+        <div class="item_name">
+            就诊日期
+        </div>
+        <div class="item_con">
+            <input class="click" type="text" name="date" id="appDate"/>
+        </div>
+    </div>
+    <p class="gray_3"></p>
+
+    <div class="item_list">
+        <div class="item_name">
+            就诊社区
+        </div>
+        <div class="item_con click" style="position: relative">
+            <p class="choose_org"></p>
+            <!--<select name="" id="orgList">-->
+                <!--&lt;!&ndash;<option value="38">苏坡社区卫生服务中心</option>&ndash;&gt;-->
+                <!--&lt;!&ndash;<option value="41">肖家河社区卫生服务中心</option>&ndash;&gt;-->
+            <!--</select>-->
+        </div>
+    </div>
+    <p class="gray_1"></p>
+
+    <div class="item_list">
+        <div class="item_name">
+            业务类型
+        </div>
+        <div class="item_con" id="boType">
+            <span class="green" style="padding: 5px 10px;">儿科</span>
+            <span class="mar" style="padding: 5px 10px;margin-left: 10px">儿保</span>
+            <span class="mar" style="padding: 5px 10px;margin-left: 10px">计免</span>
+        </div>
+    </div>
+    <p class="gray_3"></p>
+
+    <div class="item_list">
+        <div class="item_name">
+            宝宝姓名
+        </div>
+        <div class="item_con">
+            <input id="patientName" class="input" required type="text" placeholder="请输入宝宝姓名"/>
+        </div>
+    </div>
+    <p class="gray_3"></p>
+
+    <div class="item_list">
+        <div class="item_name">
+            宝宝性别
+        </div>
+        <div class="item_con" id="patientSex">
+            <span class="green">男</span>
+            <span class="mar">女</span>
+        </div>
+    </div>
+    <p class="gray_3"></p>
+
+    <div class="item_list">
+        <div class="item_name">
+            出生日期
+        </div>
+        <div class="item_con">
+            <input placeholder="请选择宝宝出生日期" class="click" type="text" name="date" id="appDate1"/>
+        </div>
+    </div>
+    <p class="gray_3"></p>
+
+    <div class="item_list">
+        <div class="item_name">
+            手机号码
+        </div>
+        <div class="item_con">
+            <input id="patientPhone" class="input" required type="text" placeholder="请输入联系电话"/>
+        </div>
+    </div>
+    <p class="gray_3"></p>
+
+    <div class="item_list">
+        <div class="item_name">
+            家长姓名
+        </div>
+        <div class="item_con">
+            <input id="patientParentName" class="input" required type="text" placeholder="请输入家长姓名"/>
+        </div>
+    </div>
+    <p class="gray_3"></p>
+
+    <div class="item_list">
+        <div class="item_name">
+            居住小区
+        </div>
+        <div class="item_con">
+            <input id="patientAddress" class="input" required type="text" placeholder="请输入居住小区"/>
+        </div>
+    </div>
+    <p class="gray_3"></p>
+
+    <div class="item_list">
+        <div class="item_name">
+            是否挂号
+        </div>
+        <div class="item_con" id="isGuahao">
+            <span class="green">是</span>
+            <span class="mar">否</span>
+        </div>
+    </div>
+    <p class="gray_3"></p>
+
+    <div class="item_list">
+        <div class="item_name">
+            是否注册
+        </div>
+        <div class="item_con" id="isRegister">
+            <span>是</span>
+            <span class="mar green">否</span>
+        </div>
+    </div>
+    <p class="gray_3"></p>
+
+    <div class="item_list">
+        <div class="item_name">
+            是否提前预约
+        </div>
+        <div class="item_con" id="isPreAppointment">
+            <span>是</span>
+            <span class="mar green">否</span>
+        </div>
+    </div>
+    <p class="gray_3"></p>
+
+    <div class="item_list">
+        <div class="item_name">
+            是否现场预约
+        </div>
+        <div class="item_con" id="isNowAppointment">
+            <span>是</span>
+            <span class="mar green">否</span>
+        </div>
+    </div>
+    <p class="gray_3"></p>
+
+    <div class="item_list">
+        <div class="item_name">
+            是否支付
+        </div>
+        <div class="item_con" id="isPay">
+            <span>是</span>
+            <span class="mar green">否</span>
+        </div>
+    </div>
+    <p class="gray_3"></p>
+
+    <div class="item_list">
+        <div class="item_name">
+            有无处方
+        </div>
+        <div class="item_con" id="isPrescription">
+            <span>有</span>
+            <span class="mar green">无</span>
+        </div>
+    </div>
+    <p class="gray_3"></p>
+
+    <div class="item_list">
+        <div class="item_name">
+            是否检验
+        </div>
+        <div class="item_con" id="isCheck">
+            <span>是</span>
+            <span class="mar green">否</span>
+        </div>
+    </div>
+    <p class="gray_3"></p>
+
+    <div class="item_list">
+        <div class="item_name">
+            是否化验
+        </div>
+        <div class="item_con" id="isTest">
+            <span>是</span>
+            <span class="mar green">否</span>
+        </div>
+    </div>
+    <p class="gray_3"></p>
+
+    <div class="item_list">
+        <div class="item_name">
+            是否建档
+        </div>
+        <div class="item_con" id="isCreateFile">
+            <span>是</span>
+            <span class="mar green">否</span>
+        </div>
+    </div>
+    <p class="gray_1"></p>
+
+    <div class="item_list">
+        <div class="item_name">
+            备注
+        </div>
+        <div class="item_con">
+            <div id="remark" class="textarea" contenteditable="true"></div>
+        </div>
+    </div>
+    <p class="gray_1"></p>
+</div>
+</body>
+</html>

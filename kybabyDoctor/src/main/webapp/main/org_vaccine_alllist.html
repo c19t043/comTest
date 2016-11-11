@@ -1,0 +1,328 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>所有计免预约列表</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <script src="js/date/WdatePicker.js"></script>
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/config.js"></script>
+    <!--<script src="js/org_main.js"></script>-->
+    <script src="js/main.js"></script>
+    <script src="js/plugins.js"></script>
+    <style>
+        body {
+            min-width: 800px;
+            background: #ffffff;
+            color: #505050;
+        }
+
+        .gray_ss {
+            width: 100%;
+            height: 4px;
+            background: #F7F7F7;
+        }
+
+        .gray_s {
+            width: 100%;
+            height: 10px;
+            background: #F7F7F7;
+        }
+
+        table {
+            width: 90%;
+            text-align: center;
+            line-height: 30px;
+            margin: 0px auto;
+        }
+
+        tbody > tr:nth-child(2n) {
+            background: #dddddd;
+        }
+    </style>
+</head>
+<body>
+<div id="header" class="doctor_header">
+    <div class="header-left"><p></p></div>
+    <div class="header-center">所有计免预约列表</div>
+    <div class="header-right"></div>
+</div>
+
+<div class="middlecon">
+    <div id="rightcon" class="rightcon" style="width: 100%;float: none">
+        <div class="content">
+            <div id="con_position" class="con_position">
+                <div class="con_contral" style="margin-top: 50px">
+                    <!--<label><input type="checkbox">手机号：</label><input type="text" id="search_phone" style="width: 100px">-->
+                    <!--<label><input type="checkbox">姓名：</label><input type="text" id="search_parentName" style="width: 100px">-->
+                    <label><input type="checkbox">预约编号：</label><input type="text" id="search_num"
+                                                                      style="width: 100px">
+                    <label><input type="checkbox">状态:</label><select name="" id="search_status" style="width: 100px">
+                    <option value="已预约">已预约</option>
+                    <option value="已取消">已取消</option>
+                    <option value="已预检">已预检</option>
+                    <option value="已登记">已登记</option>
+                </select>
+                    <label><input type="checkbox">起始时间：</label><input type="text" id="search_startTime"
+                                                                      style="width: 100px"
+                                                                      onfocus="WdatePicker()">~<input
+                        type="text" style="width: 100px"
+                        id="search_endTime"
+                        onfocus="WdatePicker()">
+                    <span class="bu" onclick="search_click()"
+                          style="padding: 3px 14px;border-radius: 4px;background: #4a8bc2">查找</span>
+                </div>
+                <table id="table_title" class="table_title" style="width: 100%">
+
+                </table>
+            </div>
+            <div class="table_h">
+                <table id="table_content" class="table_content" style="width: 100%">
+
+
+                </table>
+            </div>
+            <div class="con_page">
+                <span class="a">共&nbsp;<span id="con_num" class="con_num"></span>&nbsp;条数据</span>
+
+                <div class="button_cli">
+                    <span class="button" onclick="page_click('default','1')">首页</span>
+                    <span class="button" onclick="page_click('default','prev')">上一页</span>
+                    <span class="num" id="now_page_num">1</span>
+                    <span class="button" onclick="page_click('default','next')">下一页</span>
+                    <span class="button" onclick="page_click('default','end')">尾页</span>
+                </div>
+                <div class="page_go">
+                    <span class="b">共&nbsp;<span id="page_num" class="page_num"></span>&nbsp;页</span>
+                    <span class="c">跳转到&nbsp;<input id="go_page" type="number" value="1" min="1" style="color: orange">&nbsp;页</span>
+                    <span class="button" onclick="page_click_go()">Go</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<div id="footer">-->
+<!--<p>打印</p>-->
+<!--</div>-->
+<script>
+    var orgId = '';
+    $(function () {
+        $('#table_title').append(
+                "<tr>" +
+                "<th width='5%'>序号</th>" +
+                "<th width='15%'>预约日期</th>" +
+                "<th width='15%'>时间段</th>" +
+                "<th width='10%'>姓名</th>" +
+                "<th width='10%'>性别</th>" +
+                "<th width='10%'>出生日期</th>" +
+                "<th width='15%'>手机号</th>" +
+                "<th width='10%'>预约编号</th>" +
+                "<th width='10%'>预约状态</th>" +
+                "</tr>"
+        );
+        show_tableinfo();
+    });
+    function show_tableinfo() {
+        $('#table_content').empty();
+        $.ajax({
+            type: 'post',
+            url: urlWay.orgBusinessHost + 'orgBusinessManage.action',
+            cache: false,
+            async: false,
+            data: {
+                action: "getUserInoculationAppointmentInfoList"
+            },
+            success: function (result) {
+                if (result.mes == '请登录') {
+                    ale('请登录', '24px');
+                    window.location.href = "org_login.html";
+                }
+                else if (result.mes == "成功") {
+                    orgId = result.organOperator.hospitalBasicInfo.id;
+                    var userInoculationAppointmentInfoList = result.userInoculationAppointmentInfoList;
+                    if (userInoculationAppointmentInfoList != null) {
+                        var html = '';
+                        for (var j = 0, l = userInoculationAppointmentInfoList.length; j < l; j++) {
+                            var windowName='';
+                            if(userInoculationAppointmentInfoList[j].organServicePlaceSet!=null){
+                                windowName=userInoculationAppointmentInfoList[j].organServicePlaceSet.windowName;
+                            }
+                            html += '<tr>' +
+                            '<td width="5%">' +(j+1)+ '</td>' +
+                            '<td width="15%">' + userInoculationAppointmentInfoList[j].organInoculationOpenResources.openDate + '</td>' +
+                            '<td width="15%">' + userInoculationAppointmentInfoList[j].organInoculationOpenResourcesDetail.openStartTime + '~' + userInoculationAppointmentInfoList[j].organInoculationOpenResourcesDetail.openEndTime + '</td>' +
+                            '<td width="10%">' + userInoculationAppointmentInfoList[j].userInfo.babyName + '</td> ' +
+                            '<td width="10%">' + userInoculationAppointmentInfoList[j].userInfo.sex + '</td> ' +
+                            '<td width="10%">' + userInoculationAppointmentInfoList[j].userInfo.birthday + '</td> ' +
+                            '<td width="15%">' + userInoculationAppointmentInfoList[j].userInfo.phone + '</div> ' +
+                            '<td width="10%">' + userInoculationAppointmentInfoList[j].appointmentCode + '</td>' +
+                            '<td width="10%">' + userInoculationAppointmentInfoList[j].status + '</td>' +
+                            '</tr> ';
+                        }
+                        $('#table_content').html(html);
+                    }
+                }
+                reset_con_page();
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+            }
+        });
+
+    }
+    function search_click() {
+        $('#table_content').empty();
+        var search_phone, search_parentName, search_babyName, search_startTime, search_endTime;
+//        $('.con_contral input:checkbox').get(0).checked ? search_phone = $.trim($('#search_phone').val()) : search_phone = '';
+        $('.con_contral input:checkbox').get(0).checked ? search_parentName = $.trim($('#search_num').val()) : search_parentName = '';
+        $('.con_contral input:checkbox').get(1).checked ? search_babyName = $.trim($('#search_status>option:selected').val()) : search_babyName = '';
+        ($('.con_contral input:checkbox').get(2).checked && $.trim($('#search_startTime').val()) != '') ? search_startTime = $.trim($('#search_startTime').val()) : search_startTime = '';
+        ($('.con_contral input:checkbox').get(2).checked && $.trim($('#search_endTime').val()) != '') ? search_endTime = $.trim($('#search_endTime').val()) : search_endTime = '';
+        $.ajax({
+            type: 'post',
+            url: urlWay.orgBusinessHost + 'orgBusinessManage.action',
+            cache: false,
+            async: false,
+            data: {
+                action: "getUserInoculationAppointmentInfoList",
+                "userInoculationAppointmentInfo.openBeginDate":search_startTime,
+                "userInoculationAppointmentInfo.openEndDate":search_endTime,
+                "userInoculationAppointmentInfo.appointmentCode":search_parentName,
+                "userInoculationAppointmentInfo.status":search_babyName,
+                "hospitalBasicInfo.id":orgId
+            },
+            success: function (result) {
+                if (result.mes == '请登录') {
+                    ale('请登录', '24px');
+                    window.location.href = "org_login.html";
+                }
+                else if (result.mes == "成功") {
+                    var userInoculationAppointmentInfoList = result.userInoculationAppointmentInfoList;
+                    if (userInoculationAppointmentInfoList != null) {
+                        var html = '';
+                        for (var j = 0, l = userInoculationAppointmentInfoList.length; j < l; j++) {
+                            var windowName='';
+                            if(userInoculationAppointmentInfoList[j].organServicePlaceSet!=null){
+                                windowName=userInoculationAppointmentInfoList[j].organServicePlaceSet.windowName;
+                            }
+                            html += '<tr>' +
+                            '<td width="5%">' +(j+1)+ '</td>' +
+                            '<td width="15%">' + userInoculationAppointmentInfoList[j].organInoculationOpenResources.openDate + '</td>' +
+                            '<td width="15%">' + userInoculationAppointmentInfoList[j].organInoculationOpenResourcesDetail.openStartTime + '~' + userInoculationAppointmentInfoList[j].organInoculationOpenResourcesDetail.openEndTime + '</td>' +
+                            '<td width="10%">' + userInoculationAppointmentInfoList[j].userInfo.babyName + '</td> ' +
+                            '<td width="10%">' + userInoculationAppointmentInfoList[j].userInfo.sex + '</td> ' +
+                            '<td width="10%">' + userInoculationAppointmentInfoList[j].userInfo.birthday + '</td> ' +
+                            '<td width="15%">' + userInoculationAppointmentInfoList[j].userInfo.phone + '</div> ' +
+                            '<td width="10%">' + userInoculationAppointmentInfoList[j].appointmentCode + '</td>' +
+                            '<td width="10%">' + userInoculationAppointmentInfoList[j].status + '</td>' +
+                            '</tr> ';
+                        }
+                        $('#table_content').html(html);
+                    }
+                }
+                reset_con_page();
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+            }
+        });
+    }
+    /*---------函数集合---------*/
+    /*-------分页处理函数集合----------*/
+    //分页处理
+    function reset_con_page(num, x) {
+        if (num == 'default' || num == '' || num == undefined) {
+            num = $('#table_content').find('tr').length;
+        }
+        var page_num = Math.ceil(num / 12);//需要多少页
+        $('#con_num').text(num);	//		数据个数赋值
+        $('#page_num').text(Math.ceil($('.table_content').find('tr').length / 12));
+
+//	for(var a=0;a < $('.table_content').find('tr').length;a++){
+//		if(a < 12){
+//			$('.table_content').find('tr').eq(a).show();
+//		}else{
+//			$('.table_content').find('tr').eq(a).show();
+//		}
+//	}
+
+        if (x == 'prev') {
+            x = $('#now_page_num').text() - 1;
+            if (x <= 1) {
+                x = 1;
+            }
+        }
+        if (x == 'next') {
+            x = parseInt($('#now_page_num').text()) + 1;
+            if (x >= page_num) {
+                x = page_num;
+            }
+        }
+
+
+        if (x == '' || x == null || isNaN(x)) {
+            x = 1;
+        } else if (x >= page_num) {
+            x = page_num;
+        }
+
+        for (var i = 0; i < num; i++) {
+            if (i >= (12 * x - 12) && i <= (12 * x - 1)) {
+                $('.table_content').find('tr').eq(i).show();
+            } else {
+                $('.table_content').find('tr').eq(i).hide();
+            }
+        }
+    }
+    //分页首页被点击
+    function page_click(num, x) {
+        if (x == 1) {											//首页被点击
+            $('#now_page_num').text('1');
+            reset_con_page(num, x);
+        } else if (x == 'prev') {					//上一页被点击
+            x = $('#now_page_num').text() - 1;
+            if (x <= 1) {
+                x = 1;
+                $('#now_page_num').text(x);
+            } else {
+                x = $('#now_page_num').text() - 1;
+                $('#now_page_num').text(x);
+            }
+            reset_con_page(num, x);
+        } else if (x == 'next') {
+            x = parseInt($('#now_page_num').text()) + 1;
+            var page_num_all = Math.ceil($('.table_content').find('tr').length / 12);
+            if (x >= page_num_all) {
+                x = page_num_all;
+                $('#now_page_num').text(x);
+            } else {
+                x = parseInt($('#now_page_num').text()) + 1;
+                $('#now_page_num').text(x);
+            }
+            reset_con_page(num, x);
+        } else if (x == 'end') {
+            $('#now_page_num').text(Math.ceil($('.table_content').find('tr').length / 12));
+            reset_con_page(num, Math.ceil($('.table_content').find('tr').length / 12));
+        }
+    }
+    //GO点击触发函数
+    function page_click_go() {
+        var a = $.trim($('#go_page').val());
+        if (isNaN(a) || parseInt(a) != a || a <= 0) {
+            a = 1;
+        } else if (a >= parseInt($('#page_num').text())) {
+            a = parseInt($('#page_num').text());
+        }
+
+        $('#go_page').val(a);
+        $('#now_page_num').text(a);
+        reset_con_page('default', a);
+    }
+
+</script>
+</body>
+</html>

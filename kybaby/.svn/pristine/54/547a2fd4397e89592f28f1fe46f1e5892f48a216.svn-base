@@ -1,0 +1,80 @@
+body{
+    /*background: #E5E5E5;*/
+    font-size: 16px;
+}
+/*#header,#container{*/
+    /*background: #fff;*/
+/*}*/
+/*#container>div{*/
+    /*padding: 8px 20px;}*/
+.products_img{
+    /*padding: 12px 20px;*/
+    border: 1px solid #E2E2E1;
+    border-left: none;
+    border-right: none;
+    text-align: center;
+    overflow: hidden;
+}
+#card{
+    padding: 14px 10px;
+    overflow: hidden;
+}
+#card>p{
+    font-size: 18px;
+    color: #505050;
+    line-height: 32px;
+}
+#card>#price{
+    font-size: 24px;
+    color: #EE5859;
+    /*line-height: 35px;*/
+}
+#card_name{
+    font-size: 18px;
+}
+#card_text{
+    display: inline-block;
+    color: #808080;
+    font-size: 14px;
+}
+#activity{
+    /*padding: 8px 20px;*/
+    /*border-top: 10px solid #E5E5E5;*/
+    /*border-bottom: 1px solid #E2E2E1;*/
+}
+#service{
+    /*padding: 8px 20px;*/
+    border-bottom: 10px solid #E5E5E5;
+}
+#service>a{
+    color: #76CBE9;
+    text-decoration: none;
+    font-size: 14px;
+}
+#footer>p{
+    margin-left: 5%;
+    text-align: center;
+    width: 90%;
+    height: 45px;
+    background: #259ED4;
+    color: #FDFDFD;
+    font-size: 18px;
+    border-radius: 5px;
+    line-height: 45px;
+}
+#price{
+    display: inline-block;
+}
+#old_price{
+    margin-right: 5px;
+    display: inline-block;
+    font-size: 15px;
+    text-decoration: line-through;
+}
+#price_div{
+    line-height: 20px;
+    float: right;
+}
+.login_button{
+    margin-bottom: 20px;
+}

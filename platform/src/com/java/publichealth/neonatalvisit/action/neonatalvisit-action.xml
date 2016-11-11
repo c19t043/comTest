@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package namespace="/publichealth/neonatalvisit" name="PhNeonatalVisitRecordAction" extends="com.java.platform">
+		<!-- 跳转到添加新生儿访视信息页面  -->
+		<action name="toAddPhNeonatalVisitRecord" class="neonatalVisitRecordAction" method="toAddPhNeonatalVisitRecord">
+			<result name="success">/publichealth/neonatalvisit/neonatal_visit.jsp</result>
+		</action>
+		<!-- 保存添加新生儿访视信息页面  -->
+		<action name="saveOrUpdatePhNeonatalVisitRecord" class="neonatalVisitRecordAction" method="saveOrUpdatePhNeonatalVisitRecord">
+			<result name="success">/publichealth/neonatalvisit/neonatal_visit.jsp</result>
+		</action>
+		<action name="doSubmit" class="neonatalVisitRecordAction" method="doSubmit">
+			<result name="toList_action" type="stateRedirectAction">
+				<param name="actionName">toList.action</param>
+				<param name="accountId">${phNeonatalVisitRecord.familyAccountInfo.id}</param>
+			</result>
+		</action>
+		<action name="toList" class="neonatalVisitRecordAction" method="toList">
+			<result name="success">/publichealth/neonatalvisit/neonatalvisit_list.jsp</result>
+		</action>
+		<action name="toDetail" class="neonatalVisitRecordAction" method="toDetail">
+			<result name="success">/publichealth/neonatalvisit/neonatal_visit_detail.jsp</result>
+		</action>
+	</package>
+</struts>

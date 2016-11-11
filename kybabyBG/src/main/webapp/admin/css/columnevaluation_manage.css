@@ -1,0 +1,75 @@
+.fj{
+    width:900px;
+    margin-left:30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.fj label{
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+}
+.fj input{
+    width: 160px;
+    background:#fff;
+    border:0;
+    color:#000;
+}
+.fj select{
+    width: 164px;
+}
+.check{
+    width: 30px!important;
+    position: relative;
+    top: 1px;
+}
+.box{
+    width: 120px;
+    margin-top: 10px;
+    height: 20px;
+    display: inline-block;
+}
+.box span{
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+}
+.neirong{
+    width: 600px;
+    height: 100px;
+    margin-left: 107px;
+    margin-bottom: 10px;
+    border: 3px solid #03EAFD;
+    color: #666;
+}
+
+.tishi{
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    color: #009DD9;
+    font-weight: bold;
+}
+.con_contral select{
+    width: 120px;
+}
+.bus{
+    display: inline-block;
+    width: 80px;
+    height: 30px;
+    background-color: #FDB42B;
+    color: white;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor:pointer;
+}
+.con_contral input[type="checkbox"]{
+    position: relative;
+    top: 1px;
+}
+.con_contral input[type="text"] {
+    width: 100px;
+}

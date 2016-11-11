@@ -1,0 +1,147 @@
+@charset "utf-8";
+
+/*地址管理*/
+.mt_50 {
+    margin-top: 50px;
+}
+
+.mt_20 {
+    margin-top: 20px;
+}
+
+.add_box {
+    width: 90%;
+    padding: 10px 5%;
+    clear: both;
+    overflow: hidden;
+    background: #fff;
+    color: #969696;
+}
+
+.add_box_left {
+    width: 90%;
+    float: left;
+    line-height: 25px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.icon_point {
+    width: 10px;
+    height: 10px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: 2px solid #1cba93;
+    float: left;
+    margin-top: 20px;
+}
+#container{
+    margin-bottom: 80px;
+}
+.on {
+    background: #4fc1e9;
+
+}
+
+.add_details {
+    margin-left: 20px;
+}
+
+.add_details p {
+    width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.add_box_right {
+    margin-left: 90%;
+    text-align: right;
+    line-height: 50px;
+    font-size: 2em;
+}
+
+/*新增地址 修改地址*/
+body{
+    color: #505050;
+}
+.address_normal{
+    margin-bottom: 8px;
+}
+.address_normal,
+.address_detial {
+    width: 92%;
+    padding: 0 4%;
+    line-height: 40px;
+}
+
+.address_detial {
+    color: #c8c8c8;
+}
+
+.address_detial input {
+    margin-bottom: 3px;
+    border: none;
+    width: 100%;
+    height: 35px;
+    padding-left: 12px;
+    background: #f7f7f7;
+}
+
+#city {
+    width: 100%;
+    color: darkgrey;
+}
+
+#city select {
+    width: 23%;
+    color: #000;
+    border: 0;
+    margin: 0 10px 0 0;
+    outline: 0;
+}
+.service_open span,.go_way span{
+    margin-right: 5px;
+    display: inline-block;
+    padding: 2px 3px;
+    border-radius: 4px;
+}
+.distance,.service_open,.go_way{
+    padding: 10px 15px;
+}
+.distance>p,.address_normal>p{
+    margin-bottom: 10px;
+}
+.service_open>p,.go_way>p{
+    margin-bottom: 15px;
+}
+.distance>div{
+    color: #909090;
+    line-height: 34px;
+}
+.distance>div img{
+    float: right;
+}
+.service_open span{
+    background: #1cba93;
+    color: #ffffff;
+    margin: 0px 10px 10px 0px;
+}
+.go_way span{
+    background: #dddddd;
+}
+.go_way span.spe{
+    background:#1cba93;
+    color: #ffffff;
+}
+
+#footer p{
+    height: 43px;
+}
+.gray_s{
+    background: #ffffff;
+    height: 4px;
+    width: 100%;
+}

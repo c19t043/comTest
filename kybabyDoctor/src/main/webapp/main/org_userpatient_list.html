@@ -1,0 +1,140 @@
+﻿<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<title>患者列表</title>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/main.css">
+	<script src="js/modernizr-2.8.3.min.js"></script>
+	<script src="js/jquery-1.11.3.min.js"></script>
+    <!--<script src="js/date/WdatePicker.js"></script>-->
+    <script src="js/config.js"></script>
+    <script src="js/org_main.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/plugins.js"></script>
+    <style>
+        body{
+            background: #ffffff;
+            color: #505050;
+        }
+        .gray_ss{
+            height: 4px;
+            background: #F7F7F7;
+        }
+        .gray_s{
+            height: 10px;
+            background: #F7F7F7;
+        }
+        .patient_list{
+            padding: 4px 15px;
+            overflow: hidden;
+            font-size: 16px;
+            line-height: 26px;
+        }
+        .otherMessage{
+            float: left;
+            width: 80%;
+        }
+        .operation{
+            float: right;
+            /*width: 18%;*/
+            padding-top: 22px;
+        }
+        .operation>div{
+            text-align: center;
+        }
+        .operation>div>span{
+            padding: 6px 10px;
+            border-radius: 4px;
+            background: #4FC1E9;
+            color: #ffffff;
+            font-size: 16px;
+        }
+        #header{
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<div id="header">
+    <div class="header-left"><p></p></div>
+    <div class="header-center"></div>
+    <div class="header-right"></div></div>
+<!--header-->
+<div id="container">
+    <p style="padding-left: 15px;font-size: 20px;margin: 15px 0 5px 0;color: #4FC1E9;">就诊记录列表:</p>
+    <p class="gray_ss"></p>
+    <div id="patientList">
+        <!--<div class="patientList">-->
+            <!--<div class="patient_list">-->
+                <!--<div class="otherMessage">-->
+                    <!--<p>就诊医生: 张德全 <small>副主任医师</small></p>-->
+                    <!--<p>就诊医院: 肖家河社区卫生服务中心</p>-->
+                    <!--<p>就诊时间: 2016-04-28 10:00</p>-->
+                <!--</div>-->
+                <!--<div class="operation">-->
+                    <!--<div><span>添加</span></div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<p class="gray_ss"></p>-->
+        <!--</div>-->
+    </div>
+
+</div>
+
+<script>
+    var orderId = decodeURIComponent(window.location.search.substring(1));
+    $(function () {
+        $.ajax({
+            type: 'post',
+            url: urlWay.orgBusinessHost + 'orgClinicManager.action',
+            cache: false,
+            async: false,
+            data: {
+                action: "getOrderContactsInfoByOrderId",
+                "orderInfoClinic.id":orderId
+            },
+            success: function (result) {
+                if (result.mes == '请登录') {
+                    ale('请登录', '24px');
+                    window.location.href = "org_login.html";
+                }
+                else if (result.mes == "成功") {
+                    var userList=result.clinicMedicalRecordsList;
+                    var html='';
+                    if(userList!=null){
+                        $('.header-center').html(userList[0].orderInfoClinic.userInfo.babyName+'<small>'+userList[0].orderInfoClinic.userInfo.phone+'</small>');
+                        for(var i= 0,len=userList.length;i<len;i++){
+                            var handleFlag='查看';
+                            if(userList[i].handleFlag=='update'){
+                                handleFlag='编辑';
+                            }
+                            html+='<div class="patientList"> ' +
+                            '<div class="patient_list"> <div class="otherMessage"> ' +
+                            '<p>就诊医生: '+userList[i].orderInfoClinic.doctorInfo.doctorName+' <small style="color: #909090"">('+userList[i].orderInfoClinic.doctorInfo.doctorTitle+')</small></p> ' +
+                            '<p>就诊医院: <span style="color: #909090">'+userList[i].orderInfoClinic.clinicAddress+'</span></p> ' +
+                            '<p>就诊时间: <span style="font-size: 12px;color: #909090">'+userList[i].orderInfoClinic.appointmentDate+' '+userList[i].orderInfoClinic.appointmentBeganTime+'</span></p> ' +
+                            '</div> ' +
+                            '<div class="operation"> ' +
+                            '<div><span onclick="window.location.href=\'org_patientmessage.html?'+userList[i].orderInfoClinic.id+'&'+handleFlag+'\'">'+handleFlag+'</span></div> ' +
+                            '</div> ' +
+                            '</div> ' +
+                            '<p class="gray_ss"></p> ' +
+                            '</div>';
+                        }
+                        $('#patientList').html(html);
+                    }
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+            }
+        });
+
+    });
+</script>
+</body>
+</html>

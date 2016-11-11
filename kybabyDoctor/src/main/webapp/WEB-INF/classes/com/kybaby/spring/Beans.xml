@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+	
+	<bean id="baseAction" class="com.kybaby.action.BaseAction">
+		<property name="doctorInfoBo" ref="doctorInfoBo" />
+		<property name="consultBo" ref="consultBo" />
+		<property name="accountBo" ref="accountBo" />
+		<property name="modifyBo" ref="modifyBo" />
+		<property name="orderBo" ref="orderBo" />
+		<property name="articleBo" ref="articleBo" />
+		<property name="homePageManageBo" ref="homePageManageBo" />
+		<property name="doctorIdentifyBo" ref="doctorIdentifyBo" />
+		<property name="addressManageBo" ref="addressManageBo" />
+		<property name="setServiceTimeBo" ref="setServiceTimeBo" />
+		<property name="roleSelectBo" ref="roleSelectBo" />
+		<!-- 版本管理接口 -->
+		<property name="versionManageBo" ref="versionManageBo"/>
+		
+	</bean>
+	<bean id="wxBaseAction" class="com.wx.BaseAction">
+		<property name="wxBo" ref="wxBo" />
+	</bean>
+	
+	
+    <!-- Shop business object -->
+     
+    <bean id="wxBo" class="com.wx.bo.impl.WxBoImpl" >
+    	<property name="wxDao" ref="wxDao" />
+    </bean>
+    
+    <bean id="wxDao" class="com.wx.dao.impl.WxDaoImpl">
+     	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    
+    <bean id="consultBo" class="com.kybaby.bo.impl.ConsultBoImpl" >
+    	<property name="consultDao" ref="consultDao" />
+    </bean>
+    
+    <bean id="consultDao" class="com.kybaby.dao.impl.ConsultDaoImpl">
+     	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+	<!-- 医生信息相关 -->
+	<bean id="doctorInfoBo" class="com.kybaby.bo.impl.DoctorInfoBoImpl" >
+    	<property name="doctorInfoDao" ref="doctorInfoDao" />
+    </bean>
+    
+    <bean id="doctorInfoDao" class="com.kybaby.dao.impl.DoctorInfoDaoImpl">
+     	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <!-- 账户相关 -->
+	<bean id="accountBo" class="com.kybaby.bo.impl.AccountBoImpl" >
+    	<property name="accountDao" ref="accountDao" />
+    </bean>
+    
+    <bean id="accountDao" class="com.kybaby.dao.impl.AccountDaoImpl">
+     	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+     <!-- 修改相关 -->
+	<bean id="modifyBo" class="com.kybaby.bo.impl.ModifyBoImpl" >
+    	<property name="modifyDao" ref="modifyDao" />
+    </bean>
+    
+    <bean id="modifyDao" class="com.kybaby.dao.impl.ModifyDaoImpl">
+     	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <!-- 订单相关 -->
+	<bean id="orderBo" class="com.kybaby.bo.impl.OrderBoImpl" >
+    	<property name="orderDao" ref="orderDao" />
+    </bean>
+    
+    <bean id="orderDao" class="com.kybaby.dao.impl.OrderDaoImpl">
+     	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <!-- 个人主页 -->
+	<bean id="homePageManageBo" class="com.kybaby.bo.impl.HomePageManageBoImpl" >
+    	<property name="homePageManageDao" ref="homePageManageDao" />
+    </bean>
+    
+    <bean id="homePageManageDao" class="com.kybaby.dao.impl.HomePageManageDaoImpl">
+     	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <!-- 医生认证 -->
+    <bean id="doctorIdentifyBo" class="com.kybaby.bo.impl.DoctorIdentifyBoImpl" >
+    	<property name="doctorIdentifyDao" ref="doctorIdentifyDao" />
+    </bean>
+    <bean id="doctorIdentifyDao" class="com.kybaby.dao.impl.DoctorIdentifyDaoImpl">
+     	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <!-- 地址管理-->
+    <bean id="addressManageBo" class="com.kybaby.bo.impl.AddressManageBoImpl" >
+    	<property name="addressManageDao" ref="addressManageDao" />
+    </bean>
+    <bean id="addressManageDao" class="com.kybaby.dao.impl.AddressManageDaoImpl">
+     	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <!-- 设置服务时间-->
+    <bean id="setServiceTimeBo" class="com.kybaby.bo.impl.SetServiceTimeBoImpl" >
+    	<property name="setServiceTimeDao" ref="setServiceTimeDao" />
+    </bean>
+    <bean id="setServiceTimeDao" class="com.kybaby.dao.impl.SetServiceTimeDaoImpl">
+     	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <!-- 医生专栏-->
+    <bean id="articleBo" class="com.kybaby.bo.impl.ArticleBoImpl" >
+    	<property name="articleDao" ref="articleDao" />
+    </bean>
+    <bean id="articleDao" class="com.kybaby.dao.impl.ArticleDaoImpl">
+     	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    
+ 	<!-- 角色选择 -->
+	<bean id="roleSelectBo" class="com.kybaby.bo.impl.RoleSelectBoImpl" >
+    	<property name="roleSelectDao" ref="roleSelectDao" />
+    </bean>
+	<bean id="roleSelectDao" class="com.kybaby.dao.impl.RoleSelectDaoImpl">
+     	<property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    
+    <!-- 版本管理接口 -->
+	<bean id="versionManageBo" class="com.kybaby.bo.impl.VersionManageBoImpl" >
+		<property name="versionManageDao" ref="versionManageDao" />
+	</bean>
+	<bean id="versionManageDao" class="com.kybaby.dao.impl.VersionManageDaoImpl" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	
+	<!-- 成员 -->
+	<bean id="fdServiceMemberService" class="com.kybaby.newbussiness.familydoctor.bo.impl.FdServiceMemberServiceImpl" >
+		<property name="fdServiceMemberDao" ref="fdServiceMemberDao" />
+	</bean>
+	
+	<bean id="fdServiceMemberDao" class="com.kybaby.newbussiness.familydoctor.dao.impl.FdServiceMemberImpl" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+</beans>

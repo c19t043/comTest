@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head  class="no-js" lang="zh-cn">
+    <meta charset="UTF-8">
+    <title>调查表</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <script src="../../main/js/config.js"></script>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+        body{
+            width: 90%;
+            height: 100%;
+            padding: 0px 5%;
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            background: #F8E4D9;
+        }
+        p{
+            color: #505050;
+            font-size: 22px;
+            font-weight: bold;
+            text-align: left;
+            margin: 30px auto 20px;
+        }
+        label {
+            color: #505050;
+            display: inline;
+        }
+        input{
+            border-radius: 6px;
+            display: inline;
+            border: 3px solid #505050;
+            box-shadow: 1px 1px 1px 1px #909090,2px 2px 2px 2px #b0b0b0;
+            height: 30px;
+            width: 80%;
+            color: #909090;
+            padding-left: 10px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            margin-bottom: 30px;
+            margin-left: 50px;
+        }
+        textarea{
+            display: inline;
+            border-radius: 6px;
+            border: 3px solid #505050;
+            box-shadow: 1px 1px 1px 1px #909090,2px 2px 2px 2px #b0b0b0;
+            height: 160px;
+            color: #909090;
+            margin-left: 50px;
+            width: 80%;
+            margin-bottom: 30px;
+            padding: 10px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        div#submit{
+            line-height: 40px;
+            border-radius: 6px;
+            color: #eeeeee;
+            background: #6F6F6F;
+            margin: 0px auto;
+            text-align: center;
+        }
+        .liuyan{
+            position: relative;
+        }
+        .liuyan span{
+            position: absolute;
+            left: 0px;
+            top: 5px;
+        }
+    </style>
+    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        var ipAddress=decodeURIComponent(window.location.search.substring(1).split('&')[0]);
+        var userCode=decodeURIComponent(window.location.search.substring(1).split('&')[1]);
+        function saveMessage() {
+            var txt = $('textarea').val();
+            var input = $('input').val();
+            if(input.length>19){
+                alert('您的昵称长度不能超过20个,请重新输入！');
+            }
+            else if(input.trim()==''){
+                alert('请输入您的昵称！');
+            }
+            else if(txt.length>300){
+                alert('输入字数不能超过300个,请重新输入！');
+            }else if(txt.trim()==''){
+                alert('请输入您的留言！');
+            }
+            else{
+                document.getElementById('submit').removeAttribute('onclick');
+                $.ajax({
+                    type: 'post',
+                    async: false,
+                    url: hostOperationbussiness+ 'investigation.action',
+                    data: {
+                        action: "saveInvestigationMessage",
+                        "investigationMessage.messageContent":txt,
+                        "investigationMessage.ipAddress":ipAddress,
+                        "investigationMessage.userCode":userCode,
+                        "investigationMessage.userName":input
+                    },
+                    success: function (result) {
+                        window.location.href='commentdetail.html';
+                    },
+                    error: function () {
+                        alert('you are false');
+                    }
+                });
+            }
+        }
+    </script>
+    <script src="js/sha1.js"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="js/sharetoother.js" type="text/javascript"></script>
+    <audio style="display: none" src="images/DJ舞曲-印度亲嘴歌.mp3" onplay="this.currentTime=5" autoplay controls></audio>
+</head>
+<body>
+<p>产后合体指数调查留言</p>
+<div class="liuyan">
+    <span>昵称:</span>
+    <input type="text" name="name" placeholder="请输入您的昵称"/>
+</div>
+<div class="liuyan">
+<span>留言:</span>
+    <textarea name="title" id="title" cols="30" rows="10" placeholder="快来留下你的经验吧！！！"></textarea>
+</div>
+<div id="submit" onclick="saveMessage()">提交留言</div>
+</body>
+</html>

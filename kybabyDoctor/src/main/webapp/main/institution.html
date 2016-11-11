@@ -1,0 +1,65 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>多点执业设置</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/institution.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/main.js"></script>
+
+</head>
+<body>
+<div id="header" class="doctor_header">
+    <div class="headerLeft" onclick="window.location.href='chooseOutpatientTime.html'"><p></p></div>
+    <div class="header-center">多点执业设置</div>
+    <div class="header-right"></div>
+</div>
+<!--header-->
+<div id="workAddress">
+    <div style="line-height: 46px;border: 1px solid #e8e8e8;border-right: none;" onclick="window.location.href='chooseOutpatientTime.html'"><span>工作单位</span></div>
+    <div style="line-height: 46px;background: #1cba93;color: white;border:1px solid #1CBA93;border-left: none;">其它机构</div>
+</div>
+<div id="container">
+    <p>医疗机构定期门诊信息，由平台发布，请各位医生及时关注</p>
+    <p>如因例外原因需要取消坐诊，请提前24小时联系平台客服进行处理</p>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 40%">执业机构</th>
+                <th style="width: 30%">坐诊时间</th>
+                <th style="width: 30%"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <!--<tr>-->
+                <!--<td>红牌楼社区医院</td>-->
+                <!--<td>2016-02-22</td>-->
+                <!--<td><span class="canChoose" onclick="goToSetVisit('红牌楼社区医院','2016-02-22')">我要坐诊</span></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>万年场社区医院</td>-->
+                <!--<td>2016-02-22</td>-->
+                <!--<td><span onclick="cancelVisit()">取消坐诊</span></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<td>安琪儿社区医院</td>-->
+                <!--<td>2016-02-22</td>-->
+                <!--<td><span class="canChoose" onclick="goToSetVisit('红牌楼社区医院','2016-02-23')">我要坐诊</span></td>-->
+            <!--</tr>-->
+        </tbody>
+    </table>
+</div>
+<p id="description" style="text-align: center">
+</p>
+<script src="js/plugins.js"></script>
+<script src="js/config.js"></script>
+<script src="js/institution.js"></script>
+
+</body>
+</html>

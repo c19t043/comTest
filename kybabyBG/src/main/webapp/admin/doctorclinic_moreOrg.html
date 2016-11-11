@@ -1,0 +1,213 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>多点机构管理</title>
+	<meta charset="utf-8">
+	<meta name="renderer" content="webkit" />
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/date/WdatePicker.js"></script>
+	<script src="js/basic.js"></script>
+	<script src="js/common.js"></script>
+	<script src="js/doctor_clinic_moreOrg_manage.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/iconfont/iconfont.css">
+	<link rel="stylesheet" type="text/css" href="css/doctorclinic_moreOrg.css">
+</head>
+<body>
+
+<div id="headcon" class="headcon">
+
+</div>
+
+<div class="middlecon">
+	<div id="leftcon" class="leftcon">
+
+	</div>
+
+	<div id="rightcon" class="rightcon">
+		<div class="content">
+			<div id="con_position" class="con_position">
+				<h1 id="con_tit" class="con_tit"></h1>
+				<div id="con_meu" class="con_meu">
+					<span>首页</span>
+					<span>/</span>
+					<span class="first"></span>
+					<span>/</span>
+					<span class="second"></span>
+				</div>
+				<div class="con_contral">
+                    <label>机构名称：</label><input style="width: 120px" id="clinicOrg" type="text">
+                    <span onclick="search_click()" class="bu">查找</span>
+				</div>
+				<table id="table_title" class="table_title">
+
+				</table>
+			</div>
+			<div class="table_h">
+				<table id="table_content" class="table_content">
+
+				</table>
+			</div>
+			<div class="con_page">
+				<span class="a">共&nbsp;<span id="con_num" class="con_num"></span>&nbsp;条数据</span>
+				<div class="button_cli">
+					<span class="button" onclick="page_click('default','1')">首页</span>
+					<span class="button" onclick="page_click('default','prev')" >上一页</span>
+					<span class="num" id="now_page_num" >1</span>
+					<span class="button" onclick="page_click('default','next')">下一页</span>
+					<span class="button" onclick="page_click('default','end')">尾页</span>
+				</div>
+				<div class="page_go">
+					<span class="b">共&nbsp;<span id="page_num" class="page_num"></span>&nbsp;页</span>
+					<span class="c">跳转到&nbsp;<input id="go_page" type="number" value="1" min="1">&nbsp;页</span>
+					<span class="button" onclick="page_click_go()">Go</span>
+				</div>
+			</div>
+			
+			<div id="bottom_div" class="bottom_div">
+				<div class="bottom_div_tit">
+					 <span class="tit_info"></span>
+					 <span id="button_add_click" onclick="saveOrUpdate()" class="button_style button_add">确认</span>
+					<span id="button_cancel_click" class="button_style button_cancel">取消</span>
+				</div>
+				<div id="bottom_div_con" class="bottom_div_con">
+					<form id="data_form" action="" method="post" enctype="multipart/form-data">
+			            <div class="fj" >
+			            	<label>机构选择：</label>
+							<select onchange="chooseHospital(this)" id="hospitalId" name="doctorMorePracticeOrgInfo.hospitalBasicInfo.id" style="width: 200px">
+								<option value="">=请选择=
+							</select>
+							<label for="orgName">机构名称：</label>
+							<input id="orgName" type="text" name="doctorMorePracticeOrgInfo.orgName" readonly="readonly"/>
+							<input id="orgId" type="hidden" name="doctorMorePracticeOrgInfo.id"/>
+							<label for="orgAddress">机构地址：</label>
+							<select style="width: 200px" id="orgAddress" name="doctorMorePracticeOrgInfo.orgAddress">
+								<option value="">=请选择=
+							</select>
+							<label>是否可用：</label>
+							<select id="isAvailable" name="doctorMorePracticeOrgInfo.isAvailable">
+			                    <option value="Y">Y</option>
+			                    <option value="N">N</option>
+			                </select>
+			            </div>
+			            <br>
+			            <hr>
+			            <div class="fj1">
+			            	<div>
+			            		<div>
+					                <label style=" font-weight: bolder;background-color: #33FF33;">开放日期添加：</label>
+					               	<span onclick="add_node_click('node_template','node_Tbody')" class="bu1">添加</span>
+					                <span onclick="del_node_click('node_Tbody')" class="bu1">删除</span>
+					            </div>
+								<table id="node_table_title" class="table_title">
+									<tr>
+										<th style='width:10%'>序列</th>
+										<th style='width:10%'>选择</th>
+										<th style='width:30%'>开放日期</th>
+									</tr>
+								</table>
+								<div class="table_h" style="height: 200px">
+									<table id="node_table_content" class="table_content" border="1" >
+										<tbody id="node_Tbody"></tbody>
+									</table>
+								</div>
+								<br>
+			            	</div>
+			            		
+			            	<div>
+			            		 <div>
+					                <label style=" font-weight: bolder;background-color: #33FF33;">时间段添加：</label>
+					               	<span onclick="add_node_click('ampm_template','ampm_Tbody')" class="bu1">添加</span>
+					                <span onclick="del_node_click('ampm_Tbody')" class="bu1">删除</span>
+					            </div>
+								<table id="ampm_table_title" class="table_title">
+									<tr>
+										<th style='width:10%'>序列</th>
+										<th style='width:10%'>选择</th>
+										<th style='width:20%'>时间名称</th>
+										<th style='width:20%'>开始时间</th>
+										<th style='width:20%'>结束时间</th>
+										<th style='width:20%'>要求门诊量</th>
+									</tr>	
+								</table>
+								<div class="table_h" style="height: 200px">
+									<table id="ampm_table_content" class="table_content" border="1" >
+										<tbody id="ampm_Tbody"></tbody>
+									</table>
+								</div>
+			            	</div>
+			            </div>
+		          	</form>
+				</div>
+			</div>
+		</div>	
+	</div>
+</div>
+
+<!-- ==============添加行信息隐藏域--日期添加================= -->
+  	<div style="display: none; width: 0px; height: 0px;">
+  		<table>
+			<tr id="node_template" onclick="click_light(this)">
+				<td style="width:10%">
+					
+				</td>
+				<td style="width:10%">
+					<input type="hidden" name="moreOrgClinicdateList[].id" />
+					<input type="checkbox" />
+				</td>
+				<td style="text-align: center;width:30%">
+					 <input name="moreOrgClinicdateList[].canClinicDate" onfocus="WdatePicker()" type="text" readonly="readonly" placeholder="请选择日期">
+				</td>
+			</tr>
+		</table>
+	</div>
+	<!-- ==============添加行信息隐藏域--时间段添加================= -->
+	<div style="display: none; width: 0px; height: 0px;">
+  		<table>
+			<tr id="ampm_template" onclick="click_light(this)">
+				<td style="width:10%">
+					
+				</td>
+				<td style="width:10%">
+					<input type="hidden" name="morePracticeOrgTimeList[].id" />
+					<input type="checkbox" />
+				</td>
+				<td style="text-align: center;width:20%">
+					<select name="morePracticeOrgTimeList[].timeName">
+						<option value="上午">上午</option>
+						<option value="下午">下午</option>
+					</select>
+				</td>
+				<td style="text-align: center;width:20%">
+					 <select name="morePracticeOrgTimeList[].startTime">
+						<option value="08:00">08:00</option>
+						<option value="08:30">08:30</option>
+						<option value="09:00">09:00</option>
+						<option value="09:30">09:30</option>
+						<option value="10:00">10:00</option>
+						<option value="13:00">13:00</option>
+						<option value="13:30">13:30</option>
+						<option value="14:00">14:00</option>
+						<option value="14:30">14:30</option>
+					</select>
+				</td>
+				<td style="text-align: center;width:20%">
+					 <select name="morePracticeOrgTimeList[].endTime">
+					 	<option value="12:00">12:00</option>
+					 	<option value="13:00">13:00</option>
+					 	<option value="13:30">13:30</option>
+					 	<option value="14:00">14:00</option>
+					 	<option value="14:30">14:30</option>
+						<option value="16:00">16:00</option>
+						<option value="17:00">17:00</option>
+						<option value="17:30">17:30</option>
+					</select>
+				</td>
+				<td style="text-align: center;width:20%">
+					 <input name="morePracticeOrgTimeList[].requireClinicNum" class="query" type="text" placeholder="要求门诊量" />
+				</td>
+			</tr>
+		</table>
+	</div>
+  </body>
+</html>

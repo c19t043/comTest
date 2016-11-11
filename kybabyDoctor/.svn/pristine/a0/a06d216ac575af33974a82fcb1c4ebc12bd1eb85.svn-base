@@ -1,0 +1,67 @@
+﻿<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<title>新增地址</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/addressmanage.css">
+	<link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=AoTC2HVRMga7z2OF66sTTiqO"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
+	<script src="js/modernizr-2.8.3.min.js"></script>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<!--<script type="text/javascript" src="js/jquery.cityselect.js"></script>-->
+	<script type="text/javascript" src="js/jsAddress.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/config.js"></script>
+	<script src="js/addaddress.js"></script>
+	<script src="js/map.js"></script>
+</head>
+<body>
+
+<div id="header">
+	<div class="header-left"><p></p></div>
+	<div class="header-center">新增地址</div>
+	<div class="header-right"></div>
+</div>
+<!--header-->
+
+<div id="container">
+	<p class="gray_2"></p>
+	<div class="address_normal">
+		<div id="city">
+			<select class="prov" id="sheng"></select>省
+			<select class="city" id="shi"></select>市
+			<select class="dist" id="qu"></select>
+		</div>
+	</div>
+	<p class="gray_2"></p>
+	<div class="address_detial"><input type="text" placeholder="街道" id="jiedao"></div>
+	<p class="gray_2"></p>
+	<div class="address_detial"><input type="text" placeholder="详细地址" id="detailAdd"></div>
+
+	<div class="button_01 mt_50" onclick="newAddress()">保存</div>
+
+
+
+
+
+
+</div>
+<!--container-->
+
+
+
+
+<script src="js/plugins.js"></script>
+<!--<script>-->
+<!--var	i = $(window).width();-->
+	<!--ale(i)-->
+	<!--ale($(document).width());-->
+<!--</script>-->
+
+</body>
+</html>
+

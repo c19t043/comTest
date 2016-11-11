@@ -1,0 +1,178 @@
+﻿<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<title>个人中心</title>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/personalcenter.css">
+	<script src="js/modernizr-2.8.3.min.js"></script>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/config.js"></script>
+    <script src="js/version.js"></script>
+	<script src="js/personalcenter.js"></script>
+	<style>
+		#updateBabyImg{
+			display: block;
+			width: 70px;
+			height: 70px;
+			position: relative;
+			top: -70px;
+			opacity: 0;
+			z-index: 2;
+		}
+		#membersType>span{
+			border-radius: 3px;
+			font-size: 10px;
+			color: #ffffff;
+			background: #ff813d;
+			padding: 3px 6px;
+			margin-right: 10px;
+		}
+	</style>
+</head>
+<body>
+
+<div id="header">
+	<div class="header-left">个人中心</div>
+	<div class="header-center"></div>
+	<div class="header-right"></div>
+</div>
+<!--header-->
+<div id="container">
+	<div class="personal_box">
+		<div class="personal_left">
+			<form id="updateImg_hf" action="" method="post" enctype="multipart/form-data">
+				<img id="babyImg"   />
+				<canvas  id="myCanvas" style="display:none;border-radius:50%" width="70" height="70"></canvas>
+				<input type="file" id="updateBabyImg" accept="image/*" name="productSmallFileElem" onchange="loadImage(this)" style="display:block;" />
+				
+			</form>
+		</div>
+		<div class="personal_right" id="goto_personalInfo" onclick="modify_personal_information()">
+			<p class="username">
+                <span id="babyName"></span>
+                <!--<span id="membersType" style="margin-left: -20px;" onclick="event.stopPropagation()">-->
+                    <!--&lt;!&ndash;<span onclick="window.location.href='user_member.html'">A会员</span>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span onclick="window.location.href='user_member.html'">B会员</span>&ndash;&gt;-->
+                <!--</span>-->
+            </p>
+			<p><span id="babySex"></span></p>
+			<p><span id="babyBirthday"></span></p>
+		</div>
+	</div>
+	<div class="personal_box" id="mypersonal_box">
+		<div class="myorder" onclick="window.location.href='myAppointment.html'"><span>我的订单</span></div>
+		<div class="myorg" onclick="window.location.href='myOrg.html'"><span>我的预约</span></div>
+		<!--
+		<div class="mydoctor" onclick="ale('敬请期待！')">我的医生</div>
+		-->
+		<div class="mydoctor" onclick="window.location.href='mydoctor.html'"><span style="border-right: none">我的关注</span></div>
+		
+	</div>
+
+	<div class="tool">
+		<div onclick="window.location.href='growthrecord.html'">
+			<img src="images/images_main/chengzhangquxian.png" alt="" style="height: 42px;"/><br/>
+			<span style="margin-top: 8px;display:inline-block;font-size: 14px">成长记录</span>
+		</div>
+		<div onclick="window.location.href='heightweightheadrecord.html'">
+			<img src="images/images_main/jiankangdangan.png" alt="" style="height: 42px;"/><br/>
+			<span style="margin-top: 8px;display:inline-block;font-size: 14px">成长曲线</span>
+		</div>
+		<div onclick="window.location.href='caseclip.html'">
+			<img src="images/images_main/cases_clip.png" alt="" style="height: 42px;"/><br/>
+			<span style="margin-top: 8px;display:inline-block;font-size: 14px">病历夹</span>
+		</div>
+	</div>
+	<p class="gray_s" style="margin-top: 13px;"></p>
+	<div class="personal_list clearfix">
+		<!--personal_list01-->
+		<div class="personal_com list01" onclick="window.location.href='myaccount.html'">我的账户</div>
+		<p class="gray_s"></p>
+
+		<!--personal_list02
+		<div class="personal_com list02" onclick="ale('敬请期待')">我的咨询</div>
+		-->
+        <div style="display: none" class="personal_com list11 my_member" onclick="window.location.href='personalcenter_member.html'">我的会员</div>
+
+        <p style="display: none" class="gray_s my_member"></p>
+        <div class="personal_com list02" onclick="window.location.href='consult_myConsulting.html'">我的咨询</div>
+		<p class="gray_s"></p>
+
+        <div class="personal_com list13" onclick="window.location.href='mall_order_list.html'">商城订单</div>
+		<p class="gray_s"></p>
+
+        <div class="personal_com list14" onclick="window.location.href='hospital.html'">便民医院</div>
+		<p class="gray_s"></p>
+
+        <div class="personal_com list10" onclick="window.location.href='personalcenter_health.html'">健康信息</div>
+
+        <p class="gray_s"></p>
+		<div class="personal_com list12" onclick="window.location.href='consult_baby_management.html'">宝宝管理</div>
+
+		<p class="gray_s"></p>
+
+        <!--&lt;!&ndash;personal_list03&ndash;&gt;-->
+		<!--<div class="personal_com list03" onclick="window.location.href='modifyphone.html'">修改手机号</div>-->
+		<!--<p class="gray_s"></p>-->
+
+		<!--personal_list04-->
+		<div class="personal_com list04" id="tjOther_cli">推荐有奖</div>
+		<p class="gray_s"></p>
+
+		<!--personal_list05-->
+		<!--<div class="personal_com list05">联系我们<a class="ml_20" href="tel:028-83329685">028-83329685</a></div>-->
+		<!--<p class="gray_s"></p>-->
+
+		<!--&lt;!&ndash;personal_list06&ndash;&gt;-->
+		<!--<div class="personal_com list06" onclick="window.location.href='modifypassword.html'">修改密码</div>-->
+		<!--<p class="gray_s"></p>-->
+
+		<!--&lt;!&ndash;personal_list07&ndash;&gt;-->
+		<!--<div class="personal_com list07" onclick="window.location.href='feedback.html'">意见反馈</div>-->
+		<!--<p class="gray_s"></p>-->
+
+		<!--&lt;!&ndash;personal_list08&ndash;&gt;-->
+		<!--<div class="personal_com list08" id="about_us_cli">关于我们</div>-->
+		<!--<p class="gray_s"></p>-->
+
+		<!--personal_list09-->
+        <div class="personal_com list07" onclick="window.location.href='personalcenter_set.html'">设置</div>
+        <p class="gray_s"></p>
+
+        <!--<div class="personal_com list09">版本信息<span class="ml_20" id="ml_20">1.0.0</span></div>-->
+        <!--<p class="gray_1"></p>-->
+        <!--<div class="exit_btn" onclick="userLogout()">退出系统</div>-->
+		<!--<p class="gray_1"></p>-->
+    </div>
+</div>
+<!--container-->
+
+<div id="footer">
+	<ul>
+		<a href="javascript:void(0)" onclick="window.location.href='main.html'"><li><p><img src="images/images_main/main_dark.png" width="23"></p><p>首页</p></li></a>
+		<a href="javascript:void(0)" onclick="window.location.href='service_products.html'"><li><p><img src="images/images_main/service_dark.png" width="23"></p><p>服务</p></li></a>
+		<!--<a href="javascript:void(0)" onclick="window.location.href='assistant.html'"><li><p><img src="images/footer_icon03_off.png" width="23"></p><p>助手</p></li></a>-->
+		<!--<a href="javascript:void(0)" onclick="window.location.href='chatCircle.html'"><li><p><img src="images/footer_icon05_off.png" width="23"></p><p>妈妈圈</p></li></a>-->
+        <a href="javascript:void(0)" onclick="window.location.href='mall_product_list.html'">
+            <li><p><img src="images/images_main/member_dark.png" width="23"></p>
+
+                <p>商城</p></li>
+        </a>
+        <a href="javascript:void(0)"><li class="select"><p><img src="images/images_main/personal_light.png" width="23"></p><p>我
+		</p></li></a>
+	</ul>
+</div>
+<!--footer-->
+
+
+
+<script src="js/main.js"></script>
+<script src="js/plugins.js"></script>
+
+</body>
+</html>

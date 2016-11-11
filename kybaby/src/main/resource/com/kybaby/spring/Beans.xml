@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+	
+	<bean id="baseAction" class="com.kybaby.action.BaseAction">
+		<property name="userInfoBo" ref="userInfoBo" />	
+		<property name="doctorInfoBo" ref="doctorInfoBo"/>
+		<property name="recommendRuleBo" ref="recommendRuleBo"/>
+		<property name="userPointsBo"  ref="userPointsBo" />
+		<property name="doctorPointsBo"  ref="doctorPointsBo" />
+		<property name="userAccountBo" ref="userAccountBo" />
+		<property name="doctorAccountBo" ref="doctorAccountBo" />
+		<property name="userCouponBo" ref="userCouponBo" />
+		<property name="recommentAwardRecordBo" ref="recommentAwardRecordBo" />
+		<property name="guidePageBo" ref="guidePageBo" />
+		<property name="bannerBo" ref="bannerBo" />
+		<property name="productBo" ref="productBo" />
+		<property name="propertiesBo" ref="propertiesBo" />
+		<property name="healthPlanRemindBo" ref="healthPlanRemindBo" />
+		<property name="orderInfoBo" ref="orderInfoBo" />
+		<property name="healthPlanBo" ref="healthPlanBo" />
+		<property name="productItemBo" ref="productItemBo" />
+		<property name="majorBo" ref="majorBo" />
+		<property name="doctorAssessmentTagBo" ref="doctorAssessmentTagBo" />
+		<property name="doctorArticleBo" ref="doctorArticleBo" />
+		<property name="doctorArticleCommentBo" ref="doctorArticleCommentBo" />
+		<property name="couponBo" ref="couponBo" />
+		<property name="doctorProductBo" ref="doctorProductBo" />
+		<property name="subsidyBo" ref="subsidyBo" />
+		<property name="userConsultDoctorBo" ref="userConsultDoctorBo"/>	
+		<property name="symptomTagBo" ref="symptomTagBo"/>
+		<property name="orderResultsBo" ref="orderResultsBo"/>
+		<property name="growthRecordBo" ref="growthRecordBo"/>
+		<property name="feedbackBo" ref="feedbackBo"/>
+		<property name="accountBo" ref="accountBo"/>
+		<property name="sendDoctorService" ref="sendDoctorService"/>
+		<property name="adminBo" ref="adminBo"/>
+		<!-- 版本管理接口 -->
+		<property name="versionManageBo" ref="versionManageBo"/>
+	</bean>
+	
+<!-- 	<bean id="wxBaseAction" class="com.wx.BaseAction">
+		<property name="wxBo" ref="wxBo" />
+	</bean> -->
+	<!-- admin相关的 -->
+    <bean id="adminBo" class="com.kybaby.bo.impl.AdminBoImpl">
+    	<property name="adminDao" ref="adminDao" />
+    </bean>
+    
+    <bean id="adminDao" class="com.kybaby.dao.impl.AdminDaoImpl">
+     	<property name="sessionFactory" ref="sessionFactory" />
+     </bean>
+     
+	<!-- 用户相关的 -->
+    <bean id="userInfoBo" class="com.kybaby.bo.impl.UserInfoBoImpl">
+    	<property name="userInfoDao" ref="userInfoDao" />
+    </bean>
+    
+    <bean id="userInfoDao" class="com.kybaby.dao.impl.UserInfoDaoImpl">
+     	<property name="sessionFactory" ref="sessionFactory" />
+     </bean>
+	
+	<!-- 医生相关的 -->
+	<bean id="doctorInfoBo" class="com.kybaby.bo.impl.DoctorInfoBoImpl">
+    	<property name="doctorInfoDao" ref="doctorInfoDao" />
+    	<property name="userInfoDao" ref="userInfoDao" />
+    	<property name="productDao" ref="productDao" />
+    	<property name="doctorProductDao" ref="doctorProductDao" />
+    </bean>
+    
+    <bean id="doctorInfoDao" class="com.kybaby.dao.impl.DoctorInfoDaoImpl">
+     	<property name="sessionFactory" ref="sessionFactory" />
+     </bean>
+     
+     <!-- 推荐规则相关的 -->
+     <bean id="recommendRuleBo" class="com.kybaby.bo.impl.RecommendRuleBoImpl">
+    	<property name="recommendRuleDao" ref="recommendRuleDao" />
+    </bean>
+    
+    <bean id="recommendRuleDao" class="com.kybaby.dao.impl.RecommendRuleDaoImpl">
+     	<property name="sessionFactory" ref="sessionFactory" />
+     </bean>
+     
+     <!-- 用户积分相关的 -->
+	<bean id="userPointsBo" class="com.kybaby.bo.impl.UserPointsBoImpl" >
+		<property name="userPointsDao" ref="userPointsDao" />
+	</bean>
+	<bean id="userPointsDao" class="com.kybaby.dao.impl.UserPointsDaoImpl" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- 医生积分相关的 -->
+	<bean id="doctorPointsBo" class="com.kybaby.bo.impl.DoctorPointsBoImpl" >
+		<property name="doctorPointsDao" ref="doctorPointsDao" />
+	</bean>
+	<bean id="doctorPointsDao" class="com.kybaby.dao.impl.DoctorPointsDaoImpl"  >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- 用户账户变动相关的 -->
+	<bean id="userAccountBo" class="com.kybaby.bo.impl.UserAccountBoImpl" >
+		<property name="userAccountDao" ref="userAccountDao" />
+	</bean>
+	<bean id="userAccountDao" class="com.kybaby.dao.impl.UserAccountDaoImpl" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- 医生账户变动相关的 -->
+	<bean id="doctorAccountBo" class="com.kybaby.bo.impl.DoctorAccountBoImpl" >
+		<property name="doctorAccountDao" ref="doctorAccountDao" />
+	</bean>
+	<bean id="doctorAccountDao" class="com.kybaby.dao.impl.DoctorAccountDaoImpl" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- 用户优惠券相关的 -->
+	<bean id="userCouponBo" class="com.kybaby.bo.impl.UserCouponBoImpl" >
+		<property name="userCouponDao" ref="userCouponDao" />
+	</bean>
+	<bean id="userCouponDao" class="com.kybaby.dao.impl.UserCouponDaoImpl" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- 用户优惠记录相关的 -->
+	<bean id="recommentAwardRecordBo" class="com.kybaby.bo.impl.RecommentAwardRecordBoImpl" >
+		<property name="recommentAwardRecordDao" ref="recommentAwardRecordDao" />
+	</bean>
+	<bean id="recommentAwardRecordDao" class="com.kybaby.dao.impl.RecommentAwardRecordDaoImpl" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- 引导页相关的 -->
+	<bean id="guidePageBo" class="com.kybaby.bo.impl.GuidePageBoImpl" >
+		<property name="guidePageDao" ref="guidePageDao" />
+	</bean>
+	<bean id="guidePageDao" class="com.kybaby.dao.impl.GuidePageDaoImpl" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- banner区域图片相关的 -->
+	<bean id="bannerBo" class="com.kybaby.bo.impl.BannerBoImpl" >
+		<property name="bannerDao" ref="bannerDao" />
+	</bean>
+	<bean id="bannerDao" class="com.kybaby.dao.impl.BannerDaoImpl" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- 商品相关的 -->
+	<bean id="productBo" class="com.kybaby.bo.impl.ProductBoImpl" >
+		<property name="productDao" ref="productDao" />
+	</bean>
+	<bean id="productDao" class="com.kybaby.dao.impl.ProductDaoImpl" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- 配置相关的 -->
+	<bean id="propertiesBo" class="com.kybaby.bo.impl.PropertiesBoImpl" >
+		<property name="propertiesDao" ref="propertiesDao" />
+	</bean>
+	<bean id="propertiesDao" class="com.kybaby.dao.impl.PropertiesDaoImpl" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- 健康提醒相关的 -->
+	<bean id="healthPlanRemindBo" class="com.kybaby.bo.impl.HealthPlanRemindBoImpl" >
+		<property name="healthPlanRemindDao" ref="healthPlanRemindDao" />
+	</bean>
+	<bean id="healthPlanRemindDao" class="com.kybaby.dao.impl.HealthPlanRemindDaoImpl" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- 订单相关的 -->
+	<bean id="orderInfoBo" class="com.kybaby.bo.impl.OrderInfoBoImpl" >
+		<property name="orderInfoDao" ref="orderInfoDao" />
+	</bean>
+	<bean id="orderInfoDao" class="com.kybaby.dao.impl.OrderInfoDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- 健康管理计划相关的 -->
+	<bean id="healthPlanBo" class="com.kybaby.bo.impl.HealthPlanBoImpl" >
+		<property name="healthPlanDao" ref="healthPlanDao" />
+	</bean>
+	<bean id="healthPlanDao"  class="com.kybaby.dao.impl.HealthPlanDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- 健康计划路径相关的 -->
+	<bean id="healthPathBo" class="com.kybaby.bo.impl.HealthPathBoImpl" >
+		<property name="healthPathDao" ref="healthPathDao" />
+	</bean>
+	<bean id="healthPathDao" class="com.kybaby.dao.impl.HealthPathDaoImpl" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- 服务项目相关的 -->
+	<bean id="productItemBo" class="com.kybaby.bo.impl.ProductItemBoImpl" >
+		<property name="productItemDao" ref="productItemDao" />
+	</bean>
+	
+	<bean id="productItemDao" class="com.kybaby.dao.impl.ProductItemDaoImpl" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- 医生专长方向相关的 -->
+	<bean id="majorBo" class="com.kybaby.bo.impl.MajorBoImpl" >
+		<property name="majorDao" ref="majorDao" />
+	</bean>
+	
+	<bean id="majorDao" class="com.kybaby.dao.impl.MajorDaoImpl" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- 医生评价标签相关的 -->
+	<bean id="doctorAssessmentTagBo" class="com.kybaby.bo.impl.DoctorAssessmentTagBoImpl" >
+		<property name="doctorAssessmentTagDao" ref="doctorAssessmentTagDao" />
+	</bean>
+	
+	<bean id="doctorAssessmentTagDao" class="com.kybaby.dao.impl.DoctorAssessmentTagDaoImpl" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- 医生个人专栏相关的 -->
+	<bean id="doctorArticleBo" class="com.kybaby.bo.impl.DoctorArticleBoImpl" >
+		<property name="doctorArticleDao" ref="doctorArticleDao" />
+	</bean>
+	
+	<bean id="doctorArticleDao" class="com.kybaby.dao.impl.DoctorArticleDaoImpl" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- 医生个人专刊评论相关的 -->
+	<bean id="doctorArticleCommentBo" class="com.kybaby.bo.impl.DoctorArticleCommentBoImpl" >
+		<property name="doctorArticleCommentDao" ref="doctorArticleCommentDao" />
+	</bean>
+	
+	<bean id="doctorArticleCommentDao" class="com.kybaby.dao.impl.DoctorArticleCommentDaoImpl" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- 用户优惠券相关的 -->
+	<bean id="couponBo" class="com.kybaby.bo.impl.CouponBoImpl" >
+		<property name="couponDao" ref="couponDao" />
+		<property name="userCouponDao" ref="userCouponDao" />
+	</bean>
+	
+	<bean id="couponDao" class="com.kybaby.dao.impl.CouponDaoImpl" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- 医生提供的服务相关的 -->
+	<bean id="doctorProductBo" class="com.kybaby.bo.impl.DoctorProductBoImpl" >
+		<property name="doctorProductDao" ref="doctorProductDao" />
+	</bean>
+	
+	<bean id="doctorProductDao" class="com.kybaby.dao.impl.DoctorProductDaoImpl" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- 补贴规则相关的 -->
+	<bean id="subsidyBo" class="com.kybaby.bo.impl.SubsidyBoImpl" >
+		<property name="subsidyDao" ref="subsidyDao" />
+	</bean>
+	
+	<bean id="subsidyDao" class="com.kybaby.dao.impl.SubsidyDaoImpl" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- 用户咨询医生相关的 -->
+	<bean id="userConsultDoctorBo" class="com.kybaby.bo.impl.UserConsultDoctorBoImpl" >
+		<property name="userConsultDoctorDao" ref="userConsultDoctorDao" />
+	</bean>
+	
+	<bean id="userConsultDoctorDao" class="com.kybaby.dao.impl.UserConsultDoctorDaoImpl" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- 症状标签相关的 -->
+	<bean id="symptomTagBo" class="com.kybaby.bo.impl.SymptomTagBoImpl" >
+		<property name="symptomTagDao" ref="symptomTagDao" />
+	</bean>
+	
+	<bean id="symptomTagDao" class="com.kybaby.dao.impl.SymptomTagDaoImpl" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- 订单结果管理相关的 -->
+	<bean id="orderResultsBo" class="com.kybaby.bo.impl.OrderResultsBoImpl" >
+		<property name="orderResultsDao" ref="orderResultsDao" />
+	</bean>
+	
+	<bean id="orderResultsDao" class="com.kybaby.dao.impl.OrderResultsDaoImpl" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- 成长记录相关的 -->
+	<bean id="growthRecordBo" class="com.kybaby.bo.impl.GrowthRecordBoImpl" >
+		<property name="growthRecordDao" ref="growthRecordDao" />
+	</bean>
+	
+	<bean id="growthRecordDao" class="com.kybaby.dao.impl.GrowthRecordDaoImpl" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	 
+	<!-- 意见反馈相关的 -->
+	<bean id="feedbackBo" class="com.kybaby.bo.impl.FeedbackBoImpl" >  
+		<property name="feedbackDao" ref="feedbackDao" />
+	</bean>
+	
+	<bean id="feedbackDao"  class="com.kybaby.dao.impl.FeedbackDaoImpl" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- 账户相关的 -->
+	<bean id="accountBo" class="com.kybaby.bo.impl.AccountBoImpl" >
+		<property name="accountDao" ref="accountDao" />
+	</bean>
+	
+	<bean id="accountDao" class="com.kybaby.dao.impl.AccountDaoImpl" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- 派医生start -->
+    <bean id="sendDoctorService" class="com.kybaby.newbussiness.senddoctor.bo.impl.SendDoctorServiceImpl">
+      	<property name="sendDoctorDao" ref="sendDoctorDao" />
+       	<property name="doctorInfoDao" ref="doctorInfoDao" />
+      	<property name="doctorInfoBo" ref="doctorInfoBo" />
+      	<property name="userInfoDao" ref="userInfoDao" />
+   </bean>
+   <bean id="sendDoctorDao" class="com.kybaby.newbussiness.senddoctor.dao.impl.SendDoctorDaoImpl">
+      <property name="sessionFactory" ref="sessionFactory" />
+   </bean>
+   <!-- 派医生end -->
+   
+   	
+	<!-- 版本管理接口 -->
+	<bean id="versionManageBo" class="com.kybaby.bo.impl.VersionManageBoImpl" >
+		<property name="versionManageDao" ref="versionManageDao" />
+	</bean>
+	<bean id="versionManageDao" class="com.kybaby.dao.impl.VersionManageDaoImpl" >
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+</beans>

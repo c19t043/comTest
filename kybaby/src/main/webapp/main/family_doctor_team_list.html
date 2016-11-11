@@ -1,0 +1,336 @@
+﻿<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>家庭医生签约服务包</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/sha1.js"></script>
+    <style>
+        .package_list,.team_list{
+            background: #f8f8f8;
+            overflow: hidden;
+            padding: 15px 20px;
+            margin-bottom: 4px;
+        }
+        .package_img,.team_img{
+            width: 24%;
+            float: left;
+        }
+        .package_img>img,.team_img>img{
+            width: 60px;
+            height: 60px;
+        }
+        .package_con,.team_con{
+            width: 66%;
+            float: left;
+            line-height: 20px;
+            font-size: 14px;
+        }
+        .package_icon,.team_icon{
+            width: 10%;
+            float: left;
+            text-align: right;
+        }
+        .package_icon>div{
+            width: 15px;
+            height: 15px;
+            border-radius: 100%;
+            border: 1px solid #FF813D;
+            float: right;
+            margin-top: 20px;
+        }
+        div.package_select>div{
+            background: url("images/images_family_doctor/true.png") no-repeat center center;
+            background-size: 100% 100%;
+        }
+        .title{
+            padding: 10px;
+            color: #FF813D;
+        }
+        .team_icon{
+            height: 60px;
+            background-image:  url("images/next.png");
+            background-repeat: no-repeat;
+            background-size:  9px;
+            background-position: right center;
+        }
+        #choose_time{
+            overflow: hidden;
+            padding: 6px 0;
+        }
+        .time_list{
+            width: 50%;
+            float: left;
+            text-align: center;
+            margin-bottom: 6px;
+        }
+        .time_list>div {
+            position: relative;
+            width: 62%;
+            margin: 0 auto;
+            line-height: 34px;
+            border: 1px solid rgba(0,0,0,0);
+            border-radius: 14px;
+            font-size: 14px;
+        }
+        .time_list>div.checked{
+            border: 1px solid #FF813D;
+        }
+        .time_list>div>div{
+            display: none;
+        }
+        .time_list>div.checked>div.thisShow{
+            display: block;
+        }
+        .time_list>div>div>img{
+            position: absolute;
+            right: -5px;
+            top: -5px;
+            width: 12px;
+        }
+        #service_con,#service_more{
+            padding: 4px 26px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="header">
+    <div class="header-left" onclick="return_before()" id="big_header_left"><span>家庭医生签约服务包</span></div>
+    <div class="header-center"></div>
+    <div class="header-right" style="width: 40%"></div>
+</div>
+<!--header-->
+<div id="container">
+    <div id="package">
+        <!--<div class="package_list">-->
+            <!--<div class="package_img"><img src="images/1.jpg" alt=""/></div>-->
+            <!--<div class="package_con">-->
+                <!--<p>套餐名称</p>-->
+                <!--<div><span class="color-basic">XXX</span>人买</div>-->
+                <!--<div><span class="color-basic">XXX</span>元/月起</div>-->
+            <!--</div>-->
+            <!--<div class="package_icon">-->
+                <!--<div></div>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+    <p class="title">医生团队</p>
+    <div id="doctor-team">
+        <!--<div class="team_list">-->
+            <!--<div class="team_img"><img style="border-radius: 100%" src="images/1.jpg" alt=""/></div>-->
+            <!--<div class="team_con" style="line-height: 30px">-->
+                <!--<div>XXX医生团队</div>-->
+                <!--<div class="color-gray">XXX社区卫生服务中心</div>-->
+            <!--</div>-->
+            <!--<div class="team_icon"></div>-->
+        <!--</div>-->
+    </div>
+    <p class="title">选择时间</p>
+    <div id="choose_time">
+        <!--<div class="time_list">-->
+            <!--<div class="checked">-->
+                <!--<p>-->
+                    <!--1个月(XXX元)-->
+                <!--</p>-->
+                <!--<div>-->
+                    <!--<img src="images/images_family_doctor/true.png" alt=""/>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+    <p class="title">服务内容</p>
+    <div id="service_con">
+        文案文案文案**********文案文案文案**********文案文案文案**********
+    </div>
+</div>
+<!--container-->
+<footer id="footer">
+    <p class="login_button" onclick="handleFdServiceOrder()">签约家庭医生</p>
+</footer>
+<script src="js/main.js"></script>
+<script src="js/plugins.js"></script>
+<script>
+    var hospitalId,fdServiceTeamId='';
+    var hospitalName;
+    var fdServiceTeamsSet=[];
+    var fdServiceTimesSet=[];
+    var packageDescription=[];
+    $(function () {
+        hospitalId=decodeURIComponent(window.location.search.substring(1));
+        var fdServicePackageId='';
+        var fdServiceTeamsId='';
+        if(hospitalId.indexOf('&')>-1){
+            fdServicePackageId=hospitalId.split('&')[1];
+            fdServiceTeamsId=hospitalId.split('&')[0];
+            fdServiceTeamId=fdServiceTeamsId;
+            hospitalId='';
+        }
+        $.ajax({
+            type: 'post',
+            async: false,
+            cache: false,
+            url: familyDoctorHost + 'fdServiceItemsAction.action',
+            data: {
+                action: "getFdServicePackageList",
+                "hospitalId":hospitalId,
+                "fdServicePackage.id":fdServicePackageId,
+                "fdServiceTeams.id":fdServiceTeamsId
+            },
+            success: function (result) {
+                if (result.mes == '请登录') {
+                    ale('请登录');
+                    window.location.href="login.html";
+                }
+                else if (result.mes == '成功') {
+                    var html='';
+                    var package=result.fdServicePackageList;
+                    if(package!=null || package.length!=0){
+                        for(var i= 0,len= package.length;i<len;i++){
+                            html+='<div class="package_list" onclick="packageContent('+i+')">' +
+                            '<div class="package_img"><img src="'+photo+package[i].imagePath+'" alt=""/></div> ' +
+                            '<div class="package_con"> ' +
+                            '<p>'+package[i].packageShowName+'</p> ' +
+                            '<div>' +
+//                            '<span class="color-basic">'+(parseInt(package[i].buyCount)+200)+'</span>人买' +
+                            '</div> ' +
+                            '<div><span class="color-basic">'+package[i].minPrice+'</span>元起</div> ' +
+                            '</div> ' +
+                            '<div class="package_icon" data-id="'+package[i].id+'"> ' +
+                            '<div></div> ' +
+                            '</div>' +
+                            '</div>';
+                            fdServiceTeamsSet.push(package[i].fdServiceTeamsSet);
+                            fdServiceTimesSet.push(package[i].fdServiceTimesSet);
+                            packageDescription.push(package[i].packageDescription);
+                        }
+                        $('#package').html(html);
+                        if(package[0].hospitalBasicInfo!=null){
+                            hospitalName=package[0].hospitalBasicInfo.hospitalLname;
+                        }else{
+                            hospitalName='';
+                        }
+                        packageContent(0);
+                    }
+
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                layer();
+            }
+        });
+        qiehuan();
+    });
+    function packageContent(index){//选择包
+        $('.package_icon').removeClass('package_select');
+        $('.package_icon').eq(index).addClass('package_select');
+        if(fdServiceTeamsSet[index]!=undefined){
+            var doctor_html='';
+            for(var i=0;i<fdServiceTeamsSet[index].length;i++){
+                doctor_html+='<div class="team_list" onclick="teamMessage('+fdServiceTeamsSet[index][i].id+')"> ' +
+                '<div class="team_img"><img style="border-radius: 100%" src="'+photo+fdServiceTeamsSet[index][i].teamImgPath+'" alt=""/></div> ' +
+                '<div class="team_con" style="line-height: 30px"> ' +
+                '<div>'+fdServiceTeamsSet[index][i].teamName+'</div> ' +
+                '<div class="color-gray">'+hospitalName+'</div> ' +
+                '</div> ' +
+                '<div class="team_icon"></div> ' +
+                '</div>';
+            }
+            $('#doctor-team').html(doctor_html);
+        }
+        if(fdServiceTimesSet[index]!=undefined){
+            var time_html='';
+            var num=0;
+            for(var i=0;i<fdServiceTimesSet[index].length;i++){
+                var ischecked='';
+                if(fdServiceTimesSet[index][i].isRecommend=='Y' && num==0){
+                    ischecked='checked';
+                    num=1;
+                }
+                time_html+='<div class="time_list">' +
+                '<div class="'+ischecked+'" data-time-id="'+fdServiceTimesSet[index][i].id+'" data-effectiveTime="'+fdServiceTimesSet[index][i].effectiveTime+'" data-money="'+fdServiceTimesSet[index][i].servicePrice+'"> ' +
+                '<p>' +
+                fdServiceTimesSet[index][i].timeName+'('+fdServiceTimesSet[index][i].servicePrice+'元)'+
+                '</p> ' +
+                '<div class="thisShow"> ' +
+                '<img src="images/images_family_doctor/true.png" alt=""/>' +
+                '</div> ' +
+                '</div> ' +
+                '</div>';
+            }
+            $('#choose_time').html(time_html);
+        }
+        if(packageDescription[index]!=undefined){
+            $('#service_con').html(packageDescription[index]);
+        }
+        qiehuan();
+    }
+    function teamMessage(id){
+        window.location.href='family_doctor_team_message.html?'+id;
+    }
+    function qiehuan(){//切换加载
+        $('.time_list>div').click(function () {//选择时间
+            $(this).addClass('checked').parent().siblings().children('div').removeClass('checked');
+        });
+        $('.package_icon').click(function () {//选择包
+            $('.package_icon').removeClass('package_select');
+            $(this).addClass('package_select');
+        });
+    }
+    function handleFdServiceOrder(){//生成订单
+        var fdServicePackageId=$('.package_select').attr('data-id');
+        var fdServiceTimesId=$('.time_list .checked').attr('data-time-id');
+        var totalPrice=$('.time_list .checked').attr('data-money');
+        var effectiveTime=$('.time_list .checked').attr('data-effectiveTime');
+        if(fdServicePackageId==''||fdServicePackageId==undefined){
+            ale('请选择服务包');
+            return false;
+        }
+        if(fdServiceTimesId==''||fdServiceTimesId==undefined){
+            ale('请选择时间');
+            return false;
+        }
+        if(totalPrice==''||totalPrice==undefined){
+            return false;
+        }
+        if(effectiveTime==''||effectiveTime==undefined){
+            return false;
+        }
+        $.ajax({
+            type: 'post',
+            async: false,
+            cache: false,
+            url: familyDoctorHost + 'fdServiceItemsAction.action',
+            data: {
+                action: "handleFdServiceOrder",
+                "fdServiceOrder.fdServicePackage.id":fdServicePackageId,
+                "fdServiceOrder.fdServiceTimes.id":fdServiceTimesId,
+                "fdServiceOrder.fdServiceTimes.effectiveTime":effectiveTime,
+                "fdServiceOrder.totalPrice":totalPrice,
+                "fdServiceOrder.fdServiceTeams.id":fdServiceTeamId
+            },
+            success: function (result) {
+                if (result.mes == '请登录') {
+                    ale('请登录');
+                    window.location.href="login.html";
+                }
+                else if (result.mes == '成功') {
+                    window.location.href="family_doctor_servicepay.html?"+result.fdServiceOrder.id;
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                layer();
+            }
+        });
+
+    }
+</script>
+</body>
+</html>

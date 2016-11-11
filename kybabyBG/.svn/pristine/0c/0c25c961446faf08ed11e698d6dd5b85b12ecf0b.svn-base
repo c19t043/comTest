@@ -1,0 +1,199 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>医生圈管理</title>
+	<meta charset="utf-8">
+	<meta name="renderer" content="webkit"/>
+	<meta charset="UTF-8">
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/basic.js"></script>
+	<script src="js/common.js"></script>
+	<script src="js/doctor_circle.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/iconfont/iconfont.css">
+	<link rel="stylesheet" type="text/css" href="css/doctor_circle.css">
+</head>
+<body>
+
+<div id="headcon" class="headcon">
+
+</div>
+
+<div class="middlecon">
+	<div id="leftcon" class="leftcon">
+
+	</div>
+
+	<div id="rightcon" class="rightcon">
+		<div class="content">
+			<div id="con_position" class="con_position">
+				<h1 id="con_tit" class="con_tit"></h1>
+
+				<div id="con_meu" class="con_meu">
+					<span>首页</span>
+					<span>/</span>
+					<span class="first"></span>
+					<span>/</span>
+					<span class="second"></span>																								
+				</div>
+				<div class="con_contral">
+				</div>
+			</div>
+		</div>
+		<div class="fj">
+			<div id="circle_manage" class="circle_manage">
+				<ul class="circle_type">
+					<li class="a">排序</li>
+					<li class="b">分类名</li>
+					<li class="c">状态</li>
+					<li class="d">标记</li>
+					<li class="e">操作</li>
+					<li class="e">详情</li>
+				</ul>
+				<div id="circle_type_con" class="circle_type_con">
+					<table id="circle_type" class="table table-striped table-bordered table-hover table-condensed circleInfo">
+					<!--	
+						<tr>
+							<td class="a">1</td>
+							<td class="b"><input class="typr_input" readonly="readonly" disabled="disabled" type="text" value="成都同城" /></td>
+							<td class="c"><select readonly="readonly" disabled="disabled"><option>Y</option><option>N</option></select></td>
+							<td class="d"><button onclick="changeL(this)" class="btn btn-mini btn-success">修改</button></td>
+						</tr>
+					-->	
+					</table>
+				</div>
+				<div id="circle_type_add" class="circle_type_add">
+					<p class="p_add"><label>分类：</label><input id="add_type_name" type="text"></p>
+					<p class="p_add"><label>排序：</label><input id="add_type_numper" type="number"></p>
+					<p class="p_add"><label>状态：</label><select id="add_type_state"><option>Y</option><option>N</option></select></p>
+					<p class="p_add"><label>标记：</label><select readonly="readonly" disabled="disabled"><option>Y</option><option selected="celected">N</option></select></p>
+					<p class="p_add"><button style="width:100%;" onclick="addOrChange('add')" class="btn btn-primary">添加</button></p>
+					
+				</div>
+			</div>
+
+			<div id="circle_list" class="circle_list">
+				<p class="tit">详情<span></span>&nbsp;&gt;&gt;&nbsp;<span id="secondFontWeight" style="color:#FFBA39;font-weight:bold"></span></p>
+				<div class="circle_lidec">
+					<div id="circle_lidec">
+						<!--
+						<div class="list_detail" class="list_detail">
+							
+							<div class="canvas_img">
+								<div class="loadimg_div">
+									<input readonly="readonly" disabled="disabled" class="loadimg_input" type="file" accept="image/*" onchange="loadImg(this)">
+									<canvas class="loadimg_showcanvas" width="100" height="100"></canvas>
+									<input class="loadimg_base64" style="display:none" />
+									<img class="loadimg_show" />
+								</div>							
+							</div>
+							
+							<div class="basictextinfo">
+								<input type="text" readonly="readonly" disabled="disabled" value="成都华西医院圈">
+								<input class="last" type="text" readonly="readonly" disabled="disabled" value="这是一家全球知名的大医院，非常大">
+								<p><label>参与数：</label><span>20000</span></p>
+								<p><label>发帖数：</label><span>200000</span></p>
+							</div>
+							
+							<div class="stateocontral">
+								<p class="a">
+									<label>是否推荐：</label>
+									<select readonly="readonly" disabled="disabled"><option>Y</option><option>N</option></select>
+								</p>
+								<p class="a">
+									<label>是否启用：</label>
+									<select readonly="readonly" disabled="disabled"><option>Y</option><option>N</option></select>
+								</p>
+								<p class="a">
+									<label>允许回复：</label>
+									<select readonly="readonly" disabled="disabled"><option>Y</option><option>N</option></select>
+								</p>
+							</div>
+							<button onclick="changeL(this)" class="btn btn-success changeC">修改</button>
+							<button onclick="show()" class="btn btn-warning changeC">详情</button>
+						</div>
+						<hr style="border:2px dashed #ddd">
+						-->
+					</div>
+					<div id="addSecondNew" class="addNew">
+						<div class="list_detail">
+							
+							<div class="canvas_img">
+								<div class="loadimg_div">
+									<input class="loadimg_input" type="file" accept="image/*" onchange="loadImg(this)">
+									<canvas class="loadimg_showcanvas" width="80" height="80"></canvas>
+									<input id="addSecondImg" class="loadimg_base64" style="display:none">
+									<img class="loadimg_show">
+								</div>							
+							</div>
+							
+							<div class="basictextinfo">
+								<input id="addSecondName" placeholder="标题" type="text">
+								<input id="addSecondDesc" placeholder="描述" class="last" type="text">
+								<label style="font-weight:normal">所属分类：</label>
+								<select id="ssfl"></select>
+							</div>
+							
+							<div class="stateocontral">
+								<p class="a">
+									<label>是否推荐：</label>
+									<select id="addSecondTJ"><option>Y</option><option>N</option></select>
+								</p>
+								<p class="a">
+									<label>是否启用：</label>
+									<select id="addSecondQY"><option>Y</option><option>N</option></select>
+								</p>
+								<!--
+								<p class="a">
+									<label>允许回复：</label>
+									<select  id="addSecondHF"><option>Y</option><option>N</option></select>
+								</p>
+								-->
+							</div>
+							<button onclick="secondAddOrChange('add',this)" class="btn btn-primary changeD">新增</button>
+						</div>
+					</div>
+				</div>
+				<div id="circleDetails" class="circleDetails">
+					<div class="titinfo">
+						<p>
+							<span>成都同城</span>
+							<span>&nbsp;&gt;&gt;&nbsp;</span>
+							<span>成都华西医院圈</span>
+						</p>
+						<button onclick="dispear()" class="btn btn-info">返回</button>
+					</div>
+					<div id="detailbox" class="detailbox">
+						<table class="detailboxList table table-striped table-bordered table-hover table-condensed">
+							<tr>
+								<th style="width:10%">序号</th>
+								<th style="width:25%">标题</th>
+								<th style="width:15%">发布者</th>
+								<th style="width:15%">时间</th>
+								<th style="width:25%">纵览</th>
+								<th style="width:10%"></th>
+							</tr>
+							<tr>
+								<td style="width:10%">1</th>
+								<td style="width:25%">今天的天气不错啊</th>
+								<td style="width:15%">我是史努比</th>
+								<td style="width:15%">2015-11-11 11:11:11</th>
+								<td style="width:25%">
+									<span class="view">1111</span>
+									<span class="good">2222</span>
+									<span class="mess">3333</span>
+								</th>
+								<td class="more" style="width:10%">more+</th>
+							</tr>
+						</table>					
+					</div>		
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+</body>
+</html>

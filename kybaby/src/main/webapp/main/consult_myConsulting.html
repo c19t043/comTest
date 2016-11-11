@@ -1,0 +1,410 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>我的咨询</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/consult.css"/>
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/plugins.js"></script>
+    <style>
+        body {
+            background: #f4f4f4;
+        }
+
+        #consulting_div {
+            background: #fff;
+            height: 30px;
+            overflow: hidden;
+            padding: 15px 0 6px 0;
+        }
+
+        #consulting_type {
+            overflow: hidden;
+            line-height: 40px;
+            background: #fff;
+            border-bottom: 10px solid #fff;
+        }
+
+        .consulting_tab {
+            float: left;
+            display: inline-block;
+            width: 49.8%;
+            text-align: center;
+            line-height: 16px;
+        }
+
+        .select.consulting_tab > span {
+            border-bottom: 2px solid #ff813d;
+            padding-bottom: 8px;
+        }
+
+        .consulting_tab:nth-child(1) {
+            border-right: 1px solid #e8e8e8;
+        }
+
+        #consulting_list {
+            background: #f4f4f4;
+        }
+
+        #consulting_type > div {
+            display: inline-block;
+            float: left;
+            width: 50%;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        #consulting_type > .selected {
+            color: #ff813d;
+        }
+
+        .consulting_item {
+            padding: 14px 12px;
+            overflow: hidden;
+            font-size: 13px;
+            border-bottom: 5px solid #ffffff;
+            display: none;
+        }
+
+        .doctor_header {
+            position: relative;
+            margin-right: 12px;
+            display: inline-block;
+            width: 57px;
+            height: 60px;
+            float: left;
+            border: 1px solid #f4f4f4;
+        }
+
+        .doctor_header > img {
+            width: 100%;
+            border-radius: 100%;
+            height: 57px;
+        }
+
+        .consulting_information {
+            position: relative;
+            margin-top: -6px;
+            display: inline-block;
+            float: right;
+            width: 76%;
+            font-size: 12px;
+            height: 60px;
+        }
+
+        .consulting_content {
+            width: 80%;
+            color: #909090;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+            line-height: 22px;
+            font-size: 10px;
+        }
+
+        .consulting_data {
+            overflow: hidden;
+            line-height: 25px;
+        }
+
+        .consulting_doctor {
+            display: inline-block;
+            float: left;
+            font-size: 15px;
+        }
+
+        .new_message {
+            position: absolute;
+            left: 0;
+            display: inline-block;
+            width: 5px;
+            height: 5px;
+            border-radius: 5px;
+            background: #e95c6a;
+            top: 0;
+        }
+
+        .consulting_time {
+            display: inline-block;
+            float: right;
+            font-size: 10px;
+            color: #909090;
+        }
+        .comment{
+            /*border-top: 1px solid #fefefe;*/
+            line-height: 30px;
+            margin-top: 60px;
+            width: 100%;
+        }
+        .comment>span{
+            visibility: hidden;
+        }
+        .comment>p{
+            text-align: right;
+        }
+        .new_way{
+            width: 57px;
+            border-radius: 100%;
+            height: 57px;
+            overflow: hidden;
+            position: relative;
+        }
+        .doctor_header>.new_way>img.N{
+            opacity: 0.7;
+            filter: alpha(opacity=70);
+        }
+        .doctor_header>.new_way>span.cover{
+            font-size: 10px;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 70%;
+            height: 18px;
+            background: rgba(255,129,61,0.5);
+            color: #ffffff;
+            text-indent: 10px;
+            line-height: 16px;
+            display: none;
+        }
+        .doctor_header>.new_way>span.N{
+            display: inline-block;
+        }
+        #consulting_type span.icon{
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: url("images/images_main/return_arrow.png") no-repeat center bottom;
+            background-size: 7px;
+            transform: rotate(180deg);
+            -webkit-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            -o-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+            -webkit-transition: all 0.5s;
+            -moz-transition: all 0.5s;
+            -ms-transition: all 0.5s;
+            -o-transition: all 0.5s;
+            transition: all 0.5s;
+            margin-left: 10px;
+        }
+        #consulting_type .selected span.icon{
+            transform: rotate(270deg);
+            -webkit-transform: rotate(270deg);
+            -moz-transform: rotate(270deg);
+            -o-transform: rotate(270deg);
+            -ms-transform: rotate(270deg);
+        }
+    </style>
+</head>
+<body>
+
+<div id="header">
+    <div class="header-left" onclick="sessionStorage.setItem('consult','');window.location.href='personalcenter.html'"><span>我的咨询</span></div>
+    <div class="header-center"></div>
+    <div class="header-right"></div>
+</div>
+<!--header-->
+
+<div id="container">
+    <div id="consulting_div">
+        <div class="consulting_tab" data-consultTab="普通咨询"><span>普通咨询</span></div>
+        <div class="consulting_tab" data-consultTab="家庭医生咨询"><span>家庭医生咨询</span></div>
+    </div>
+    <div id="consulting_type">
+        <div data-consultType="当前咨询">当前咨询<span class="icon"></span></div>
+        <div data-consultType="历史咨询">历史咨询<span class="icon"></span></div>
+    </div>
+    <div id="consulting_list">
+        <!--<div class="consulting_item">-->
+        <!--<div class="doctor_header"><img src="images/adminManage.jpg" alt=""/><span class="new_message"></span></div>-->
+        <!--<div class="consulting_information">-->
+        <!--<p class="consulting_data"><span class="consulting_doctor">张某某</span><span-->
+        <!--class="consulting_time">7月7日</span></p>-->
+
+        <!--<p class="consulting_content">随着2016年的到来，许多新的设计趋势都渐渐掀开了它们神秘的面纱。随着2016年的到来，许多新的设计趋势都渐渐掀开了它们神秘的面纱。</p>-->
+        <!--</div>-->
+        <!--</div>-->
+    </div>
+</div>
+
+</body>
+<script>
+    $(function () {
+        consult_myConsulting.getSession();
+    });
+    var consult_myConsulting = {
+        chooseConsult: function () {
+            $('.consulting_tab').click(function () {//普通咨询与家庭医生咨询
+                var _this = $(this);
+                _this.addClass('select').siblings().removeClass('select');
+                var text = _this.children('span').text();
+                if(text=='普通咨询'){
+                    consult_myConsulting.consultList(2,$('.selected').text());
+                }else{
+                    consult_myConsulting.consultList(1,$('.selected').text());
+                }
+            });
+            $('#consulting_type>div').click(function () {//当前咨询和历史咨询
+                var _this = $(this);
+                _this.addClass('selected').siblings().removeClass('selected');
+                var text = _this.text();
+                if(text=='当前咨询'){
+                    $('.consulting_item').hide();
+                    $('.consulting_item[data-isCurrentDialog*=Y]').show();
+                }else{
+                    $('.consulting_item').show();
+                    $('.consulting_item[data-isCurrentDialog*=Y]').hide();
+                }
+            });
+        },
+        consultList: function (userType,type) {//咨询列表，咨询用户类型（0:普通用户咨询；1：家庭医生签约用户咨询；2:收费咨询服务）
+            $.ajax({
+                type:'post',
+                url:hostName+'consult/consultDialogManage.action',
+                cache:false,
+                async:true,
+                data:{
+                    action:"getList",
+                    "userType":userType
+                },
+                success:function(result){
+                    if (result.mes == '请登录') {
+                        ale('请登录', '24px');
+                        window.location.href = "login.html";
+                    }
+                    else if (result.mes == "成功") {
+                        var consultHistoryFoList=result.consultHistoryFoList;
+                        var html='';
+                        if(consultHistoryFoList!=null){
+                            for(var i= 0,len=consultHistoryFoList.length;i<len;i++){
+                                var isRead='';
+                                if(consultHistoryFoList[i].newMesNum!=0){
+                                    isRead='<span class="new_message"></span>';
+                                }
+                                var comment='';
+                                var isCanComment='';
+                                if(consultHistoryFoList[i].consultStatus!=null){
+                                    comment='<div class="comment"> '+
+//                                    '<span>&yen;'+consultHistoryFoList[i].consultPrice+'</span> ' +
+                                    '<p>待评价</p></div>';
+                                    isCanComment='Y';
+                                }
+                                var lastConsult=consultHistoryFoList[i].lastConsult;
+                                var isFirstConsult='N';
+                                if(consultHistoryFoList[i].lastConsult==null||consultHistoryFoList[i].lastConsult==''){
+                                    lastConsult='开始会话';
+                                    isFirstConsult='Y';
+                                }
+                                if(lastConsult.indexOf('family_doctor_patient.html')>-1){
+                                    lastConsult="儿科门诊预约";
+                                }else if(lastConsult.indexOf('family_doctor_erbao.html')>-1){
+                                    lastConsult="儿保门诊预约";
+                                }else if(lastConsult.indexOf('family_doctor_vaccine.html')>-1){
+                                    lastConsult="计免预约";
+                                }else if(lastConsult.indexOf('family_doctor_expert_team.html')>-1){
+                                    lastConsult="推荐团队";
+                                }
+                                var isOnline='';
+                                if(userType==2 && consultHistoryFoList[i].isCurrentDialog=='Y' && isCanComment==''){
+                                    if(consultHistoryFoList[i].isOnline == 'Y'){
+                                        isOnline='Y';//在线
+                                    }else{
+                                        isOnline='N';//离线
+                                    }
+                                }
+                                html+='<div class="consulting_item" data-isOnline="'+isOnline+'" data-fdServicePackageId="'+consultHistoryFoList[i].fdPackageId+'" data-doctor-id="'+consultHistoryFoList[i].doctorInfo.id+'" data-isCurrentDialog="'+consultHistoryFoList[i].isCurrentDialog+'" onclick="consult_myConsulting.goToConsultation('+consultHistoryFoList[i].logId+',\''+isCanComment+'\',\''+isFirstConsult+'\',\''+userType+'\',\''+consultHistoryFoList[i].isCurrentDialog+'\',this)">' +
+                                '<div class="doctor_header">' +
+                                '<div class="new_way"><img class="'+isOnline+'" src="'+hostBG+'images/doctorFaceIcon/'+consultHistoryFoList[i].doctorInfo.doctorImage+'" alt=""/>' +
+                                '<span class="cover '+isOnline+'">留言</span></div>' +
+                                isRead+'</div> ' +
+                                '<div class="consulting_information"> ' +
+                                '<p class="consulting_data"><span class="consulting_doctor">'+consultHistoryFoList[i].doctorInfo.doctorName+'</span><span class="consulting_time">'+consultHistoryFoList[i].lastSubmitTime.substr(0,10)+'</span></p> ' +
+                                '<p class="consulting_content">'+lastConsult+'</p> ' +
+                                '</div>'+comment+
+                                '</div>';
+                            }
+                        }
+                        $('#consulting_list').html(html);
+                        if(userType==1){
+                            $('.consulting_tab[data-consultTab="家庭医生咨询"]').addClass('select');
+                        }else if(userType==2){
+                            $('.consulting_tab[data-consultTab="普通咨询"]').addClass('select');
+                        }
+                        $('#consulting_type>div[data-consultType='+type+']').addClass('selected');
+                        if(type=='当前咨询'){
+                            $('.consulting_item').hide();
+                            $('.consulting_item[data-isCurrentDialog*=Y]').show();
+                        }else if(type=='历史咨询'){
+                            $('.consulting_item').show();
+                            $('.consulting_item[data-isCurrentDialog*=Y]').hide();
+                        }
+                        consult_myConsulting.chooseConsult();
+                    }
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    layer();
+                }
+            });
+        },
+        getSession:function(){//通过session判断返回路径
+            var session=sessionStorage.getItem('consult');
+            if(session==''||session==undefined||session==null){
+                consult_myConsulting.consultList(2,'当前咨询');
+                return false;
+            }else{
+                var sessionArr=session.split('=');
+                if(sessionArr[0]=='普通咨询'){
+                    consult_myConsulting.consultList(2,sessionArr[1]);
+                }else{
+                    consult_myConsulting.consultList(1,sessionArr[1]);
+                }
+            }
+        },
+        goToConsultation: function (id,isCanComment,isFirstConsult,userType,isCurrentDialog,div) {
+//            if($(div).attr('data-isOnline')=='N'){
+//                var answer=confirm('当前医生不在线，咨询回复可能延迟，确认购买该医生咨询服务，给医生留言吗？');
+//            };
+//            if(answer==false){
+//                return false;
+//            }
+            var consultTab=$('.select>span').text();
+            var consultType=$('.selected').text();
+            sessionStorage.setItem('consult',consultTab+'='+consultType);
+            if(isFirstConsult=='Y'&&isCurrentDialog=='Y'){//是否买过咨询服务还没有发起会话
+                window.location.href='consult_problem_description.html?'+id;
+                return false;
+            }
+            if(isCanComment=='Y'){//是否评论
+                var consultType='';
+                if(userType==1){//咨询类型
+                    consultType='家庭医生咨询';
+                }else if(userType==2){
+                    consultType='收费咨询';
+                }
+                window.location.href='consult_evaluation.html?'+id+'&'+consultType;
+            }else{//是否结束咨询
+                if(isCurrentDialog=='Y'){
+                    if(userType==1){//咨询类型
+                        window.location.href='consultation.html?doctorId='+$(div).attr('data-doctor-id')+'&LogId='+id+'&userType=1&fdServicePackageId='+$(div).attr('data-fdServicePackageId');
+                    }else if(userType==2){
+                        window.location.href='consult_consultation.html?'+id+'&'+isCurrentDialog;
+                    }
+                }else{
+                    if(userType==1){//咨询类型
+                        window.location.href='consultation.html?doctorId='+$(div).attr('data-doctor-id')+'&LogId='+id+'&userType=1&fdServicePackageId='+$(div).attr('data-fdServicePackageId');
+                    }else if(userType==2){
+                        window.location.href='consult_consultation.html?'+id+'&'+isCurrentDialog;
+                    }
+                }
+            }
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,138 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>支付成功</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/mall.css"/>
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <style>
+        #pay{
+            font-size: 15px;
+        }
+        #success{
+            margin: 30px 12px 15px;
+            padding-left: 32px;
+            background: url(images/images_family_doctor/true.png)no-repeat 8px center;
+            background-size: 16px;
+        }
+        #payment_information{
+            font-size: 13px;
+            margin: 0px 20px;
+            /*border: 1px solid #FE9257;*/
+            /*border-radius: 5px;*/
+            line-height: 30px;
+        }
+        footer #button{
+            border: 1px solid #ff813d;
+            background: #ff813d;
+            color: #fff;
+        }
+        #container {
+            width: 100%;
+            margin: 25px 0 50px;
+        }
+        #button_div{
+            margin-top: 80px;
+            height: 50px;
+            padding: 0 18px;
+        }
+        #button_div #button{
+            background: #ff813d;
+            color: #fff;
+            line-height: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div id="header">
+    <div class="header-left"><span>支付成功</span></div>
+    <div class="header-center"></div>
+    <div class="header-right"></div>
+</div>
+<!--header-->
+
+<div id="container">
+    <div id="pay">
+        <p id="success">
+            预约成功
+        </p>
+        <p class="gray_s"></p>
+        <p style="margin:15px 20px 10px">您的预约信息</p>
+        <div id="payment_information">
+            <!--<p>就诊人：<span id="user">李易峰</span></p>-->
+
+            <!--<p>预约医生：<span id="doctor">黄毅</span></p>-->
+
+            <!--<p>预约日期：<span id="time">2016-11-11</span></p>-->
+
+            <!--<p>建议就诊日期：<span id="suggest_time">2016-11-11</span></p>-->
+
+            <!--<p>付款金额：<span id="money">￥2.00</span></p>-->
+        </div>
+        <div id="button_div">
+            <p id="button">查看预约订单</p>
+        </div>
+    </div>
+</div>
+<script src="js/main.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/config.js"></script>
+<script>
+    var dept = window.location.search.substring(1).split("=")[0];
+    if(dept=="e"){
+        flag = 1;
+    }else{
+        flag = 2;
+    }
+    var orderId = window.location.search.substring(1).split("=")[1];
+    $(function () {
+        $.ajax({
+            type: 'post',
+            url:spInterfaceService+'querySpRegisterOrderDetail.action',
+            cache:false,
+            async:true,
+            data:{"orderId":orderId,
+                "deptFlag":flag
+            },
+            success: function (result) {
+                if(result.mess=='请登录'){
+                    ale('请登录', '24px');
+                    link_to("login.html");
+                }
+                else if(result.mess=='成功'){
+                    var order_detail = result.spRegisterOrderDetail;
+                    $("#payment_information").html('<p>就诊人：<span id="user">'+order_detail.residentName+'</span></p><p>预约医生：<span id="doctor">'+order_detail.doctorName+'</span></p>' +
+                            '<p>预约日期：<span id="time">'+order_detail.registerDate.split(' ')[0]+'</span></p><p>建议就诊时间：<span id="suggest_time">'+order_detail.registerDate+'</span></p>' +
+                            '<p>付款金额：<span id="money">￥'+parseFloat(order_detail.registerMoney).toFixed(2)+'</span></p>');
+                }
+            },
+            error: function () {
+                layer();
+            }
+        });
+        $(".header-left").click(function(){
+            if(dept=="e"){
+                link_to("myOrg.html");
+            }else{
+                link_to("myAppointment.html");
+            }
+        })
+        $("#button").click(function(){
+            if(dept=="e"){
+                link_to("myOrg.html");
+            }else{
+                link_to("myAppointment.html");
+            }
+        })
+    });
+</script>
+</body>
+</html>

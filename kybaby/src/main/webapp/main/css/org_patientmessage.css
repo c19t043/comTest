@@ -1,0 +1,298 @@
+﻿body {
+    background: #ffffff;
+    color: #505050;
+}
+.personal_list>div{
+    width: 100%;
+    height: 50px;
+    padding: 0px 20px 0px 20px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.personal_list .personal_left {
+    float: left;
+    height: 50px;
+    line-height: 56px;
+    width: 30%;
+    font-size: 16px;
+}
+.personal_list .personal_right {
+    float: right;
+    font-size: 2em;
+    color: #909090;
+    width: 70%;
+}
+
+.personal_list .personal_right input {
+    border: none;
+}
+
+.information{
+    width: 100%;
+    height: 60px;
+    padding: 0px 30px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.information>.left{
+    float: left;
+    height: 60px;
+    line-height: 60px;
+    width: 30%;
+    font-size: 16px;
+    text-align: center;
+}
+.information>.right{
+    float: left;
+    color: #c8c8c8;
+    width:58%;
+    text-align: right;
+    margin-top: 10px;
+}
+#babyHealth,#diagnosticCover,#symptomsCover{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    background: rgba(0,0,0,0.6);
+    z-index: 3000;
+}
+#diagnosticCover>div,#symptomsCover>div{
+    width: 98%;
+    height: 445px;
+    background: #fff;
+    position: fixed;
+    z-index: 1002;
+    top: 55px;
+    left: 1%;
+    border: 1px solid #03A9F4;
+    border-radius: 3px;
+    text-align: center;
+}
+.diagnosticCover,.symptomsCover{
+    -webkit-appearance: searchfield;
+    -moz-appearance: searchfield;
+    padding: 10px 2%;
+    font-size: 18px;
+    color: #222222;
+    outline: none;
+    width: 90%;
+    border-radius: 8px;
+    border: 2px solid #c0c0c0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-box-shadow: 0px 3px 3px 3px #bababa inset;
+    -moz-box-shadow: 0px 3px 3px 3px #bababa inset;
+    box-shadow: 0px 3px 3px 3px #bababa inset;
+    height: 140px;
+}
+
+.symptomsRecord,.diagnosticRecord{
+    width: 90%;
+    margin: 0px auto;
+    text-align: left;
+}
+.symptomsRecord>span,.diagnosticRecord span{
+    padding: 3px 6px;
+    border-radius: 3px;
+    background: #e1e1e1;
+    color: #ff813d;
+    display: inline-block;
+    margin: 0px 0px 10px 20px;
+}
+.symptomsRecord>span.blue{
+    background: #ff813d;
+    color: #ffffff;
+}
+
+.diagnosticRecord>a>span.blue{
+    background: #ff813d;
+    color: #ffffff;
+}
+#addDrug{
+    z-index: 3000;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    overflow: auto;
+}
+#addDrugHeader{
+    width: 100%;
+    height: 45px;
+    background: #fff;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    z-index: 3999;
+}
+#addDrugHeader>.headerLeft{
+    width: 20%;
+    float: left;
+    line-height: 45px;
+    font-size:30px;
+    height:45px;
+    color: #c8c8c8;
+}
+#addDrugHeader>.headerLeft>p{
+    background: url("../images/prev_01.png") no-repeat center center;
+    background-size: 25px;
+    height: 45px;
+}
+#addDrugHeader>.header-center{
+    width: 60%;
+    float: left;
+    line-height: 45px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size:18px;
+}
+#addDrugHeader>.header-right{
+    width: 20%;
+    float: right;
+    line-height: 45px;
+    height:45px;
+}
+#addDrug>div#chooseDrug>span{
+    padding: 3px 6px;
+    border-radius: 3px;
+    background: #ff813d;
+    color: #ffffff;
+    display: inline-block;
+    margin: 0px 0px 10px 20px;
+}
+#chooseDrug{
+    width: 100%;
+    background: #fff;
+    position: fixed;
+    top:45px;
+    left: 0;
+    z-index: 3999;
+    border-bottom: 1px solid #F7F7F7;
+}
+#allDrugList{
+    margin-top: 80px;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+.personal_list_new{
+    overflow: hidden;
+}
+.personal_list_new > div {
+    width: 100%;
+    padding: 0px 20px 0px 20px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.personal_list_new .personal_left, .personal_list_new .personal_left1 {
+    float: left;
+    height: 50px;
+    line-height: 50px;
+    width: 90%;
+}
+.personal_list_new .personal_right {
+    float: right;
+    font-size: 2em;
+    color: #c8c8c8;
+    width: 10%;
+    height: 50px;
+    line-height: 44px;
+    text-align: right;
+}
+.personal_list_new .personal_left1 {
+    line-height: 25px;
+    font-size: 13px;
+}
+
+.personal_right_new img{
+    width: 30px;
+    height: 30px;
+
+}
+.personal_left1 > span {
+    border: 1px solid #ff813d;
+    color: #ff813d;
+    padding: 1px 2px;
+    border-radius: 3px;
+}
+.content{
+    display: none;
+}
+.contentDetail>p{
+    line-height: 50px;
+    padding-left: 10px;
+}
+.content_detail{
+    display: none;
+}
+.content_detail>span{
+    padding: 3px 6px;
+    border-radius: 3px;
+    background: #e1e1e1;
+    color: #ff813d;
+    display: inline-block;
+    margin: 0px 0px 10px 20px;
+}
+.content_detail>span.blue{
+    background: #ff813d;
+    color: #ffffff;
+}
+.personal_list_new .personal_right .zhuan{
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+}
+#addDrugHeader>.header-right>span{
+    padding: 3px 6px;
+    color: #ffffff;
+    background: #009688;
+    border-radius: 3px;
+}
+.con_hid{
+    font-size: 12px;
+}
+.con_hid>div:nth-child(1){
+    padding: 0  10px;
+    text-indent: 24px;
+}
+.con_hid>div:nth-child(2){
+    padding: 0  10px;
+}
+.con_hid>span{
+    display: inline-block;
+    margin: 10px 10px 0px 0px;
+    padding: 3px 6px;
+    color: #ffffff;
+    background: #ff813d;
+    border-radius: 4px;
+}
+.con_hid>div>span{
+    display: inline-block;
+    margin: 10px 10px 0px 0px;
+    padding: 3px 6px;
+    color: #ffffff;
+    background: #ff813d;
+    border-radius: 4px;
+}
+.personal_list_new .personal_right img{
+    height: 11px;
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}

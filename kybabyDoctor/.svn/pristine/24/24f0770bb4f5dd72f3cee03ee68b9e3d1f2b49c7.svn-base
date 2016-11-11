@@ -1,0 +1,139 @@
+﻿@charset "utf-8";
+
+.add_box {
+    width: 90%;
+    padding: 10px 5%;
+    clear: both;
+    overflow: hidden;
+    background: #fff;
+    color: #969696;
+}
+.add_box_left {
+    width: 90%;
+    float: left;
+    line-height: 25px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.icon_point {
+    width: 10px;
+    height: 10px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid #4fc1e9;
+    float:left;
+    margin-top: 20px;
+}
+.on {
+    background: #4fc1e9;
+
+}
+.add_details {
+    margin-left: 20px;
+}
+.add_details p {
+    width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.add_box_right {
+    margin-left: 90%;
+    text-align: right;
+    line-height: 50px;
+    font-size: 2em;
+}
+.time_box {
+    width: 100%;
+    padding:10px 0;
+    background: #fff;
+    clear: both;
+    overflow: hidden;
+}
+.time_box_tit {
+    width: 90%;
+    margin: 0 auto;
+    line-height: 30px;
+    color: #505050;
+}
+.table_box {
+    /*height: 430px;*/
+    /*overflow-y: auto;*/
+    overflow-x: hidden;
+}
+.time_table {
+    width: 100%;
+    border-top: 1px solid #f7f7f7;
+    border-bottom: 1px solid #f7f7f7;
+    border-collapse: collapse;
+    text-align: center;
+    color: #969696;
+}
+.time_table td:first-child {
+    border: none;
+    font-size: 0.875em;
+}
+.time_table td {
+    border: 7px solid #f7f7f7;
+    height: 50px;
+    padding: 5px;
+    font-size: 0.875em;
+}
+.time_table td p:last-child {
+    font-size: 0.875em;
+}
+.time_table td.select {
+    background: #1cba93;
+    color: #fff;
+}
+.servicetime_note {
+    width: 90%;
+    margin: 0 auto;
+    text-align: right;
+    font-size: 0.875em;
+    color: #969696;
+    line-height: 40px;
+}
+.select_yellow{
+    background:#ffcc32;
+    color:#fff;
+}
+#addressSure{
+    overflow: hidden;
+    color: #505050;
+    line-height: 30px;
+}
+#addressSure>.float-left{
+    margin:9px 0 10px 15px;
+    width: 27%;
+    height:15px;
+    border-right: 1px solid #909090;
+    line-height: 15px;
+}
+#addressSure>.float-right{
+    width: 60%;
+    color: #909090;
+    margin-bottom: 5px;
+    padding-left: 6%;
+}
+#footer {
+    width: 100%;
+    height: 46px;
+    text-align: center;
+    line-height: 40px;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    background: #F7F7F7;
+}
+#footer p{
+    height: 43px;
+}
+.modify span{
+    background: #eeeeee;
+    padding: 1px;
+    color: #909090;
+}

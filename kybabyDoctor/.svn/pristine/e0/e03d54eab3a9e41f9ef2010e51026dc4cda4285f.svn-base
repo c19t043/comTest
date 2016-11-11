@@ -1,0 +1,54 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>医生资料</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/Doctorauthentication.css">
+    <link rel="stylesheet" href="css/org_doctorDataManage.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="js/sha1.js"></script>
+    <script src="js/jquery.qrcode.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/config.js"></script>
+</head>
+<body>
+<!--header-->
+<div id="header" class="doctor_header">
+    <div class="header-left" onclick="link_to('org_doctorDataMan_begin.html')"><p></p></div>
+    <div class="header-center">医生资料</div>
+    <div class="header-right">
+        <span class="right_topButton">保存</span>
+    </div>
+</div>
+<div id="container">
+    <div>
+        <ul class="header_nav flex_cont">
+            <li class="flex_item" onclick="link_to('org_doctorDataMan_docInfo_basic.html')">基本信息</li>
+            <li class="interval"><span>|</span></li>
+            <li class="flex_item" onclick="link_to('org_doctorDataMan_docInfo_identity.html')">身份提交</li>
+            <li class="interval"><span>|</span></li>
+            <li class="flex_item" onclick="link_to('org_doctorDataMan_docInfo_life.html')">生活信息</li>
+            <li class="interval"><span>|</span></li>
+            <li class="flex_item header_nav_select">评价</li>
+        </ul>
+    </div>
+    <div class="doctor_information">
+        <div>
+            <p class="info_title">对医生的评价：</p>
+            <p class="gray_1"></p>
+            <div class="information_div flex_cont">
+                <p class="flex_item text" id="evaluation">专业性很强 ，但是 心气有点傲 ，说话难听 ，不配合工作</p>
+            </div>
+            <p class="gray_1"></p>
+        </div>
+    </div>
+</div>
+<script>
+</script>
+</body>
+</html>

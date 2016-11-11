@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	
+	<bean id="goodsAction" class="com.java.b2cGoods.action.GoodsAction" scope="prototype">
+		<property name="goodsService" ref="goodsServiceImpl" />
+	</bean>
+	<bean id="goodsOrderAction" class="com.java.b2cGoods.action.GoodsOrderAction" scope="prototype">
+		<property name="goodsOrderService" ref="goodsOrderServiceImpl" />
+	</bean>
+	<bean id="goodsDeliverAction" class="com.java.b2cGoods.action.GoodsDeliverAction" scope="prototype">
+		<property name="goodsDeliverService" ref="goodsDeliverServiceImpl" />
+	</bean>
+	<bean id="goodsPresaleModelAction" class="com.java.b2cGoods.action.GoodsPresaleModelAction" scope="prototype">
+		<property name="goodsPresaleModelService" ref="goodsPresaleModelServiceImpl" />
+	</bean>
+	<bean id="goodsTypeAction" class="com.java.b2cGoods.action.GoodsTypeAction" scope="prototype">
+		<property name="goodsTypeService" ref="goodsTypeServiceImpl" />
+	</bean>
+	<bean id="goodsPropAndValAction" class="com.java.b2cGoods.action.GoodsPropAndValAction" scope="prototype">
+		<property name="goodsPropAndValService" ref="goodsPropAndValServiceImpl" />
+	</bean>
+</beans>

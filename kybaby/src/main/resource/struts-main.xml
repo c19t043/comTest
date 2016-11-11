@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="user-package" namespace="/main" extends="struts-default">
+	<result-types>
+		<result-type name="json" class="org.apache.struts2.json.JSONResult" />
+	</result-types>
+	
+	<interceptors>
+		<interceptor name="json" class="org.apache.struts2.json.JSONInterceptor" />
+	</interceptors>
+    <!-- 用户登录 -->
+    <action name="getUserInfo" class="com.kybaby.action.main.GetUserInfo" >
+    	<result name="success" type="json"></result>
+       	<result name="fail" type="json"></result>
+    </action>
+	
+	<!-- 获取验证码 -->
+	<action name="getCheckWords" class="com.kybaby.action.main.GetCheckWords"  >
+		<result name="success" type="json"></result>
+		<result name="fail" type="json"></result>
+	</action>
+	
+	<!-- 用户管理 -->
+	<action name="userManage" class="com.kybaby.action.main.UserManage" >
+		<result name="success" type="json"></result>
+		<result name="fail" type="json"></result>
+	</action>
+	
+	<!-- 引导页图片 -->
+	<action name="getGuideInfo" class="com.kybaby.action.main.GetGuideInfo" >
+		<result name="success" type="json"></result>
+		<result name="fail" type="json"></result>
+	</action>
+	
+	<!-- banner区域图片 -->
+	<action name="getBannerInfo" class="com.kybaby.action.main.GetBannerInfo" >
+		<result name="success" type="json"></result>
+		<result name="fail" type="json"></result>
+	</action>
+	
+	<!-- 产品相关的 -->
+	<action name="getProductInfo" class="com.kybaby.action.main.GetProductInfo" >
+		<result name="success" type="json"></result>
+		<result name="fail" type="json"></result>
+	</action>
+	
+	<!-- 医生相关的 -->
+	<action name="getDoctorInfo" class="com.kybaby.action.main.GetDoctorInfo" >
+		<result name="success" type="json"></result>
+		<result name="fail" type="json"></result>
+	</action>
+	
+	<!-- 医生个人专栏相关的 -->
+	<action name="getDoctorArticleInfo" class="com.kybaby.action.main.GetDoctorArticleInfo" >
+		<result name="success" type="json"></result>
+		<result name="fail" type="json"></result>
+	</action>
+	
+	<!-- 医生个人专栏评论相关的 -->
+	<action name="doctorArticleManage" class="com.kybaby.action.main.DoctorArticleManage" >
+		<result name="success" type="json"></result>
+		<result name="fail" type="json"></result>
+	</action>
+	
+	<!-- 产品项目相关的 -->
+	<action name="getProductItemInfo" class="com.kybaby.action.main.GetProductItemInfo" >
+		<result name="success" type="json"></result>
+		<result name="fail" type="json"></result>
+	</action>
+	
+	<!-- session检查相关的 -->
+	<action name="getSession" class="com.kybaby.action.main.GetSession" >
+		<result name="success" type="json"></result>
+		<result name="fail" type="json"></result>
+	</action>
+	
+	<!-- 订单相关的 -->
+	<action name="getOrderInfo" class="com.kybaby.action.main.GetOrderInfo" >
+		<result name="success" type="json"></result>
+		<result name="fail" type="json"></result>
+	</action>
+	
+	<!-- 订单管理相关的 -->
+	<action name="orderManage" class="com.kybaby.action.main.OrderManage" >
+		<result name="success" type="json"></result>
+		<result name="fail" type="json"></result>
+	</action>
+	
+	<!-- 短信发送相关的 -->
+	<action name="sendMessage" class="com.kybaby.action.main.SendMessage" >
+		<result name="success" type="json"></result>
+		<result name="fail" type="json"></result>
+	</action>
+	
+	<!-- 短信发送相关的 （门诊和多点执业）-->
+	<action name="sendMessageByClinic" class="com.kybaby.action.main.SendMessageByClinic" >
+		<result name="success" type="json"></result>
+		<result name="fail" type="json"></result>
+	</action>
+	
+	<!-- 用户咨询医生相关的 -->
+	<action name="getUserConsultDoctorInfo" class="com.kybaby.action.main.GetUserConsultDoctorInfo" >
+		<result name="success" type="json"></result>
+		<result name="fail" type="json"></result>
+	</action>
+	
+	<!-- 用户咨询医生管理相关的 -->
+	<action name="userConsultDoctorManage" class="com.kybaby.action.main.UserConsultDoctorManage" >
+		<result name="success" type="json"></result>
+		<result name="fail" type="json"></result>
+	</action>
+	
+	<!-- 用户咨询医生管理相关的 -->
+	<action name="consultDoctorManage" class="com.kybaby.action.main.ConsultDoctorManage" >
+		<result name="success" type="json"></result>
+		<result name="fail" type="json"></result>
+	</action>
+	
+	<!-- 用户优惠券相关的 -->
+	<action name="getUserCouponInfo" class="com.kybaby.action.main.GetUserCouponInfo" >
+		<result name="success" type="json"></result>
+		<result name="fail" type="json"></result>
+	</action>
+	
+	<!-- 健康档案相关的 -->
+	<action name="getOrderResultInfo" class="com.kybaby.action.main.GetOrderResultInfo" >
+		<result name="success" type="json"></result>
+		<result name="fail" type="json"></result>
+	</action>
+	
+	<!-- 成长记录相关的 -->
+	<action name="getGrowthRecordInfo" class="com.kybaby.action.main.GetGrowthRecordInfo" >
+		<result name="success" type="json"></result>
+		<result name="fail" type="json"></result>
+	</action>
+	
+	<!-- 成长记录管理相关的 -->
+	<action name="growthRecordManage" class="com.kybaby.action.main.GrowthRecordManage" >
+		<result name="success" type="json"></result>
+		<result name="fail" type="json"></result>
+	</action>
+	
+	<!-- 查看历史病历夹 -->
+	<action name="getAcheInfo" class="com.kybaby.action.main.GetAcheInfo" >
+		<result name="success" type="json"></result>
+		<result name="fail" type="json"></result>
+	</action>
+	
+	<!-- 所有咨询标签 -->
+	<action name="getSymptomTagInfo" class="com.kybaby.action.main.GetSymptomTagInfo" >
+		<result name="success" type="json"></result>
+		<result name="fail" type="json"></result>
+	</action>
+	
+	<!-- 病历夹管理相关的 -->
+	<action name="caseClipManage" class="com.kybaby.action.main.CaseClipManage" >
+		<result name="success" type="json"></result>
+		<result name="fail" type="json"></result>
+	</action>
+	
+	<!-- 健康计划相关的 -->
+	<action name="getHealthPlanRemainInfo" class="com.kybaby.action.main.GetHealthPlanRemainInfo" >
+		<result name="success" type="json"></result>
+		<result name="fail" type="json"></result>
+	</action>
+	
+	<!-- 执行今日健康计划相关的 -->
+	<action name="healthPlanRemainManage" class="com.kybaby.action.main.HealthPlanRemainManage" >
+		<result name="success" type="json"></result>
+		<result name="fail" type="json"></result>
+	</action>
+	
+	<action name="feedBackManage" class="com.kybaby.action.main.FeedBackManage" >  
+		<result name="success" type="json"></result>
+		<result name="fail" type="json"></result>
+	</action>
+	
+		<!-- 账户相关的 -->
+	<action name="accountManage" class="com.kybaby.action.main.AccountManage" >
+		<result name="success" type="json"></result>
+		<result name="fail" type="json"></result>
+	</action>
+
+	<!-- 用户上传头像 -->
+	<action name="userImageManage" class="com.kybaby.action.main.UserImageManage" >
+		<result name="success" type="redirect" >personalcenter.html</result>
+		<result name="fail" type="redirect" >personalcenter.html</result>
+	</action>
+
+        <!-- 上传头像测试 add by fkn -->
+    <action name="fileRecive" class="com.kybaby.action.main.FileRecive">
+    		<result name="success" type="json" ></result>
+    		<result name="fail" type="json" ></result>
+    </action>  
+    
+    <!-- add by fkn 微信支付订单检查 -->
+    <action name="cardManage" class="com.kybaby.action.main.CardManage">
+    		<result name="success" type="json" ></result>
+    		<result name="fail" type="json" ></result>
+    </action>  
+    
+    
+    <!-- add by 2016-03-09 xiongchao 版本检测接口 -->
+    <action name="versionManage" class="com.kybaby.action.main.VersionManageAction">
+    		<result name="success" type="json" ></result>
+    		<result name="fail" type="json" ></result>
+    </action>
+    
+	<!-- 接口管理 -->
+   	<action name="interfaceManage" class="com.kybaby.action.main.InterfaceManageAction" >
+    	<result name="success" type="json"></result>
+       	<result name="fail" type="json"></result>
+    </action>
+    
+	</package>
+	
+	
+	<!-- 新业务开发-门诊start -->
+	<package name="clinic-package" namespace="/clinic" extends="struts-default">
+	<result-types>
+		<result-type name="json" class="org.apache.struts2.json.JSONResult" />
+	</result-types>
+	
+	<interceptors>
+		<interceptor name="json" class="org.apache.struts2.json.JSONInterceptor" />
+	</interceptors>
+	
+	 <!-- 用户门诊预约 -->
+    <action name="clinicBooking" class="com.kybaby.newbussiness.doctorclinic.action.DoctorClinicAction" >
+    	<result name="success" type="json"></result>
+       	<result name="fail" type="json"></result>
+    </action>
+     <!-- 用户门诊订单 -->
+    <action name="clinicOrder" class="com.kybaby.newbussiness.doctorclinic.action.ClinicOrderAction" >
+    	<result name="success" type="json"></result>
+       	<result name="fail" type="json"></result>
+    </action>
+    <!-- 订单支付回调方法 -->
+   	<action name="clinicOrderPay" class="com.kybaby.newbussiness.doctorclinic.action.ClinicOrderPayAction" >
+    	<result name="success" type="json"></result>
+       	<result name="fail" type="json"></result>
+    </action>
+	</package>
+	<!-- 新业务开发-门诊end -->
+	
+	
+	<!-- 操作业务 start -->
+	<package name="operationbussiness-package" namespace="/operationbussiness" extends="struts-default">
+		<result-types>
+			<result-type name="json" class="org.apache.struts2.json.JSONResult" />
+		</result-types>
+		<interceptors>
+			<interceptor name="json" class="org.apache.struts2.json.JSONInterceptor" />
+		</interceptors>
+		
+		<!-- 两性调查 start -->
+		<action name="investigation" class="com.kybaby.operationbussiness.investigation.action.InvestigationAction">
+			<result name="success" type="json"></result>
+	      	<result name="fail" type="json"></result>
+    	</action>
+		<!-- 两性调查 end -->
+		
+		<!-- 红包业务 start -->
+			<!-- 得到用户openid -->
+			<action name="getUserOpenId" class="com.kybaby.operationbussiness.redpacket.action.GetUserOpenId">
+	       		<result name="success" type="redirect">/operationbussiness/hongbao/index.html</result>
+	   		</action>
+	   		<!-- 红包业务操作类 -->
+			<action name="redpacket" class="com.kybaby.operationbussiness.redpacket.action.RedPacketAction">
+				<result name="success" type="json"></result>
+		      	<result name="fail" type="json"></result>
+	    	</action>
+		<!-- 红包业务 end -->
+	</package>
+	<!-- 操作业务 end -->
+	
+	<!-- 机构及业务管理start -->
+	<package name="orgbusiness-package" namespace="/orgbusiness" extends="struts-default">
+		<result-types>
+			<result-type name="json" class="org.apache.struts2.json.JSONResult" />
+		</result-types>
+		
+		<interceptors>
+			<interceptor name="json" class="org.apache.struts2.json.JSONInterceptor" />
+		</interceptors>
+		
+		 <!-- 机构管理 -->
+	    <action name="orgManage" class="com.kybaby.newbussiness.medicalorgandbusiness.action.OrganManagerAction" >
+	    	<result name="success" type="json"></result>
+	       	<result name="fail" type="json"></result>
+	    </action>
+	    <!-- 业务管理 -->
+	   	<action name="orgBoManage" class="com.kybaby.newbussiness.medicalorgandbusiness.action.OpenBusinessManagerAction" >
+	    	<result name="success" type="json"></result>
+	       	<result name="fail" type="json"></result>
+	    </action>
+	    <!-- 儿保收费业务管理 -->
+	   	<action name="childCareChargeManage" class="com.kybaby.newbussiness.medicalorgandbusiness.action.ChildCareChargeManage" >
+	    	<result name="success" type="json"></result>
+	       	<result name="fail" type="json"></result>
+	    </action>
+	    <!-- 儿保收费支付成功-->
+	   	<action name="childCareChargePayBack" class="com.kybaby.newbussiness.medicalorgandbusiness.action.ChildCareChargePayBack" >
+	    	<result name="success" type="json"></result>
+	       	<result name="fail" type="json"></result>
+	    </action>
+	    <!-- 疫苗管理 -->
+	   	<action name="vaccineManage" class="com.kybaby.newbussiness.medicalorgandbusiness.action.VaccineManageAction" >
+		    	<result name="success" type="json"></result>
+		       	<result name="fail" type="json"></result>
+	    </action>
+	    <!-- 套餐产品管理 -->
+	   	<action name="orgSetMealManager" class="com.kybaby.newbussiness.medicalorgandbusiness.organsetmeat.action.OrganSetMealAction" >
+	    	<result name="success" type="json"></result>
+	       	<result name="fail" type="json"></result>
+	    </action>
+	</package>
+	<!-- 机构及业务管理end -->
+	
+	<!-- 会员管理 start -->
+	<package name="MemberManage-package" namespace="/memberManage" extends="struts-default">
+		<result-types>
+			<result-type name="json" class="org.apache.struts2.json.JSONResult" />
+		</result-types>
+		<interceptors>
+			<interceptor name="json" class="org.apache.struts2.json.JSONInterceptor" />
+		</interceptors>
+		
+		<action name="memberManage" class="com.kybaby.newbussiness.member.action.MemberManageAction">
+			<result name="success" type="json"></result>
+	      	<result name="fail" type="json"></result>
+    	</action>
+		<action name="memberPaySuccess" class="com.kybaby.newbussiness.member.action.MemberPayAction">
+			<result name="success" type="json"></result>
+	      	<result name="fail" type="json"></result>
+    	</action>
+	</package>
+	<!-- 会员管理 end -->
+	
+	<!-- 消息中心 start -->
+	<package name="messagecenter-package" namespace="/messagecenter" extends="struts-default">
+		<result-types>
+			<result-type name="json" class="org.apache.struts2.json.JSONResult" />
+		</result-types>
+		<interceptors>
+			<interceptor name="json" class="org.apache.struts2.json.JSONInterceptor" />
+		</interceptors>
+		<action name="messageCenterAction" class="com.kybaby.newbussiness.messagecenter.action.MessageCenterAction">
+			<result name="success" type="json"></result>
+	      	<result name="fail" type="json"></result>
+    	</action>
+	</package>
+	
+	<!-- 金控处理 start -->
+	<package name="yjh-package" namespace="/yjhmanage" extends="struts-default">
+		<result-types>
+			<result-type name="json" class="org.apache.struts2.json.JSONResult" />
+		</result-types>
+		<interceptors>
+			<interceptor name="json" class="org.apache.struts2.json.JSONInterceptor" />
+		</interceptors>
+		<action name="yjhManage" class="com.kybaby.newbussiness.yjh.action.YjhManageAction">
+			<result name="success" type="json"></result>
+	      	<result name="fail" type="json"></result>
+    	</action>
+	</package>
+	
+	<!-- 家庭医生服务 -->
+	<package name="fdServiceItems-package" namespace="/familydoctor" extends="struts-default">
+		<result-types>
+			<result-type name="json" class="org.apache.struts2.json.JSONResult" />
+		</result-types>
+		<interceptors>
+			<interceptor name="json" class="org.apache.struts2.json.JSONInterceptor" />
+		</interceptors>
+		<action name="fdServiceItemsAction" class="com.kybaby.newbussiness.familydoctor.action.FdServiceItemsAction">
+			<result name="success" type="json"></result>
+			<result name="fail" type="json"></result>
+    	</action>
+		<action name="familyDoctorManage" class="com.kybaby.newbussiness.familydoctor.action.FamilyDoctorManage">
+			<result name="success" type="json"></result>
+			<result name="fail" type="json"></result>
+    	</action>
+		<action name="fdChildCareManage" class="com.kybaby.newbussiness.familydoctor.action.FamilydoctorChildCareManage">
+			<result name="success" type="json"></result>
+			<result name="fail" type="json"></result>
+    	</action>
+		<action name="fdOnlineAskManage" class="com.kybaby.newbussiness.familydoctor.action.FamilydoctorOnlineAskManage">
+			<result name="success" type="json"></result>
+			<result name="fail" type="json"></result>
+    	</action>
+	</package>
+	
+	<!-- 用户咨询 -->
+	<package name="consult-package" namespace="/consult" extends="struts-default">
+		<result-types>
+			<result-type name="json" class="org.apache.struts2.json.JSONResult" />
+		</result-types>
+		<interceptors>
+			<interceptor name="json" class="org.apache.struts2.json.JSONInterceptor" />
+		</interceptors>
+		<!-- 咨询医生管理 -->
+		<action name="consultDoctorManage" class="com.kybaby.newbussiness.userconsult.action.ConsultDoctorInfoAction">
+			<result name="success" type="json"></result>
+			<result name="fail" type="json"></result>
+    	</action>
+    	<!-- 宝宝管理 -->
+    	<action name="consultBabyManager" class="com.kybaby.newbussiness.userconsult.action.ConsultBabyInfoAction">
+    		<result name="success" type="json"></result>
+			<result name="fail" type="json"></result>
+    	</action>
+    	<!-- 会话管理 -->
+    	<action name="consultDialogManage" class="com.kybaby.newbussiness.userconsult.action.ConsultDialogAction">
+    		<result name="success" type="json"></result>
+			<result name="fail" type="json"></result>
+    	</action>
+	</package>
+	
+	<!-- 健康商城 -->
+	<package name="b2cGoods-package" namespace="/b2cManager" extends="struts-default">
+		<result-types>
+			<result-type name="json" class="org.apache.struts2.json.JSONResult" />
+		</result-types>
+		<interceptors>
+			<interceptor name="json" class="org.apache.struts2.json.JSONInterceptor" />
+		</interceptors>
+		<!-- 商品管理 -->
+		<action name="goodsManage" class="com.kybaby.newbussiness.b2cgoods.action.GoodsManager">
+			<result name="success" type="json"></result>
+			<result name="fail" type="json"></result>
+    	</action>
+		<!-- 商品订单管理 -->
+		<action name="goodsOrderManage" class="com.kybaby.newbussiness.b2cgoods.action.GoodsOrderManager">
+			<result name="success" type="json"></result>
+			<result name="fail" type="json"></result>
+    	</action>
+	</package>
+	
+	<!-- 中联接口 -->
+	<package name="spInterfaceService" namespace="/spInterfaceService" extends="struts-default">
+		<result-types>
+			<result-type name="json" class="org.apache.struts2.json.JSONResult" />
+		</result-types>
+		<interceptors>
+			<interceptor name="json" class="org.apache.struts2.json.JSONInterceptor" />
+		</interceptors>
+		<action name="*" class="com.kybaby.newbussiness.spservice.action.SpInterfaceAction" method="{1}">
+			<result name="success" type="json"></result>
+			<result name="fail" type="json"></result>
+		</action>
+		<!-- <action name="bindHealthCard" class="com.kybaby.newbussiness.spservice.action.SpInterfaceAction" method="bindHealthCard">
+			<result name="success" type="json"></result>
+		</action>
+		<action name="queryHealthCardOfUserOwned" class="com.kybaby.newbussiness.spservice.action.SpInterfaceAction" method="queryHealthCardOfUserOwned">
+			<result name="success" type="json"></result>
+		</action>
+		<action name="setHealthCardOfUserUsed" class="com.kybaby.newbussiness.spservice.action.SpInterfaceAction" method="setHealthCardOfUserUsed">
+			<result name="success" type="json"></result>
+		</action>
+		<action name="handleUserChildcareAppointmentInfo" class="com.kybaby.newbussiness.spservice.action.SpInterfaceAction" method="handleUserChildcareAppointmentInfo">
+			<result name="success" type="json"></result>
+			<result name="fail" type="json"></result>
+		</action>
+		<action name="saveOrUpdatePidiatricsClinicOrder" class="com.kybaby.newbussiness.spservice.action.SpInterfaceAction" method="saveOrUpdatePidiatricsClinicOrder">
+			<result name="success" type="json"></result>
+			<result name="fail" type="json"></result>
+		</action>
+		<action name="queryDoctorAdviseInfosOfUserOwned" class="com.kybaby.newbussiness.spservice.action.SpInterfaceAction" method="queryDoctorAdviseInfosOfUserOwned">
+			<result name="success" type="json"></result>
+		</action>
+		<action name="querySpCostInfo" class="com.kybaby.newbussiness.spservice.action.SpInterfaceAction" method="querySpCostInfo">
+			<result name="success" type="json"></result>
+		</action>
+			<action name="executeClinicCharge" class="com.kybaby.newbussiness.spservice.action.SpInterfaceAction" method="executeClinicCharge">
+			<result name="success" type="json"></result>
+		</action>
+		<action name="querySpInspectResultInfo" class="com.kybaby.newbussiness.spservice.action.SpInterfaceAction" method="querySpInspectResultInfo">
+			<result name="success" type="json"></result>
+		</action>
+		<action name="querySpInspectRecord" class="com.kybaby.newbussiness.spservice.action.SpInterfaceAction" method="querySpInspectRecord">
+			<result name="success" type="json"></result>
+		</action>
+		<action name="querySpCheckRecord" class="com.kybaby.newbussiness.spservice.action.SpInterfaceAction" method="querySpCheckRecord">
+			<result name="success" type="json"></result>
+		</action>
+		<action name="querySpCheckReport" class="com.kybaby.newbussiness.spservice.action.SpInterfaceAction" method="querySpCheckReport">
+			<result name="success" type="json"></result>
+		</action>
+		<action name="querySpVisitRecord" class="com.kybaby.newbussiness.spservice.action.SpInterfaceAction" method="querySpVisitRecord">
+			<result name="success" type="json"></result>
+		</action> -->
+	</package>
+	
+	<!-- asq -->
+	<package name="asq-package" namespace="/testManager" extends="struts-default">
+		<result-types>
+			<result-type name="json" class="org.apache.struts2.json.JSONResult" />
+		</result-types>
+		<interceptors>
+			<interceptor name="json" class="org.apache.struts2.json.JSONInterceptor" />
+		</interceptors>
+		<action name="asqAction" class="com.kybaby.newbussiness.asqtest.action.AsqAction">
+			<result name="success" type="json"></result>
+			<result name="fail" type="json"></result>
+    	</action>
+		<action name="asqUserAction" class="com.kybaby.newbussiness.asqtest.action.AsqTestUserInfoAction">
+			<result name="success" type="json"></result>
+			<result name="fail" type="json"></result>
+    	</action>
+	</package>
+</struts>

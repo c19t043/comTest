@@ -1,0 +1,153 @@
+﻿<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<title>儿保预约</title>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/orgservice_babypoint.css">
+	<script src="js/modernizr-2.8.3.min.js"></script>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/config.js"></script>
+	<script src="js/orgservice_babypoint.js"></script>
+</head>
+<body>
+
+<div id="header">
+    <div class="header-left" onclick="return_before()"><span>儿保预约</span></div>
+    <div class="header-center"></div>
+    <div class="header-right"></div>
+</div>
+<!--header-->
+<div id="container">
+    <div id="message">
+        <div class="org_image"><img src="" alt=""/></div>
+        <div class="org_address">
+            <div style="font-size: 18px" class="address">肖家河社区卫生服务中心</div>
+            <div style="margin-top: 18px;color: #909090;font-size: 10px">地址:<span></span></div>
+        </div>
+    </div>
+    <!--<p class="gray_ss"></p>-->
+    <!--<div id="instruction">-->
+        <!--<p>儿保介绍</p>-->
+        <!--<div>-->
+            <!--真卡收到货is阿红的空间爱好的shadasdh爱的；-->
+            <!--老师的；了圣诞节看电好的shadasdh爱的；老师的；了圣诞节看电好的shadasdh爱的；-->
+            <!--老师的；了圣诞节看电好的shadasdh爱的；老师的；了圣诞节看电视；是的课-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<p class="gray_ss"></p>-->
+    <!--<div class="do_project" onclick="window.location.href='plan_project.html'">-->
+        <!--<div class="project_p">-->
+            <!--<p class="project_title">本次应做项目</p>-->
+            <!--<p class="times">3个月</p>-->
+            <!--<p>儿保、听力检查、视力检查、中医保健、血常规</p>-->
+        <!--</div>-->
+        <!--<div class="arrow">-->
+            <!--<img src="images/prev_01.png" alt=""/>-->
+        <!--</div>-->
+    <!--</div>-->
+    <p>儿保时间</p>
+    <ul id="recentTime">
+        <li index="0">
+            <span class="weekday"></span><br/>
+            <span class="weekdate"></span>
+        </li>
+        <li index="1">
+            <span class="weekday"></span><br/>
+            <span class="weekdate"></span>
+        </li>
+        <li index="2">
+            <span class="weekday"></span><br/>
+            <span class="weekdate"></span>
+        </li>
+        <li index="3">
+            <span class="weekday"></span><br/>
+            <span class="weekdate"></span>
+        </li>
+        <li index="4">
+            <span class="weekday"></span><br/>
+            <span class="weekdate"></span>
+        </li>
+        <li index="5">
+            <span class="weekday"></span><br/>
+            <span class="weekdate"></span>
+        </li>
+        <li index="6">
+            <span class="weekday"></span><br/>
+            <span class="weekdate"></span>
+        </li>
+        <li index="7">
+            <span class="weekday"></span><br/>
+            <span class="weekdate"></span>
+        </li>
+        <li index="8">
+            <span class="weekday"></span><br/>
+            <span class="weekdate"></span>
+        </li>
+        <li index="9">
+            <span class="weekday"></span><br/>
+            <span class="weekdate"></span>
+        </li>
+        <li index="10">
+            <span class="weekday"></span><br/>
+            <span class="weekdate"></span>
+        </li>
+        <li index="11">
+            <span class="weekday"></span><br/>
+            <span class="weekdate"></span>
+        </li>
+        <li index="12">
+            <span class="weekday"></span><br/>
+            <span class="weekdate"></span>
+        </li>
+        <li index="13">
+            <span class="weekday"></span><br/>
+            <span class="weekdate"></span>
+        </li>
+    </ul>
+    <div id="familyDoctorList">
+        <!--<div style="height:27px;">张德全 <span>&nbsp;&nbsp;&nbsp;&nbsp;副主任医师</span> <img style="float: right" src="images/chooseAddress.jpg" alt=""/></div>-->
+        <!--<div style="height:27px;">张德全 <span>&nbsp;&nbsp;&nbsp;&nbsp;副主任医师</span> <img style="float: right" src="images/chooseAddress1.jpg" alt=""/></div>-->
+    </div>
+    <div id="chooseAppointmentTime">
+        <p>预约时间</p>
+        <ul id="time_list">
+            <!--<li>-->
+            <!--<p>9:00-10:00</p>-->
+            <!--<div>剩余 <span class="color-basic">1</span> 号</div>-->
+            <!--</li>-->
+        </ul>
+    </div>
+    <div class="gray_s"></div>
+    <p>预约规则说明</p>
+    <div class="instructionsss">
+        <p>1、实名制预约：预约须提供宝宝真实有效的个人信息，否则影响儿保。</p>
+        <p>2、预约和退号受理时间：每日23:59停止次日号源预约；退号最迟于就诊前一天23:59前通过网络办理。</p>
+        <p>3、收费说明：线上预约收取预约诊疗费，社区挂号将不收取任何费用。</p>
+        <p>4、就诊说明：请于就诊当天预约时间段内就诊，预约时长延长半小时后仍未到者预约作废，预约诊疗费将不予退还，就诊当天不能到达的用户可提前取消预约。</p>
+        <p>5、叫号方式：凭预约手机号，就诊人姓名现场报到叫号。</p>
+        <p>6、最终解释权归社区卫生服务中心所有。</p>
+    </div>
+    <!--<div class="gray_ss"></div>-->
+    <!--<p class="spe">为了方便医生联系，请填写联系方式</p>-->
+    <!--<p class="spe">(若您给宝宝预约，请填写随行家长的联系方式)</p>-->
+
+
+</div>
+
+<!--container-->
+<footer id="footer">
+	<p class="login_button" onclick="erbao.saveFamDocOrder()">立即预约</p>
+</footer>
+<!--footer-->
+
+
+
+<script src="js/main.js"></script>
+<script src="js/plugins.js"></script>
+</body>
+</html>

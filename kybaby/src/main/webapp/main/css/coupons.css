@@ -1,0 +1,119 @@
+@charset "utf-8";
+
+.coupons_list {
+	width: 90%;
+	margin: 20px auto;
+	position: relative;
+}
+.coupons_top {
+	padding: 10px 5%;
+	background: #9ed4e9;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	border-bottom: 1px dashed #fff;
+	clear: both;
+	overflow: hidden;
+}
+.ky_tit {
+	font-size: 0.75em;
+	line-height: 20px;
+	color: #fff;
+	padding-left: 15px;
+	clear: both;
+	overflow: hidden;
+}
+.coupons_left {
+	width: 30%;
+	float: left;
+	color: #fff;
+	height: 55px;
+	line-height: 55px;
+}
+.coupons_left .coupons_sum {
+	font-size: 1.25em;
+}
+
+.coupons_right {
+	width: 65%;
+	float: right;
+	padding-left: 5%;
+	font-size: 1.5em;
+}
+.coupons_right p {
+	opacity: 0.6;
+}
+.coupons_right .small {
+	font-size: 14px;
+}
+.coupons_bottom {
+	padding: 10px 5%;
+	background: #fff;
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+	clear: both;
+	overflow: hidden;
+}
+.coupons_bottom .time {
+	width: 100%;
+	text-align: left;
+	font-size: 0.75em;
+}
+.coupons_bottom .take {
+	font-size: 1.125em;
+	text-align: right;
+	color: #9ed4e9;
+	height: 30px;
+	line-height: 30px;
+}
+
+
+/*coupons*/
+.header-right {
+	font-size: 0.875em;
+}
+.coupons_bottom .use_state {
+	font-size: 0.75em;
+	text-align: right;
+	color: #222;
+	height: 20px;
+	line-height: 20px;
+}
+
+/*颜色种类*/
+.color01 .coupons_top{
+	background: #9ed4e9;
+}
+.color02 .coupons_top {
+	background: #ffb1bf;
+}
+.color03 .coupons_top {
+	background: #f2c866;
+}
+.color04 .coupons_top {
+	background: #e99de8;
+}
+
+.color01 .coupons_bottom .take {
+	color: #9ed4e9;
+}
+.color02 .coupons_bottom .take {
+	color: #ffb1bf;
+}
+.color03 .coupons_bottom .take {
+	color: #f2c866;
+}
+.color04 .coupons_bottom .take {
+	color: #e99de8;
+}
+
+/*已使用*/
+.used .coupons_top {
+	background: #dbdbdb;
+}
+/*已过期*/
+.passed .coupons_top {
+	background: url("../images/passed.png") no-repeat right center #dbdbdb;
+	background-size: 70px;
+}
+
+

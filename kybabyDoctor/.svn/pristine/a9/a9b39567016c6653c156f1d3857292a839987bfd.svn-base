@@ -1,0 +1,660 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>医生资料</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/org_doctorDataManage.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="js/sha1.js"></script>
+    <script src="js/jquery.qrcode.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/config.js"></script>
+    <style>
+        #doc_portrait img{
+            margin: 0;
+        }
+        #layer_box{
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1000;
+            background: rgba(0,0,0,.3);
+            display: none;
+        }
+        #layer_div{
+            position: absolute;
+            width: 80%;
+            top:15%;
+            left: 10%;
+            max-width: 380px;
+            height: 70%;
+            max-height: 480px;
+            background: #fff;
+        }
+        #layer_div>div{
+            display: none;
+        }
+        .layer_title{
+            background: #1CBA93;
+            line-height: 45px;
+            font-size: 17px;
+            text-align: center;
+            color: #fff;
+        }
+        #layer_div ul{
+            overflow: auto;
+        }
+        .layer_list li,.layer_list_two li{
+            padding: 0 18px;
+            border-bottom: 1px solid #e8e8e8;
+            line-height: 45px;
+        }
+        .bottom_button{
+            margin: 10px 0;
+            position: absolute;
+            left: 10%;
+            bottom: 0px;
+            width: 80%;
+            line-height: 40px;
+            background: #fff;
+            border: 1px solid #1CBA93;
+            border-radius: 20px;
+            color: #1CBA93;
+            font-size: 17px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<!--header-->
+<div id="header" class="doctor_header">
+    <div class="header-left" onclick="link_to('org_doctorDataMan_begin.html')"><p></p></div>
+    <div class="header-center">医生资料</div>
+    <div class="header-right">
+        <span class="right_topButton" onclick="save_button()">保存</span>
+    </div>
+</div>
+<div id="container">
+    <div>
+        <ul class="header_nav flex_cont">
+            <li class="flex_item header_nav_select">基本信息</li>
+            <li class="interval"><span>|</span></li>
+            <li class="flex_item" onclick="link_to('org_doctorDataMan_docInfo_identity.html')">身份提交</li>
+            <li class="interval"><span>|</span></li>
+            <li class="flex_item" onclick="link_to('org_doctorDataMan_docInfo_life.html')">生活信息</li>
+            <li class="interval"><span>|</span></li>
+            <li class="flex_item" onclick="link_to('org_doctorDataMan_docInfo_evaluation.html')">评价</li>
+        </ul>
+    </div>
+    <div class="doctor_information">
+        <div>
+            <div class="information_div flex_cont">
+                <label>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</label>
+                <p class="flex_item"><input type="text" id="doc_name" placeholder="医生姓名"/></p>
+            </div>
+            <p class="gray_3"></p>
+            <div class="information_div flex_cont">
+                <label>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</label>
+                <ul id="doc_sex" class="flex_item choose_ul">
+                    <li class="c_selected" id="men"><span class="select_option" data-sex="1"></span><span class="choose_item">男</span></li>
+                    <li id="man"><span class="select_option" data-sex="0"></span><span class="choose_item">女</span></li>
+                </ul>
+            </div>
+            <p class="gray_3"></p>
+            <div class="information_div flex_cont">
+                <label>手机号码：</label>
+                <p class="flex_item"><input type="number" id="doc_tel" placeholder="手机号码"/></p>
+            </div>
+            <p class="gray_3"></p>
+            <div class="information_div flex_cont">
+                <label>头&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;像：</label>
+                <p class="flex_item" id="doc_portrait"><img src="images/menuicon/icon_add.png" class="h_img"/></p>
+            </div>
+            <p class="gray_3"></p>
+            <div class="information_div flex_cont layer_choose" data-id="0">
+                <label>就职医院：</label>
+                <p id="doc_hospital" class="flex_item text-right">请选择</p>
+                <i class="s_icon n_icon"></i>
+            </div>
+            <p class="gray_3"></p>
+            <div class="information_div flex_cont layer_choose" data-id="1">
+                <label>就职科室：</label>
+                <p id="doc_department" class="flex_item text-right">请选择</p>
+                <i class="s_icon n_icon"></i>
+            </div>
+            <p class="gray_3"></p>
+            <div class="information_div flex_cont layer_choose" data-id="2">
+                <label>医生职称：</label>
+                <p id="doc_title" class="flex_item text-right">请选择</p>
+                <i class="s_icon n_icon"></i>
+            </div>
+            <p class="gray_3"></p>
+            <div class="information_div flex_cont">
+                <label>临床经验：</label>
+                <p class="flex_item" id="doc_experience"><input type="number"></p>
+                <span class="s_text">年</span>
+            </div>
+            <p class="gray_1"></p>
+        </div>
+        <div id="direction_information">
+            <div class="information_div flex_cont layer_choose" data-id="3" data-name="professional">
+                <label>主专业方向：</label>
+                <p id="doc_direction" class="flex_item text-right">请选择</p>
+                <i class="s_icon n_icon"></i>
+            </div>
+            <p class="gray_3"></p>
+            <div class="information_div flex_cont layer_choose" data-id="4" data-name="professional">
+                <label>亚专业：</label>
+                <p id="doc_professional" class="flex_item text-right">请选择</p>
+                <i class="s_icon n_icon"></i>
+            </div>
+            <p class="gray_3"></p>
+            <div class="information_div flex_cont layer_choose" data-id="5" data-name="professional">
+                <label>病种：</label>
+                <p id="doc_diseases" class="flex_item text-right">请选择</p>
+                <i class="s_icon n_icon"></i>
+            </div>
+            <p class="gray_1"></p>
+        </div>
+        <div>
+            <p class="info_title">个人擅长：</p>
+            <p class="gray_1"></p>
+            <div class="information_div flex_cont">
+                <p class="flex_item text" id="good_at">擅长呼吸道常见病的诊治 .......................</p>
+            </div>
+            <p class="gray_1"></p>
+        </div>
+        <div>
+            <div class="information_div flex_cont layer_choose" data-id="6">
+                <label>开户行：</label>
+                <p id="doc_bank" class="flex_item text-right">请选择</p>
+                <i class="s_icon n_icon"></i>
+            </div>
+            <p class="gray_3"></p>
+            <div class="information_div flex_cont">
+                <label>银行卡号：</label>
+                <p class="flex_item"><input type="number" id="doc_bankCard" placeholder="银行卡号"/></p>
+            </div>
+            <p class="gray_1"></p>
+        </div>
+        <div>
+            <p class="info_title">开通服务：</p>
+            <p class="gray_1"></p>
+            <div class="information_div flex_cont" id="doc_service">
+                <div>
+                    <span>多点执业</span>
+                    <span>在线咨询</span>
+                    <span>上门健康服务</span>
+                    <span>上门营养咨询</span>
+                    <span>上门母婴护理</span>
+                    <span>上门小儿推拿</span>
+                </div>
+            </div>
+            <p class="gray_1"></p>
+        </div>
+        <div>
+            <div class="information_div flex_cont">
+                <label id="referees">推荐人（选填）：</label>
+                <p class="flex_item"><input type="number" id="referees_tel" placeholder="请输入医生的手机号"/></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="layer_box">
+    <div id="layer_div">
+        <div id="layer_list_hospital">
+            <p class="layer_title">就职医院</p>
+            <div>
+                <div class="search_div">
+                    <div class="flex_cont">
+                        <input type="text" class="flex_item" placeholder="搜索"/>
+                        <span></span>
+                    </div>
+                </div>
+                <p class="gray_1"></p>
+                <div class="layer_list basic_information" data-id="0">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+        <div id="layer_list_department">
+            <p class="layer_title">科室</p>
+            <div>
+                <div class="layer_list basic_information" data-id="1">
+                    <ul>
+                        <li>儿科</li>
+                        <li>妇产科</li>
+                        <li>儿童保健科</li>
+                        <li>内科</li>
+                        <li>全科</li>
+                        <li>中医推拿</li>
+                        <li>心理科</li>
+                        <li>乳腺科</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="layer_list_title">
+            <p class="layer_title">职称</p>
+            <div>
+                <div class="layer_list basic_information" data-id="2">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+        <div id="layer_list_direction">
+            <p class="layer_title">主专业方向</p>
+            <div>
+                <div class="search_div">
+                    <div class="flex_cont">
+                        <input type="text" class="flex_item" placeholder="搜索"/>
+                        <span></span>
+                    </div>
+                </div>
+                <p class="gray_1"></p>
+                <div class="layer_list direction_information" data-id="3">
+                    <ul>
+                        <li>内科</li>
+                        <li>外科</li>
+                        <li>耳鼻喉科</li>
+                    </ul>
+                </div>
+                <!--<div class="layer_list_two" data-id="3">-->
+                <!--<ul>-->
+                <!--<li>呼吸内科</li>-->
+                <!--<li>消化内科</li>-->
+                <!--<li>XXX内科</li>-->
+                <!--</ul>-->
+                <!--</div>-->
+                <!--<div class="layer_list_two" data-id="3">-->
+                <!--<ul>-->
+                <!--<li>呼吸内科</li>-->
+                <!--<li>消化内科</li>-->
+                <!--<li>XXX内科</li>-->
+                <!--</ul>-->
+                <!--</div>-->
+            </div>
+        </div>
+        <div id="layer_list_professional">
+            <p class="layer_title">亚专业</p>
+            <div>
+                <div class="search_div">
+                    <div class="flex_cont">
+                        <input type="text" class="flex_item" placeholder="搜索"/>
+                        <span></span>
+                    </div>
+                </div>
+                <p class="gray_1"></p>
+                <div class="layer_list_two" data-id="4">
+                    <ul></ul>
+                </div>
+                <p class="bottom_button">下一步</p>
+            </div>
+        </div>
+        <div id="layer_list_diseases">
+            <p class="layer_title">病种</p>
+            <div>
+                <div class="search_div">
+                    <div class="flex_cont">
+                        <input type="text" class="flex_item" placeholder="搜索"/>
+                        <span></span>
+                    </div>
+                </div>
+                <p class="gray_1"></p>
+                <div class="layer_list_two" data-id="5">
+                    <ul></ul>
+                </div>
+                <p class="bottom_button">确定</p>
+            </div>
+        </div>
+        <div id="layer_list_bank">
+            <p class="layer_title">银行卡开户行</p>
+            <div>
+                <div class="layer_list direction_information" data-id="6">
+                    <ul>
+                        <li>工商银行</li>
+                        <li>建设银行</li>
+                        <li>中国银行</li>
+                        <li>农业银行</li>
+                        <li>交通银行</li>
+                        <li>成都银行</li>
+                        <li>招商银行</li>
+                        <li>邮政储蓄</li>
+                        <li>广发银行</li>
+                        <li>中信银行</li>
+                        <li>兴业银行</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var select_id = 0;
+    $(function(){
+        $.ajax({
+            type: 'post',
+            url: host+'doctorIdentify.action',
+            cache: false,
+            async: true,
+            data: {
+                action: "getSomething",
+            },
+            success: function (result) {
+                if (result.mes == '请登录') {
+                    ale('请登录', '24px');
+                    link_to("login.html");
+                }
+                else if (result.mes == '成功') {
+                    //就职医院
+                    var hospitalName = '';
+                    if(result.hospitalBasicInfoList!=null){
+                        for(var i = 0;i<result.hospitalBasicInfoList.length;i++){
+                            hospitalName += '<li data-id="'+result.hospitalBasicInfoList[i].id+'">'+result.hospitalBasicInfoList[i].hospitalLname+'</li>';
+                        }
+                    }
+                    $("#layer_list_hospital .layer_list>ul").html(hospitalName);
+                    //医生职称
+                    var title = '';
+                    if(result.positionList!=null){
+                        for(var i = 0;i<result.positionList.length;i++){
+                            title += '<li data-id="'+result.positionList[i].id+'">'+result.positionList[i].name+'</li>';
+                        }
+                    }
+                    $("#layer_list_title .layer_list>ul").html(title);
+                    $(".basic_information li").click(function(){
+                        layer_list_li(this);
+                    })
+                } else {
+                    ale(result.mes);
+                }
+            },
+            error: function () {
+                layer();
+            }
+        });
+        $.ajax({
+            type: 'post',
+            url: urlWay.doctorDataGather+'doctorDataGather.action',
+            cache: false,
+            async: true,
+            data: {
+                action: "initDoctorInfoPage",
+            },
+            success: function (result) {
+                if (result.mes == '请登录') {
+                    ale('请登录', '24px');
+                    link_to("login.html");
+                }
+                else if (result.mes == "成功") {
+                    //主专业
+                    var firstMajors = '';
+                    for(var i=0;i<result.firstMajors.length;i++){
+                        var firstMajor = result.firstMajors[i];
+                        firstMajors += '<li data-id="'+firstMajor.id+'">'+firstMajor.major+'</li>'
+                    }
+                    $("#layer_list_direction .layer_list>ul").html(firstMajors);
+                    $(".direction_information li").click(function(){
+                        layer_list_li(this);
+                    })
+                    //亚专业
+                    var secondMajors = '';
+                    for(var j=0;j<result.secondMajors.length;j++){
+                        var secondMajor = result.secondMajors[j]
+                        secondMajors += '<li data-parentId="'+secondMajor.parent.id+'" data-id="'+secondMajor.id+'">'+secondMajor.major+'</li>'
+                    }
+                    $("#layer_list_professional .layer_list_two>ul").html(secondMajors);
+                    //病种
+                    var thirdMajors = '';
+                    for(var k=0;k<result.thirdMajors.length;k++){
+                        var thirdMajor = result.thirdMajors[k];
+                        thirdMajors += '<li data-parentId="'+thirdMajor.parent.id+'" data-parentsId="'+thirdMajor.parent.parent.id+'" data-id="'+thirdMajor.id+'">'+thirdMajor.major+'</li>'
+                    }
+                    $("#layer_list_diseases .layer_list_two>ul").html(thirdMajors);
+                    layer_list_two_li();
+//                    开通服务
+                    var doctorServiceTypes = '';
+                    for(var m=0;m<result.doctorServiceTypes.length;m++){
+                        doctorServiceTypes += '<span>'+result.doctorServiceTypes[m].parentDoctorServiceType.serviceTypeName+'</span>';
+                    }
+                    $("#doc_service div").html(doctorServiceTypes);
+                    //    开通服务
+                    $("#doc_service span").click(function(){
+                        $(this).toggleClass("selected");
+                    });
+                } else {
+                    ale(result.mes);
+                }
+            },
+            error: function () {
+                layer();
+            }
+        });
+        bottom_button();
+        //    性别选择
+        $("#doc_sex li").click(function(){
+            $(this).addClass("c_selected").siblings("li").removeClass("c_selected");
+        });
+        //弹出弹框
+        $(".layer_choose").click(function(event){
+            event.stopPropagation();
+            $("body").css("overflow","hidden");
+            var index = $(this).data("id");
+            //选中项为主专业方向或亚专业或病种
+            if($(this).data("name")=="professional"){
+                $("#layer_box>div>div").hide();
+                if($(this).find("label").text()=="主专业方向："){
+                    $("#layer_box").show();
+                    $("#layer_list_direction").show();
+                }else if($(this).find("label").text()=="亚专业："){
+                    if($("#doc_direction").text()=="请选择"){
+                        ale("请先选择主专业方向");
+                    }else{
+                        $("#layer_box").show();
+                        $("#layer_list_professional").show();
+                    }
+                }else if($(this).find("label").text()=="病种："){
+                    if($("#doc_direction").text()=="请选择") {
+                        ale("请先选择主专业方向");
+                    }else if($("#doc_professional").text()=="请选择"){
+                        ale("请先选择亚专业");
+                    }else{
+                        $("#layer_box").show();
+                        $("#layer_list_diseases").show();
+                    }
+                }
+            }else{
+                $("#layer_box").show();
+                $("#layer_div>div").eq(index).show();
+                $("#layer_div>div").eq(index).siblings().hide();
+            }
+            var height = 45;
+            if($("#layer_div>div").eq(index).find(".search_div").length!=0){
+                height += 68;
+                if($("#layer_div>div").eq(index).find(".bottom_button").length!=0){
+                    height += 62;
+                }
+            }
+            $("#layer_div ul").height($("#layer_div").height()-height);
+        });
+        $("#layer_div>div").click(function(event){
+            event.stopPropagation();
+        })
+    })
+    window.document.onclick=function(){
+        $("body").css("overflow","auto");
+        $('#layer_box').hide();
+    }
+    //    选中弹框内容
+    function layer_list_li(org){
+        var index = $(org).parents(".layer_list").data("id");
+        if(index==3){
+            if($("#doc_professional").text()!="请选择"||$("#doc_diseases").text()!="请选择"){
+                var r=confirm("切换主专业方向后，亚专业和病种均需重新选择");
+                if (r==true){
+                    $("#doc_professional").text("请选择");
+                    //清空
+                    $("#layer_list_professional .layer_list_two li").each(function(){
+                        $(this).removeClass('green');
+                        $(this).show();
+                    });
+                    $("#doc_diseases").text("请选择");
+                    //清空
+                    $("#doc_diseases .layer_list_two li").each(function(){
+                        $(this).removeClass('green');
+                        $(this).show();
+                    });
+                }else{
+                    return;
+                }
+            }
+            $(org).addClass("green").siblings("li").removeClass("green");
+            $(".layer_choose").eq(index).find(".text-right").text($(org).text());
+            $("#layer_list_direction").hide();
+            $("#layer_list_professional").show();
+            select_id = $("#layer_list_direction .layer_list li.green").attr("data-id");
+            for(var i=0;i<$("#layer_list_professional .layer_list_two li").length;i++){
+                if($("#layer_list_professional .layer_list_two li").eq(i).attr("data-parentId")!=select_id){
+                    $("#layer_list_professional .layer_list_two li").eq(i).hide();
+                }
+            }
+//            控制ul高度
+            var height = 45;
+            if($("#layer_div>div").eq(index+1).find(".search_div").length!=0){
+                height += 68;
+                if($("#layer_div>div").eq(index+1).find(".bottom_button").length!=0){
+                    height += 62;
+                }
+            }
+            $("#layer_div ul").height($("#layer_div").height()-height);
+        }else{
+            $(org).addClass("green").siblings("li").removeClass("green");
+            $(".layer_choose").eq(index).find(".text-right").text($(org).text());
+            $("body").css("overflow","auto");
+            $('#layer_box').hide();
+        }
+    }
+    function layer_list_two_li(){
+        $("#layer_list_professional .layer_list_two li").click(function(){
+            if($("#doc_diseases").text()!="请选择"){
+                var r=confirm("切换亚专业后，病种需重新选择");
+                if (r==true){
+                    $("#doc_diseases").text("请选择");
+                    //清空
+                    $("#doc_diseases .layer_list_two li").each(function(){
+                        $(this).toggleClass("green");
+                        $(this).show();
+                    });
+                }
+                else{
+                    return;
+                }
+            }else{
+                $(this).toggleClass("green");
+            }
+        })
+        $("#layer_list_diseases .layer_list_two li").click(function(){
+            $(this).toggleClass("green");
+        })
+    }
+
+    //    弹框中按钮
+    function bottom_button(){
+        $(".bottom_button").click(function(){
+            var index = $(this).prev(".layer_list_two").data("id");
+            var li_text = '';
+            for(var i=0;i<$(this).prev(".layer_list_two").find(".green").length;i++){
+                li_text += $(this).prev(".layer_list_two").find(".green").eq(i).text()+' ';
+            }
+            if($(this).text()=="下一步"){
+                if(li_text==''||li_text==null){
+                    ale("请选择亚专业");
+                    return;
+                }else{
+                    $(".layer_choose").eq(index).find(".text-right").text(li_text);
+//                    亚专业选中项id
+                    var parent_id = [];
+                    for(var j=0;j<$("#layer_list_professional .layer_list_two li.green").length;j++){
+                        parent_id.push($("#layer_list_professional .layer_list_two li.green").eq(j).data("id"));
+                    }
+                    console.log(parent_id);
+                    for(var i=0;i<$("#layer_list_diseases .layer_list_two li.green").length;i++){
+                        console.log($("#layer_list_diseases .layer_list_two li.green").eq(i).data("id"));
+                        if($("#layer_list_diseases .layer_list_two li.green").eq(i).data("id").indexOf(parent_id)==-1){
+                            $("#layer_list_diseases .layer_list_two li.green").eq(i).hide();
+                        }
+                    }
+                    $("#layer_list_professional").hide();
+                    $("#layer_list_diseases").show();
+                }
+            }else{
+                if(li_text==''||li_text==null){
+                    ale("请选择病种");
+                    return;
+                }else{
+                    $("#layer_list_diseases").hide();
+                    $(".layer_choose").eq(index).find(".text-right").text(li_text);
+                    $("body").css("overflow","auto");
+                    $('#layer_box').hide();
+                }
+            }
+            var height = 45;
+            if($("#layer_div>div").eq(index).find(".search_div").length!=0){
+                height += 68;
+                if($("#layer_div>div").eq(index).find(".bottom_button").length!=0){
+                    height += 62;
+                }
+            }
+            $("#layer_div ul").height($("#layer_div").height()-height);
+        })
+    }
+
+    function save_button(){
+        $.ajax({
+            type: 'post',
+            url: urlWay.doctorDataGather+'doctorDataGather.action',
+            cache: false,
+            async: true,
+            data:{
+                action:"saveOrUpdateDoctorBasicInfo",
+                "doctorInfo.doctorName":"测试2016118",
+                "doctorInfo.doctorSex":"男",
+                "doctorInfo.doctorPhone":"23699080687",
+                "doctorInfo.doctorTitle":"主任医师",
+                "doctorInfo.doctorEmployer":"成都市第一人民医院",
+                "doctorInfo.department":"儿科",
+                "doctorInfo.clinicalExperience":"20",
+                "doctorInfo.major.id":"3",
+                "doctorInfo.secondMajorIds":"16::19",
+                "doctorInfo.thirdMajorIds":"17::20",
+                "doctorInfo.serviceTypeIds":"2::3::5::8",
+                "doctorInfo.imgBase64":"",
+                "doctorInfo.bankAccountName":"工商银行",
+                "doctorInfo.bankCard":"62122645290",
+            },
+            success:function(result){
+//                if(result.mes != '操作成功' || result.someCategoryRingLabelObject == null){
+//                    return false;
+//                }
+//                $('.noteTag').empty();
+//                $.each(result.someCategoryRingLabelObject,function(i,content){
+//                    if(content[2] == 'Y'){
+//                        $('.noteTag').append(
+//                                "<span onclick=\"tagSelect(this,'"+content[1]+"')\" class='tagName' zjid='"+content[0]+"'>"+content[1]+"</span>"
+//                        );
+//                    }
+//                });
+                console.log(11111);
+            }
+        });
+    }
+</script>
+</body>
+</html>

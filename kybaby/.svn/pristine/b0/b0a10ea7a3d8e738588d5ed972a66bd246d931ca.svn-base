@@ -1,0 +1,93 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>就诊详情</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/personalcenter.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/plugins.js"></script>
+    <style>
+        body{
+            background: #f4f4f4;
+        }
+        ul{
+            background: #fff;
+        }
+        #container li{
+            padding: 0 15px;
+            line-height: 50px;
+            font-size: 15px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        label{
+            width: 85px;
+        }
+        #container li span{
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<div id="header">
+    <div class="header-left" onclick="return_before();"><span class="color-basic">就诊详情</span></div>
+    <div class="header-center"></div>
+    <div class="header-right"></div>
+</div>
+<!--header-->
+<div id="container">
+    <p class="gray_s"></p>
+    <ul>
+        <!--<li><label>单据号：</label><span>15451567851025374</span></li>-->
+        <!--<li><label>姓名：</label><span>肖奈</span></li>-->
+        <!--<li><label>性别：</label><span>女</span></li>-->
+        <!--<li><label>出生日期：</label><span>1996-05-30</span></li>-->
+        <!--<li><label>身份证号：</label><span>41515646531547581</span></li>-->
+        <!--<li><label>就诊时间：</label><span>2015-12-25 15:00:22</span></li>-->
+        <!--<li><label>医生名：</label><span>白胜祖</span></li>-->
+        <!--<li><label>当前状态：</label><span>未就诊</span></li>-->
+    </ul>
+
+</div>
+<script>
+  $(function(){
+      var id = window.location.search.substring(1).split("&")[0];
+      $.ajax({
+          type: 'post',
+          url: spInterfaceService + 'querySpVisitRecord.action',
+          cache: false,
+          async: true,
+          data:  {spQueryMessageID: id},
+          success: function (result) {
+              if(result.mess=='请登录'){
+                  ale('请登录', '24px');
+                  window.location.href = "login.html";
+              }
+              else if(result.mess=='成功'){
+                  if(result.spVisitRecord!=null){
+                      var spVisitRecord = result.spVisitRecord;
+                      $("#container ul").html('<li><label>单据号：</label><span>'+spVisitRecord.registeNo+'</span></li><li><label>姓名：</label><span>'+spVisitRecord.residentName+'</span></li>' +
+                              '<li><label>性别：</label><span>'+spVisitRecord.sexCD+'</span></li><li><label>出生日期：</label><span>'+spVisitRecord.birthDay+'</span></li>' +
+                              '<li><label>身份证号：</label><span>'+spVisitRecord.paperNum+'</span></li><li><label>就诊时间：</label><span>'+spVisitRecord.visitTime+'</span></li>' +
+                              '<li><label>医生名：</label><span>'+spVisitRecord.doctor+'</span></li><li><label>当前状态：</label><span>'+spVisitRecord.state+'</span></li>');
+                  }
+              }
+              else{
+                  ale(result.mess.substring(3));
+              }
+          },
+          error: function () {
+              layer();
+          }
+      });
+  })
+</script>
+</body>
+</html>

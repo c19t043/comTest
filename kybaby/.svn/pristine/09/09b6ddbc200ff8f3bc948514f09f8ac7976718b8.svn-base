@@ -1,0 +1,103 @@
+﻿<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>疫苗详情</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/orgservice_vaccinedetail.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/orgservice_vaccinedetail.js"></script>
+</head>
+<body>
+
+<div id="header">
+    <div class="header-left" style="width: 70%" onclick="return_before()"><span>疫苗详情</span></div>
+    <div class="header-center"></div>
+    <div class="header-right" style="width: 30%"></div>
+</div>
+<!--header-->
+<div id="container">
+    <!--personal_list01-->
+    <div class="personal_list">
+        <div class="diseasePrevention" onclick="showdetail(this)">
+            <p class="personal_left">
+                <img src="images/images_family_doctor/vaccine_icon1.png" alt=""/>
+                预防疾病
+            </p>
+            <p class="personal_right"><img src="images/next.png" alt=""/></p>
+        </div>
+        <div class="content">
+
+        </div>
+    </div>
+    <p class="gray_s"></p>
+    <!--personal_list01-->
+    <div class="personal_list">
+        <div class="diseaseHazard" onclick="showdetail(this)">
+            <p class="personal_left">
+                <img src="images/images_family_doctor/vaccine_icon2.png" alt=""/>
+                疾病危害
+            </p>
+
+            <p class="personal_right"><img src="images/next.png" alt=""/></p>
+        </div>
+        <div class="content">
+
+        </div>
+    </div>
+    <p class="gray_s"></p>
+    <!--personal_list01-->
+    <div class="personal_list">
+        <div class="mattersNeedingAttentionBefore" onclick="showdetail(this)">
+            <p class="personal_left">
+                <img src="images/images_family_doctor/vaccine_icon3.png" alt=""/>
+                注意事项（接种前）
+            </p>
+            <p class="personal_right"><img src="images/next.png" alt=""/></p>
+        </div>
+        <div class="content">
+
+        </div>
+    </div>
+    <p class="gray_s"></p>
+    <!--personal_list01-->
+    <div class="personal_list">
+        <div class="mattersNeedingAttentionAfter" onclick="showdetail(this)">
+            <p class="personal_left">
+                <img src="images/images_family_doctor/vaccine_icon4.png" alt=""/>
+                注意事项（接种后）
+            </p>
+            <p class="personal_right"><img src="images/next.png" alt=""/></p>
+        </div>
+        <div class="content">
+
+        </div>
+    </div>
+    <p class="gray_s"></p>
+    <!--personal_list01-->
+    <div class="personal_list">
+        <div class="vaccinationProgram" onclick="showdetail(this)">
+            <p class="personal_left">
+                <img src="images/images_family_doctor/vaccine_icon5.png" alt=""/>
+                接种程序
+            </p>
+            <p class="personal_right"><img src="images/next.png" alt=""/></p>
+        </div>
+        <div class="content">
+
+        </div>
+    </div>
+    <p class="gray_s"></p>
+    <!--personal_list01-->
+
+</div>
+<script src="js/main.js"></script>
+<script src="js/plugins.js"></script>
+</body>
+</html>

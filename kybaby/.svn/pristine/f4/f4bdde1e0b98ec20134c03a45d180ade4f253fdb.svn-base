@@ -1,0 +1,155 @@
+﻿.message>input{
+    width: 70%;
+    height: 50px;
+    line-height: 20px;
+    padding:15px 0 15px 5px;
+    border:none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    color:#909090;
+}
+.step_1,.step_2{
+	background:#fff;
+}
+.step_1 label,.step_2 label{
+	width:20%;
+	height:50px;
+	text-align:left;
+	float:left;
+	font-size:14px;
+	color:#505050;
+	line-height:50px;
+}
+.step_1 input,.step_2 input{
+	width:75%;
+  height: 50px;
+  text-indent: 10px;
+  border: 0;
+}
+.step_1 .get_reg_code{
+	display:inline-block;
+}
+.next_step,.regist{
+	margin-top:20px;
+}
+
+#regist_code{
+	width:43%;
+}
+#regist_baby_boy,#regist_baby_girl{
+	width:20px;
+	height:20px;
+	float:left;
+  position: Relative;
+  top: 15px;
+}
+label.sex{
+	width:30px;
+}
+#city{
+    display: inline-block;
+    height: 50px;
+    width: 70%;
+    line-height: 50px;
+    font-size: 14px;
+}
+#city select{
+	width:32%;
+	height: 24px !important;
+	line-height: 24px !important;
+	/*background: red;*/
+}
+#street_address{
+	text-indent:25px;
+	background:#fff;
+	width:100%;
+	color:#666;
+}
+#xxaddress{
+	text-indent:25px;
+}
+p.agreement{
+	width: 90%;
+	text-align: right;
+	margin: 5px auto 40px;
+	font-size: 12px;
+}
+p.agreement input{
+	position:relative;
+	top:2px;
+	margin-right:10px;
+}
+
+#user_xieyi_box {
+	position:absolute;
+	overflow-x:hidden;
+	overflow-y:auto;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:800px;
+	background:#fff;
+	z-index:1000;
+	display:none;
+}
+
+#user_xieyi_tit{
+	width: 100%;
+	height: 45px;
+	background: #fff;
+	text-align: center;
+	position: fixed;
+	top: 0;
+	z-index: 9199;
+}
+#user_xieyi_tit .a {
+	width: 20%;
+	float: left;
+	line-height: 45px;
+	font-size: 30px;
+	height: 45px;
+	color: #c8c8c8;
+}
+#user_xieyi_tit .a p {
+	background: url("../images/prev_01.png") no-repeat center center;
+	background-size: 25px;
+	height: 45px;
+}
+#user_xieyi_tit .b {
+	width: 60%;
+	float: left;
+	line-height: 45px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	font-size: 18px;
+}
+#user_xieyi_tit .c {
+	width: 20%;
+	float: right;
+	line-height: 45px;
+	height:45px;
+}
+.logo_box{
+    border-top:1px solid #e8e8e8;
+    padding: 40px 25%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.message{
+    padding: 0 20px;
+}
+.message>label{
+    width: 25%;
+    color: #505050;
+}
+/*#header>div{*/
+    /*text-align: left;*/
+    /*padding: 0 20px;*/
+    /*-webkit-box-sizing: border-box;*/
+    /*-moz-box-sizing: border-box;*/
+    /*box-sizing: border-box;*/
+/*}*/
+

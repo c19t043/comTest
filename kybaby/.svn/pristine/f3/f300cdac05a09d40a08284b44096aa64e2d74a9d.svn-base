@@ -1,0 +1,22 @@
+﻿#result_unit{
+	font-size:12px;
+	color:#4a4a4a;
+	width:100%;
+}
+#result_unit,#result_unit th,#result_unit tr,#result_unit td{
+	border:1px solid #fff;
+}
+#result_unit th{
+	background:#ff813d;
+ color:#fff;
+}
+#result_unit td,#result_unit th{
+	padding:8px;
+	text-align:Center;
+	width:33.3%;
+}
+
+
+#result_unit tr:nth-of-type(odd){
+	background:#e4e4e4;
+}

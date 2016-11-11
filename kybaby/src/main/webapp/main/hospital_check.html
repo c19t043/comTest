@@ -1,0 +1,152 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>检查详情</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/consult.css"/>
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/MD5.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/hospital.js"></script>
+    <style>
+        #container li{
+            padding: 0 15px;
+            line-height: 50px;
+            font-size: 15px;
+            border-bottom: 1px solid #e8e8e8;
+            background: #fff;
+        }
+        label{
+            width: 80px;
+        }
+        #container li{
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-box;
+            display: -o-box;
+            display: box;
+        }
+        #report div{
+            padding: 12px 0;
+            line-height: 25px;
+            font-size: 13px;
+        }
+        #report div,#container li span{
+            text-align: left;
+            display: block;
+            -webkit-box-flex: 1;
+            -moz-box-flex: 1;
+            -ms-box-flex: 1;
+            -o-box-flex: 1;
+            box-flex: 1;
+        }
+        #container h2{
+            font-size: 18px;
+            line-height: 50px;
+            padding-left: 12px;
+            color: #ff813d;
+            font-weight: 100;
+        }
+        h4{
+            font-size: 16px;
+            line-height: 50px;
+            padding-left: 12px;
+            color: #505050;
+            font-weight: 100;
+            background: #f4f4f4;
+        }
+        #report_title{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div id="header">
+    <div class="header-left" onclick="return_before();"><span>检查详情</span></div>
+    <div class="header-center"></div>
+    <div class="header-right"></div>
+</div>
+<!--header-->
+<div id="container">
+    <div>
+        <h2>检查记录</h2>
+        <p class="gray_s"></p>
+        <ul id="record">
+            <!--<li><label>姓名：</label><span></span></li>-->
+            <!--<li><label>性别：</label><span></span></li>-->
+            <!--<li><label>年龄：</label><span></span></li>-->
+            <!--<li><label>申请项目：</label><span></span></li>-->
+            <!--<li><label>申请科室：</label><span></span></li>-->
+            <!--<li><label>申请医生：</label><span></span></li>-->
+            <!--<li><label>申请时间：</label><span></span></li>-->
+            <!--<li><label>报告医生：</label><span></span></li>-->
+            <!--<li><label>报告时间：</label><span></span></li>-->
+        </ul>
+        <h2 id="report_title">检查报告</h2>
+        <p class="gray_s"></p>
+        <div id="report">
+            <!--<h4>报告1</h4>-->
+            <!--<ul>-->
+                <!--<li><label>描述信息：</label><div>嘱托嘱托嘱托嘱托嘱托嘱托嘱托嘱托嘱托嘱嘱托嘱托</div></li>-->
+                <!--<li><label>提示信息：</label><div>嘱托嘱托嘱托嘱托嘱嘱托嘱托嘱托嘱托嘱托嘱托嘱托</div></li>-->
+            <!--</ul>-->
+        </div>
+    </div>
+</div>
+<script>
+    $(function(){
+        var id = window.location.search.substring(1);
+        hf_loading(true);
+        $.ajax({
+            type: 'post',
+            url: spInterfaceService + 'querySpCheckReport.action',
+            cache: false,
+            async: true,
+            data:  {spQueryMessageID: id},
+            success: function (result) {
+                hf_loading(false);
+                if(result.mess=='请登录'){
+                    ale('请登录', '24px');
+                    window.location.href = "login.html";
+                }
+                else if(result.mess=='成功'){
+                    if(result.spCheckRecord!=null){
+                        var spCheckRecord = result.spCheckRecord;
+                        $("#record").html('<li><label>姓名：</label><span>'+spCheckRecord.residentName+'</span></li><li><label>性别：</label><span>'+spCheckRecord.sex+'</span></li>' +
+                                '<li><label>年龄：</label><span>'+spCheckRecord.age+'</span></li><li><label>申请项目：</label><span>'+spCheckRecord.appItem+'</span></li>' +
+                                '<li><label>申请科室：</label><span>'+spCheckRecord.appDep+'</span></li><li><label>申请医生：</label><span>'+spCheckRecord.audDoctor+'</span></li>' +
+                                '<li><label>申请时间：</label><span>'+spCheckRecord.appTime+'</span></li><li><label>报告医生：</label><span>'+spCheckRecord.audDoctor+'</span></li>' +
+                                '<li><label>报告时间：</label><span>'+spCheckRecord.audTime+'</span></li>');
+                        if(spCheckRecord.spCheckReports!=null){
+                            $("#report_title").show();
+                            var html = '';
+                            for(var i=0;i<spCheckRecord.spCheckReports.length;i++){
+                                var report = spCheckRecord.spCheckReports[i];
+                                var j = i+1;
+                                html+='<h4>报告'+j+'</h4><ul><li><label>描述信息：</label><div>'+report.desInfo+'</div></li>' +
+                                        '<li><label>提示信息：</label><div>'+report.proInfo+'</div></li></ul>'
+                            }
+                        }
+                        $("#report").html(html);
+                    }
+                }else{
+                    ale(result.mess.substring(3));
+                }
+            },
+            error: function () {
+                hf_loading(false);
+                layer();
+            }
+        });
+    })
+</script>
+</body>
+</html>

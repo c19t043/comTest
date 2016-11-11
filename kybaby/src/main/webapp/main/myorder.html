@@ -1,0 +1,88 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>我的订单</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/myorder.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/MD5.js"></script>
+    <script src="js/myorder.js"></script>
+</head>
+<body>
+
+<div id="header">
+    <div class="headerLeft" onclick="window.location.replace('personalcenter.html')"><p></p></div>
+    <div class="header-center">我的订单</div>
+    <div class="header-right"></div>
+</div>
+<!--header-->
+
+<div id="container">
+    <p class="gray_2"></p>
+    <div class="ul_box">
+        <ul id="select_cli">
+            <li class="blue">全部</li>
+            <li>已接单</li>
+            <li>未付款</li>
+            <li>已完成</li>
+            <li>已取消</li>
+        </ul>
+    </div>
+    <p class="gray_1"></p>
+    <!--内容-->
+    <div class="info_box" id="info_box_all">
+
+    </div>
+
+</div>
+
+
+
+
+
+<!--container-->
+
+<!--<div id="footer">-->
+    <!--<ul>-->
+        <!--<a href="javascript:void(0)">-->
+            <!--<li >-->
+                <!--<p><img src="images/footer_icon01_off.png" width="23"></p>-->
+                <!--<p>咨询</p>-->
+            <!--</li>-->
+        <!--</a>-->
+        <!--<a href="javascript:void(0)">-->
+            <!--<li class="select">-->
+                <!--<p><img src="images/footer_icon02_on.png" width="18"></p>-->
+                <!--<p>订单</p>-->
+            <!--</li>-->
+        <!--</a>-->
+        <!--<a href="javascript:void(0)">-->
+            <!--<li>-->
+                <!--<p><img src="images/footer_icon03_off.png" width="18"></p>-->
+                <!--<p>个人</p>-->
+            <!--</li>-->
+        <!--</a>-->
+    <!--</ul>-->
+<!--</div>-->
+<!--footer-->
+
+
+<div style="display:none;width: 80%; padding: 20px 0px; position: fixed; top: 25%; left: 10%; background: rgb(102, 102, 102);" id="zPayMethod">
+	<p style="font-size:18px; color:#FFF; text-align:center; padding:0 0 20px 0;">请选择支付方式</p>
+	<p class="selcli" style="color:#00FF44;padding:0 0 10px 0; width:130px; margin:0 auto; text-align:left;"><label style="color:#00FF44;background:rgb(102, 102, 102);opacity:0.9;padding:0 20px 0 0;font-size:16px;" for="wx_way">微信支付:</label><input checked="checked" class="checkbo" mark="微信" id="wx_way" type="radio" name="zhifu" value="weixin" style="position:relative;top:5px;float:right; line-height:21px;"></p>
+	<p class="selcli" style="display: none; color:#00FF44;padding:0 0 10px 0; width:130px; margin:0 auto; text-align:left;"><label style="color:#00FF44;background:rgb(102, 102, 102);opacity:0.9;padding:0 20px 0 0;font-size:16px;" for="zfb_way">支付宝支付:</label><input class="checkbo" mark="支付宝" id="zfb_way" type="radio" name="zhifu" value="zhifubao" style="position:relative;top:5px;float:right; line-height:21px;"></p>
+	<p class="selcli" style="display: none; color:#00FF44;padding:0 0 10px 0; width:130px; margin:0 auto; text-align:left;"><label style="color:#00FF44;background:rgb(102, 102, 102);opacity:0.9;padding:0 20px 0 0;font-size:16px;" for='yl_way'>银联支付:</label><input class="checkbo" mark="银联" id='yl_way' type="radio" name="zhifu" value="yinlian" style="position:relative;top:5px;float:right; line-height:21px;"></p>
+	<p style="text-align:center; margin-top: 10px;">
+		<input type="button" value="取消" onclick="quxiao()" style="width: 40%; height: 40px; font-size: 1em; line-height: 1em; -webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-appearance: none; border: none; border-radius: 5px; background-color: #eee; color: #666;" id="btnCancel">
+		<input type="button" value="确认" onclick="goPay(this);" style="width:40%; margin:0 0 0 20px; height: 40px; font-size: 1em; line-height: 1em; -webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-appearance: none; border: none; border-radius: 5px; background-color: #eee; color: #666;" id="btnOrderPay">
+	</p>
+</div>
+</body>
+</html>

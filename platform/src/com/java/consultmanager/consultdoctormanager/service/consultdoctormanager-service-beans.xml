@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<!-- 咨询医生级别报酬分配配置管理 service -->
+	<bean id="consultDoctorCommissionService" parent="service"
+		class="com.java.consultmanager.consultdoctormanager.service.impl.ConsultDoctorCommissionServiceImpl"></bean>
+
+	<!-- 咨询医生管理 -->
+	<bean id="consultDoctorInfoService" parent="service"
+		class="com.java.consultmanager.consultdoctormanager.service.impl.ConsultDoctorInfoServiceImpl"></bean>
+		
+		<!-- 咨询订单列表 -->
+	<bean id="consultOrderInfoService" parent="service"
+		class="com.java.consultmanager.consultdoctormanager.service.impl.ConsultOrderInfoServiceImpl"></bean>
+</beans>

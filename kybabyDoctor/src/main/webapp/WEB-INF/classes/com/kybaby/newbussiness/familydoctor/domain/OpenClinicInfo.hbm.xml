@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.kybaby.newbussiness.familydoctor.domain.OpenClinicInfo" table="opera_open_clinic_info">
+       <id name="id" type="java.lang.Long">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+  	 	<property name="openClinicDate" type="java.lang.String">
+            <column name="open_clinic_date" length="20">
+                <comment>开放日期</comment>
+            </column>
+        </property>
+  	 	<property name="timeSlot" type="java.lang.String">
+            <column name="time_slot" length="10">
+                <comment>开放时间段：上午   下午   全天</comment>
+            </column>
+        </property>
+  	 	<property name="businessType" type="java.lang.String">
+            <column name="business_type" length="10">
+                <comment>开展业务类型：计免、儿保、门诊、（便于扩展项目：上门、培训、讲座、约稿、咨询）</comment>
+            </column>
+        </property>
+  	 	<property name="openContent" type="java.lang.String">
+            <column name="open_content" length="50">
+                <comment>开通业务描述</comment>
+            </column>
+        </property>
+        
+      	<property name="money" type="java.lang.Double">
+            <column name="money" length="20">
+                <comment>报酬</comment>
+            </column>
+        </property>
+        
+        <property name="img" type="java.lang.String">
+            <column name="img" length="100">
+                <comment>图片</comment>
+            </column>
+        </property>
+        
+        <property name="planStartTime" type="java.lang.String">
+            <column name="plan_start_time" length="20">
+                <comment>计划开始时间</comment>
+            </column>
+        </property>
+        
+        <property name="planEndTime" type="java.lang.String">
+            <column name="plan_end_time" length="20">
+                <comment>计划结束时间</comment>
+            </column>
+        </property>
+        
+        <property name="actualStartTime" type="java.lang.String">
+            <column name="actual_start_time" length="20">
+                <comment>实际开始时间</comment>
+            </column>
+        </property>
+        
+        <property name="actualEndTime" type="java.lang.String">
+            <column name="actual_end_time" length="20">
+                <comment>实际结束时间</comment>
+            </column>
+        </property>
+        
+        <property name="state" type="java.lang.String">
+            <column name="state" length="20">
+                <comment>状态</comment>
+            </column>
+        </property>
+        
+       	<set name="doctorSet" lazy="false" cascade="save-update" table="opera_open_clinic_info_doctor_set"> 
+			<key column="id"></key> 
+			<many-to-many class="com.kybaby.domain.DoctorInfo" column="doctor_id"></many-to-many> 
+		</set>
+		<property name="isEffective" type="java.lang.String">
+            <column name="is_effective" length="5">
+                <comment>是否有效    Y：是      N：否</comment>
+            </column>
+        </property>
+   		<property name="remark" type="java.lang.String">
+            <column name="remark" length="1024">
+            	<comment>备注</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

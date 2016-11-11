@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<!-- 套餐设置 -->
+	<package namespace="/medicalorgandbusiness/setpro" name="organSetProService" extends="com.java.platform">
+		
+<!-- 		<result-types>
+			<result-type name="json" class="org.apache.struts2.json.JSONResult" />
+		</result-types>
+		
+		<interceptors>
+			<interceptor name="json" class="org.apache.struts2.json.JSONInterceptor" />
+		</interceptors> -->
+		
+		
+		<action name="toList" class="organSetProAction" method="toList">
+			<result name="success">/medicalorgandbusiness/SetPro_list.jsp</result>
+		</action>
+		<action name="toAddorEdit" class="organSetProAction" method="toAddorEdit">
+			<result name="success">/medicalorgandbusiness/SetPro_add.jsp</result>
+		</action>
+		
+		<action name="getMealList" class="organSetProAction" method="getMealList">
+			<result name="success">/medicalorgandbusiness/SetPro_select_list.jsp</result>
+		</action>
+		
+		<action name="getParentPro" class="organSetProAction" method="getParentPro">
+			<result name="success">/medicalorgandbusiness/SetPro_pro_select_list.jsp</result>
+		</action>
+		
+		<action name="getRelMealAndOrg" class="organSetProAction" method="getRelMealAndOrg">
+			<!-- <result name="success" type="json"></result> -->
+		</action>
+		
+		<action name="saveOrUpdate" class="organSetProAction" method="saveOrUpdate">
+			<result name="toList_action" type="stateRedirectAction">
+				<param name="actionName">toList.action</param>
+			</result>
+		</action>
+	</package>
+
+</struts>

@@ -1,0 +1,94 @@
+﻿<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<title>产品详情</title>
+	<meta charset="utf-8">
+ <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+ <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+ <META HTTP-EQUIV="Expires" CONTENT="0">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/productdetails.css">
+	<link href="css/royalslider.css" rel="stylesheet" type="text/css" />
+	<script src="js/modernizr-2.8.3.min.js"></script>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="js/jquery.royalslider.min.js"></script>
+	<script src="js/main.js"></script>
+    <script src="js/plugins.js"></script>
+	<script src="js/config.js"></script>
+    <script src="js/productdetails.js"></script>
+
+</head>
+<body>
+
+<div id="header">
+    <div class="header-left" onclick="window.location.replace('service_products.html')"><span>产品详情</span></div>
+	<div class="header-center"></div>
+	<div class="header-right"></div>
+</div>
+<!--header-->
+
+<div id="container">
+	<div class="product_img" id="productDetailImgs">
+		<div class="sliderContainer fullWidth clearfix">
+			<div id="full-width-slider" class="royalSlider heroSlider rsMinW">
+				<!-- <div class="rsContent"><img class="rsImg" src="/kybabyBG/admin/images/product/productDetail/img_prodet01.jpg" /></div>
+				<div class="rsContent"><img class="rsImg" src="/kybabyBG/admin/images/product/productDetail/img_prodet01.jpg" /></div>
+				<div class="rsContent"><img class="rsImg" src="/kybabyBG/admin/images/product/productDetail/img_prodet01.jpg" /></div> -->
+			</div>
+		</div>
+	</div>
+	<!--<div class="product_img" id="productDetailImgs">-->
+		<!--<div class="prev_icon"><img src="images/prev_icon.png" width="13"></div>-->
+		<!--<p><img src="images/img_prodet01.jpg"></p>-->
+		<!--<div class="next_icon"><img src="images/next_icon.png" width="13"></div>-->
+	<!--</div>-->
+	<div class="product_details clearfix">
+		<p class="product_title" style="width: auto;display: inline-block" id="productDetailsTitle"></p>
+		<!--<p class="product_price"><span id="productDetailPrice">&yen;</span></p>-->
+		<p class="product_price"></p>
+		<div class="clearfix">
+			<p style="visibility:hidden" class="product_time">服务时长：<span id="productDetailsServiceTime"></span></p>
+			<p class="product_num">已售出：<span id="productDetailsUseTime"></span>次</p>
+		</div>
+		<div class="product_tag clearfix" id="productDetailsItem">
+			<!-- <span class="button_11">称重</span>
+			<span class="button_11">幼儿教导</span>
+			<span class="button_11">语音测试</span>
+			<span class="button_11">量头围</span>
+			<span class="button_11">幼儿教导</span>
+			<span class="button_11">称重</span>
+			<span class="button_11">语音测试</span>
+			<span class="button_11">量头围</span> -->
+		</div>
+	</div>
+	<p class="gray_s"></p>
+	<div class="product_explain">
+		<p>产品说明</p>
+		<div class="explain_text" id="productIntroduction">
+			<!-- 1、产品说明产品说明产品说明<br>
+			1、产品说明产品说明产品说明<br>
+			1、产品说明产品说明产品说明 -->
+		</div>
+	</div>
+	<p class="login_button" onclick="orderProduct()">立即预约</p>
+</div>
+
+<!--container-->
+
+</body>
+
+<div id="method_box">
+	<div class="tag">
+		<span id="serviceItemName"></span>
+		<span class="close">&#10005;</span>
+	</div>
+	<section id="serviceItemContent">
+	</section>
+</div>
+
+
+</html>

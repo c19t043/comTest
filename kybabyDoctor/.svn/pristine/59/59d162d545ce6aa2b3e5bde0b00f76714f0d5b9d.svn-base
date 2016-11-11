@@ -1,0 +1,61 @@
+﻿<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>发帖</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/chatTiezi.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/megapix-image.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/chatTiezi.js"></script>
+    
+</head>
+<body >
+
+<div id="header" class="doctor_header">
+    <div class="header-left"><p></p></div>
+    <div class="header-center">发篇帖子</div>
+    <div class="header-right text-center" onclick="sendCon()"><span>发送</span></div>
+</div>
+<!--header-->
+
+<div id="container">
+	<input class="titleSpe" id="contitle" maxLength="30" placeholder="标题(1-30字)" /><input onclick="tagShow()" class="selectTag" type="button" value="选择标签" />
+	<p class="gray_3"></p>
+	<textarea id="circleContent" class="content" placeholder="内容(必填)"></textarea>
+	<div class="tagList"></div>
+	<p class="gray_3" style="margin-bottom: 8px"></p>
+	<div id="imageUpload">
+		<div class="loadimg_div">
+			<input class="loadimg_input" type="file" accept="image/*" onchange="loadImage(this)">
+			<canvas class="loadimg_showcanvas" width="90" height="90"></canvas>
+			<canvas class="loadimg_upcanvas" width="90" height="90" width="250" height="250" style="display:none"></canvas>
+			<input class="loadimg_base64" style="display:none" />
+		</div>		
+	</div>
+</div>
+
+<div id="showTag" class="showTag" style="top: -280px;">
+  <div class="tag_up">
+  	<div class="a"></div>
+    <div class="b"></div>
+    <div class="c"></div>
+  </div>
+  <div class="tag_list">
+	 	<div class="noteTag"></div>
+ 	  <p onclick="tagHide()" class="currentCli">确认</p> 
+  </div>
+
+</div>
+
+
+
+<script src="js/plugins.js"></script>
+</body>
+
+</html>

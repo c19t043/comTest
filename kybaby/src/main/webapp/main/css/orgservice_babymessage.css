@@ -1,0 +1,69 @@
+
+body{
+    text-align: center;
+}
+
+.org_userImg{
+    margin-top: 15px;
+    display: inline-block;
+    width: 75px;
+    height: 75px;
+    border-radius: 100%;
+    background: #6EB4A9;
+    text-align: center;
+}
+.org_userImg>img{
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+}
+.middleline{
+    width: 1px;
+    background: #FEA66C;
+    height: 16px;
+    margin: 0px auto;
+}
+.end{
+    width: 20px;
+    height: 20px;
+    margin: 0px auto;
+}
+.address,.time,.yuyuema{
+    width: 66%;
+    line-height: 28px;
+    border-radius: 4px;
+    border: 1px solid #FEA66C;
+    margin: 0px auto;
+}
+.yuyuema>img{
+    height:50px;
+}
+.instructions{
+    padding: 0px 15px;
+    text-align: left;
+    font-size: 12px;
+}
+.username{
+    margin-top: 10px;
+    color: #fff;
+}
+.org_message1{
+    width: 100%;
+    height: 80px;
+}
+.org_message1>img{
+    width: 100%;
+    height: 80px;
+}
+#header .header-left div{
+    background: url("../images/prev_01.png") no-repeat center center;
+    background-size: 30px;
+    height: 45px;
+}
+#erbao_head{
+    text-align: center;
+    width: 100%;
+    height: 140px;
+    background: url(../images/images_main/message_bg.png)repeat-x;
+    background-size: auto 100%;
+}

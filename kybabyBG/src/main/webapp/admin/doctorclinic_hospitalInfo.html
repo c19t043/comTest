@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>医院信息管理</title>
+	<meta charset="utf-8">
+	<meta name="renderer" content="webkit" />
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/date/WdatePicker.js"></script>
+	<script src="js/basic.js"></script>
+	<script src="js/common.js"></script>
+	<script src="js/doctorclinic_hospitalInfo.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/iconfont/iconfont.css">
+	<link rel="stylesheet" type="text/css" href="css/doctorclinic_hospitalInfo.css">
+</head>
+<body>
+
+<div id="headcon" class="headcon">
+
+</div>
+
+<div class="middlecon">
+	<div id="leftcon" class="leftcon">
+
+	</div>
+
+	<div id="rightcon" class="rightcon">
+		<div class="content">
+			<div id="con_position" class="con_position">
+				<h1 id="con_tit" class="con_tit"></h1>
+				<div id="con_meu" class="con_meu">
+					<span>首页</span>
+					<span>/</span>
+					<span class="first"></span>
+					<span>/</span>
+					<span class="second"></span>
+				</div>
+				<div class="con_contral">
+					<label>医院名称：</label><input style="width: 120px" id="hospitalName" type="text">
+                    <span onclick="search_click()" class="bu">查找</span>
+				</div>
+				<table id="table_title" class="table_title">
+
+				</table>
+			</div>
+			<div class="table_h">
+				<table id="table_content" class="table_content">
+
+				</table>
+			</div>
+			<div class="con_page">
+				<span class="a">共&nbsp;<span id="con_num" class="con_num"></span>&nbsp;条数据</span>
+				<div class="button_cli">
+					<span class="button" onclick="page_click('default','1')">首页</span>
+					<span class="button" onclick="page_click('default','prev')" >上一页</span>
+					<span class="num" id="now_page_num" >1</span>
+					<span class="button" onclick="page_click('default','next')">下一页</span>
+					<span class="button" onclick="page_click('default','end')">尾页</span>
+				</div>
+				<div class="page_go">
+					<span class="b">共&nbsp;<span id="page_num" class="page_num"></span>&nbsp;页</span>
+					<span class="c">跳转到&nbsp;<input id="go_page" type="number" value="1" min="1">&nbsp;页</span>
+					<span class="button" onclick="page_click_go()">Go</span>
+				</div>
+			</div>
+			
+			<div id="bottom_div" class="bottom_div">
+				<div class="bottom_div_tit">
+					 <span class="tit_info"></span>
+					 <span id="button_add_click" onclick="saveOrUpdate()" class="button_style button_add">确认</span>
+					<span id="button_cancel_click" class="button_style button_cancel">取消</span>
+				</div>
+				<div id="bottom_div_con" class="bottom_div_con">
+					<form id="data_form" action="" method="post" enctype="multipart/form-data">
+			            <div class="fj">
+			            	<input id="keyId" type="hidden" name="hospitalBasicInfo.id"/>
+							<label>省：</label>
+							<select id="province" name="hospitalBasicInfo.province" >
+								<option>四川</option>
+							</select>
+							
+							<label>市：</label>
+							<select id="city" name="hospitalBasicInfo.city" >
+								<option>成都</option>
+							</select>
+							
+							<label>名称：</label>
+							<input style="width: 200px" id="hospitalLname" type="text" name="hospitalBasicInfo.hospitalLname" placeholder="输入医院名"/>
+							
+							<label>医院类别：</label>
+							<select id="hospitalType" name="hospitalBasicInfo.hospitalType">
+								<option>社区医院</option>
+								<option>专科医院</option>
+								<option>综合医院</option>
+							</select>
+			            </div>
+			             <div class="fj">
+			             	<label>医院地址：</label>
+							<input style="width: 300px" id="address" type="text" name="hospitalBasicInfo.address" placeholder="输入医院地址"/>
+			             	
+			             	<label>医院等级：</label>
+							<select id="hospitalLevel" name="hospitalBasicInfo.hospitalLevel">
+								<option value="">无等级</option>
+								<option value="三甲">三甲</option>
+								<option value="二甲">二甲</option>
+								<option value="三乙">三乙</option>
+								<option value="二乙">二乙</option>
+								<option value="三级">三级</option>
+								<option value="二级">二级</option>
+								<option value="一级">一级</option>
+							</select>
+							
+							<label>医院电话：</label>
+							<input id="tel" type="text" name="hospitalBasicInfo.tel" placeholder="输入医院电话"/>
+			             </div>
+			              <div class="fj">
+			              	<label>医院性质：</label>
+							<select id="hospitalNature" name="hospitalBasicInfo.hospitalNature" >
+								<option>公立</option>
+								<option>私立</option>
+							</select>
+							
+			             	<label>是否对用户显示：</label>
+							<select id="isShowForUser" name="hospitalBasicInfo.isShowForUser" >
+								<option>Y</option>
+								<option>N</option>
+							</select>
+			              </div>
+			             <div class="fj">
+			             	<label>医院经度：</label>
+							<input id="hospitalLng" type="text" name="hospitalBasicInfo.hospitalLng" placeholder="输入医院经度"/>
+			             	
+			             	<label>医院纬度：</label>
+							<input id="hospitalLat" type="text" name="hospitalBasicInfo.hospitalLat" placeholder="输入医院纬度"/>
+			             	
+			             	<label>医院简介：</label>
+							<textarea id="introduction" name="hospitalBasicInfo.introduction" placeholder="医院动态"></textarea>
+			             	
+			             	<label>医院动态：</label>
+							<textarea id="orgDynamic" name="hospitalBasicInfo.orgDynamic" placeholder="医院动态"></textarea>
+			             	
+			             </div>
+			             <div class="fj">
+	                        <label>开通服务：</label>
+	                        <span id="open_business_name"></span>
+	                        <input type="hidden" id="open_business_id" name="hospitalBasicInfo.open_business_id">
+	                    	<span onclick="chooseObj('openBusiness')" class="dzstyle">点击修改</span>
+	                    </div>
+			             <br>
+			            <hr>
+			            <div class="fj">
+			                <label style=" font-weight: bolder;background-color: #33FF33;">流程节点添加：</label>
+			               	<span onclick="add_node_click('node_template','node_Tbody')" class="bu1">添加</span>
+			                <span onclick="del_node_click('node_Tbody')" class="bu1">删除</span>
+			            </div>
+						<table id="node_table_title" class="table_title">
+							<tr>
+								<th style='width:10%'>序列</th>
+								<th style='width:10%'>选择</th>
+								<th style='width:10%'>图片上传</th>
+								<th style='width:10%'>是否主图</th>
+								<th style='width:10%'>图片描述</th>
+							</tr>	
+						</table>
+						<div class="table_h">
+							<table id="node_table_content" class="table_content" border="1" >
+								<tbody id="node_Tbody"></tbody>
+							</table>
+						</div>
+		          	</form>
+				</div>
+			</div>
+			<!-- 选择擅长领域 -->
+			<div id="bg"></div>
+			<div class="boxZhezhao" style="display:none">
+			    <h2>选择<a href="javascript:hideMask()" class="close">关闭</a></h2>
+			    <table class="table_title" id="titalTable">
+					
+				</table>
+			    <div class="list">
+			    	<table id="selectContent" class="table_content"></table>
+			    </div>
+			</div>
+		</div>	
+	</div>
+</div>
+
+<!-- ==============添加行信息隐藏域--banner添加================= -->
+  	<div style="display: none; width: 0px; height: 0px;">
+  		<table>
+			<tr id="node_template" onclick="click_light(this)">
+				<td style="width:10%">
+					
+				</td>
+				<td style="width:10%">
+					<input type="hidden" name="hospitalBannerList[].id" />
+					<input type="checkbox" />
+				</td>
+				<td style="text-align: center;width:10%">
+					 <img width="60px" height="30px"  onclick="img_cli(this)" />
+			         <input type="file" accept="image/*" onchange="handleFiles(this)" style="display:none;"/>
+			         <canvas style="display:none;" width="60" height="30"></canvas>
+			         <input type="hidden" name="hospitalBannerList[].imgBase64" value=""/>
+				</td>
+				<td style="text-align: center;width:10%">
+					<select name="hospitalBannerList[].isMainImg">
+						<option value="Y">Y</option>
+						<option value="N">N</option>
+					</select>
+				</td>
+				<td style="text-align: center;width:10%">
+					 <input name="hospitalBannerList[].imgRemark" type="text" placeholder="描述" value="">
+				</td>
+			</tr>
+		</table>
+	</div>
+  </body>
+</html>

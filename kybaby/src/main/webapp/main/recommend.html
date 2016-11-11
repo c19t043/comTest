@@ -1,0 +1,115 @@
+﻿<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<title>推荐有奖</title>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/recommend.css">
+	<script src="js/modernizr-2.8.3.min.js"></script>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/sha1.js"></script>
+	<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script src="js/jquery.qrcode.min.js"></script>
+	<script src="js/config.js"></script>
+	<script src="js/recommend.js"></script>
+	<style>
+		body{
+			line-height: 35px;
+			text-align: center;
+			font-size: 15px;
+		}
+		#code_ewm{
+			position: relative;
+		}
+		#logo{
+			position: absolute;
+			top: 38%;
+			left: 38%;
+			width: 32%;
+		}
+	</style>
+</head>
+<body>
+
+<div id="header">
+	<!--<div class="header-left"><p></p></div>-->
+	<!--<div class="header-center">推荐有奖</div>-->
+	<!--<div class="header-right" style="display:none"><p>分享</p></div>-->
+	<div class="header-left" onclick="return_before()"><span>推荐有奖</span></div>
+	<div class="header-center"></div>
+	<div class="header-right"><span></span></div>
+</div>
+<!--header-->
+
+<div id="container" style="margin: 45px 0 13px">
+	<div>
+		<p>把我们分享出去吧</p>
+
+		<p style="font-size: 18px;color: #FF8141">点击分享</p>
+	</div>
+	<p class="share_cli">
+		<span id="pyq_share" style="background:url(images/images_main/pyq_icon.png) no-repeat center center;background-size:35px;" class="share_icon"></span>
+		<span id="wx_share" style="background:url(images/images_main/weixin_icon.png) no-repeat center center;background-size:35px;" class="share_icon"></span>
+		<span id="zone_share" style="background:url(images/images_main/weibo_icon.png) no-repeat center center;background-size:35px;" class="share_icon"></span>
+	</p>
+	<div class="recommend_box">
+		<p class="recommend_code"><span id="codetjm"></span></p>
+		<div id="code_ewm" class="qr_img">
+			<img id="logo" src="images/images_main/logo.png" alt=""/>
+		</div>
+	</div>
+
+</div>
+<div id="zz"></div>
+
+<!--container-->
+
+
+
+<script src="js/main.js"></script>
+<script src="js/plugins.js"></script>
+
+<!-- JiaThis Button BEGIN 
+<div class="jiathis_style_32x32">
+<a class="jiathis_button_weixin"></a>
+<a class="jiathis_button_qzone"></a>
+<a class="jiathis_button_tsina"></a>
+<a class="jiathis_button_tqq"></a>
+<a class="jiathis_button_renren"></a>
+
+</div>
+<script type="text/javascript" >
+
+var jiathis_config={
+	siteNum:5,
+	sm:"qzone,renren,weixin,tsina,douban",
+	url:location.href.split('?')[0].replace('recommend','regist')+"?phone="+url_str[2],
+	summary:"",
+	title:"康优宝贝，宝宝的贴心棉袄 ##",
+	shortUrl:false,
+	hideMore:true
+}
+
+
+
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code_mini/jia.js" charset="utf-8"></script>
+
+
+
+<style>
+.jiathis_style_32x32{
+	text-align:center;
+	margin-bottom: 20px;
+}
+.jiathis_style_32x32 a{
+	display:inline-block;
+}
+</style>
+-->
+</body>
+</html>

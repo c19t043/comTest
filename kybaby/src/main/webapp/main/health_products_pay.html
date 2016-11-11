@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>支付</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/orgservice_pay_babypoint.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/MD5.js"></script>
+    <script src="js/main.js"></script>
+    <style>
+        .gray_s{
+            width: 120%;
+            margin-left: -15px;
+        }
+        #header{
+            border-bottom: 2px solid #F7F7F7;
+        }
+    </style>
+</head>
+<body>
+<div id="header">
+    <div class="header-left" onclick="return_before()"><span>支付</span></div>
+    <div class="header-center"></div>
+    <div class="header-right"></div>
+</div>
+<!--header-->
+<div id="container" style="overflow: hidden">
+    <div class="description" style="text-align: center;">
+        <img style="border-radius: 0;width: 300px;float: none;height: 200px;margin-left: 0px" src="" alt=""/>
+
+        <div id="doctorMessage" class=".p" style="float: none;margin-left: 0px">
+
+        </div>
+    </div>
+    <div class="gray_s" style="height: 12px"></div>
+    <p>支付方式</p>
+    <table class="payWay">
+        <tbody>
+        <!--<tr>-->
+        <!--<td><img src="images/payIcon1.jpg" alt=""/></td>-->
+        <!--<td>支付宝支付</td>-->
+        <!--<td><img class="icon" src="images/chooseAddress.jpg" alt=""/></td>-->
+        <!--</tr>-->
+        <tr class="choosePayWay">
+            <td><img style="width: 42px;" src="images/images_family_doctor/weixin_color.png" alt=""/></td>
+            <td>微信支付</td>
+            <td><img class="icon" style="width: 22px;" src="images/images_family_doctor/true.png" alt=""/></td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="gray_s" style="height: 12px"></div>
+    <p>服务价格</p>
+    <div style="overflow: hidden">
+        <div class="float-left">产品费用</div>
+        <div class="float-right">￥<span id="visit"></span></div>
+        <!--<div class="float-left">挂号费(需现场支付)</div>-->
+        <!--<div class="float-right">￥30.00</div>-->
+    </div>
+    <div class="gray_s"></div>
+    <div class="accountBalance" style="overflow: hidden">
+        <div class="float-left"><span>可用余额</span>&nbsp;&nbsp;<span class="blue">￥<span id="accountBalance"></span></span></div>
+        <div class="float-right text-center"><img style="width: 22px;" src="images/images_family_doctor/select.png" alt=""/></div>
+    </div>
+    <div class="gray_s" style="height: 12px"></div>
+
+    <h2 style="font-size: 16px;color: red"><span style="color: #505050">还需支付</span>&nbsp;&nbsp;￥<span id="payTotal"></span></h2>
+</div>
+<footer id="footer">
+    <p class="login_button">去支付</p>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/health_products_pay.js"></script>
+<script src="js/config.js"></script>
+</body>
+</html>

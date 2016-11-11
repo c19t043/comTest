@@ -1,0 +1,36 @@
+package com.kybaby.newbussiness.doctorsign.vo;
+
+import java.util.List;
+
+import com.kybaby.domain.DoctorInfo;
+
+public class SignDoctor {
+	private String time;
+	private String count;
+	private List<DoctorInfo> doctorInfos;
+	
+	public SignDoctor(String time,String count,List<DoctorInfo> doctorInfos) {
+		this.time = time;
+		this.count = count;
+		this.doctorInfos = doctorInfos;
+	}
+	
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
+	}
+	public String getCount() {
+		return count;
+	}
+	public void setCount(String count) {
+		this.count = count;
+	}
+	public List<DoctorInfo> getDoctorInfos() {
+		return doctorInfos;
+	}
+	public void setDoctorInfos(List<DoctorInfo> doctorInfos) {
+		this.doctorInfos = doctorInfos;
+	}
+}

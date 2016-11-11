@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<bean id="operationmanageAction" class="com.java.operationmanage.action.OperationmanageAction" scope="prototype">
+		<property name="operationmanageService" ref="operationmanageService" />
+		<property name="fdServicePackageService" ref="fdServicePackageServiceImpl" />
+	</bean>
+	<bean id="operationModelManagerAction" class="com.java.operationmanage.action.OperationModelManagerAction" scope="prototype">
+		<property name="operationmanageService" ref="operationmanageService" />
+		<property name="operationModelService" ref="operationModelService" />
+	</bean>
+</beans>

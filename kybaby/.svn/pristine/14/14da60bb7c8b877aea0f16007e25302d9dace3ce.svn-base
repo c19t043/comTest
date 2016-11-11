@@ -1,0 +1,228 @@
+@charset "utf-8";
+
+.order_box {
+	width: 90%;
+	padding: 10px 5%;
+	clear: both;
+	overflow: hidden;
+	background: white;
+}
+.order_left {
+	width: 60px;
+	height: 60px;
+	margin-top: 10px;
+	float: left;
+	background: black;
+}
+.order_right {
+	margin-left: 70px;
+}
+.order_right .tit {
+	width: 100%;
+	margin-bottom: 10px;
+}
+.button_tab {
+	float: left;
+	margin:0 10px 10px 0;
+	font-size: 0.75em;
+	padding: 6px 7px;
+	color: #ff813d;
+	background: #f7f7f7;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+.order_sum {
+	border-top: 1px solid #f7f7f7;
+	text-align: right;
+	background: white;
+	line-height: 2.5em;
+	padding-right: 5%;
+}
+.confirm_list01 {
+	background-color: #fff;
+	background-image: url("../images/icon_a.png") ,url("../images/next.png");
+	background-repeat: no-repeat;
+	background-position: 5% center, 95% center;
+	background-size: 30px, 9px;
+	padding: 10px 15% 10px 20%;
+	font-size: 0.875em;
+	line-height: 2em;
+}
+.confirm_list01 div {
+	font-size: 15px;
+}
+.confirm_list02 {
+	background-color: #fff;
+	background-image: url("../images/icon_b.png") ,url("../images/next.png");
+	background-repeat: no-repeat;
+	background-position: 5% center, 95% center;
+	background-size: 30px, 9px;
+	padding: 10px 15% 10px 20%;
+	font-size: 15px;
+	line-height: 30px;
+	height: 30px;
+}
+.confirm_list03 {
+	background-color: #fff;
+	background-image: url("../images/icon_c.png") ,url("../images/next.png");
+	background-repeat: no-repeat;
+	background-position: 5% center, 95% center;
+	background-size: 30px, 9px;
+	padding: 10px 15% 10px 20%;
+	font-size: 1em;
+	line-height: 30px;
+	height: 30px;
+}
+.confirm_list04 {
+	background-color: #fff;
+	background-image: url("../images/icon_d.png") ,url("../images/next.png");
+	background-repeat: no-repeat;
+	background-position: 5% center, 95% center;
+	background-size: 30px, 9px;
+	padding: 10px 15% 10px 20%;
+	font-size: 15px;
+	line-height: 30px;
+	height: 30px;
+}
+.discount_state {
+	font-size: 0.875em;
+	color: red;
+	float: right;
+}
+.confirm_list05 {
+	background-color: #fff;
+	background-image: url("../images/icon_e.png");
+	background-repeat: no-repeat;
+	background-position: 5% center;
+	background-size: 30px;
+	padding: 10px 10% 10px 20%;
+	font-size: 15px;
+	line-height: 30px;
+	height: 30px;
+}
+.btn_box {
+	width: 40px;
+	margin: 0 auto;
+	height: 20px;
+	line-height: 20px;
+	background: #e7e7e7;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	position: relative;
+	float: right;
+	font-size: 0.75em;
+	margin-top: 5px;
+}
+
+.ch1,
+.ch2{
+	width: 20px;
+	height: 20px;
+	position: relative;
+	top: 0;
+	left: 0;
+	background: #c8c8c8;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+
+}
+
+.choose1,
+.choose3{
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	float: left;
+}
+
+.choose2,
+.choose4{
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	float: right;
+}
+.confirm_common {
+	width: 70%;
+	padding: 0 10% 0 20%;
+	background: #fff;
+	line-height: 50px;
+	height: 50px;
+}
+.confirm_list06 {
+	background-color: #fff;
+	background-image: url("../images/icon_f.png");
+	background-repeat: no-repeat;
+	background-position: 5% center;
+	background-size: 30px;
+	padding: 10px 10% 10px 20%;
+	font-size: 15px;
+	line-height: 30px;
+	height: 30px;
+}
+.use_sum {
+	float: left;
+	color: red;
+	font-size: 0.75em;
+	margin-left: 10px;
+	display: none;
+}
+.pay_sum {
+	font-size: 1.5em;
+	color: red;
+}
+.pay_way {
+	width: 90%;
+	padding: 0 5%;
+	background: #fff;
+	margin-bottom: 30px;
+}
+.pay_way label {
+	width: 90%;
+}
+.pay_way input {
+	text-align: right;
+}
+.pay_way .pay_wx {
+	background: url("../images/icon_wx.png") no-repeat left center;
+	background-size: 30px;
+	padding-left: 40px;
+	height: 50px;
+	line-height: 50px;
+}
+.pay_way .pay_zfb {
+	background: url("../images/icon_zfb.png") no-repeat left center;
+	background-size: 30px;
+	padding-left: 40px;
+	height: 50px;
+	line-height: 50px;
+}
+.pay_way .pay_yl {
+	background: url("../images/icon_yl.png") no-repeat left center;
+	background-size: 30px;
+	padding-left: 40px;
+	height: 50px;
+	line-height: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+

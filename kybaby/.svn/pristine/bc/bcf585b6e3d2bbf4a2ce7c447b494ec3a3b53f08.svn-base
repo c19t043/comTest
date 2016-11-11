@@ -1,0 +1,87 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<title>服务时间</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/service_time.css">
+	<script src="js/modernizr-2.8.3.min.js"></script>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/service_time.js"></script>
+	<script src="js/config.js"></script>
+</head>
+<body>
+<div id="header">
+    <div class="header-left" onclick="return_before()"><span>服务时间</span></div>
+	<div class="header-center"></div>
+	<div class="header-right"></div>
+</div>
+<div id="container">
+	<p class="gray_2"></p>
+
+	<div class="row" id="time_box">
+		<!--<div class="jt"></div>-->
+		<!--<div class="jts"></div>-->
+		<!--<div class="sj_box grey_box">-->
+		<!--<span>周一</span><br/><span>09/09</span>-->
+		<!--</div>-->
+		<!--<div class="sj_box">-->
+		<!--<span>周二</span><br/><span>09/10</span>-->
+		<!--</div>-->
+		<!--<div class="sj_box">-->
+		<!--<span>周三</span><br/><span>09/11</span>-->
+		<!--</div>-->
+		<!--<div class="sj_box">-->
+		<!--<span>周四</span><br/><span>09/12</span>-->
+		<!--</div>-->
+		<!--<div class="sj_box">-->
+		<!--<span>周五</span><br/><span>09/13</span>-->
+		<!--</div>-->
+		<!--<div class="sj_box">-->
+		<!--<span>周六</span><br/><span>09/14</span>-->
+		<!--</div>-->
+		<!--<div class="sj_box">-->
+		<!--<span>周日</span><br/><span>09/15</span>-->
+		<!--</div>-->
+	</div>
+
+	<table class="boxs" border="1" id="boxs">
+		<tr>
+			<!-- <td class="yellow">9:00-10:00</td> -->
+			<td  id="box_9">9:00-10:00</td>
+			<td  id="box_10">10:00-11:00</td>
+			<!-- <td class="blue" name="timeBox">11:00-12:00</td> -->
+			<td  id="box_11">11:00-12:00</td>
+			<td  id="box_12">12:00-13:00</td>
+		</tr>
+		<tr>
+			<td  id="box_13">13:00-14:00</td>
+			<td  id="box_14">14:00-15:00</td>
+			<td  id="box_15">15:00-16:00</td>
+			<td  id="box_16">16:00-17:00</td>
+		</tr>
+		<tr>
+			<td  id="box_17">17:00-18:00</td>
+			<td  id="box_18">18:00-19:00</td>
+			<td  id="box_19">19:00-20:00</td>
+			<td  id="box_20">20:00-21:00</td>
+		</tr>
+	</table>
+
+	<div class="tishi">
+		<ul>
+			
+			<li><span class="huibox"></span>灰色为可选</li>
+			<!--
+			<li><span class="huangbox"></span>黄色为不可选</li>
+			-->
+			<li><span class="lanbox"></span>橙色为不可选</li>
+			
+		</ul>
+	</div>
+</div>
+</body>
+</html>

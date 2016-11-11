@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>儿保产品管理</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit" />
+<script src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="ueditor/ueditor.all.min.js"> </script>
+<script type="text/javascript" charset="utf-8" src="ueditor/lang/zh-cn/zh-cn.js"></script>
+<script src="hf/hf.js"></script>
+<script src="js/basic.js"></script>
+<script src="js/common.js"></script>
+<script src="js/childproduct_manage.js"></script>
+<link rel="stylesheet" type="text/css" href="css/common.css">
+<link rel="stylesheet" type="text/css" href="css/iconfont/iconfont.css">
+<link rel="stylesheet" type="text/css" href="css/childproduct_manage.css">
+</head>
+<body>
+<div id="headcon" class="headcon">
+
+</div>
+
+<div class="middlecon">
+	<div id="leftcon" class="leftcon">
+
+	</div>
+	
+	<div id="rightcon" class="rightcon">
+		<div class="content">
+			<div id="con_position" class="con_position">
+				<h1 id="con_tit" class="con_tit"></h1>
+				<div id="con_meu" class="con_meu">
+					<span>首页</span>
+					<span>/</span>
+					<span class="first"></span>
+					<span>/</span>
+					<span class="second"></span>
+				</div>
+				<div class="con_contral">
+                    <span class="tishi">已有产品：</span>
+				</div>
+				<table id="table_title" class="table_title">
+
+				</table>
+			</div>
+			<div class="table_h">
+				<table id="table_content" class="table_content">
+    
+				</table>
+			</div>
+			<div class="con_page">
+				<span class="a">共&nbsp;<span id="con_num" class="con_num"></span>&nbsp;条数据</span>
+				<div class="button_cli">
+					<span class="button" onclick="page_click('default','1')">首页</span>
+					<span class="button" onclick="page_click('default','prev')" >上一页</span>
+					<span class="num" id="now_page_num" >1</span>
+					<span class="button" onclick="page_click('default','next')">下一页</span>
+					<span class="button" onclick="page_click('default','end')">尾页</span>
+				</div>
+				<div class="page_go">
+					<span class="b">共&nbsp;<span id="page_num" class="page_num"></span>&nbsp;页</span>
+					<span class="c">跳转到&nbsp;<input id="go_page" type="number" value="1" min="1">&nbsp;页</span>
+					<span class="button" onclick="page_click_go()">Go</span>
+				</div>
+			</div>
+			<div id="bottom_div" class="bottom_div" >
+			  <div class="bottom_div_tit">
+				  <span class="tit_info"></span>
+				  <span id="button_add_click" onclick="product_info('add')" class="button_style button_add">确认</span>
+					<span id="button_update_click" onclick="product_info('update')" class="button_style button_change">确认</span>
+					<span id="button_cancel_click" class="button_style button_cancel">取消</span>
+				</div>
+				<div id="bottom_div_con" class="bottom_div_con">
+					<form id="product_form" action="" method="post" enctype="multipart/form-data">
+
+	          <div class="fj">
+	              <label>产品名称：</label>
+	              <input type="text" id="show_name" name="name" placeholder="不得为空">
+	              <input type="text" id="hide_id" name="updateId" style="display:none;">
+	              <label>状态：</label>
+              		<select id="show_status" name="status">
+	                    <option value="Y">Y</option>
+	                    <option value="N">N</option>
+               		</select>
+	              <label>上门服务时长：</label>
+	              <input type="text" id="show_servicetime" name="serviceTime"  placeholder="非负正整数">
+	             
+	              <label>产品价格：</label>
+                  <input type="text" id="show_price" name="totalPrice" placeholder="非负正数">
+	          </div>
+            <div class="fj">
+            	<label>所属流程：</label><select id="flowBasicId" name="flowBasicId"></select>
+                <label>适用最小月龄：</label>
+                <input type="text" id="show_age" name="whatFitForMonth" placeholder="0~36">
+                <label>适用最大月龄：</label>
+                <input type="text" id="maxAge" name="maxAge" placeholder="0~36">
+                <label>年龄开关：</label>
+	             <select id="isJudgeAge" name="isJudgeAge">
+	               <option value="Y">Y</option>
+	               <option value="N">N</option>
+	             </select>
+            </div>
+            <div class="fj">
+                <label>适用宝宝性别：</label>
+                <select id="show_sex"  name="whatFitForSex">
+                	<option value="全部">全部</option>
+                	<option value="男">男</option>
+                	<option value="女">女</option>
+                </select>
+				<label>性别开关：</label>
+	             <select id="isJudgeSex" name="isJudgeSex">
+	               <option value="Y">Y</option>
+	               <option value="N">N</option>
+	             </select>
+                <label>职称要求：</label>
+                <select id="show_level" name="positionId" >
+                </select>
+<!--                 <input type="text" id="hide_level" name="positionId" style="display:none;"> -->
+                <label>产品属性：</label>
+                <select id="show_productproperty" name="productProperty">
+                	<option value="早产儿">早产儿</option>
+                	<option value="新生儿">新生儿</option>
+                	<option value="一岁以下">一岁以下</option>
+                	<option value="一岁到三岁">一岁到三岁</option>
+                </select>
+                <!--
+                <input type="text" id="hide_property" name="productProperty" style="display:none;">
+                -->
+            </div>
+            <div class="fj">
+                <label>产品分类：</label>
+                <select id="show_type" name="productCategory">
+                    <option value="基础产品">基础产品</option>
+                    <option value="增值产品">增值产品</option>
+                </select>
+                <label>售后服务时长：</label>
+	            <input type="text" id="show_afterservicetime" name="afterServiceTime" placeholder="非负正整数">
+               
+                <label>特色产品：</label>
+	                <select id="show_isspecial" name="isFeatures">
+	                	<option value="Y">Y</option>
+	                	<option value="N">N</option>
+	                </select> 
+	            <label>产品介绍：</label>
+                <span class="bu" id="child_edit">点击编辑</span>
+                <textarea id="area_edit" name="introduction" style="display:none;"></textarea>
+            </div>
+            <div class="fj">
+            	<label>产品归属类型：</label>
+                <select id="show_product_type" name="productType" onchange="member(this)">
+                    <option value="健康产品">健康产品</option>
+                    <option value="会员产品">会员产品</option>
+                </select>
+                <select id="memberTypeId" name="memberTypeId">
+                </select>
+                <label>产品简介：</label>
+                <textarea id="shortIntroduction" name="shortIntroduction" style="width: 150px;height: 30px"></textarea>
+                <br>
+                <label>产品小图：</label><br>
+                <div class="tp" style="position: relative;left: 80px;">
+                	
+                	<img id="show_smallpic"  width="120px" height="120px" onclick="show_smallpic_cli.click()" />
+                	<input type="file" id="show_smallpic_cli" name="smallPictureFile" accept="image/*" onchange="handleFiles(this,'show_smallpic')" style="display:none;">
+                </div>
+                <span class="chicun_info_">(300px * 300px		1:1)</span>
+                <br>
+                <label>产品大图：</label><br>
+                <div style="position: relative;left: 80px;">
+                	<img id="show_bigpic_1" width="384px" height="120px" onclick="show_bigpic1_cli.click()" /><span class="chicun_info">(640px * 200px		16:5)</span><br>
+                	<img id="show_bigpic_2" width="384px" height="120px" onclick="show_bigpic2_cli.click()" /><span class="chicun_info">(640px * 200px		16:5)</span><br>
+                	<img id="show_bigpic_3" width="384px" height="120px" onclick="show_bigpic3_cli.click()" /><span class="chicun_info">(640px * 200px		16:5)</span><br>
+                	
+                	<input type="file" name="bigPictureOneFile" id="show_bigpic1_cli" accept="image/*" onchange="handleFiles(this,'show_bigpic_1')" style="display:none;">
+                	<input type="file" name="bigPictureTwoFile" id="show_bigpic2_cli" accept="image/*" onchange="handleFiles(this,'show_bigpic_2')" style="display:none;">
+                	<input type="file" name="bigPictureThree" id="show_bigpic3_cli" accept="image/*" onchange="handleFiles(this,'show_bigpic_3')" style="display:none;">
+                </div>
+
+
+            </div>
+            <div class="fj">
+                <label>儿保项目：</label>
+            </div>
+            <div id="show_product" class="fj">
+
+            </div>
+						<input type="text" id="hide_projectarr" name="itemIds" style="display:none;">
+          </form>
+				</div>
+			</div>
+		</div>	
+	</div>
+</div>
+
+
+</body>
+</html>
+  

@@ -1,0 +1,137 @@
+﻿.article_con {
+  height: 80px;
+  background: #fff;
+}
+
+.article_con h3{
+font-size: 17px;
+    text-indent: 12px;
+    line-height: 55PX;
+    height: 55px;
+    width: 90%;
+    color: #4A4A4A;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.con_row2{
+    padding:0 12px ;
+    height: 25px;
+}
+.con_row2 span{
+    font-size: 12px;
+    color: #969696;
+
+    display: inline-block;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+
+}
+span.row2_user{
+    width: 50px;
+    float:left;
+}
+span.row2_time{
+    width: 90px;
+    margin-left: 15px;
+    float:left;
+}
+
+span.row2_view{
+    background: url(../images/normalicon/yanjing.png) 0px center no-repeat;
+    background-size: 19px;
+    text-indent: 20px;
+    float: right;
+    margin-left: 15px;
+}
+span.row2_chat{
+    background: url(../images/normalicon/xinxi.png) 0px center no-repeat;
+    background-size: 16px;
+    text-indent: 18px;
+    float: right;
+    margin-left: 10px;
+}
+.jingtie{
+background: url(../images/jingtie_ico.png) left top no-repeat;
+    background-size: 30px;
+}
+/*----------------------*/
+.noteTag{
+	width: 94%;
+	font-size: 12px;
+	margin-left: 3%;
+	height: 90%;
+	padding-top: 3%;
+	overflow-y: auto;
+}
+.noteTag .tagName{
+    background: #c0c0c0;
+    padding: 4px 6px;
+    border-radius: 4px;
+    color: #fff;
+    float: left;
+    margin: 4px;
+}
+.blue{
+	background:#1cba93 !important;
+}
+/**/
+.showTag{
+    height: 300px;
+    width: 80%;
+    position: fixed;
+    top: -280px;
+    left: 10%;
+}
+.tag_up{
+    height: 46%;
+    width: 100%;
+}
+.tag_up .a{
+    width: 20%;
+    height: 100%;
+    float: left;
+}
+.tag_up .b{
+    width: 60%;
+    height: 100%;
+    float: left;
+    outline: 3px solid #c0c0c0;
+}
+.tag_up .c{
+    width: 20%;
+    height: 100%;
+    float: left;
+}
+.tag_list{
+    width: 100%;
+    height: 53%;
+    background: #f7f7f7;
+    position: relative;
+    outline: 1px solid #1cba93;
+}
+.showTagList{
+width: 40%;
+    margin-left: 30%;
+    height: 25px;
+    font-size: 11px;
+    color: #1cba93;
+    background-image: -webkit-linear-gradient(bottom, #efefef, #fcfcfc 100%);
+    text-align: center;
+    line-height: 25px;
+    font-weight: bold;
+    background: url(../images/tag-show.png) no-repeat 7% center;
+    background-size: 10px;
+}
+.showTagList:after{
+	position: relative;
+	left: 0px;
+	bottom: 0px;
+	height: 2px;
+	width: 100%;
+	content: ' ';
+	display: block;
+	background: #1cba93;
+}

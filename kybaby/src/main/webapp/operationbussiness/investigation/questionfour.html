@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head  class="no-js" lang="zh-cn">
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <script src="../../main/js/config.js"></script>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+        body{
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            background: #DA9289;
+        }
+        #gif{
+            width: 100%;
+            height: 170px;
+        }
+        img.gif{
+            width: 100%;
+            height: 170px;
+        }
+        .title{
+            width: 100%;
+            line-height: 28px;
+            padding: 10px 0px;
+            text-align: center;
+            color: #222;
+            font-size: 16px;
+            background: #DA9289;
+            border-bottom:5px solid #F4EAD4 ;
+        }
+        .title>img{
+            width: 50%;
+            height: 60px;
+        }
+        .content{
+            background: #DA9289;
+            padding-top: 10px;
+        }
+        .content>p{
+            color: white;
+            font-size:16px;
+            margin-bottom: 10px;
+        }
+        .content>img{
+            width: 100%;
+            margin: -5px 0px;
+            position: relative;
+            bottom:0px;
+        }
+        .a{
+            left: -100%;
+        }
+        .b{
+            left: 100%;
+        }
+        .c{
+            left: -100%;
+        }
+        .d{
+            left: 100%;
+        }
+        .e{
+            left: -100%;
+        }
+        #cover{
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            left: 0px;
+            top:0px;
+            background: rgba(0,0,0,0.6);
+            display: none;
+        }
+        #cover>.people{
+            position: absolute;
+            right: -30px;
+            bottom:0px;
+            width: 60%;
+            height: 60%;
+        }
+        #cover>.text{
+            position: absolute;
+            left: 40px;
+            top:20px;
+            width: 80%;
+            height: 80%;
+        }
+        .close{
+            position: absolute;
+            right: 20px;
+            top:20px;
+            width: 20%;
+            z-index: 999;
+        }
+    </style>
+    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        var urlstr=decodeURIComponent(window.location.search.substring(1));
+        urlstr=urlstr.split('&')[0]+'&'+urlstr.split('&')[1]+'&'+urlstr.split('&')[2];
+        $(function () {
+            $('.a').animate({left:'0px'},300);
+            $('.b').animate({left:'0px'},400);
+            $('.c').animate({left:'0px'},500);
+            setTimeout(out,200);
+            function out(){
+                $('.d').animate({left:'0px'},300);
+            }
+        });
+        var arr=['title4.png','title4.4.png'];
+        var n=-1;
+        function changeImage(){
+            n++;
+            if(n==2){
+                n=0;
+            }
+            $('#title>img').prop('src','images/'+arr[n]);
+        }
+        setInterval(changeImage,400);
+        function speWay(){
+            $('#cover').css({display:'block'});
+        }
+        function clos(){
+            var str=$('.d').attr('data-info');
+            window.location.href='questionfive.html?'+urlstr+'&'+str;
+        }
+        function nextQuestion(div){
+            var str=$(div).attr('data-info');
+            window.location.href='questionfive.html?'+urlstr+'&'+str;
+        }
+    </script>
+    <script src="js/sha1.js"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="js/sharetoother.js" type="text/javascript"></script>
+    <audio style="display: none" src="images/DJ舞曲-印度亲嘴歌.mp3" onplay="this.currentTime=5" autoplay controls></audio>
+</head>
+<body>
+<div id="gif"><img class="gif" src="images/QQ图片20160203173913.gif" alt=""/></div>
+<div id="title" class="title">
+    <img src="images/title4.png" alt=""/>
+</div>
+<div class="content">
+    <p>你对老公身材如何评价？</p>
+    <img onclick="nextQuestion(this)" data-info="4-a-1" class="a" src="images/4a.png" alt=""/><br/>
+    <img class="b" onclick="nextQuestion(this)" data-info="4-b-2" src="images/4b.png" alt=""/><br/>
+    <img class="c" onclick="nextQuestion(this)" data-info="4-c-3" src="images/4c.png" alt=""/><br/>
+    <img onclick="speWay()" class="d" data-info="4-d-4" src="images/4d.png" alt=""/><br/>
+</div>
+<div id="cover">
+    <img class="close" onclick="clos()" src="images/off.png" alt=""/>
+    <img class="people" src="images/51455473.gif" alt=""/>
+    <img class="text" src="images/NO4+1.png" alt=""/>
+</div>
+</body>
+</html>

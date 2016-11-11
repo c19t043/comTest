@@ -1,0 +1,52 @@
+﻿.content .con_contral {
+	height:50px;
+	line-height: 50px;
+	font-size: 20px;
+	color: #009DD9;
+	font-weight: bold;
+}
+.bottom_div{
+	height:270px;
+    overflow: auto;
+}
+.bottom_div_con .bottom_div_con_tit{
+	width:230px;
+	float:left
+}
+.bottom_div_con .bottom_div_con_first{
+  width: 90%;
+  margin: 0 auto;
+}
+.bottom_div_con .bottom_div_con_tit label{
+	width:70px;
+	text-align:center;
+	display: inline-block;
+}
+.bottom_div_con .bottom_div_con_tit input{
+	width:110px;
+}
+.bottom_div_con .bottom_div_con_tit select{
+	width:114px;
+}
+.bottom_div_con ul{
+	width: 90%;
+	margin: 0 auto;
+	list-style: none;
+	clear:both;
+}
+.bottom_div_con ul li{
+	margin: 10px 0 0 10px;
+  color: #666;
+  height: 20px;
+  line-height: 20px;
+  float: left;
+}
+.bottom_div_con ul li input{
+  vertical-align: middle;
+}
+.bottom_div_con ul li label{
+	width:130px;
+	text-indent:10px;
+	display:inline-block;
+	height:20px;
+}

@@ -1,0 +1,74 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>评价成功</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+
+    <style>
+        #header{
+            background: #ff813d;
+            color: #fff;
+        }
+        #header .header-left, #header .headerLeft{
+            color: #fff;
+        }
+        .header-left>span {
+            display: inline-block;
+            background: url(images/images_main/left_arrow.png)no-repeat left center;
+            background-size: 9px;
+            padding-left: 18px;
+        }
+        #container{
+            text-align: center;
+            font-size: 15px;
+            color: #909090;
+            line-height: 30px;
+        }
+        #success_icon{
+            margin: 45px;
+        }
+        #button{
+            margin-top: 80px;
+        }
+        .login_button{
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="header">
+    <div class="header-left"><span>评价成功</span></div>
+    <div class="header-center"></div>
+    <div class="header-right"></div>
+</div>
+<!--header-->
+
+<div id="container">
+    <div id="success_icon"><img src="images/images_main/pay_successful.png" width="50"></div>
+    <div>
+        <p>感谢您的评价</p>
+        <p>您的督促是我们前进的动力</p>
+    </div>
+    <div id="button">
+        <div class="login_button" onclick="window.location.href='main.html'">返回首页</div>
+        <div class="login_button" onclick="window.location.href='quickconsultation.html'">返回我的咨询</div>
+    </div>
+</div>
+
+<!--container-->
+
+<script src="js/jquery-2.1.3.js"></script>
+<script src="js/main.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/paysuccess.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,139 @@
+
+#orgmessage {
+    overflow: hidden;
+    padding: 15px 15px 5px;
+}
+
+.orgImage {
+    float: left;
+    width: 24%;
+    text-align: center;
+    color: #909090;
+}
+.orgImage>span{
+    font-size: 10px;
+    border-radius: 4px;
+    border: 1px solid #FF813D;
+    color: #FF813D;
+    padding: 0px 2px;
+}
+.con {
+    width: 74%;
+    float: left;
+    margin-left: 2%;
+    text-align: center;
+    line-height: 33px;
+}
+
+.con > p {
+    font-size: 20px;
+    color: #505050;
+}
+
+.con > div > span {
+    display: inline-block;
+    color: #909090;
+    width: 67px;
+}
+.con > div > span{
+    font-size: 12px;
+}
+.con > div > span:first-line {
+    color: #FF813D;
+    font-size: 16px;
+}
+.cancelbangding{
+    width: 22%;
+    margin-left: 2%;
+    float: left;
+    margin-top: 19px;
+    text-align: center;
+    display: none;
+}
+.cancelbangding p{
+    background: #ff813d;
+    color: #ffffff;
+    width: 60px;
+    height: 52px;
+    line-height: 26px;
+    padding: 4px 0px;
+    border-radius: 100%;
+    margin: 0px auto;
+}
+.doctorIntroduction {
+    padding: 5px 15px;
+}
+
+.doctorIntroduction > p {
+    font-size: 16px;
+    line-height: 30px;
+    color: #ff831d;
+}
+
+#description, #dynamic, #orgAddress {
+    color: #909090;
+    font-size: 12px;
+    text-indent: 32px;
+    line-height: 24px;
+}
+#footer>ul{
+    width: 80%;
+    margin: 0 auto;
+    background:url("../images/images_login_regist/images_login.png") no-repeat ;
+    height: 40px;
+    color: #ff813d;
+    font-size: 17px;
+    background-size: 100% 100%;
+    text-align: center;
+}
+#footer>ul.spe{
+    background:url("../images/images_main/bottom_button_black.png") no-repeat ;
+    color: #0F0F0F;
+}
+#footer>ul>li{
+    width: 33.3%;
+    float: left;
+    font-size: 17px;
+    color: #ff813d;
+    height: 40px;
+    padding: 0;
+    line-height: 40px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.flexslider .slides>li>img {
+    height: 150px;
+}
+#guanzhujigou{
+    position: absolute;
+    right: 10px;
+    top:150px;
+    width: 100px;
+    text-align: center;
+    line-height: 34px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.8);
+    z-index: 2000;
+}
+#product{
+    overflow: hidden;
+}
+#product>li{
+    width: 24%;
+    float: left;
+    text-align: center;
+    margin-left: 14%;
+    padding: 10px 0;
+}
+#product>li:nth-child(3n+1){
+    margin-left: 0;
+}
+#product>li p{
+    margin-bottom: 10px;
+}
+#product>li img{
+    width: 60px;
+    height: 60px;
+}

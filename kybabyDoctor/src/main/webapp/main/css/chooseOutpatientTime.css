@@ -1,0 +1,77 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+#workAddress {
+    overflow: hidden;
+    width: 240px;
+    margin: 50px auto 0px;
+}
+
+#workAddress > div {
+    width: 118px;
+    float: left;
+    height: 46px;
+    text-align: center;
+}
+
+#date {
+    overflow: hidden;
+    text-align: center;
+    line-height: 36px;
+}
+
+#date > div {
+    width: 30%;
+    float: left;
+}
+
+#showDate {
+
+}
+
+#container {
+    width: 100%;
+    margin-top: 5px;
+}
+
+header, #content {
+    overflow: hidden;
+    width: 100%;
+}
+
+header > div, #content > div {
+    width: 14.28%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    float: left;
+    border-radius: 100%;
+}
+
+.active {
+    background: #1cba93;
+    color: aliceblue;
+}
+
+.gray {
+    color: #bababa;
+}
+
+#description {
+    text-align: center;
+    margin-top: -22px;
+    margin-bottom: 60px;
+}
+
+#description > span {
+    color: #1cba93;
+}
+
+
+#footer p{
+    height: 43px;
+}
+
+

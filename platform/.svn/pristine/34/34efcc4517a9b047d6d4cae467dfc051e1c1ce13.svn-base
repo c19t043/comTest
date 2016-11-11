@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package namespace="/familydoctor/fdRoleInfo" name="FdRoleInfoAction" extends="com.java.platform">
+		<!-- 信息列表  -->
+		<action name="getFdRoleInfList" class="fdRoleInfoAction" method="getFdRoleInfList">
+			<result name="success">/familydoctor/doctorrole/roleInfo_list.jsp</result>
+		</action>
+		
+		
+		<!-- 跳转到添加页面  -->
+		<action name="toJumpFdRoleInfo" class="fdRoleInfoAction" method="toJumpFdRoleInfo">
+ 			<result name="success">/familydoctor/doctorrole/roleInfo_add.jsp</result> 
+ 		</action> 
+		
+		<!-- 保存新增信息-->
+ 		<action name="saveOrUpdateFdRoleInfo" class="fdRoleInfoAction" method="saveOrUpdateFdRoleInfo">
+ 			<result name="fdRoleInfListList_action" type="stateRedirectAction">
+				<param name="actionName">getFdRoleInfList.action</param> 
+ 			</result>
+ 		</action>
+	</package>
+</struts>

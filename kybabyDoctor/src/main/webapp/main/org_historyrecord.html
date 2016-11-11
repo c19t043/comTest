@@ -1,0 +1,107 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>患者病史</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/config.js"></script>
+    <!--<script src="js/org_main.js"></script>-->
+    <script src="js/main.js"></script>
+    <script src="js/plugins.js"></script>
+    <style>
+        body {
+            background: #ffffff;
+            color: #505050;
+            text-align: center;
+        }
+        .gray_ss{
+            width: 100%;
+            height: 4px;
+            background: #F7F7F7;
+        }
+        .gray_s{
+            width: 100%;
+            height: 10px;
+            background: #F7F7F7;
+        }
+        .usermessage{
+            width: 100%;
+            overflow: hidden;
+        }
+        .userimg{
+            float: left;
+            width: 30%;
+            text-align: center;
+        }
+        .userimg>img{
+            width: 80px;
+            height: 80px;
+            border-radius: 100%;
+
+        }
+        .othermessage{
+            float: right;
+            width: 40%;
+            line-height: 40px;
+            text-align: left;
+            margin-right: 20%;
+        }
+        .messagetop{
+            width: 100%;
+            overflow: hidden;
+            line-height: 39px;
+            border-bottom: 1px solid #CCCCCC;
+        }
+        .username{
+            width: 50%;
+            float: left;
+        }
+        .record{
+            width: 50%;
+            float: left;
+        }
+        .record>span{
+            padding: 1px 3px;
+            background: #4FC1E9;
+            color: #ffffff;
+        }
+        .messagebottom{
+            color: #909090;
+        }
+    </style>
+</head>
+<body>
+<div id="header" class="doctor_header">
+    <div class="header-left"><p></p></div>
+    <div class="header-center">患者病史</div>
+    <div class="header-right"></div>
+</div>
+
+<div id="container">
+    <div class="usermessage">
+        <div class="userimg">
+            <img src="images/doctorimg.jpg" alt=""/>
+        </div>
+        <div class="othermessage">
+            <div class="messagetop">
+                <p class="username">小明</p>
+                <p class="record"><span onclick="window.location.href='org_history.html'">健康档案</span></p>
+            </div>
+            <div class="messagebottom">
+                过往病史:肺炎、肩周炎、脑膜炎
+            </div>
+        </div>
+    </div>
+    <p class="gray_s"></p>
+</div>
+<script>
+
+</script>
+</body>
+</html>

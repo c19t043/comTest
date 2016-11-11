@@ -1,0 +1,154 @@
+/*富文本编辑器样式*/
+.ueditor{
+	display:inline-block;
+  display: inline-block;
+  width: 70px;
+  height: 30px;
+  line-height: 30px;
+  background: #FFAF19;
+  text-align: Center;
+  position: absolute;
+  color:#fff;
+  font-weight:bold;
+  border-radius: 4px;
+  cursor:pointer;
+}
+.ueditor:hover{
+	background: rgb(231, 151, 0);
+}
+.ueditor_a{
+	top: 465px;
+	right:20px;
+}
+.ueditor_b{
+	top: 465px;
+	right: 110px
+}
+.node_edit{
+    width: 100px;
+    height: 22px;
+    line-height: 22px;
+    cursor: pointer;
+    border: 2px solid rgb(74, 139, 194);
+    border-radius: 5px;
+    display: inline-block;
+    text-align: center;
+}
+
+
+.query {
+	border: 1px solid #9FAFBB;
+	height: 19px;
+	line-height: 19px;
+	color: #666666;
+	background-color: #F6F5F2;
+	width: 99%;
+	vertical-align:middle
+}
+.line14 {
+	border: 1px solid #9FAFBB;
+	height:48px; 
+	color: #666666;
+	background-color: white;
+	width: 60%;
+	overflow-x:hidden;
+	overflow-y:auto;
+}
+
+.add_button_A_Deny{/*ȫܾ*/
+    width:86px;
+	height:20px;
+	background-image:url(../images/A_Deny.gif);
+	background-repeat:no-repeat;
+	text-align:left;
+	border:0px solid ;
+	font-family: "";
+	color: #000000;
+	font-size: 12px;
+	padding-left:30px;
+	background-color:transparent;
+}
+.add_button_hand{/**/
+    width:86px;
+	height:20px;
+	background-image:url(../images/hand.gif);
+	background-repeat:no-repeat;
+	text-align:left;
+	border:0px solid ;
+	font-family: "";
+	color: #000000;
+	font-size: 12px;
+	padding-left:30px;
+	background-color:transparent;
+}
+.add_table_bg{/*文本背景框*/
+	background-color:#C9D2E4;
+	border:0px;
+}
+.fb_xx_head_tr{/*表单行背景色设为白色*/
+	background-color:white;
+	height:20px;
+	text-align:center;
+}
+/*table表单数据信息*/
+.title_text{/*信息表格标题文字样式*/
+    font-family: "宋体";
+	font-size: 12px;
+	color: #2D3A60;
+	font-weight: bold;
+	text-indent: 10px;
+	text-align:left;
+}
+.title_bg{/*表格标题背景*/
+	background-image: url(../images/main_title_2bg_1.gif);
+	background-repeat: repeat-x;
+	vertical-align:left;
+	height: 18px;
+}
+.fb_xx_head{/*列表标题样式*/
+	height:20px;
+	color: #000000;
+	text-align: center;
+	vertical-align: middle;
+	font-family: "宋体";
+	font-size: 12px;
+	background-color: #F3F4F6;
+}
+.fb_xx_head_tr{/*表单行背景色设为白色*/
+	background-color:white;
+	height:20px;
+	text-align:center;
+}
+/*Tab标签*/
+.add_title_bg{/*Tab线条*/
+	border-top-width: 6px;
+	border-top-style: solid;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	border-top-color:#81A1DA;
+}
+.tab01{/*当前显示TABLE*/
+	background-image: url(../images/epp_tab_01.gif);
+	background-repeat: no-repeat;
+	text-align: center;
+	vertical-align: bottom;
+	height: 22px;
+	width:105px;
+	color: #422B10;
+	cursor: hand;
+}
+.tab02{/*未选中TABLE*/
+	background-image: url(../images/epp_tab_02.gif);
+	background-repeat: no-repeat;
+	text-align: center;
+	vertical-align: bottom;
+	height: 22px;
+	width: 105px;
+	color: #422B10;
+	cursor: hand;
+}
+
+
+
+

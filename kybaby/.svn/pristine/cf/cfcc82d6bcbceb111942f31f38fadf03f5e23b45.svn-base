@@ -1,0 +1,173 @@
+﻿body{
+
+}
+.basic img{
+    width: 65px;
+    height: 65px;
+    margin: 10.5px 0 0 13.5px;
+    float: left;
+    max-width: 23%;
+}
+.basic .basicinfo{
+	margin-top: 10.5px;
+	float: left;
+	text-indent: 10px;
+	max-width: 60%;
+}
+.basic{
+	background:#fff;
+	height:87px;
+}
+.basic .detail_name{
+    font-size: 20px;
+    height: 40px;
+}
+.basic .detail_hospital{
+	font-size:13px;
+	color:#666;
+}
+.basic .detail_time{
+  color: #A9A9A9;
+  font-size: 13px;
+  background: url("../images/iconfont-shijian.png") no-repeat 3px top;
+  background-size: 17px;
+  text-indent: 24px;
+}
+.basic .detail_address{
+    color: #A9A9A9;
+    font-size: 13px;
+    background: url("../images/iconfont-map.png") no-repeat 3px top;
+    background-size: 17px;
+    text-indent: 24px;
+}
+.time_and_address{
+    background: #fff;
+    height: 60px;
+    font-size:14px;
+}
+.time_and_address .t{
+    color: #A9A9A9;
+    font-size: 14px;
+    background: url("../images/iconfont-shijian.png") no-repeat 20px center;
+    background-size: 17px;
+    text-indent: 40px;
+    height: 30px;
+    line-height: 30px;
+}
+.time_and_address .a{
+    color: #A9A9A9;
+    font-size: 14px;
+    background: url("../images/iconfont-map.png") no-repeat 20px center;
+    background-size: 17px;
+    text-indent: 40px;
+    height: 30px;
+    line-height: 30px;
+}
+.contact{
+	background:#fff;
+	height:30px;
+	line-height:30px;
+	font-size:13px;
+	color: #2D2D2D;
+}
+.contact .a{
+	padding: 0 10px 0 22px;
+}
+.contact .numphone{
+	padding: 0 0 0 22px;
+}
+h5{
+	text-indent: 22px;
+	font-size: 14px;
+	color: #444;
+	height: 30px;
+	line-height: 30px;
+}
+.payway{
+	background:#fff;
+}
+.payway label{
+	background: #fff;
+	display: inline-block;
+	color: #666;
+	text-indent: 25px;
+	margin-left: 25px;
+	width: 200px;
+}
+.payway .zfb{
+    height: 55px;
+    line-height: 55px;
+    background: url("../images/iconfont-rectangle390.png") no-repeat 20px center;
+    background-size: 40px;
+    text-indent: 39px;
+    font-size: 15px;
+}
+
+.payway .wx{
+	height: 55px;
+	line-height: 55px;
+	background: url("../images/iconfont-weixinzhifu.png") no-repeat 24px center;
+	background-size: 34px;
+	text-indent: 39px;
+	font-size: 15px;
+}
+.gopay .money{
+    text-indent: 22px;
+    color: #00BCD4;
+    height: 55px;
+    line-height: 55px;
+    background: #fff;
+}
+.gopay .btn{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    background: #03A9F4;
+    text-align: center;
+    color: #fff;
+		margin-top: 50px;
+		position:fixed;
+		bottom:0;
+}
+.servicemoney,.servicecut,.servicedesc{
+	background:#fff;
+}
+.newp{
+    height: 40px;
+    line-height: 40px;
+    color: #777;
+    width: 100%;
+    margin: auto;
+    font-size: 15px;
+}
+.newp span.a{
+	float:left;
+	margin-left:22px;
+}
+.newp span.b{
+	float:right;
+	margin-right:22px;
+}
+.newp span.c{
+	float:left;
+	margin-left:30px;
+	color:#03A9F4;
+}
+.newp label.d{
+	float:right;
+  height: 40px;
+  width: 40%;
+  float: right;
+}
+.newp label.d input{
+	margin-top: 15px;
+	margin-left: 75px;
+}
+.remindtext{
+    background: #fff;
+    font-size: 12px;
+    text-indent: 22px;
+    color: #bbb;
+    height: 25px;
+    line-height: 25px;
+}

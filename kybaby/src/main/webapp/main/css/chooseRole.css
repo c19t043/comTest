@@ -1,0 +1,32 @@
+﻿#container P{
+    text-align: center;
+    width: 60%;
+    margin: 50px auto 50px;
+    height: 40px;
+    border-radius: 5px;
+    color: #fff;
+    line-height: 40px;
+}
+p.ys{
+	background: #50c1e9;
+}
+p.hs{
+	background: #F44336;
+}
+p.js{
+  background: #FFEB3B;
+}
+button.nextbtn{
+    position: fixed;
+    bottom: 0;
+    width: 80%;
+    left: 10%;
+    background:url("../images/images_login_regist/images_login.png") no-repeat ;
+    height: 40px;
+    line-height: 40px;
+    color: #ff813d;
+    font-size: 17px;
+    border: none;
+    background-size: 100% 100%;
+    text-align: center;
+}

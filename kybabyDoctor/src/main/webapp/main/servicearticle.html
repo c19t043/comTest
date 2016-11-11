@@ -1,0 +1,93 @@
+﻿<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>文章约稿</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/outpatient_order.css"/>
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/config.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="js/sha1.js"></script>
+</head>
+<body>
+
+<div id="header" class="doctor_header">
+    <div class="header-left"><span onclick="window.location.href='myorder.html'"></span></div>
+    <div class="header-center">文章约稿</div>
+    <div class="header-right"></div>
+</div>
+<!--header-->
+<div id="container">
+    <!--<div class="lecture_div">-->
+    <!--<div class="lecture_information">-->
+    <!--<div class="lecture_img"><img src="images/consulting/icon_onlinelecture.png" alt=""/></div>-->
+    <!--<div class="lecture_data">-->
+    <!--<p class="lecture_price">约稿 <span>￥50.00</span></p>-->
+
+    <!--<p class="lecture_time">发起时间：2016-11-12</p>-->
+
+    <!--<p class="lecture_time">完成时间：2016-11-12</p>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="button_07 lecture_button">确认</div>-->
+    <!--</div>-->
+    <!--<p class="gray_3"></p>-->
+</div>
+<!--container-->
+<!--footer-->
+
+
+<script src="js/plugins.js"></script>
+<script>
+    var id=0;
+    $(function(){
+        $.ajax({
+            type: 'post',
+            async: false,
+            url: urlWay.fdmanageHost+'fdService.action',
+            data: {action: "getOpenClinicInfoList"},
+            success: function (result) {
+                if(result.openClinicInfoList!=null){
+                    var openClinicInfoList = result.openClinicInfoList;
+                    var html = '';
+                    for(var i=0;i<openClinicInfoList.length;i++){
+                        if(openClinicInfoList[i].businessType=="文章约稿"){
+                            if(openClinicInfoList[i].state=="确认"){
+                                var txt = '<div class="button_07 lecture_button" data-id="'+openClinicInfoList[i].id+'">'+openClinicInfoList[i].state+'</div>';
+                            }
+                            else{
+                                var txt = '<div class="lecture_button">'+openClinicInfoList[i].state+'</div>';
+                            }
+                            html+='<div class="lecture_div"><div class="lecture_information"><div class="lecture_img"><img src="'+hostBG+"images/familydoctor" +
+                                    ""+openClinicInfoList[i].img+'"/></div>' +
+                                    '<div class="lecture_data"><p class="lecture_price">'+openClinicInfoList[i].businessType+'<span>￥ '+openClinicInfoList[i].money+'</span></p><p class="lecture_time">发起时间：'+openClinicInfoList[i].actualStartTime+'</p><p class="lecture_time">' +
+                                    '完成时间：'+openClinicInfoList[i].actualEndTime+'</p></div></div>'+txt+'</div><p class="gray_3"></p>';
+                        }
+
+                    }
+                    $('#container').html(html);
+                }
+            }
+        });
+        id=$(".button_07.lecture_button").data("id");
+        $(".button_07.lecture_button").click(function(){
+            $.ajax({
+                type: 'post',
+                async: false,
+                url: urlWay.fdmanageHost+'fdService.action',
+                data: {action: "updateOpenClinicInfoState","openClinicInfo.id":id,"openClinicInfo.state":"已接受"},
+                success: function (result) {
+                    window.location.reload();
+                }
+            });
+        })
+    })
+</script>
+
+</body>
+</html>

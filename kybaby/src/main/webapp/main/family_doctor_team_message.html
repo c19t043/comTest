@@ -1,0 +1,166 @@
+﻿<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>团队成员</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/sha1.js"></script>
+    <style>
+        .doctor_member,.doctor_list{
+            background: #f8f8f8;
+            overflow: hidden;
+            padding: 15px 20px;
+            margin-bottom: 4px;
+        }
+        .team_img,.doctor_img{
+            width: 24%;
+            float: left;
+        }
+        .team_img>img,.doctor_img>img{
+            width: 60px;
+            height: 60px;
+            border-radius: 100%;
+        }
+        .team_con,.doctor_con{
+            width: 56%;
+            float: left;
+            line-height: 30px;
+            font-size: 14px;
+        }
+        .team_icon,.doctor_role{
+            width: 20%;
+            float: left;
+            text-align: center;
+            height: 30px;
+            line-height: 30px;
+            margin-top: 19px;
+            background-image:  url("images/images_family_doctor/erbao_choose.png");
+            background-repeat: no-repeat;
+            background-size:  100% 100%;
+            font-size: 12px;
+            color: #FF813D;
+        }
+        .team_icon>div{
+            width: 15px;
+            height: 15px;
+            border-radius: 100%;
+            border: 1px solid #FF813D;
+            float: right;
+            margin-top: 20px;
+        }
+        div.team_select>div{
+            background: url("images/images_family_doctor/true.png") no-repeat center center;
+            background-size: 100% 100%;
+        }
+        .title{
+            padding: 10px;
+            color: #FF813D;
+        }
+        .doctor_list{
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .doctor_list:last-child{
+            border-bottom: 1px solid white;
+        }
+    </style>
+</head>
+<body>
+
+<div id="header">
+    <div class="header-left" onclick="return_before()"><span>团队成员</span></div>
+    <div class="header-center"></div>
+    <div class="header-right"></div>
+</div>
+<!--header-->
+<div id="container">
+    <div id="team">
+        <div class="doctor_member">
+            <div class="team_img"><img src="images/1.jpg" alt=""/></div>
+            <div class="team_con">
+                <div id="teamLeader"></div>
+                <div id="leaderAddress"></div>
+            </div>
+            <div class="team_icon">
+                <!--<div></div>-->
+            </div>
+        </div>
+    </div>
+    <p class="gray_s"></p>
+    <!--<p class="title">医生成员</p>-->
+    <div id="doctor">
+        <!--<div class="doctor_list">-->
+            <!--<div class="doctor_img"><img src="images/1.jpg" alt=""/></div>-->
+            <!--<div class="doctor_con" style="line-height: 30px">-->
+                <!--<div>XXX|xxx|xxx</div>-->
+                <!--<div class="color-gray">XXX社区卫生服务中心</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;<div class="doctor_icon"></div>&ndash;&gt;-->
+        <!--</div>-->
+    </div>
+</div>
+
+<script src="js/main.js"></script>
+<script src="js/plugins.js"></script>
+<script>
+    var teamId;
+    $(function () {
+        teamId=decodeURIComponent(window.location.search.substring(1));
+        $.ajax({
+            type: 'post',
+            async: false,
+            cache: false,
+            url: familyDoctorHost + 'fdServiceItemsAction.action',
+            data: {
+                action: "getFdServiceMemberList",
+                "fdServiceTeams.id":teamId
+            },
+            success: function (result) {
+                if (result.mes == '请登录') {
+                    ale('请登录');
+                    window.location.href="login.html";
+                }
+                else if (result.mes == '成功') {
+                    var fdServiceMemberList=result.fdServiceMemberList;
+                    if(fdServiceMemberList!=null) {
+                        var html='',hasLeader=false;
+                        for(var i= 0,len=fdServiceMemberList.length;i<len;i++){
+                            if(fdServiceMemberList[i].fdRoleInfo.roleCode=='leader'){
+                                hasLeader=true;
+                                $('#teamLeader').html(fdServiceMemberList[i].doctorInfo.doctorName+' | <small>'+
+                                fdServiceMemberList[i].doctorInfo.department+' | '+fdServiceMemberList[i].doctorInfo.doctorTitle+'</small>');
+                                $('#leaderAddress').html(fdServiceMemberList[i].doctorInfo.doctorEmployer);
+                                $('.team_icon').html(fdServiceMemberList[i].fdRoleInfo.roleName);
+                                $('.team_img>img').prop('src',hostBG+'images/doctorFaceIcon/'+fdServiceMemberList[i].doctorInfo.doctorImage);
+                            }else{
+                                html+='<div class="doctor_list"> ' +
+                                '<div class="doctor_img"><img src="'+hostBG+'images/doctorFaceIcon/'+fdServiceMemberList[i].doctorInfo.doctorImage+'" alt=""/></div> ' +
+                                '<div class="doctor_con" style="line-height: 30px"> ' +
+                                '<div>'+fdServiceMemberList[i].doctorInfo.doctorName+' | <small>'+ fdServiceMemberList[i].doctorInfo.department+' | '+fdServiceMemberList[i].doctorInfo.doctorTitle+'</small></div> ' +
+                                '<div class="color-gray">'+fdServiceMemberList[i].doctorInfo.doctorEmployer+'</div> ' +
+                                '</div> ' +
+                                '<div class="doctor_role">'+fdServiceMemberList[i].fdRoleInfo.roleName+'</div>' +
+                                '</div>';
+                            }
+                        };
+                        if(!hasLeader){
+                            $('#team').hide();
+                        }
+                        $('#doctor').html(html);
+                    }
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+            }
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,837 @@
+﻿<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<title>健康体检表</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/main.css">
+	<script src="js/modernizr-2.8.3.min.js"></script>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/config.js"></script>
+	<script src="js/autoLogin.js"></script>
+    <script src="js/main.js"></script>
+</head>
+<body>
+
+<div id="header">
+    <div class="header-left"><p></p></div>
+    <div class="header-center">健康体检表</div>
+    <div class="header-right"></div>
+</div>
+<!--header-->
+<style>
+    body{
+        background: #ffffff;
+    }
+    .personal_list{
+        width: 100%;
+        height: 50px;
+        padding: 0px 15px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        line-height: 50px;
+    }
+    .personal_list .personal_left {
+        float: left;
+        height: 50px;
+        line-height: 50px;
+        width: 35%;
+    }
+    .personal_list .personal_right {
+        float: right;
+        color: #c8c8c8;
+        width: 65%;
+        height: 50px;
+        line-height: 50px;
+        text-align: right;
+    }
+    .personal_right>span{
+        border: 1px solid #eeeeee;
+    }
+    .personal_right>input{
+        border: none;
+        width: 100px;
+        text-align: right;
+    }
+
+    .normal{
+        padding: 4px 4px;
+    }
+    .normal1{
+        padding: 4px 9px;
+    }
+    .abnormal{
+        padding: 4px 20px;
+    }
+    .personal_list>input{
+        border: none;
+        line-height: 36px;
+        width: 100%;
+        background: #ffffff;
+    }
+    .gray_s{
+        width: 100%;
+        height: 10px;
+        background: #f7f7f7;
+        clear: both;
+    }
+    .gray_ss{
+        width: 100%;
+        height: 2px;
+        background: #f7f7f7;
+        clear: both;
+    }
+    .blue{
+        background: #4FC1E9;
+        color: #ffffff;
+    }
+    .guidance,.guidance1{
+        width: 100%;
+        padding: 0px 15px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        background: #f7f7f7;
+        line-height: 34px;
+        overflow: hidden;
+    }
+    .guidance>p,.guidance1>p{
+        background: #f7f7f7;
+    }
+    .guidance>div,.guidance1>div{
+        float: left;
+        margin:5px 0px;
+        width: 32%;
+        background: #ffffff;
+        text-align: center;
+    }
+    .guidance>.sec1,.guidance1>.sec1{
+        margin-left: 2%;
+    }
+    .guidance>.fou1,.guidance1>.fou1{
+        margin-left: 2%;
+    }
+    .guidance>.fif1,.guidance1>.fif1{
+        margin-left: 2%;
+    }
+    .guidance>.fir1,.guidance1>.fir1{
+        width: 66%;
+    }
+    .guidance>.sec,.guidance1>.sec{
+        margin-left: 2%;
+    }
+    .guidance>.thi,.guidance1>.thi{
+        margin-left: 2%;
+    }
+    .guidance>.fif,.guidance1>.fif{
+        margin-left: 2%;
+        width: 66%;
+    }
+
+    .guidance>input,.guidance1>input{
+        width: 100%;
+        border: none;
+        line-height: 34px;
+    }
+
+    .guidance>div.blue,.guidance1>div.blue{
+        background: #4FC1E9;
+        color: #ffffff;
+    }
+    #footer {
+        width: 100%;
+        height: 50px;
+        padding: 10px 15px 5px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        text-align: center;
+        line-height: 35px;
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+        background: #F7F7F7;
+    }
+    #footer p{
+        color: white;
+        font-size: 22px;
+        width: 100%;
+        background: #4FC1E9;
+    }
+
+</style>
+<p class="gray_s"></p>
+<div id="container">
+
+    <div class="personal_list">
+        <p class="personal_left">姓名</p>
+        <p class="personal_right">
+            张雯雯
+        </p>
+    </div>
+    <p class="gray_ss"></p>
+
+    <!--personal_list02-->
+    <div class="personal_list">
+        <p class="personal_left">体检日期</p>
+        <p class="personal_right">
+            2016年3月17日
+        </p>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        症状
+    </div>
+    <!--personal_list02-->
+    <div class="guidance1" id="guidance1">
+        <div class="fir blue">无症状</div>
+        <div class="sec">头痛</div>
+        <div class="sec">头晕</div>
+        <div class="fir">心悸</div>
+        <div class="sec">胸闷</div>
+        <div class="sec">胸痛</div>
+        <div class="fir">慢性咳嗽</div>
+        <div class="sec">咳痰</div>
+        <div class="sec">呼吸困难</div>
+        <div class="fir">多饮</div>
+        <div class="sec">多尿</div>
+        <div class="sec">体重下降</div>
+        <div class="fir">乏力</div>
+        <div class="sec">关节肿痛</div>
+        <div class="sec">视力模糊</div>
+        <div class="fir">手脚麻木</div>
+        <div class="sec">尿急</div>
+        <div class="sec">尿痛</div>
+        <div class="fir">便秘</div>
+        <div class="sec">腹泻</div>
+        <div class="sec">恶心呕吐</div>
+        <div class="fir">眼花</div>
+        <div class="sec">耳鸣</div>
+        <div class="sec">乳房胀痛</div>
+    </div>
+    <p class="gray_s"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        <input type="text" placeholder="其他请在此填写"/>
+    </div>
+    <p class="gray_s"></p>
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">体温</p>
+            <p class="personal_right"><input type="text" placeholder="请填写体温"/>℃</p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">脉率</p>
+            <p class="personal_right"><input type="text" placeholder="请填写脉率"/>次/分钟</p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">呼吸频率</p>
+            <p class="personal_right"><input type="text" placeholder="请填写呼吸频率"/>次/分钟</p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">血压</p>
+            <p class="personal_right"><input type="text" placeholder="请填写血压"/>mmHg</p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">身高</p>
+            <p class="personal_right"><input type="text" placeholder="请填写身高"/>cm</p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">体重</p>
+            <p class="personal_right"><input type="text" placeholder="请填写体重"/>kg</p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">腰围</p>
+            <p class="personal_right"><input type="text" placeholder="请填写腰围"/>cm</p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">体质指数</p>
+            <p class="personal_right"><input type="text" placeholder="请填写体质指数"/>kg/㎡</p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        锻炼频率
+    </div>
+    <!--personal_list02-->
+    <div class="guidance" id="guidance2">
+        <div class="fir blue">每天</div>
+        <div class="sec" style="width: 66%">每周一次以上</div>
+        <div class="fir">偶尔</div>
+        <div class="sec">不锻炼</div>
+    </div>
+    <p class="gray_ss"></p>
+
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">每次锻炼时间</p>
+            <p class="personal_right"><input type="text" placeholder="每次锻炼时间"/>分钟</p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">坚持锻炼时间</p>
+            <p class="personal_right"><input type="text" placeholder="坚持锻炼时间"/>年</p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">锻炼方式</p>
+            <p class="personal_right"><input type="text" placeholder="锻炼方式"/></p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        饮食习惯
+    </div>
+    <!--personal_list02-->
+    <div class="guidance1" id="guidance3">
+        <div class="fir blue">荤素均衡</div>
+        <div class="sec">荤食为主</div>
+        <div class="sec">素食为主</div>
+        <div class="fir">嗜盐</div>
+        <div class="sec">嗜油</div>
+        <div class="sec">嗜糖</div>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        吸烟状况
+    </div>
+    <!--personal_list02-->
+    <div class="guidance" id="guidance4">
+        <div class="fir blue">从不吸烟</div>
+        <div class="sec">已戒烟</div>
+        <div class="sec">吸烟</div>
+    </div>
+    <p class="gray_s"></p>
+    <p class="gray_s"></p>
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">日吸烟量</p>
+            <p class="personal_right"><input type="text" placeholder="日吸烟量"/>支</p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">开始吸烟年龄</p>
+            <p class="personal_right"><input type="text" placeholder="开始吸烟年龄"/>岁</p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">戒烟年龄</p>
+            <p class="personal_right"><input type="text" placeholder="戒烟年龄"/>岁</p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        饮酒频率
+    </div>
+    <!--personal_list02-->
+    <div class="guidance" id="guidance5">
+        <div class="fir blue">从不</div>
+        <div class="sec">偶尔</div>
+        <div class="sec">经常</div>
+        <div class="fir">每天</div>
+    </div>
+    <p class="gray_s"></p>
+    <p class="gray_s"></p>
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">日饮酒量</p>
+            <p class="personal_right"><input type="text" placeholder="日饮酒量"/>两</p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">是否戒酒</p>
+            <p class="personal_right">
+                <span class="abnormal" style="padding: 4px 12px;">未戒酒</span>
+                <span class="normal blue" style="padding: 4px 12px;">已戒酒</span>
+            </p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">戒酒年龄</p>
+            <p class="personal_right"><input type="text" placeholder="已戒酒则在此填写"/>岁</p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">开始饮酒年龄</p>
+            <p class="personal_right"><input type="text" placeholder="开始饮酒年龄"/>岁</p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left" style="width: 47%">近一年内是否曾醉酒</p>
+            <p class="personal_right" style="width: 53%">
+                <span class="abnormal" style="padding: 4px 28px;">是</span>
+                <span class="normal blue" style="padding: 4px 28px;">否</span>
+            </p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        饮酒种类
+    </div>
+    <!--personal_list02-->
+    <div class="guidance1" id="guidance6">
+        <div class="fir">白酒</div>
+        <div class="sec">啤酒</div>
+        <div class="sec">红酒</div>
+        <div class="fir">黄酒</div>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        <input type="text" placeholder="其他请在此填写"/>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        口唇
+    </div>
+    <!--personal_list02-->
+    <div class="guidance1" id="guidance7">
+        <div class="fir">红润</div>
+        <div class="sec">苍白</div>
+        <div class="sec">发绀</div>
+        <div class="fir">皲裂</div>
+        <div class="sec">疱疹</div>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        齿列
+    </div>
+    <!--personal_list02-->
+    <div class="guidance1" id="guidance8">
+        <div class="fir">正常</div>
+        <div class="sec">缺齿</div>
+        <div class="sec">龋齿</div>
+        <div class="fir">义齿(假牙)</div>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        咽部
+    </div>
+    <!--personal_list02-->
+    <div class="guidance1" id="guidance9">
+        <div class="fir">无充血</div>
+        <div class="sec">充血</div>
+        <div class="fir" style="width: 66%">淋巴滤泡增生</div>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        视力
+    </div>
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">左眼</p>
+            <p class="personal_right"><input type="text" placeholder="请填写左眼"/></p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">右眼</p>
+            <p class="personal_right"><input type="text" placeholder="请填写右眼"/></p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        听力
+    </div>
+    <div class="guidance" id="guidance10">
+        <div class="fir">听见</div>
+        <div class="sec" style="width: 66%">听不清或无法听见</div>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        运动功能
+    </div>
+    <div class="guidance" id="guidance11">
+        <div class="fir blue">可顺利完成</div>
+        <div class="fir" style="width:100%">无法独立完成其中任何一个动作</div>
+    </div>
+    <p class="gray_ss"></p>
+
+    <div class="personal_list" style="background: #f7f7f7">
+        眼底
+    </div>
+    <!--personal_list02-->
+    <div class="guidance" id="guidance12">
+        <div class="fir">正常</div>
+        <div class="sec">异常</div>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        <input type="text" placeholder="异常请在此填写"/>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        皮肤
+    </div>
+    <!--personal_list02-->
+    <div class="guidance" id="guidance13">
+        <div class="fir">正常</div>
+        <div class="sec">潮红</div>
+        <div class="sec">苍白</div>
+        <div class="fir">发绀</div>
+        <div class="sec">黄染</div>
+        <div class="sec">色素沉着</div>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        <input type="text" placeholder="其他请在此填写"/>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        巩膜
+    </div>
+    <!--personal_list02-->
+    <div class="guidance" id="guidance14">
+        <div class="fir">正常</div>
+        <div class="sec">黄染</div>
+        <div class="sec">充血</div>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        <input type="text" placeholder="其他请在此填写"/>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        淋巴结
+    </div>
+    <!--personal_list02-->
+    <div class="guidance" id="guidance15">
+        <div class="fir">未触及</div>
+        <div class="sec">锁骨上</div>
+        <div class="sec">腋窝</div>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        <input type="text" placeholder="其他请在此填写"/>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        桶状胸
+    </div>
+    <!--personal_list02-->
+    <div class="guidance" id="guidance16">
+        <div class="fir">是</div>
+        <div class="sec">否</div>
+    </div>
+    <p class="gray_ss"></p>
+
+    <div class="personal_list" style="background: #f7f7f7">
+        呼吸音
+    </div>
+    <!--personal_list02-->
+    <div class="guidance" id="guidance17">
+        <div class="fir">正常</div>
+        <div class="sec">异常</div>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        <input type="text" placeholder="异常请在此填写"/>
+    </div>
+    <p class="gray_ss"></p>
+
+    <div class="personal_list" style="background: #f7f7f7">
+        罗音
+    </div>
+    <!--personal_list02-->
+    <div class="guidance" id="guidance18">
+        <div class="fir">无</div>
+        <div class="sec">干罗音</div>
+        <div class="sec">湿罗音</div>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        <input type="text" placeholder="其他请在此填写"/>
+    </div>
+    <p class="gray_ss"></p>
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">心率</p>
+            <p class="personal_right"><input type="text" placeholder="请填写心率"/>次/分钟</p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        心律
+    </div>
+    <!--personal_list02-->
+    <div class="guidance" id="guidance19">
+        <div class="fir">齐</div>
+        <div class="sec">不齐</div>
+        <div class="sec">绝对不齐</div>
+    </div>
+    <p class="gray_ss"></p>
+
+    <div class="personal_list" style="background: #f7f7f7">
+        杂音
+    </div>
+    <!--personal_list02-->
+    <div class="guidance" id="guidance20">
+        <div class="fir">无</div>
+        <div class="sec">有</div>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        <input type="text" placeholder="有请在此填写"/>
+    </div>
+    <p class="gray_ss"></p>
+
+    <div class="personal_list" style="background: #f7f7f7">
+        外阴
+    </div>
+    <!--personal_list02-->
+    <div class="guidance" id="guidance21">
+        <div class="fir">未见异常</div>
+        <div class="sec">异常</div>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        <input type="text" placeholder="异常请在此填写"/>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        阴道
+    </div>
+    <!--personal_list02-->
+    <div class="guidance" id="guidance22">
+        <div class="fir">未见异常</div>
+        <div class="sec">异常</div>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        <input type="text" placeholder="异常请在此填写"/>
+    </div>
+    <p class="gray_ss"></p>
+
+    <div class="personal_list" style="background: #f7f7f7">
+        宫颈
+    </div>
+    <!--personal_list02-->
+    <div class="guidance" id="guidance23">
+        <div class="fir">未见异常</div>
+        <div class="sec">异常</div>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        <input type="text" placeholder="异常请在此填写"/>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        宫体
+    </div>
+    <!--personal_list02-->
+    <div class="guidance" id="guidance24">
+        <div class="fir">未见异常</div>
+        <div class="sec">异常</div>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        <input type="text" placeholder="异常请在此填写"/>
+    </div>
+    <p class="gray_ss"></p>
+
+    <div class="personal_list" style="background: #f7f7f7">
+        脑血管疾病
+    </div>
+    <!--personal_list02-->
+    <div class="guidance" id="guidance25">
+        <div class="fir">未发现</div>
+        <div class="sec" style="width: 66%">蛛网膜下腔出血</div>
+        <div class="fir" style="width: 66%">短暂性脑缺血</div>
+        <div class="sec">缺血性卒中</div>
+        <div class="fir">脑出血</div>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        <input type="text" placeholder="其他请在此填写"/>
+    </div>
+    <p class="gray_ss"></p>
+
+    <div class="personal_list" style="background: #f7f7f7">
+        肾脏疾病
+    </div>
+    <!--personal_list02-->
+    <div class="guidance" id="guidance26">
+        <div class="fir">未发现</div>
+        <div class="sec">糖尿病肾病</div>
+        <div class="sec">肾功能衰竭</div>
+        <div class="fir">急性肾炎</div>
+        <div class="sec">慢性肾炎</div>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        <input type="text" placeholder="其他请在此填写"/>
+    </div>
+    <p class="gray_ss"></p>
+
+    <div class="personal_list" style="background: #f7f7f7">
+        心脏疾病
+    </div>
+    <!--personal_list02-->
+    <div class="guidance" id="guidance27">
+        <div class="fir">未发现</div>
+        <div class="sec">心肌梗死</div>
+        <div class="sec">心绞痛</div>
+        <div class="fir" style="width: 66%">冠状动脉血运重建</div>
+        <div class="sec">充血性心力</div>
+        <div class="fir">心前区疼痛</div>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        <input type="text" placeholder="其他请在此填写"/>
+    </div>
+    <p class="gray_ss"></p>
+
+    <div class="personal_list" style="background: #f7f7f7">
+        血管疾病
+    </div>
+    <!--personal_list02-->
+    <div class="guidance" id="guidance28">
+        <div class="fir">未发现</div>
+        <div class="sec">夹层动脉瘤</div>
+        <div class="fir" style="width: 66%">动脉闭塞性疾病</div>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        <input type="text" placeholder="其他请在此填写"/>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        眼部疾病
+    </div>
+    <!--personal_list02-->
+    <div class="guidance" id="guidance29">
+        <div class="fir">未发现</div>
+        <div class="sec">白内障</div>
+        <div class="sec">视乳头水肿</div>
+        <div class="fir" style="width: 66%">视网膜出血或渗出</div>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        <input type="text" placeholder="其他请在此填写"/>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        神经系统疾病
+    </div>
+    <!--personal_list02-->
+    <div class="guidance" id="guidance30">
+        <div class="fir">未发现</div>
+        <div class="sec">有</div>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        <input type="text" placeholder="有请在此填写"/>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        健康评价
+    </div>
+    <!--personal_list02-->
+    <div class="guidance" id="guidance31">
+        <div class="fir">体检无异常</div>
+        <div class="sec">有异常</div>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        <input type="text" placeholder="异常请在此填写"/>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        健康指导
+    </div>
+    <!--personal_list02-->
+    <div class="guidance1" id="guidance32">
+        <div class="fir" style="width: 100%">纳入慢性病患者健康管理</div>
+        <div class="fir">建议复查</div>
+        <div class="sec">建议转诊</div>
+    </div>
+
+</div>
+<footer id="footer">
+    <p>保存</p>
+</footer>
+
+<script src="js/plugins.js"></script>
+<script>
+    $(function () {
+        $('.personal_right>span').click(function () {
+            $(this).addClass('blue').siblings().removeClass('blue');
+        });
+        $('.guidance>div').click(function () {
+            $(this).addClass('blue').siblings().removeClass('blue');
+        });
+        $('.guidance1>div').click(function () {
+            $(this).toggleClass('blue');
+        });
+        $('#footer>p').click(function () {
+            ale('保存成功');
+            setTimeout(function () {
+                window.history.back();
+            },2000);
+        });
+    });
+</script>
+</body>
+</html>

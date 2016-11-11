@@ -1,0 +1,53 @@
+.jg{
+    width: 100%;
+    list-style: none;
+    display: inline-block;
+}
+.jg li{
+    margin-top: 50px;
+    float: left;
+    width: 25%;
+}
+.fj{
+    width: 98%;
+    height: 500px;
+    margin: 0 auto;
+}
+.zj{
+    width: 90%;
+    height: 350px;
+    margin: 0 auto;
+    border:1px solid rgb(74, 139, 194);
+}
+.tit{
+    display: inline-block;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    background-color: rgb(74, 139, 194);
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+.img_box{
+    width: 100%;
+    height: 200px;
+    background-color: #bbbbbb;
+
+}
+.text_box{
+    width: 100%;
+    height: 50px;
+    background-color: #FFD5D5;
+    text-align: center;
+}
+.text_boxs{
+    width: 100%;
+    height: 50px;
+    background-color:#E0FBF7;
+    text-align: center;
+}
+.text{
+    line-height: 50px;
+
+}

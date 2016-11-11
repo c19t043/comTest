@@ -1,0 +1,107 @@
+
+.personal_list{
+    padding: 10px 0px;
+}
+
+.personal_list > div {
+    width: 100%;
+    padding: 0px 15px 0px 30px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-align: center;
+}
+
+.personal_list input {
+    border: 1px solid #CCCCCC;
+    width: 60%;
+    -webkit-box-shadow: 0px -1px 1px 0px #ccc;
+    -moz-box-shadow: 0px -1px 1px 0px #ccc;
+    box-shadow: 0px -1px 1px 0px #ccc;
+    height: 30px;
+    border-radius: 6px;
+    text-align: left;
+    float: left;
+}
+
+.speblue {
+    background: #4FC1E9;
+    color: #ffffff;
+}
+
+#footer > div {
+    width: 20%;
+    margin-left: 30px;
+    text-align: left;
+}
+
+.personal_list .appDate1{
+    width: 34%;
+    margin-left: 3%;
+}
+.personal_list >.search,.personal_list >.historylist{
+    width: 41%;
+    float: left;
+    line-height: 34px;
+    background: #4FC1E9;
+    color: #ffffff;
+    border-radius: 4px;
+    margin-left: 6%;
+    padding: 0px;
+}
+.con-head {
+    overflow: hidden;
+    border-bottom: 10px solid #CCCCCC;
+    border-top: 10px solid #CCCCCC;
+    padding: 0px 3.5%;
+    line-height: 38px;
+    text-align: left;
+    font-size: 18px;
+}
+
+.cont > div {
+    overflow: hidden;
+    width: 93%;
+    margin: 0px auto;
+    text-align: left;
+    height: 54px;
+    padding: 3px 0px;
+    font-size: 12px;
+}
+
+.cont > div > div {
+    width: 25%;
+    float: left;
+    line-height: 26px;
+}
+.cont > div > div:nth-child(4){
+    width: 20%;
+}
+.cont > div > div:nth-child(3){
+    width: 30%;
+}
+.cont > div > div > span {
+    padding: 2px 4px;
+    border: 1px solid #4FC1E9;
+    border-radius: 4px;
+    color: #4FC1E9;
+}
+.cont > div > div:nth-child(4) > p {
+    width: 48px;
+    height: 48px;
+    padding: 4px 0px;
+    line-height: 20px;
+    border-radius: 100%;
+    background: #4FC1E9;
+    color: #ffffff;
+    margin: 0px auto;
+    font-size: 14px;
+    text-align: center;
+    float: right;
+}
+.cont input{
+    width: 86%;
+    height: 24px;
+}
+

@@ -1,0 +1,142 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>就诊管理</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/mask.css">
+    <link rel="stylesheet" href="css/org_vaccine.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/org_patient_manage.js"></script>
+    <script src="js/mask.js"></script>
+    <script>window.$ = window.jQuery = WLJQ;</script>
+    <script src="js/initOptions.js"></script>
+    <script src="js/versionOrgan.js"></script>
+    <script src="js/versionorganmanage.js"></script>
+    <style>
+        #search{
+            padding: 10px 45px;
+        }
+        .search>input{
+            width: 92%;
+            border-radius: 6px;
+            height: 20px;
+            line-height: 20px;
+            padding: 4px 4%;
+            text-align: left;
+            background: url("images/menuicon/search.png") no-repeat;
+            background-size: 16px;
+            background-position: 96% center;
+        }
+        .patient_list{
+            border-bottom: 1px solid #e8e8e8;
+            line-height: 39px;
+            font-size: 14px;
+            padding: 0 15px;
+            display:-moz-box; /* Firefox */
+            display:-webkit-box; /* Safari and Chrome */
+            display:flex;
+        }
+        .phone,.date{
+            -moz-box-flex:2.0; /* Firefox */
+            -webkit-box-flex:2.0; /* Safari and Chrome */
+            flex:2.0;
+            display: inline-block;
+            font-size: 12px;
+        }
+        .name,.sex{
+            -moz-box-flex:1.0; /* Firefox */
+            -webkit-box-flex:1.0; /* Safari and Chrome */
+            flex:1.0;
+            display: inline-block;
+            font-size: 12px;
+        }
+        .sex{
+            text-align: center;
+        }
+        .date{
+            text-align: right;
+        }
+        .header-right span{
+            border-radius: 30px;
+            border: 1px solid #1cba93;
+            padding: 4px 14px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+<div id="contentNew">
+    <div id="content">
+        <div id="header">
+            <div class="header-left"><i class="iconfont">&#xe61a;</i></div>
+            <div class="header-center"></div>
+            <div class="header-right" onclick="window.location.href='org_index.html'"><i class="iconfont">&#xe604;</i></div>
+        </div>
+        <div id="container">
+            <div id="search">
+                <div class="search">
+                    <input type="text" placeholder="手机号/姓名"/>
+                </div>
+            </div>
+            <p class="gray_3"></p>
+            <ul id="patient_list">
+                <li class="patient_list">
+                    <div class="phone" style="font-size: 14px">手机号</div>
+                    <div class="name" style="font-size: 14px">姓名</div>
+                    <div class="sex" style="font-size: 14px">性别</div>
+                    <div class="date" style="font-size: 14px">出生日期</div>
+                </li>
+            </ul>
+        </div>
+        <footer id="footer">
+            <p class="button_01" onclick="link_to('org_patient_manage_detail.html?'+orgPatientManage.orgId)">新增就诊登记用户</p>
+        </footer>
+        <div id="mask"></div>
+    </div>
+</div>
+<div id="leftNav">
+    <div id="mask_header">
+        <p id="community_name"></p>
+        <p id="loginName"></p>
+    </div>
+    <ul>
+        <!--<li>门诊订单</li>-->
+        <!--<li>计免订单</li>-->
+        <!--<li>儿保订单</li>-->
+    </ul>
+    <div id="mask_bottom">
+        <p>版本信息: <span>1.0</span></p>
+        <div id="exit">
+            <p id="orgOutLogin" onclick="orgOutLogin()">退出登录</p>
+        </div>
+    </div>
+</div>
+<div id="cover">
+    <div id="covercontent">
+        <p>发现新版本</p>
+        <div class="updateversion ">
+            <p>最新版本：<span></span></p>
+            <p>新版本大小：<span></span></p>
+            <p>更新日期：<span></span></p>
+        </div>
+        <div class="updatecontent">
+            <p>更新内容：</p>
+            <div id="updatecontent"></div>
+        </div>
+        <div class="chooseupdate">
+            <div class="later" onclick="noupdate()">以后再说</div>
+            <div class="rightaway" onclick="gotoupdate()">立即更新</div>
+        </div>
+    </div>
+</div>
+<script src="js/main.js"></script>
+<script src="js/plugins.js"></script>
+</body>
+</html>

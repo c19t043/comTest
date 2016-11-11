@@ -1,0 +1,70 @@
+﻿<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<title>我的账户</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/main.css">
+	<script src="js/modernizr-2.8.3.min.js"></script>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/config.js"></script>
+	<script src="js/account.js"></script>
+    <style>
+        .account_list>div{
+            line-height: 50px;
+            padding: 0 20px;
+            font-size: 14px;
+            overflow: hidden;
+        }
+        .account_left{
+            width: 20%;
+            float: left;
+        }
+        .account_center{
+            width: 70%;
+            float: right;
+            text-align: right;
+            color: #909090;
+            font-size: 12px;
+            background: url("images/menu/next.png") no-repeat right center;
+            background-size: 8px;
+            height: 50px;
+            padding-right: 17px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="header" class="doctor_header">
+	<div class="header-left"><p></p></div>
+	<div class="header-center">我的账户</div>
+	<div class="header-right"></div>
+</div>
+<!--header-->
+
+<div id="container">
+	<!--account_list01-->
+	<div class="account_list" onclick="window.location.href='balance.html'">
+		<div>
+			<p class="account_left">余额</p>
+			<p class="account_center"><span class="balance" id="balance"></span>元</p>
+		</div>
+	</div>
+	<p class="gray_3"></p>
+	<!--account_list02-->
+	<div class="account_list" onclick="window.location.href='point.html'">
+		<div>
+			<p class="account_left">积分</p>
+			<p class="account_center"><span class="integral" id="point"></span>分</p>
+		</div>
+	</div>
+    <p class="gray_3"></p>
+</div>
+
+<!--container-->
+<script src="js/plugins.js"></script>
+
+</body>
+</html>

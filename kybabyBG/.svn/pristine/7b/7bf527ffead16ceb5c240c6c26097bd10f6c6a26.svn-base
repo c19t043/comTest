@@ -1,0 +1,57 @@
+.fj{
+    width:900px;
+    margin-left:30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.fj label{
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+}
+.fj input{
+    width: 120px;
+}
+.fj select{
+    width: 124px;
+}
+.check{
+    width: 30px!important;
+    position: relative;
+    top: 1px;
+}
+.box{
+width: 170px;
+    margin-top: 10px;
+    height: 32px;
+    display: inline-block;
+}
+.box span{
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+}
+.tishi{
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    color: #009DD9;
+    font-weight: bold;
+}
+#show_product label{
+    padding: 5px 10px;
+    background: #B91919;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: bold;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+#bottom_div{
+	height:250px;
+	overflow-y: auto;
+}
+#bottom_div_con p{
+	text-indent:30px;
+}

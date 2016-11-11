@@ -1,0 +1,45 @@
+﻿<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<title>注册</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/addnewcontact.css">
+	<script src="js/modernizr-2.8.3.min.js"></script>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/config.js"></script>
+</head>
+<body>
+
+<div id="header">
+    <div class="header-left" onclick="return_before()"><span>添加联系人</span></div>
+	<div class="header-center"></div>
+	<div class="header-right"></div>
+</div>
+<div id="container">
+	<p class="gray_2"></p>
+	<section>
+		<p>为了方便医生联系，请填写联系方式</p>
+		<p>(若您给宝宝预约，请填写随行家长的联系方式)</p>
+	</section>
+	<p class="input">
+		<label>联系人</label>
+		<input type="text" placeholder="请填写联系人" />
+	</p>
+	<p class="input">
+		<label>手机号</label>
+		<input type="number" placeholder="请填写联系电话" />
+	</p>
+	<p class="input">
+		<label>验证码</label>
+		<input class="yzm" type="number" placeholder="请填写短信验证码" />
+		<span class="getyzm">获取验证码</span>
+	</p>
+	<div class="yybtn">立即预约</div>
+</div>
+
+</body>
+</html>

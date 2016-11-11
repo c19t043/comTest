@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>添加门诊时间</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/patientAddress.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/main.js"></script>
+</head>
+<body>
+<div id="header" class="doctor_header">
+    <div class="headerLeft" onclick="goBack()"><p></p></div>
+    <div class="header-center">输入门诊地址</div>
+    <div class="header-right"></div>
+</div>
+<!--header-->
+<header>
+    <input id="showAddress" type="text" placeholder="输入详细地址(如：儿科门诊楼5楼503诊室)"/>
+    <p class="gray_3"></p>
+</header>
+<div id="historyAddress">
+    <p>历史地址</p>
+    <p class="gray_3"></p>
+    <div class="historyAddress">
+
+    </div>
+</div>
+<footer id="footer">
+    <p class="button_01" onclick="achieve()">完成</p>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/patientAddress.js"></script>
+<script src="js/config.js"></script>
+</body>
+</html>

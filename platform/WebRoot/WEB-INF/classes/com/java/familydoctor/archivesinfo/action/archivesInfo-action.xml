@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>	
+	<package namespace="/familydoctor/archivesInfo" name="ArchivesInfoAction" extends="com.java.platform">
+		<!-- 信息列表  -->
+		<action name="getArchivesInfoList" class="archivesInfoAction" method="getArchivesInfoList">
+			<result name="success">/familydoctor/archivesinfo/archivesinfo_list.jsp</result>
+		</action>
+		
+		<!-- 跳转到添加页面  -->
+ 		<action name="toJumpArchivesInfo" class="archivesInfoAction" method="toJumpArchivesInfo"> 
+ 			<result name="success">/familydoctor/archivesinfo/archivesinfo_add.jsp</result> 
+ 		</action> 
+ 		
+ 		<!-- 保存新增信息-->
+ 		<action name="saveOrUpdateArchivesInfo" class="archivesInfoAction" method="saveOrUpdateArchivesInfo">
+ 			<result name="getArchivesInfoList_action" type="stateRedirectAction"> 
+ 				<param name="actionName">getArchivesInfoList.action</param> 
+			</result>
+ 		</action> 
+ 		
+ 		<!-- 信息列表  -->
+		<action name="getUserTypeList" class="archivesInfoAction" method="getUserTypeList">
+			<result name="success">/familydoctor/archivesinfo/user_select_type_list.jsp</result>
+		</action>
+ 		
+ 		<!-- 用户类型main页面  -->
+ 		<action name="toJumpUserType" class="archivesInfoAction" method="toJumpUserType"> 
+ 			<result name="success">/familydoctor/archivesinfo/user_select_type_main.jsp</result> 
+ 		</action> 
+	</package>
+	
+
+
+	<!-- 用户类型的action -->
+	<package namespace="/familydoctor/usertype" name="UserTypeAction" extends="com.java.platform">
+		<!-- 信息列表  -->
+		<action name="getUserTypeList" class="userTypeAction" method="getUserTypeList">
+			<result name="success">/familydoctor/archivesinfo/usertype_list.jsp</result>
+		</action>
+		
+		<!-- 跳转到添加页面  -->
+ 		<action name="toJumpUserType" class="userTypeAction" method="toJumpUserType"> 
+ 			<result name="success">/familydoctor/archivesinfo/usertype_add.jsp</result> 
+ 		</action> 
+ 		
+ 		<!-- 保存新增信息-->
+ 		<action name="saveOrUpdateUserType" class="userTypeAction" method="saveOrUpdateUserType">
+ 			<result name="getUserTypeList_action" type="stateRedirectAction"> 
+ 				<param name="actionName">getUserTypeList.action</param> 
+			</result>
+ 		</action> 
+	</package>
+</struts>

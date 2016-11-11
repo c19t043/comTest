@@ -1,0 +1,143 @@
+﻿<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<title>康优宝贝</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/main.css">
+	<script src="js/modernizr-2.8.3.min.js"></script>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/main.js"></script>
+	<script type="text/javascript" src="js/jquery.royalslider.min.js"></script>
+	<link href="css/royalslider_guide.css" rel="stylesheet" type="text/css"/>
+	<script src="js/main.js"></script>
+	<script src="js/plugins.js"></script>
+	
+	<script type="text/javascript" src="js/config.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+	<style>
+		.guide_box {
+			width: 100%;
+		}
+		.guide_btn {
+			position: fixed;
+			width: 20%;
+			height: 30px;
+			bottom: 17%;
+			right: 0;
+			background: red;
+			text-align: center;
+			line-height: 30px;
+			color: #fff;
+		}
+	</style>
+</head>
+<body>
+
+<div class="guide_box">
+	<div class="sliderContainer fullWidth clearfix">
+		<div id="full-width-slider" class="royalSlider heroSlider rsMinW">
+			<div class="rsContent"><img class="rsImg" src="images/step01.jpg" /></div>			
+			<div class="rsContent"><img class="rsImg" src="images/step02.jpg" /></div>
+			<div class="rsContent"><img class="rsImg" src="images/step03.jpg" /></div>	
+			<div class="rsContent">
+	<h2>引导页部分</h2>
+	<div>
+		<input type="button" value="引导页图片" onclick="getGuidePage()" />
+	</div>
+	<p>-----------------------------------------------------------------</p>
+	<h2>banner区域</h2>
+	<div>
+		<input type="button" value="banner区域图片" onclick="getBannerPicture()" />
+	</div>
+	<h2>服务产品以及以下部分</h2>
+	<div>
+		<input type="button" value="产品以及以下" onclick="getProductSep()" />
+	</div>
+	
+	<h2>服务页</h2>
+	<div>
+		<input type="button" value="产品列表" onclick="window.location.href='service_products.html'" />
+	</div>
+	<h2>点击个人中心</h2>
+	 <div>
+	 	<input type="button" value="个人中心" onclick="goToPersonZone();" />
+	 </div>
+</div>		
+		</div>
+	</div>
+</div>
+<div class="guide_btn" style="display:none" onclick="javascript:window.location.href='index.html'" id="btnStart">开始使用</div>
+
+<script>
+	jQuery(document).ready(function($) {
+		$('#full-width-slider').royalSlider({
+			arrowsNav: true,
+			loop: false,
+			//loopRewind: true,
+			fadeinLoadedSlide: true,
+			slidesSpacing: 0,
+			keyboardNavEnabled: true,
+			controlsInside: true,
+			imageScaleMode: 'fill',
+			arrowsNavAutoHide: false,
+			autoScaleSlider: true,
+			autoScaleSliderWidth: 800,
+			autoScaleSliderHeight: 400,
+			controlNavigation: 'bullets',
+			thumbsFitInViewport: false,
+			navigateByClick: false, //Navigates forward by clicking on slide.
+			startSlideId: 0,
+			autoPlay: {
+				enabled: false, //autoPlay or not
+				stopAtAction: false, //Stop autoPlay at first user action
+				pauseOnHover: false, //Pause autoPlay on hover
+				delay: 3000 //Delay between items in ms.
+			},
+			//transitionType:'move',
+			globalCaption: true,
+			deeplinking: {
+				enabled: true,
+				change: false
+			},
+			imgWidth: 800,
+			imgHeight: 400,
+		});
+		
+ 		var slider = $(".royalSlider").data('royalSlider');
+	
+	    slider.ev.on('rsAfterSlideChange', function(event) {        
+          if(slider.currSlideId==3){
+          slider.destroy();
+              //$("#btnStart").show();
+          } else{
+          	  //$("#btnStart").hide();
+          }
+          
+        }); 
+	});
+	
+	
+</script>
+<script>
+	$(function(){
+		var h = $(window).height();
+		var w = $(window).width();
+		$(".royalSlider.heroSlider, .royalSlider.heroSlider .rsOverflow").css({
+			"width" : w,
+			"height" : h,
+		});
+		$(".guide_box img").css({
+//			"width" : w,
+			"height" : h,
+		});
+	});
+
+</script>
+
+
+
+
+</body>
+</html>

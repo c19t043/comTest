@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>积分规则</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit" />
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/basic.js"></script>
+<script src="js/common.js"></script>
+<script src="js/integral_rule.js"></script>
+<link rel="stylesheet" type="text/css" href="css/common.css">
+<link rel="stylesheet" type="text/css" href="css/iconfont/iconfont.css">
+<link rel="stylesheet" type="text/css" href="css/integral_rule.css">
+</head>
+<body>
+
+<div id="headcon" class="headcon">
+
+</div>
+
+<div class="middlecon">
+	<div id="leftcon" class="leftcon">
+
+	</div>
+	
+	<div id="rightcon" class="rightcon">
+		<div class="content">
+			<div id="con_position" class="con_position">
+				<h1 id="con_tit" class="con_tit"></h1>
+				<div id="con_meu" class="con_meu">
+					<span>首页</span>
+					<span>/</span>
+					<span class="first"></span>
+					<span>/</span>
+					<span class="second"></span>
+				</div>
+				<div class="con_contral">
+                    <span class="tishi">积分规则：</span>
+				</div>
+				<table id="table_title" class="table_title">
+
+				</table>
+			</div>
+			<div class="table_h">
+				<table id="table_content" class="table_content">
+
+				</table>
+			</div>
+			<div class="con_page">
+				<span class="a">共&nbsp;<span id="con_num" class="con_num"></span>&nbsp;条数据</span>
+				<div class="button_cli">
+					<span class="button" onclick="page_click('default','1')">首页</span>
+					<span class="button" onclick="page_click('default','prev')" >上一页</span>
+					<span class="num" id="now_page_num" >1</span>
+					<span class="button" onclick="page_click('default','next')">下一页</span>
+					<span class="button" onclick="page_click('default','end')">尾页</span>
+				</div>
+				<div class="page_go">
+					<span class="b">共&nbsp;<span id="page_num" class="page_num"></span>&nbsp;页</span>
+					<span class="c">跳转到&nbsp;<input id="go_page" type="number" value="1" min="1">&nbsp;页</span>
+					<span class="button" onclick="page_click_go()">Go</span>
+				</div>
+			</div>
+			<div id="bottom_div" class="bottom_div">
+			  <div class="bottom_div_tit">
+				  <span class="tit_info"></span>
+				  <span id="button_add_click" class="button_style button_add">确认</span>
+					<span id="button_update_click" onclick="contral_info()" class="button_style button_change">确认</span>
+					<span id="button_cancel_click" class="button_style button_cancel">取消</span>
+				</div>
+				<div id="bottom_div_con" class="bottom_div_con">
+                    <div class="fj">
+                    		<div id="show1">
+	                        <label id="show_1">消费返积分：</label>
+	                        <input id="show_1_" type="text"><span id="show_1_1">元&nbsp;=&nbsp;1积分</span>
+                        </div>
+                        <div id="show2">
+	                        <label id="show_2">积分抵现：</label>
+	                      	<span  id="show_2_2">100积分&nbsp;=&nbsp;</span><input id="show_2_" type="text">元
+                       	</div>
+                       	<div id="show3">
+	                        <label id="show_3">积分换现金：</label>
+	                        <span  id="show_3_3">100积分&nbsp;=&nbsp;</span><input id="show_3_" type="text">元
+                        </div>
+                        <br>
+                        <label>状态：</label>
+                        <select id="show_status">
+                        	<option>Y</option>
+                        	<option>N</option>
+                        </select>
+                    </div>
+				</div>
+			</div>
+		</div>	
+	</div>
+</div>
+
+
+</body>
+</html>
+   

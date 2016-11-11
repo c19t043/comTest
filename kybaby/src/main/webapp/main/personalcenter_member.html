@@ -1,0 +1,94 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>会员</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/personalcenter.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/version.js"></script>
+    <style>
+        .vip1 {
+            background-image: url("images/vip1.png"), url("images/next.png");
+            background-repeat: no-repeat;
+            background-size: 30px, 9px;
+            background-position: left center, right center;
+        }
+        .vip2 {
+            background-image: url("images/vip2.png"), url("images/next.png");
+            background-repeat: no-repeat;
+            background-size: 30px, 9px;
+            background-position: left center, right center;
+        }
+        .vip3 {
+            background-image: url("images/vip3.png"), url("images/next.png");
+            background-repeat: no-repeat;
+            background-size: 30px, 9px;
+            background-position: left center, right center;
+        }
+    </style>
+</head>
+<body>
+
+<div id="header">
+    <div class="header-left" onclick="window.location.href='personalcenter.html'"><span>会员</span></div>
+    <div class="header-center"></div>
+    <div class="header-right"></div>
+</div>
+<!--header-->
+
+<div id="container">
+    <p class="gray_s"></p>
+
+    <div class="personal_list clearfix">
+        <!--personal_list06-->
+        <!--<div class="personal_com list06" onclick="window.location.href='modifypassword.html'">修改密码</div>-->
+        <!--<p class="gray_2"></p>-->
+
+    </div>
+</div>
+<!--container-->
+<script src="js/main.js"></script>
+<script src="js/plugins.js"></script>
+<script>
+    $(function () {
+        $.ajax({
+            type: 'post',
+            url: memberHost + 'memberManage.action',
+            cache: false,
+            async: false,
+            data: {
+                action: "getMemberManageList"
+            },
+            success: function (result) {
+                if (result.mes == '请登录') {
+                    ale('请登录', '24px');
+                    window.location.href = "login.html";
+                }
+                else if(result.mes == '成功'){
+                    var memberList=result.memberManageList;
+                    if(memberList!=null){
+                        var html='';
+                        for(var i= 0,len=memberList.length;i<len;i++){
+                            html+='<div class="personal_com vip'+(i+1)+'" onclick="window.location.href=\'user_member.html?memberTypeId='+memberList[i].memberType.id+'\'">'+memberList[i].memberType.memberName+'</div> ' +
+                            '<p class="gray_s"></p> ';
+                        }
+                        $('.personal_list').html(html);
+                    }
+                }
+            },
+            error:function(){
+                layer();
+            }
+        });
+
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>机构服务</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/config.js"></script>
+    <style>
+        body{
+            /*text-align: center;*/
+        }
+        p{
+            line-height: 75px;
+            color: #fff;
+            text-align: center;
+            font-size: 21px;
+        }
+        #select>div{
+            margin: 30px auto;
+            width: 65%;
+            height: 75px;
+            max-width: 380px;
+            border-radius: 5px;
+            /*background: #F9DC74;*/
+        }
+        /*#outpatient_service{*/
+            /*background: #F9DC74;*/
+            /*background-image: url("img/menzhen.png");*/
+            /*background-position:  20px;*/
+            /*background-repeat: no-repeat;*/
+            /*background-size: 12%;*/
+
+        /*}*/
+        /*#immunization{*/
+            /*background: #EE5859;*/
+            /*background-image: url("img/jimian.png");*/
+            /*background-position: 20px;*/
+            /*background-repeat: no-repeat;*/
+            /*background-size: 12%;*/
+        /*}*/
+        /*#child_care{*/
+            /*background: #4EC0E4;*/
+            /*background-image: url("img/erbao.png");*/
+            /*background-position:  20px;*/
+            /*background-repeat: no-repeat;*/
+            /*background-size: 12%;*/
+        /*}*/
+    </style>
+</head>
+<body>
+
+<div id="header" class="doctor_header">
+    <div class="header-left"></div>
+    <div class="header-center">机构服务</div>
+    <div class="header-right"></div>
+</div>
+<!--header-->
+<div id="container">
+    <!--<img src="images/technician.jpg" alt="门诊预约" onclick="ale('敬请期待！');"/><br/>-->
+    <!--<img src="images/nurseImg.jpg" alt="计划免疫" onclick="ale('敬请期待！');"/><br/>-->
+    <!--<img src="images/doctorimg.jpg" alt="儿保预约" onclick="window.location.href='Doctorauthentication.html?医生'"/>-->
+    <div id="select">
+        <!--<div id="outpatient_service">-->
+            <!--<p>门诊预约</p>-->
+        <!--</div>-->
+        <!--<div id="immunization">-->
+            <!--<p>计划免疫</p>-->
+        <!--</div>-->
+        <!--<div id="child_care">-->
+            <!--<p>儿保预约</p>-->
+        <!--</div>-->
+    </div>
+</div>
+<!--container-->
+<script src="js/plugins.js"></script>
+<script>
+    $(function(){
+//        $.ajax({
+//            type: 'post',
+//            url: urlWay.orgBusinessHost + 'orgBusinessManage.action',
+//            cache: false,
+//            async: false,
+//            data: {
+//                action: "getBusinessNameList"
+//            },
+//            success: function (result) {
+//                if (result.mes == '请登录') {
+//                    ale('请登录', '24px');
+//                    window.location.href = "org_login.html";
+//                }
+//                else if (result.mes == "成功") {
+//                    var orglist = result.businessNameList;
+//                    if (orglist != null && orglist.length!=0) {
+//                        var html = '';
+//                        var firsturl = [];
+//                        for (var i = 0, len = orglist.length; i < len; i++) {
+//                            var serviceurl = '';
+//                            if (orglist[i] == '计划免疫') {
+//                                var pagePath=result.organModuleInfoList[0].pagePath;
+//                                serviceurl = pagePath+'?'+ result.organOperator.hospitalBasicInfo.id+'&'+orglist[i];
+//                                html += '<div id="immunization" data-ser="'+orglist[i]+'" onclick="serviceLoad(\'' + serviceurl + '\')"><p>计划免疫</p></div>';
+//                            } else if (orglist[i] == '儿保预约') {
+//                                serviceurl = 'org_babyprotect.html?' + result.organOperator.hospitalBasicInfo.id+'&'+orglist[i];
+//                                html += '<div id="child_care" data-ser="'+orglist[i]+'" onclick="serviceLoad(\'' + serviceurl + '\')"><p>儿保预约</p></div>';
+//                            } else if (orglist[i] == '门诊预约') {
+//                                serviceurl = 'org_outpatient.html?' + result.organOperator.hospitalBasicInfo.id+'&'+orglist[i];
+//                                html += '<div id="outpatient_service" data-ser="'+orglist[i]+'" onclick="serviceLoad(\'' + serviceurl + '\')"><p>门诊预约</p></div>';
+//                            }
+////                            firsturl.push(serviceurl);
+////                            if(orglist[i] == '门诊预约'){
+////                                html += "<div id='outpatient_service' onclick='serviceLoad(\'' + serviceurl + '\')'><p>儿保预约</p></div>";
+////                            }
+////                            if(orglist[i] == '计划免疫'){
+////                                html += "<div id='immunization'  onclick='serviceLoad(\'' + serviceurl + '\')'><p>计划免疫</p></div>";
+////                            }
+////                            if(orglist[i] == '儿保预约'){
+////                                html += "<div id='child_care' onclick='serviceLoad(\'' + serviceurl + '\')'><p>儿保预约</p></div>";
+////                            }
+//                        }
+////                        serviceLoad(firsturl[0]);
+//                        $('#select').html(html);
+////                        $('#header ul>li[data-ser='+ser+']').addClass('speblue').removeAttr('onclick');
+//                    }
+//                }
+//            },
+//            error: function (XMLHttpRequest, textStatus, errorThrown) {
+//            }
+//        });
+        $.ajax({
+            type: 'post',
+            url: urlWay.orgBusinessHost + 'orgLogin.action',
+            cache: false,
+            async: false,
+            data: {
+                action: "getModuleList"
+            },
+            success: function (result) {
+                if (result.mes == '请登录') {
+                    ale('请登录', '24px');
+                    window.location.href = "org_login.html";
+                }
+                else if (result.mes == "成功") {
+                    var organModuleInfoList=result.organModuleInfoList;
+                    if(organModuleInfoList!=null){
+                        var html='';
+                        for (var i = 0, len = organModuleInfoList.length; i < len; i++) {
+                            var serviceurl =organModuleInfoList[i].pagePath+'?'+result.organOperator.hospitalBasicInfo.id+'&'+organModuleInfoList[i].moduleName;
+                            html+='<div class="item" data-ser="'+organModuleInfoList[i].moduleName+'" onclick="serviceLoad(\'' + serviceurl + '\')"><p>'+organModuleInfoList[i].moduleName+'</p></div>';
+                        }
+                        $('#select').html(html);
+                    }
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+            }
+        });
+        var colors = ["#4EC0E4","#F9DC74","#7AE8D8","#FA6E86"];
+        var col_len = colors.length;
+        var item_len = $(".item").length;
+        var j = 0;
+        for(var i = 0;i<item_len;i++){
+            if(j==col_len){
+                j=0
+            }
+            $(".item").eq(i).css("background",colors[j]);
+            j++;
+        }
+    })
+    function serviceLoad(url) {
+        window.location.href=url;
+    }
+</script>
+</body>
+</html>

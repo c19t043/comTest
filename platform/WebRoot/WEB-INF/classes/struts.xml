@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 指定STRUTS2 配置文件的DTD信息 -->
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "struts-2.0.dtd">
+<struts>
+	<constant name="struts.objectFactory" value="spring"/>
+	<constant name="struts.devMode" value="false"/>
+	<include file="struts-fw.xml" />
+	<include file="platform-action.xml"/>
+	<include file="struts-dynamicform.xml"/>
+</struts>

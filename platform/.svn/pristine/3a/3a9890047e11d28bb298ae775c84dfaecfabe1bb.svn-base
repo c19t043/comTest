@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	<bean id="phPrenatalFollowRecordFirstAction" class="com.java.publichealth.productionvisit.action.PhPrenatalFollowRecordFirstAction" scope="prototype">
+		<property name="phPrenatalFollowRecordFirstService" ref="phPrenatalFollowRecordFirstServiceImpl" />
+	</bean>
+	<bean id="phPrenatalFollowRecordAfterAction" class="com.java.publichealth.productionvisit.action.PhPrenatalFollowRecordAfterAction" scope="prototype">
+		<property name="phPrenatalFollowRecordAfterService" ref="phPrenatalFollowRecordAfterServiceImpl" />
+	</bean>
+	<bean id="phPostpartumFollowRecordAction" class="com.java.publichealth.productionvisit.action.PhPostpartumFollowRecordAction" scope="prototype">
+		<property name="phPostpartumFollowRecordService" ref="phPostpartumFollowRecordServiceImpl" />
+	</bean>
+</beans>

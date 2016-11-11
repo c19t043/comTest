@@ -1,0 +1,53 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>缴费明细</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/consult.css"/>
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/plugins.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+
+<div id="header">
+    <div class="header-left" onclick="return_before();"><span>缴费明细</span></div>
+    <div class="header-center"></div>
+    <div class="header-right"></div>
+</div>
+<!--header-->
+<div id="container">
+    <ul>
+        <li>就诊人</li>
+        <li>就诊记录</li>
+    </ul>
+</div>
+<script>
+    $(function(){
+        var id = window.location.search.substring(1);
+        $.ajax({
+            type:'post',
+            url:spInterfaceService+'querySpCostInfo.action',
+            cache:false,
+            async:true,
+            data:{spQueryMessageID:id},
+            success:function(result){
+                if(result.mess=='成功'){
+                }else{
+
+                }
+            }
+        })
+    })
+</script>
+</body>
+</html>

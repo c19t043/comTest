@@ -1,0 +1,67 @@
+﻿<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<title>儿保预约信息</title>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/orgservice_babymessage.css">
+	<script src="js/modernizr-2.8.3.min.js"></script>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/config.js"></script>
+	<script src="js/orgservice_babymessage.js"></script>
+</head>
+<body>
+
+<div id="header">
+    <div class="header-left" onclick="return_before()"><span>儿保预约信息</span></div>
+    <div class="header-center"></div>
+    <div class="header-right"></div>
+</div>
+<!--header-->
+<div id="container">
+    <div id="erbao_head">
+        <div class="org_userImg"><img src="" alt=""/></div>
+        <div class="username"><span></span></div>
+    </div>
+    <div class="middleline"></div>
+    <div><span><img style="width: 19px" src="images/images_icon/address.png" alt=""/></span></div>
+    <div class="middleline"></div>
+    <div class="address"><span></span></div>
+    <div class="middleline"></div>
+    <div style="height: 18px"><span><img style="width: 19px;margin-top: -8px" src="images/images_icon/time.png" alt=""/></span></div>
+    <div class="middleline"></div>
+    <div class="time"><span></span></div>
+    <div class="middleline"></div>
+    <div class="yuyuema">
+        <p></p>
+    </div>
+    <div class="middleline"></div>
+    <div class="end"><img style="width: 16px;margin-top: -8px" src="images/images_icon/lastend.png" alt=""/></div>
+    <div class="instructions">
+        <p style="font-size: 16px;text-align: center">预约规则说明</p>
+        <p>1、实名制预约：预约须提供宝宝真实有效的个人信息，否则影响儿保。</p>
+        <p>2、放号时间：每周星期天下午4点前放两周后的号</p>
+        <p>3、预约和退号受理时间：每日23:59停止次日号源预约；退号最迟于就诊前一天23:59前通过网络办理。</p>
+        <p>4、收费说明：线上预约收取2元预约诊疗费，社区挂号将不收取任何费用。</p>
+        <p>5、就诊说明：请于就诊当天预约时间段内就诊，预约时长延长半小时后仍未到者预约作废，预约诊疗费将不予退还，就诊当天不能到达的用户可提前取消预约。</p>
+        <p>6、叫号方式：凭预约手机号，就诊人姓名现场报到叫号。</p>
+        <p>7、最终解释权归社区卫生服务中心所有。</p>
+    </div>
+</div>
+
+<!--container-->
+<div id="footer">
+	<p class="login_button">取消预约</p>
+</div>
+<!--footer-->
+
+
+
+<script src="js/main.js"></script>
+<script src="js/plugins.js"></script>
+</body>
+</html>

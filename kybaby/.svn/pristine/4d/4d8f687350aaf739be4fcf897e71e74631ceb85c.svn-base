@@ -1,0 +1,309 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>消息中心</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/orgservice.css">
+    <link rel="stylesheet" href="css/messageCenter.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/config.js"></script>
+</head>
+<body>
+
+<div id="header">
+    <div class="header-left" onclick="return_before()"><span>消息中心</span></div>
+    <div class="header-center"></div>
+    <div class="header-right" onclick="chooseAll(this)">全选</div>
+</div>
+<!--header-->
+<div id="container">
+    <!--<div id="searchbox">-->
+        <!--<div class="searchf">-->
+            <!--<input placeholder="搜索消息名称" type="text"/>-->
+            <!--<img onclick="searchMessage()" src="images/iconfont-sousuo.png" alt=""/>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="hr"></div>-->
+    <div class="message_div">
+        <ul>
+            <!--<li class="message_li" ontouchstart="gtouchstart()" ontouchmove="gtouchmove()" ontouchend="gtouchend()">-->
+            <!--<div class="message_all">-->
+            <!--<div class="message_title"><span class="red_dot"></span><span class="message_text">儿保提醒</span><span class="this_time">2016/5/11 13:58</span></div>-->
+            <!--<div class="left">-->
+            <!--<p class="message_content">下次儿保时间：2016-06-04</p>-->
+            <!--<p class="message_content">儿保提醒：血常规、视力、听力</p>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="mark"><div class="right"></div></div>-->
+            <!--</li>-->
+            <!--<li class="message_li" ontouchstart="gtouchstart()" ontouchmove="gtouchmove()" ontouchend="gtouchend()">-->
+            <!--<div class="message_all">-->
+            <!--<div class="message_title"><span class="red_dot"></span><span class="message_text">儿保提醒</span><span class="this_time">2016/5/11 13:58</span></div>-->
+            <!--<div class="left">-->
+            <!--<p class="message_content">下次儿保时间：2016-06-04</p>-->
+            <!--<p class="message_content">儿保提醒：血常规、视力、听力</p>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="mark"><div class="right"></div></div>-->
+            <!--</li>-->
+            <!--<li class="message_li" ontouchstart="gtouchstart()" ontouchmove="gtouchmove()" ontouchend="gtouchend()">-->
+            <!--<div class="message_all">-->
+            <!--<div class="message_title"><span class="red_dot"></span><span class="message_text">儿保提醒</span><span class="this_time">2016/5/11 13:58</span></div>-->
+            <!--<div class="left">-->
+            <!--<p class="message_content">下次儿保时间：2016-06-04</p>-->
+            <!--<p class="message_content">儿保提醒：血常规、视力、听力</p>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="mark"><div class="right"></div></div>-->
+            <!--</li>-->
+        </ul>
+    </div>
+    <div id="delete"><img onclick="del()" src="images/images_main/del.png" alt=""/></div>
+</div>
+<!--container-->
+<script src="js/main.js"></script>
+<script src="js/plugins.js"></script>
+<script>
+    function getMessageList(){
+        $.ajax({
+            type:'post',
+            url:messageHost+'messageCenterAction.action',
+            cache:false,
+            async:false,
+            data:{action:"messageListByUser"},
+            success:function(result){
+                if(result.mes == "成功"){
+                    var messageCenterList=result.messageCenterList;
+                    if(messageCenterList!=null){
+                        if(messageCenterList.length>0){
+                            for(var i=0;i < messageCenterList.length;i++){
+                                var isRead = messageCenterList[i].isRead;
+                                var isreadHtml='';
+                                if(isRead=="N"){
+                                    isreadHtml="<span class='red_dot'></span>";
+//                            $(".message_li").on("click",function(){
+//                                $(this).find(".red_dot").remove();
+//                            })
+                                }
+//                            $(".message_div>ul").append("<li class='message_li' index='"+i+"'><div class='message_all' ontouchstart='gtouchstart(this)' ontouchmove='gtouchmove()' ontouchend='gtouchend(this)'><div class='message_title'><span class='message_text'>"+messageCenterList[i].messageTitle
+//                                    +"</span><span class='this_time'>"+messageCenterList[i].messageSendTime+"</span></div><div class='left'><p class='message_content'>"+"下次儿保时间：2016-06-04"
+//                                    +"</p><p class='message_content'>"+messageCenterList[i].messageType+"项目:"+messageCenterList[i].messageContent.split("2、")[1]
+//                                    +"</p></div></div><div class='mark'><div class='right'></div></div></li>");
+                                $(".message_div>ul").append("<li class='message_li' index='"+i+"'><div class='message_all' ontouchstart='gtouchstart(this)' ontouchmove='gtouchmove()' ontouchend='gtouchend(this)'><div class='message_title'><span class='message_text'>"+isreadHtml+messageCenterList[i].messageTitle
+                                        +"</span><span class='this_time'>"+messageCenterList[i].messageSendTime+"</span></div></div><div class='mark' data-id='"+messageCenterList[i].id+"'><div class='right'></div></div></li>");
+
+                            }
+                        }
+                        else{
+                            $("#container").append("<div class='prompt'><i class='iconfont'>&#xe604;</i><p>暂时还没有消息~</p></div>");
+                        }
+                    }
+                }
+                else{
+                    ale("请求失败，请重试!");
+                }
+            },
+            error: function () {
+                layer();
+            }
+        });
+//        $(".message_li .right").on("click",function(){
+//            $(this).parents(".message_li").toggleClass("selected");
+//            $("#delete").show();
+//        })
+//        $("#delete>img").on("click",function(){
+//            var list = $(".message_li").length;
+//            for(var i=0;i<list;i++){
+//                if($(".message_li").eq(i).hasClass("selected")){
+//                    $(".message_li").eq(i).remove();
+//                    $("#delete").hide();
+//                }
+//            }
+//        })
+    }
+    var timeOutEvent=0;//定时器
+    var currentIndex;
+    //开始按
+    //alert(timeOutEvent);
+    function gtouchstart(ind){
+
+        currentIndex=$(ind).parent().attr('index');
+        timeOutEvent = setTimeout("longPress()",500);//这里设置定时器，定义长按500毫秒触发长按事件，时间可以自己改，个人感觉500毫秒非常合适
+        return false;
+    };
+    //手释放，如果在500毫秒内就释放，则取消长按事件，此时可以执行onclick应该执行的事件
+    function gtouchend(div){
+        clearTimeout(timeOutEvent);//清除定时器
+        if(timeOutEvent!=0){
+//这里写要执行的内容（尤如onclick事件）
+//            console.log("你这是点击，不是长按");
+            isRead(div);
+        }
+        return false;
+    };
+    //如果手指有移动，则取消所有事件，此时说明用户只是要移动而不是长按
+    function gtouchmove(){
+        clearTimeout(timeOutEvent);//清除定时器
+        timeOutEvent = 0;
+    };
+
+    //真正长按后应该执行的内容
+    function longPress(){
+        timeOutEvent = 0;
+//执行长按要执行的内容，如弹出菜单
+        $(".mark").show();
+        $("#delete").show();
+        $('.header-right').show();
+        $('.message_li[index='+currentIndex+']').find('.mark').addClass("selected");
+        $(".message_title").width("94%");
+
+//    console.log($('.message_li[index='+currentIndex+']'));
+//    全选/取消
+//        $('.header-right').click(function () {
+//            console.log($(this).find("p").text());
+////            var mList = $(".message_li").length;
+//            if($(this).find("p").text()=="全选"){
+//                $(".message_li>.mark").removeClass("selected");
+//                $(".message_li>.mark").addClass("selected");
+//                $('.header-right').find("p").text("取消");
+//            }
+//            else{
+//                console.log($(this).find("p").text());
+//                console.log(2)
+//                $(".message_li>.mark").removeClass("selected");
+//                $('.header-right').find("p").text("全选");
+//                $(".mark").hide();
+//                $("#delete").hide();
+//                $('.header-right').hide();
+//            }
+//        });
+    }
+    //    删除
+
+    $(function () {
+        getMessageList();
+        $('.mark').click(function () {
+            $(this).toggleClass("selected");
+        });
+//        $("#delete>img").on("click",function(){
+//            var mList = $(".message_li").length;
+//            for(var i=0;i<mList;i++){
+//                if($(".message_li>.mark").eq(i).hasClass("selected")){
+//                    $(".message_li").eq(i).remove();
+//                    $("#delete").hide();
+//                    $('.header-right').hide();
+//                }
+//            }
+//        })
+        ;
+    });
+    function chooseAll(div){
+        if($(div).text()=="全选"){
+            $(".message_li>.mark").removeClass("selected");
+            $(".message_li>.mark").addClass("selected");
+            $(div).text("取消");
+        }
+        else{
+            $(".message_li>.mark").removeClass("selected");
+            $(div).text("全选");
+            $(".mark").hide();
+            $("#delete").hide();
+            $(".message_title").width("100%");
+            $('.header-right').hide();
+        }
+    }
+    function isRead(div){
+        var id = $(div).next().attr('data-id');
+        $.ajax({
+            type:'post',
+            url:messageHost+'messageCenterAction.action',
+            cache:false,
+            async:false,
+            data:{action:"messageIsRead","messageCenter.id":id},
+            success:function(result){
+                window.location.href="his_remind.html?"+$(div).parent().attr("index");
+//                if(result.mes == "未登录"){
+//                    ale('请先登录');
+//                    setTimeout(function(){
+//                        window.location.href="login.html";
+//                    },2500);
+//                }
+//                $(event.target).parent().empty().append(
+//                        "<p class='a color_blue'>&radic;</p>"+
+//                        "<p class='b color_blue'>取消</p>"
+//                ).attr('onclick',function(){
+//                            return $(this).attr('onclick').replace('gz','qx');
+//                        });
+            },
+            error: function () {
+                layer();
+            }
+        });
+    }
+    function del() {
+        if($(".selected").length>0){
+            var r = confirm("是否删除所选信息？")
+            if (r == true) {
+                var sel = $('.selected');
+                if(sel == undefined||sel == null || sel == "undefined"){
+                    return false;
+                }
+                var idList="";
+                $(sel).each(function(){
+                    idList+=','+$(this).attr("data-id");
+                });
+                idList=idList.substring(1);
+                $.ajax({
+                    type:'post',
+                    url:messageHost+'messageCenterAction.action',
+                    cache:false,
+                    async:false,
+                    data:{action:"messageIsDel","delMessagesId":idList},
+                    success:function(result){
+                        var list = $(".message_li").length;
+                        for(var i=0;i<list;i++){
+                            if($(".message_li").eq(i).find(".mark").hasClass("selected")){
+                                $(".message_li").eq(i).remove();
+                                $("#delete").hide();
+                                $(".mark").hide();
+                                $(".message_title").width("100%");
+                                $('.header-right').hide();
+                            }
+                        }
+                    },
+                    error: function () {
+                        layer();
+                    }
+                });
+            }
+            else {
+                $(".message_li>.mark").removeClass("selected");
+                $(".mark").hide();
+                $("#delete").hide();
+                $(".message_title").width("100%");
+                $('.header-right').hide();
+            }
+        }
+        else{
+            ale("请选择需要删除的消息")
+        }
+    }
+//    function searchMessage(){
+//        var val = $('#searchbox input').val();
+//        if ($.trim(val) == '') {
+//            $('.org').show();
+//        } else {
+//            $('.org').hide();
+//            $('.org[data-hospital*="' + val + '"]').show();
+//        }
+//    }
+</script>
+
+</body>
+</html>
+
+

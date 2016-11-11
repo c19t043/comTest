@@ -1,0 +1,123 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>个人中心</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/mask.css">
+    <!--<link rel="stylesheet" href="css/org_main.css">-->
+    <!--<link rel="stylesheet" href="css/org_babyprotect.css">-->
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>window.$ = window.jQuery = WLJQ;</script>
+
+    <script src="js/initOptions.js"></script>
+    <script src="js/config.js"></script>
+    <!--<script src="js/mask.js"></script>-->
+    <script src="js/personalcenter.js"></script>
+    <script src="js/versionOrgan.js"></script>
+    <script src="js/versionorganmanage.js"></script>
+    <style>
+        /*#contentNew {*/
+        /*z-index: 999;*/
+        /*}*/
+        #tab_nav{
+            overflow: hidden;
+            font-size: 15px;
+            text-align: center;
+        }
+        .tab_item{
+            float: left;
+            display: inline-block;
+            width: 50%;
+        }
+        .tab_item>span{
+            display: inline-block;
+        }
+        .new_message_red{
+            width: 5px;
+            height: 5px;
+            border-radius: 5px;
+            background: #e95c6a;
+        }
+        .tab_text{
+            padding: 0 6px;
+        }
+        #selected>.tab_text{
+            border-bottom: 1px solid #1cba93;
+        }
+    </style>
+</head>
+<body>
+<div id="contentNew">
+    <div id="content">
+        <div id="header" class="doctor_header">
+            <div class="header-left" id="header_left_icon"><span></span></div>
+            <div class="header-center">咨询</div>
+            <div class="header-right"></div>
+            <p class="gray_s"></p>
+        </div>
+        <div id="container">
+            <ul id="tab_nav">
+                <li class="tab_item" id="selected">
+                    <span class="tab_text">普通咨询</span>
+                    <span class="new_message_red"></span>
+                </li>
+                <li class="tab_item">
+                    <span class="tab_text">签约用户咨询</span>
+                    <span class="new_message_red"></span>
+                </li>
+            </ul>
+        </div>
+        <footer id="footer_nav">
+            <div class="footer_tab_item nav-active" onclick="window.location.href=('consultation.html')">
+                <span id="nav_icon1" class="nav_tab_icon"></span>
+                <span class="nav_text">咨询</span>
+            </div>
+            <div class="footer_tab_item">
+                <span id="nav_icon2" class="nav_tab_icon"></span>
+                <span class="nav_text">服务</span>
+            </div>
+            <div class="footer_tab_item">
+                <span id="nav_icon3" class="nav_tab_icon"></span>
+                <span class="nav_text">医生圈</span>
+            </div>
+            <div class="footer_tab_item">
+                <span id="nav_icon4" class="nav_tab_icon"></span>
+                <span class="nav_text">签约用户</span>
+            </div>
+        </footer>
+        <!--header-->
+        <div id="mask"></div>
+    </div>
+</div>
+<div id="leftNav">
+    <div id="mask_header">
+        <p id="community_name"></p>
+        <p id="loginName"></p>
+    </div>
+    <ul>
+        <li>门诊订单</li>
+        <li>计免订单</li>
+        <li>儿保订单</li>
+    </ul>
+    <div id="mask_bottom">
+        <p>版本信息: <span>1.0</span></p>
+        <div id="exit">
+            <p id="orgOutLogin" onclick="orgOutLogin()">退出登录</p>
+        </div>
+    </div>
+</div>
+<!--container-->
+<!--<script src="js/org_main.js"></script>-->
+<script src="js/main.js"></script>
+<script src="js/plugins.js"></script>
+<script>
+
+</script>
+</body>
+</html>

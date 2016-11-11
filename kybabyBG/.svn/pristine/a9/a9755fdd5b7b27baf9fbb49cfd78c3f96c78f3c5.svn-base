@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>会员信息管理</title>
+	<meta charset="utf-8">
+	<meta name="renderer" content="webkit" />
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/date/WdatePicker.js"></script>
+	<script src="js/basic.js"></script>
+	<script src="js/common.js"></script>
+	<script src="js/memberManageList.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/iconfont/iconfont.css">
+	<link rel="stylesheet" type="text/css" href="css/memberManageList.css">
+</head>
+<body>
+
+<div id="headcon" class="headcon">
+
+</div>
+
+<div class="middlecon">
+	<div id="leftcon" class="leftcon">
+
+	</div>
+
+	<div id="rightcon" class="rightcon">
+		<div class="content">
+			<div id="con_position" class="con_position">
+				<h1 id="con_tit" class="con_tit"></h1>
+				<div id="con_meu" class="con_meu">
+					<span>首页</span>
+					<span>/</span>
+					<span class="first"></span>
+					<span>/</span>
+					<span class="second"></span>
+				</div>
+				<div class="con_contral">
+				</div>
+				<table id="table_title" class="table_title">
+
+				</table>
+			</div>
+			<div class="table_h">
+				<table id="table_content" class="table_content">
+
+				</table>
+			</div>
+			<div class="con_page">
+				<span class="a">共&nbsp;<span id="con_num" class="con_num"></span>&nbsp;条数据</span>
+				<div class="button_cli">
+					<span class="button" onclick="page_click('default','1')">首页</span>
+					<span class="button" onclick="page_click('default','prev')" >上一页</span>
+					<span class="num" id="now_page_num" >1</span>
+					<span class="button" onclick="page_click('default','next')">下一页</span>
+					<span class="button" onclick="page_click('default','end')">尾页</span>
+				</div>
+				<div class="page_go">
+					<span class="b">共&nbsp;<span id="page_num" class="page_num"></span>&nbsp;页</span>
+					<span class="c">跳转到&nbsp;<input id="go_page" type="number" value="1" min="1">&nbsp;页</span>
+					<span class="button" onclick="page_click_go()">Go</span>
+				</div>
+			</div>
+			
+			<div id="bottom_div" class="bottom_div">
+				<div class="bottom_div_tit">
+					 <span class="tit_info"></span>
+					 <span id="button_add_click" onclick="saveOrUpdate()" class="button_style button_add">确认</span>
+					<span id="button_cancel_click" class="button_style button_cancel">取消</span>
+				</div>
+				<div id="bottom_div_con" class="bottom_div_con">
+					<form id="data_form" action="" method="post" enctype="multipart/form-data">
+			            <div class="fj">
+			            	<input id="keyId" type="hidden" name="memberManage.id"/>
+			            	<label>会员编号：</label>
+							<input id="memberCode" name="memberManage.memberCode" type="text">
+			            	
+							<label>宝宝姓名：</label>
+							<input id="babyName" name="memberManage.userInfo.babyName" type="text" readonly="readonly">
+							
+							<label>用户电话：</label>
+							<input id="phone" name="memberManage.userInfo.phone" type="text" readonly="readonly">
+							
+							<label>是否可用：</label>
+							<select id="isEnable" name="memberManage.isEnable">
+								<option valure="Y">Y
+								<option valure="N">N
+							</select>
+			            </div>
+			            <div class="fj">
+			            	<label>会员卡信息：</label>
+							<input id="memberName" name="memberManage.memberType.memberName" type="text" readonly="readonly">
+							
+							<label>有效开始时间：</label>
+							<input id="effectStartDate" name="memberManage.effectStartDate" type="text" readonly="readonly">
+							
+							<label>有效结束时间：</label>
+							<input id="effectEndDate" name="memberManage.effectEndDate" type="text" readonly="readonly">
+							<label>备注：</label>
+							<input id="remark" name="memberManage.remark" type="text">
+			            </div>
+		          	</form>
+				</div>
+			</div>
+		</div>	
+	</div>
+</div>
+
+  </body>
+</html>

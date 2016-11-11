@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	<bean id="mommyRingAction" class="com.kybaby.newbussiness.mommyring.action.MommyRingAction">
+		<property name="mommyRingTypeBo" ref="mommyRingTypeBo" />
+		<property name="mommyTheTypeInfoBo" ref="mommyTheTypeInfoBo" />
+		<property name="mommySubscribeUserBo" ref="mommySubscribeUserBo" />
+		<property name="mommyPostInfoBo" ref="mommyPostInfoBo" />
+		<property name="mommyPostReplyBo" ref="mommyPostReplyBo" />
+		<property name="mommyRingLabelBo" ref="mommyRingLabelBo" />
+		<property name="mommyPostInfoLabelBo" ref="mommyPostInfoLabelBo" />
+	</bean>
+
+	<!-- 医生圈类型相关的 -->
+	<bean id="mommyRingTypeBo" class="com.kybaby.newbussiness.mommyring.bo.impl.MommyRingTypeBoImpl">
+		<property name="mommyRingTypeDao" ref="mommyRingTypeDao" />
+		<property name="mommySubscribeUserDao" ref="mommySubscribeUserDao" />
+	</bean>
+
+	<bean id="mommyRingTypeDao" class="com.kybaby.newbussiness.mommyring.dao.impl.MommyRingTypeDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- 医生圈类型相关的 -->
+	<bean id="mommyTheTypeInfoBo" class="com.kybaby.newbussiness.mommyring.bo.impl.MommyTheTypeInfoBoImpl">
+		<property name="mommyTheTypeInfoDao" ref="mommyTheTypeInfoDao" />
+	</bean>
+
+	<bean id="mommyTheTypeInfoDao" class="com.kybaby.newbussiness.mommyring.dao.impl.MommyTheTypeInfoDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- 医生圈订阅医生相关的 -->
+	<bean id="mommySubscribeUserBo" class="com.kybaby.newbussiness.mommyring.bo.impl.MommySubscribeUserBoImpl">
+		<property name="mommySubscribeUserDao" ref="mommySubscribeUserDao" />
+	</bean>
+
+	<bean id="mommySubscribeUserDao" class="com.kybaby.newbussiness.mommyring.dao.impl.MommySubscribeUserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- 医生发帖相关的 -->
+	<bean id="mommyPostInfoBo" class="com.kybaby.newbussiness.mommyring.bo.impl.MommyPostInfoBoImpl">
+		<property name="mommyPostInfoDao" ref="mommyPostInfoDao" />
+	</bean>
+
+	<bean id="mommyPostInfoDao" class="com.kybaby.newbussiness.mommyring.dao.impl.MommyPostInfoDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- 帖子回复相关 -->
+	<bean id="mommyPostReplyBo" class="com.kybaby.newbussiness.mommyring.bo.impl.MommyPostReplyBoImpl">
+		<property name="mommyPostReplyDao" ref="mommyPostReplyDao" />
+	</bean>
+
+	<bean id="mommyPostReplyDao" class="com.kybaby.newbussiness.mommyring.dao.impl.MommyPostReplyDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- 医生圈标签相关的 -->
+	<bean id="mommyRingLabelBo" class="com.kybaby.newbussiness.mommyring.bo.impl.MommyRingLabelBoImpl">
+		<property name="mommyRingLabelDao" ref="mommyRingLabelDao" />
+	</bean>
+
+	<bean id="mommyRingLabelDao" class="com.kybaby.newbussiness.mommyring.dao.impl.MommyRingLabelDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- 医生圈帖子标签相关的 -->
+	<bean id="mommyPostInfoLabelBo" class="com.kybaby.newbussiness.mommyring.bo.impl.MommyPostInfoLabelBoImpl" >
+		<property name="mommyPostInfoLabelDao" ref="mommyPostInfoLabelDao" />
+	</bean>
+	
+	<bean id="mommyPostInfoLabelDao" class="com.kybaby.newbussiness.mommyring.dao.impl.MommyPostInfoLabelDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+</beans>

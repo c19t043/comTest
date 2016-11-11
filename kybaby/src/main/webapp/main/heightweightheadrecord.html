@@ -1,0 +1,416 @@
+﻿<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>成长曲线</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/heightweightheadrecord.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <style>
+        #canvasContentHeight,#canvasContentWeight,#canvasContentHead{
+            overflow: auto;
+            position: relative;
+        }
+        .qushitu_all{
+            width: 88%;
+            overflow: auto;
+            margin-left: 1%;
+            float: left;
+        }
+        #canvasrecordHeight,#canvasrecordWeight,#canvasrecordHead{
+            width: 1440px;
+            overflow: auto;
+        }
+        #canvasContentHeight>div.leftbiao,#canvasContentWeight>div.leftbiao,#canvasContentHead>div.leftbiao{
+            width: 6%;
+            height: 410px;
+            float: left;
+            margin-left: 1%;
+            margin-top: -6px;
+            font-size: 10px;
+        }
+        #canvasContentHeight>div.rightBiao,#canvasContentWeight>div.rightBiao,#canvasContentHead>div.rightBiao{
+            width: 3%;
+            height: 60px;
+            position: absolute;
+            right: 2px;
+            font-size: 10px;
+            line-height: 15px;
+        }
+        div.leftbiao>div{
+            line-height:17px;
+            margin-bottom: 23px;
+        }
+        div.bottombiao{
+            width: 1440px;
+            height: 12px;
+            line-height: 12px;
+            font-size: 10px;
+            overflow: hidden;
+            margin-left: -19px;
+            margin-top: -5px;
+        }
+        div.bottombiao>div{
+            float: left;
+            width: 40px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div id="header">
+    <div class="headerLeft header-left" style="width: 80%" onclick="return_before()"><span>成长曲线</span></div>
+    <div class="header-center"></div>
+    <div class="header-right" style="width: 20%"></div>
+</div>
+<!--header-->
+
+<div id="container">
+    <p class="gray_s"></p>
+    <div class="top_box">
+        <ul>
+            <li class="height_list" onclick="changeType('身高',this,true)">身高</li>
+            <li class="weight_list center" onclick="changeType('体重',this,true)">体重</li>
+            <li class="head_list" onclick="changeType('头围',this,true)">头围</li>
+        </ul>
+    </div>
+
+    <!--身高-->
+    <div class="height_box">
+        <div class="record_round" onclick="newRecord('height',$('#babyLatestHeight').text(),$('#height_normal_range').attr('data_range'),'身高');">
+            <p id="babyLatestHeight"></p>
+            <p>cm</p>
+        </div>
+        <p id="height_normal_range" class="normal_range"></p>
+        <p id="height_record_note" class="record_note">宝宝身高正常，继续保持哦！</p>
+        <p class="gray_1"></p>
+        <div class="tu_box">
+            <div class="tu_tab">
+                <div class="qushitu">趋势图</div>
+                <div class="lishijilu">历史记录</div>
+            </div>
+            <!--趋势图-->
+            <div class="qushi_box">
+                <!--0~11个月 男-->
+                <div style="margin-bottom: 6px">身高(cm)</div>
+                <div id="canvasContentHeight">
+                    <div class="leftbiao">
+                        <div>120</div>
+                        <div>110</div>
+                        <div>100</div>
+                        <div>90</div>
+                        <div>80</div>
+                        <div>70</div>
+                        <div>60</div>
+                        <div>50</div>
+                        <div>40</div>
+                        <div>30</div>
+                    </div>
+                    <div class="qushitu_all">
+                        <div id="canvasrecordHeight">
+                            <canvas width='1440' height='410' id='canvasHeight'></canvas>
+                            <div class="bottombiao">
+                                <div>0</div>
+                                <div>1</div>
+                                <div>2</div>
+                                <div>3</div>
+                                <div>4</div>
+                                <div>5</div>
+                                <div>6</div>
+                                <div>7</div>
+                                <div>8</div>
+                                <div>9</div>
+                                <div>10</div>
+                                <div>11</div>
+                                <div>12</div>
+                                <div>13</div>
+                                <div>14</div>
+                                <div>15</div>
+                                <div>16</div>
+                                <div>17</div>
+                                <div>18</div>
+                                <div>19</div>
+                                <div>20</div>
+                                <div>21</div>
+                                <div>22</div>
+                                <div>23</div>
+                                <div>24</div>
+                                <div>25</div>
+                                <div>26</div>
+                                <div>27</div>
+                                <div>28</div>
+                                <div>29</div>
+                                <div>30</div>
+                                <div>31</div>
+                                <div>32</div>
+                                <div>33</div>
+                                <div>34</div>
+                                <div>35</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rightBiao">
+                        正<br/>常<br/>范<br/>围
+                    </div>
+                </div>
+                <p class="text-center">宝宝月龄</p>
+                <p class="small">数据来源：2006年WHO儿童发育体格指标标准</p></div>
+            <!--历史纪录-->
+            <div class="lishi_box">
+                <div class="lishi_tit">
+                    <p>记录日期</p>
+                    <p>宝宝月龄</p>
+                    <p>身高</p>
+                    <p>状态</p>
+                </div>
+                <!--lishi_list-->
+                <div id="lishi_box_height" style="font-size:14px">
+                    <!-- 				<div class="lishi_list">
+                                        <p>15-10-15</p>
+                                        <p class="center">24个月</p>
+                                        <p>75cm</p>
+                                    </div>
+                                    <div class="lishi_list">
+                                        <p>15-10-15</p>
+                                        <p class="center">24个月</p>
+                                        <p>75cm</p>
+                                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--体重-->
+    <div class="weight_box">
+        <div class="record_round" onclick="newRecord('weight',$('#babyLatestWeight').text(),$('#weight_normal_range').attr('data_range'),'体重');">
+            <p id="babyLatestWeight"></p>
+            <p>kg</p>
+        </div>
+        <p id="weight_normal_range" class="normal_range"></p>
+        <p id="weight_record_note" class="record_note">宝宝体重不正常，防止肥胖！建议控制饮食多运动。</p>
+        <p class="gray_1"></p>
+        <div class="tu_box">
+            <div class="tu_tab">
+                <div class="qushitu">趋势图</div>
+                <div class="lishijilu">历史记录</div>
+            </div>
+            <!--趋势图-->
+            <div class="qushi_box">
+                <div style="margin-bottom: 6px">体重(kg)</div>
+                <div id="canvasContentWeight">
+                    <div class="leftbiao">
+                        <div>20</div>
+                        <div>18</div>
+                        <div>16</div>
+                        <div>14</div>
+                        <div>12</div>
+                        <div>10</div>
+                        <div>8</div>
+                        <div>6</div>
+                        <div>4</div>
+                        <div>2</div>
+                    </div>
+                    <div class="qushitu_all">
+                        <div id="canvasrecordWeight">
+                            <canvas width='1440' height='410' id='canvasWeight'></canvas>
+                            <div class="bottombiao">
+                                <div>0</div>
+                                <div>1</div>
+                                <div>2</div>
+                                <div>3</div>
+                                <div>4</div>
+                                <div>5</div>
+                                <div>6</div>
+                                <div>7</div>
+                                <div>8</div>
+                                <div>9</div>
+                                <div>10</div>
+                                <div>11</div>
+                                <div>12</div>
+                                <div>13</div>
+                                <div>14</div>
+                                <div>15</div>
+                                <div>16</div>
+                                <div>17</div>
+                                <div>18</div>
+                                <div>19</div>
+                                <div>20</div>
+                                <div>21</div>
+                                <div>22</div>
+                                <div>23</div>
+                                <div>24</div>
+                                <div>25</div>
+                                <div>26</div>
+                                <div>27</div>
+                                <div>28</div>
+                                <div>29</div>
+                                <div>30</div>
+                                <div>31</div>
+                                <div>32</div>
+                                <div>33</div>
+                                <div>34</div>
+                                <div>35</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rightBiao">
+                        正<br/>常<br/>范<br/>围
+                    </div>
+                </div>
+                <p class="text-center">宝宝月龄</p>
+                <p class="small">数据来源：2006年WHO儿童发育体格指标标准</p>
+            </div>
+            <!--历史纪录-->
+            <div class="lishi_box">
+                <div class="lishi_tit">
+                    <p>记录日期</p>
+                    <p>宝宝月龄</p>
+                    <p>体重</p>
+                    <p>状态</p>
+                </div>
+                <!--lishi_list-->
+                <div id="lishi_box_weight" style="font-size:14px">
+                    <!-- 				<div class="lishi_list">
+                                        <p>15-10-15</p>
+                                        <p class="center">18个月</p>
+                                        <p>11kg</p>
+                                    </div>
+                                    <div class="lishi_list">
+                                        <p>15-10-15</p>
+                                        <p class="center">18个月</p>
+                                        <p>11kg</p>
+                                    </div> -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!--头围-->
+    <div class="head_box">
+        <div class="record_round" onclick="newRecord('head',$('#babyLatestHead').text(),$('#head_normal_range').attr('data_range'),'头围');">
+            <p id="babyLatestHead"></p>
+            <p>cm</p>
+        </div>
+        <p id="head_normal_range" class="normal_range"></p>
+        <p id="head_record_note" class="record_note">宝宝头围正常，继续保持哦！</p>
+        <p class="gray_1"></p>
+        <div class="tu_box">
+            <div class="tu_tab">
+                <div class="qushitu">趋势图</div>
+                <div class="lishijilu">历史记录</div>
+            </div>
+            <!--趋势图-->
+            <div class="qushi_box">
+                <div style="margin-bottom: 6px">头围(cm)</div>
+                <div id="canvasContentHead">
+                    <div class="leftbiao">
+                        <div>57</div>
+                        <div>54</div>
+                        <div>51</div>
+                        <div>48</div>
+                        <div>45</div>
+                        <div>42</div>
+                        <div>39</div>
+                        <div>36</div>
+                        <div>33</div>
+                        <div>30</div>
+                    </div>
+                    <div class="qushitu_all">
+                        <div id="canvasrecordHead">
+                            <canvas width='1440' height='410' id='canvasHead'></canvas>
+                            <div class="bottombiao">
+                                <div>0</div>
+                                <div>1</div>
+                                <div>2</div>
+                                <div>3</div>
+                                <div>4</div>
+                                <div>5</div>
+                                <div>6</div>
+                                <div>7</div>
+                                <div>8</div>
+                                <div>9</div>
+                                <div>10</div>
+                                <div>11</div>
+                                <div>12</div>
+                                <div>13</div>
+                                <div>14</div>
+                                <div>15</div>
+                                <div>16</div>
+                                <div>17</div>
+                                <div>18</div>
+                                <div>19</div>
+                                <div>20</div>
+                                <div>21</div>
+                                <div>22</div>
+                                <div>23</div>
+                                <div>24</div>
+                                <div>25</div>
+                                <div>26</div>
+                                <div>27</div>
+                                <div>28</div>
+                                <div>29</div>
+                                <div>30</div>
+                                <div>31</div>
+                                <div>32</div>
+                                <div>33</div>
+                                <div>34</div>
+                                <div>35</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rightBiao">
+                        正<br/>常<br/>范<br/>围
+                    </div>
+                </div>
+                <p class="text-center">宝宝月龄</p>
+                <p class="small">数据来源：2006年WHO儿童发育体格指标标准</p>
+            </div>
+            <!--历史纪录-->
+            <div class="lishi_box">
+                <div class="lishi_tit">
+                    <p>记录日期</p>
+                    <p>宝宝月龄</p>
+                    <p>头围</p>
+                    <p>状态</p>
+                </div>
+                <!--lishi_list-->
+                <div id="lishi_box_head" style="font-size:14px">
+                    <!-- 			<div class="lishi_list">
+                                    <p>15-10-15</p>
+                                    <p class="center">31个月</p>
+                                    <p>49cm</p>
+                                </div>
+                                <div class="lishi_list">
+                                    <p>15-10-15</p>
+                                    <p class="center">31个月</p>
+                                    <p>49cm</p>
+                                </div> -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<!--container-->
+
+
+
+<script src="js/main.js"></script>
+<script src="js/plugins.js"></script>
+
+<script src="js/config.js"></script>
+
+<!--</script>-->
+<script src="js/headerweightheadrecord.js"></script>
+</body>
+</html>

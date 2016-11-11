@@ -1,0 +1,260 @@
+﻿<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>儿保预约</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/mask.css">
+    <!--<link rel="stylesheet" href="css/org_main.css">-->
+    <!--<link rel="stylesheet" href="css/org_babyprotect.css">-->
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>window.$ = window.jQuery = WLJQ;</script>
+
+    <script src="js/initOptions.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/mask.js"></script>
+    <script src="js/versionOrgan.js"></script>
+    <script src="js/versionorganmanage.js"></script>
+    <style>
+        .list{
+            /*width: 60px;*/
+            /*height: 60px;*/
+            /*border-radius: 100%;*/
+            /*background: #4FC1E9;*/
+            /*background: -webkit-radial-gradient(#4FC1E9, #55e9e9, #68ffcf); /!* Safari 5.1 - 6.0 *!/*/
+            /*background: -o-radial-gradient(#4FC1E9, #55e9e9, #68ffcf); /!* Opera 11.6 - 12.0 *!/*/
+            /*background: -moz-radial-gradient(#4FC1E9, #55e9e9, #68ffcf); /!* Firefox 3.6 - 15 *!/*/
+            /*background: radial-gradient(#4FC1E9, #55e9e9, #68ffcf); /!* 标准的语法 *!/*/
+            /*color: #ffffff;*/
+            /*box-shadow: inset 3px 3px 3px 3px #4FC1E9;*/
+            /*-moz-box-shadow: inset 3px 3px 3px 3px #4FC1E9;*/
+            /*-o-box-shadow:inset 3px 3px 3px 3px #4FC1E9 ;*/
+            /*-webkit-box-shadow: inset 3px 3px 3px 3px #4FC1E9;*/
+            /*padding: 20px 30px 40px;*/
+            /*line-height: 30px;*/
+            /*margin: 0px auto;*/
+            width: 100%;
+            height: 220px;
+            color: #fff;
+            text-align: center;
+            font-size: 16px;
+            outline: 1px solid #fff;
+            overflow: hidden;
+        }
+        #container>div{
+            width: 50%;
+            float: left;
+            /*padding: 20px 0;*/
+        }
+        #doctorList{
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            /*color: #ffffff;*/
+        }
+        #doctorList>div{
+            position: absolute;
+            left: 10%;
+            top: 50%;
+            width: 80%;
+            /*margin-left: -150px;*/
+            margin-top: -60px;
+            text-align: center;
+        }
+        #container{
+            /*background: url("images/reserveBg.png")no-repeat;*/
+            /*background-size: 100% 100%;*/
+            background: #4FC1E9;
+        }
+        .list>img{
+            margin: 30px auto;
+            display: block;
+        }
+        #banner{
+            text-align: center;
+        }
+        #banner>img{
+            display: inline-block;
+            margin-top: 70px;
+        }
+        .yy_list{
+            text-align: center;
+            line-height: 35px;
+            overflow: hidden;
+        }
+        .yy_list>div{
+            display: inline-block;
+            float: left;
+            height: 35px;
+            text-align: center;
+        }
+        .list_name{
+            width: 21%;
+        }
+        .list_position{
+            width: 38%;
+        }
+        .list_tel{
+            width: 40%;
+        }
+        .yy_list:nth-child(even){
+            background: #ccc;
+            color: #4FC1E9;
+        }
+        .yy_list:nth-child(even)>div{
+            border-right: 1px solid #4FC1E9;
+        }
+        .yy_list:nth-child(odd){
+            background: #4FC1E9;
+            color: #fff;
+        }
+        .yy_list:nth-child(odd)>div{
+            border-right: 1px solid #fff;
+        }
+        #header{
+            border-bottom: 1px solid #d3d6da;
+        }
+    </style>
+</head>
+<body>
+<div id="contentNew">
+    <div id="content">
+        <div id="header">
+            <!--<ul>-->
+            <!--<li onclick="window.location.href='org_outpatient.html'">门诊订单</li>-->
+            <!--<li onclick="window.location.href='org_vaccine.html'">计免订单</li>-->
+            <!--<li class="speblue">儿保订单</li>-->
+            <!--</ul>-->
+            <!--<div>-->
+            <!--<p id="loginName" style="margin-top: 4px"></p>-->
+            <!--<p id="orgOutLogin" onclick="orgOutLogin()">退出登录</p>-->
+            <!--</div>-->
+            <div class="header-left"><i class="iconfont">&#xe61a;</i></div>
+            <div class="header-center"></div>
+            <div class="header-right" onclick="window.location.href='org_index.html'"><i class="iconfont">&#xe604;</i></div>
+        </div>
+        <!--header-->
+        <div id="banner">
+            <img src="images/kyLogo.png" alt=""/>
+        </div>
+        <div id="container" style="margin: 43px 0 0">
+            <div>
+                <div class="list" id="reserve_fee" onclick="org_babyprotect_pay('Y')"><img src="images/yuyue1.png" alt=""/><span>收费儿保预约列表</span></div>
+            </div>
+            <div>
+                <div class="list" id="reserve_noFee" onclick="org_babyprotect_pay('N')"><img src="images/yuyue2.png" alt=""/><span>免费儿保预约列表</span></div>
+            </div>
+            <div>
+                <div class="list" id="tablet_list" onclick="window.location.href='org_babyprotect_alllist.html'"><img src="images/yuyue3.png" alt=""/><span>查看所有订单列表</span></div>
+            </div>
+            <!--<div>-->
+                <!--<div class="list" id="phone_list" onclick="window.location.href='org_babyprotect_alllist_phone.html'"><img src="images/yuyue4.png" alt=""/><span>手机端所有订单列表</span></div>-->
+            <!--</div>-->
+        </div>
+        <div id="doctorList" onclick="eventStop(event)" style="display: none">
+            <div onclick="event.stopPropagation();">
+
+            </div>
+        </div>
+        <div id="mask"></div>
+    </div>
+</div>
+<div id="leftNav">
+    <div id="mask_header">
+        <p id="community_name"></p>
+        <p id="loginName"></p>
+    </div>
+    <ul>
+        <!--<li>门诊订单</li>-->
+        <!--<li>计免订单</li>-->
+        <!--<li>儿保订单</li>-->
+    </ul>
+    <div id="mask_bottom">
+        <p>版本信息: <span>1.0</span></p>
+        <div id="exit">
+            <p id="orgOutLogin" onclick="orgOutLogin()">退出登录</p>
+        </div>
+    </div>
+</div>
+<div id="cover">
+    <div id="covercontent">
+        <p>发现新版本</p>
+        <div class="updateversion ">
+            <p>最新版本：<span></span></p>
+            <p>新版本大小：<span></span></p>
+            <p>更新日期：<span></span></p>
+        </div>
+        <div class="updatecontent">
+            <p>更新内容：</p>
+            <div id="updatecontent"></div>
+        </div>
+        <div class="chooseupdate">
+            <div class="later" onclick="noupdate()">以后再说</div>
+            <div class="rightaway" onclick="gotoupdate()">立即更新</div>
+        </div>
+    </div>
+</div>
+
+<!--container-->
+<!--<script src="js/org_main.js"></script>-->
+<script src="js/main.js"></script>
+<script src="js/plugins.js"></script>
+<script>
+    function org_babyprotect_pay(div){
+        $.ajax({
+            type: 'post',
+            url: urlWay.orgBusinessHost + 'childCareChargeManage.action',
+            cache: false,
+            async: false,
+            data: {
+                action: "getChildCareDoctor",
+                "organChildcareOpenDoctor.organChildcareOpenResources.isMoney":div
+            },
+            success: function (result) {
+                if (result.mes == '请登录') {
+                    ale('请登录', '24px');
+                    window.location.href = "org_login.html";
+                }
+                else if (result.mes == "成功") {
+                    var doclist = result.organChildcareOpenDoctorList;
+                    if (doclist != null) {
+                        $('#doctorList').show();
+                        var doclistHtml='';
+                        for(var i= 0,len=doclist.length;i<len;i++){
+                            if(div=="Y"){
+                                doclistHtml+='<div onclick="event.stopPropagation();window.location.href=\'org_babyprotect_pay.html?'+doclist[i].id+'\'">'+'<div class="yy_list"><div class="list_name">'+doclist[i].doctorInfo.doctorName+'</div>'+'<div class="list_position">'+doclist[i].doctorInfo.doctorTitle+'</div>'+'<div class="list_tel" style="border-right:none">'+doclist[i].doctorInfo.doctorPhone+'</div></div>';
+                            }else{
+                                doclistHtml+='<div onclick="event.stopPropagation();window.location.href=\'org_babyprotect_nopay.html?'+doclist[i].id+'\'">'+'<div class="yy_list"><div class="list_name">'+doclist[i].doctorInfo.doctorName+'</div>'+'<div class="list_position">'+doclist[i].doctorInfo.doctorTitle+'</div>'+'<div class="list_tel" style="border-right:none">'+doclist[i].doctorInfo.doctorPhone+'</div></div>';
+                            }
+                        }
+                        $('#doctorList>div').html(doclistHtml);
+                    }else{
+                        if(div=="Y"){
+                            alert('今天机构没有收费儿保医生');
+                        }else{
+                            window.location.href='org_babyprotect_nopay.html?noDoctor';
+                        }
+                    }
+                    console.log(result)
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+            }
+        });
+    }
+    function eventStop(event) {
+        event.stopPropagation();
+        $('#doctorList').hide();
+    }
+</script>
+</body>
+</html>

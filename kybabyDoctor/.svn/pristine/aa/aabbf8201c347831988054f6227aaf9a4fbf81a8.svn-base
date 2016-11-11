@@ -1,0 +1,221 @@
+/*线上线下讲座*/
+.lecture_div{
+    padding: 20px 12px;
+    overflow: hidden;
+    color: #505050;
+}
+.lecture_information{
+    float: left;
+    display: inline-block;
+}
+div.lecture_button{
+    margin-top: 21px;
+    float: right;
+    display: inline-block;
+    font-size: 14px;
+}
+.lecture_img{
+    margin-top: 3px;
+    display: inline-block;
+    max-width: 62px;
+    height: 62px;
+    line-height: 62px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.lecture_img>img{
+    width: 100%;
+    height: 100%;
+}
+.lecture_data{
+    display: inline-block;
+    margin-left: 8px;
+    line-height: 21px;
+}
+.lecture_price>span{
+    display: inline-block;
+    margin: 0 15px 6px;
+}
+.lecture_time{
+    font-size: 12px;
+}
+/*儿保*/
+.header-left>span{
+    display: block;
+    background: url("../images/normalicon/return.png") no-repeat center center;
+    background-size: 20px;
+    height: 45px;
+}
+.header_menu{
+    margin-top: -2px;
+}
+.header_menu>span{
+    margin: 0 2px;
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    border-radius: 4px;
+    border: 1px solid #fff;
+}
+.tab_div{
+    overflow: hidden;
+    margin: 5px 0;
+    height: 35px;
+    line-height: 35px;
+}
+.tab_pediatric,.tab_his{
+    display: inline-block;
+    border: 1px solid #fff;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+    width:50%;
+    height: 35px;
+    line-height: 35px;
+    float:left;
+}
+.tab_his{
+    border-left: none;
+    border-radius: 0px 20px 20px 0px;
+}
+.tab_pediatric{
+    border-radius: 20px 0 0 20px;
+    color:#fff;
+}
+.tab_div>div#selected{
+    background: #fff;
+    color: #1cba93;
+}
+.select_item{
+    overflow: hidden;
+    margin: 10px 12px;
+}
+.select_item>li{
+    display: inline-block;
+    float: left;
+    width: 16.7%;
+    text-align: center;
+    padding: 6px 0.5%;
+    margin: 0px 1%;
+}
+.select_item>li.screening{
+    margin-top: 3px;
+    padding: 3px 0.5%;
+    border: 1px solid #1cba93;
+    border-radius: 15px;
+    color: #1cba93;
+}
+.select_tab.emphasis{
+    border-bottom: 1px solid #1cba93;
+}
+.order_div{
+    overflow: hidden;
+    padding: 10px 12px;
+    line-height: 24px;
+    border-bottom: 1px solid #e8e8e8;
+}
+.order_div>div{
+    display: inline-block;
+    float: left;
+}
+.admin_header>div{
+    width: 65px;
+    height: 65px;
+    border-radius: 65px;
+    overflow: hidden;
+    background: #1cba93;
+}
+.admin_header img{
+    width: 100%;
+}
+.order_time>span{
+    display: inline-block;
+    margin-right: 12px;
+}
+.order_address{
+    font-size: 13px;
+}
+.order_type{
+    color: #1cba93;
+}
+.admin_header{
+    margin: 2px 12px 0 0;
+    overflow: hidden;
+    text-align: center;
+}
+.admin_header>p{
+    margin-top: 5px;
+}
+.admin_information{
+    width: 72%;
+}
+/*右侧弹框*/
+.right_layer{
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.5);
+    position: fixed;
+    left: 0;
+    right: 0px;
+    top:100px;
+    bottom: 0;
+    z-index: 1111;
+    display: none;
+    overflow: hidden;
+}
+.right_layer>div{
+    width: 100%;
+    line-height: 35px;
+    background: #fff;
+    left: 0;
+    right: 0px;
+    top: 0;
+    text-align: center;
+    padding: 8px 0;
+    display: inline-block;
+    float: left;
+}
+.order_item{
+    margin-right: 20px;
+    font-size: 14px;
+}
+/*.right_layer.layer_transition{*/
+    /*right: 0;*/
+    /*transition: width 2s;*/
+    /*-moz-transition: width 2s;	/!* Firefox 4 *!/*/
+    /*-webkit-transition: width 2s;	/!* Safari 和 Chrome *!/*/
+    /*-o-transition: width 2s;*/
+/*}*/
+.order_item_selected{
+    color: #1cba93;
+}
+.item_div{
+    width: 120px;
+    position: absolute;
+    z-index: 1110;
+    top:45px;
+    right: 5%;
+}
+#triangle_arrow{
+    position: absolute;
+    top:34px;
+    right: 6%;
+    z-index: 1110;
+    width:0;
+    height:0;
+    border-left:8px solid transparent;
+    border-right:8px solid transparent;
+    border-bottom:11px solid #6BDABF;
+}
+.item_div>div{
+    height: 35px;
+    line-height: 35px;
+    background: #6BDABF;
+    border-bottom: 1px solid #E3F8F3;
+    color: #FDFEFC;
+    font-size: 14px;
+    text-align: center;
+}
+.hide{
+    display: none;
+}

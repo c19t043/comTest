@@ -1,0 +1,51 @@
+﻿<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<title>支付失败</title>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/pay.css">
+	<script src="js/modernizr-2.8.3.min.js"></script>
+	<script src="js/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+
+<div id="header">
+    <div class="header-left"><span>支付失败</span></div>
+	<div class="header-center"></div>
+	<div class="header-right"></div>
+</div>
+<!--header-->
+
+
+<div id="container">
+	<p class="pay_state"><img src="images/images_main/pay_failure.png" width="50"></p>
+	<p class="fail_gopay"><a href="myAppointment.html">去我的订单中完成支付&gt;</a></p>
+	<div class="login_button" id="gomain" style="margin-top: 40px" onclick="window.location.href='main.html'" >返回首页</div>
+
+</div>
+
+<!--container-->
+
+
+
+
+
+<script src="js/main.js"></script>
+<script src="js/plugins.js"></script>
+<script>
+    $(function () {
+        var isSession=sessionStorage.getItem('session');
+        if(isSession=='yes'){
+            $('#gomain,.fail_gopay').css({display:'none'});
+            $('#container').append('<div class="login_button" onclick="window.location.href=\'yjh_servicedoctor.html\'">返回儿科名医</div>');
+        }
+
+    });
+</script>
+</body>
+</html>

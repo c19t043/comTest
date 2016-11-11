@@ -1,0 +1,225 @@
+package com.kybaby.newbussiness.doctorsign.bo.impl;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.lang.StringUtils;
+
+import com.kybaby.common.CommonServiceImpl;
+import com.kybaby.domain.DoctorGoodField;
+import com.kybaby.domain.DoctorInfo;
+import com.kybaby.domain.Position;
+import com.kybaby.newbussiness.doctorclinic.domain.DoctorServiceType;
+import com.kybaby.newbussiness.doctorclinic.domain.HospitalBasicInfo;
+import com.kybaby.newbussiness.doctorclinic.domain.RoleSelect;
+import com.kybaby.newbussiness.doctorsign.bo.DoctorRegisterDataGatherService;
+import com.kybaby.newbussiness.doctorsign.dao.DoctorDataGatherDao;
+import com.kybaby.newbussiness.doctorsign.domain.DoctorCardInfo;
+import com.kybaby.newbussiness.doctorsign.domain.DoctorLifeInfo;
+import com.kybaby.newbussiness.doctorsign.domain.DoctorMajor;
+import com.kybaby.newbussiness.doctorsign.domain.DoctorSignApprovalFlowRecord;
+
+public class DoctorRegisterDataGatherServiceImpl extends CommonServiceImpl implements DoctorRegisterDataGatherService{
+	
+	private DoctorDataGatherDao doctorDataGatherDao;
+	/**
+	 * 删除对象
+	 */
+	@Override
+	public void deleteDoctorCardInfo(Long id){
+		doctorDataGatherDao.deleteObject(id, DoctorCardInfo.class);
+	}
+	@Override
+	public List<DoctorGoodField> getDoctorGoodFields(String professionalFlag) {
+		StringBuilder sb = new StringBuilder();
+		Map<String,Object> params = new HashMap<String,Object>();
+		sb.append("from DoctorGoodField c where c.isStart = 'Y' and c.doctorType =:doctorType ");
+		params.put("doctorType", professionalFlag);
+		return doctorDataGatherDao.getObjectCollectionWithNoPage(sb.toString(), params, null);
+	}
+	@Override
+	public List<DoctorLifeInfo> getDoctorLifeInfos(Long doctorID) {
+		StringBuilder sb = new StringBuilder();
+		Map<String,Object> params = new HashMap<String,Object>();
+		sb.append("from DoctorLifeInfo c where c.doctorInfo.id = :dctID ");
+		params.put("dctID", doctorID);
+		return doctorDataGatherDao.getObjectCollectionWithNoPage(sb.toString(), params, null);
+	}
+	@Override
+	public List<DoctorCardInfo> getDoctorCardInfos(Long doctorID) {
+		StringBuilder sb = new StringBuilder();
+		Map<String,Object> params = new HashMap<String,Object>();
+		sb.append("from DoctorCardInfo c where c.doctorInfo.id = :dctID ");
+		params.put("dctID", doctorID);
+		return doctorDataGatherDao.getObjectCollectionWithNoPage(sb.toString(), params, null);
+	}
+	@Override
+	public List<DoctorServiceType> getAllDoctorServiceTypes() {
+		StringBuilder sb = new StringBuilder();
+		Map<String,Object> params = new HashMap<String,Object>();
+		sb.append("from DoctorServiceType c where c.isAvailable = 'Y' and c.parentDoctorServiceType <> null ");
+		return doctorDataGatherDao.getObjectCollectionWithNoPage(sb.toString(), params, null);
+	}
+	@Override
+	public List<DoctorInfo> getDoctorinfos(DoctorInfo doctorInfo,
+			String professionalFlag) {
+		//查询对应注册医生(相应专业)的所有电话
+		List<RoleSelect> roleSelects = getRoleSelects(professionalFlag);
+		//将所有医生电话组装成字符串
+		String doctorPhones = getDoctorPhones(roleSelects);
+		
+		StringBuilder sb = new StringBuilder();
+		Map<String,Object> params = new HashMap<String,Object>();
+		sb.append("from DoctorInfo c where c.doctorPhone in ("+doctorPhones+") order by c.registerTime desc ");
+		return doctorDataGatherDao.getObjectCollectionWithNoPage(sb.toString(), params, null);
+	}
+	/**
+	 * 将所有医生电话组装成字符串
+	 */
+	private String getDoctorPhones(List<RoleSelect> roleSelects){
+		StringBuilder sb = new StringBuilder();
+		for (RoleSelect roleSelect : roleSelects) {
+			sb.append("'")
+			.append(roleSelect.getPhone())
+			.append("'").append(",");
+		}
+		if(sb.length()==0){
+			return null;
+		}else{
+			return sb.deleteCharAt(sb.length()-1).toString();
+		}
+	}
+	/**
+	 * 查询对应注册医生(相应专业)的所有电话
+	 * @param professionalFlag 专业类型（ 医生  ，护士   ，技师）
+	 * @return
+	 */
+	private List<RoleSelect> getRoleSelects(String professionalFlag){
+		StringBuilder sb = new StringBuilder();
+		Map<String,Object> params = new HashMap<String,Object>();
+		sb.append("from RoleSelect c where c.roleType = :roleType");
+		params.put("roleType", professionalFlag);
+		return doctorDataGatherDao.getObjectCollectionWithNoPage(sb.toString(), params, null);
+	}
+	@Override
+	public List<DoctorMajor> getMajors(DoctorMajor major,String specialty) {
+		StringBuilder sb = new StringBuilder();
+		Map<String,Object> params = new HashMap<String,Object>();
+		sb.append("from DoctorMajor c where 1=1 and c.majorStatus = 'Y' ");
+		if(major!=null){
+			if(StringUtils.isNotBlank(major.getDoctorType())){
+				sb.append(" and c.doctorType = :doctorType");
+				params.put("doctorType", major.getDoctorType());
+			}
+		}
+		if(StringUtils.isNotBlank(specialty)){
+			if("first".equals(specialty)){//主专业
+				sb.append(" and c.parent.parent.parent = null ");
+			}
+			if("second".equals(specialty)){//亚专业
+				sb.append(" and c.parent.parent.parent.parent = null");				
+			}
+			if("third".equals(specialty)){//病种专业
+				sb.append(" and c.parent.parent.parent.parent.parent = null");
+			}
+		}
+		return doctorDataGatherDao.getObjectCollectionWithNoPage(sb.toString(), params, null);
+	}
+	@Override
+	public List<Position> getPositions(Position position) {
+		StringBuilder sb = new StringBuilder();
+		Map<String,Object> params = new HashMap<String,Object>();
+		sb.append("from Position c where 1=1 and c.positionStatus = 'Y' ");
+		if(position!=null){
+			if(StringUtils.isNotBlank(position.getPositionStatus())){
+				sb.append(" and c.name like :name");
+				params.put("name", "%"+position.getPositionStatus()+"%");
+			}
+		}
+		sb.append(" order by c.rank desc ");
+		return doctorDataGatherDao.getObjectCollectionWithNoPage(sb.toString(), params, null);
+	}
+	@Override
+	public List<HospitalBasicInfo> getHospitalBasicInfos(
+			HospitalBasicInfo hospitalBasicInfo) {
+		StringBuilder sb = new StringBuilder();
+		Map<String,Object> params = new HashMap<String,Object>();
+		sb.append("from HospitalBasicInfo c where 1=1 and c.isShowForUser = 'Y' ");
+		if(hospitalBasicInfo!=null){
+			if(StringUtils.isNotBlank(hospitalBasicInfo.getHospitalLname())){
+				sb.append(" and c.hospitalLname like :hospitalLname");
+				params.put("hospitalLname", "%"+hospitalBasicInfo.getHospitalLname()+"%");
+			}
+		}
+		return doctorDataGatherDao.getObjectCollectionWithNoPage(sb.toString(), params, null);
+	}
+	@Override
+	public List<DoctorCardInfo> getDoctorCardInfos(DoctorCardInfo doctorCardInfo) {
+		StringBuilder sb = new StringBuilder();
+		Map<String,Object> params = new HashMap<String,Object>();
+		sb.append("from DoctorCardInfo c where 1=1 ");
+		if(doctorCardInfo!=null){
+			if(doctorCardInfo.getDoctorInfo()!=null&&doctorCardInfo.getDoctorInfo().getId()!=null){
+				sb.append(" and c.doctorInfo.id = :dctID");
+				params.put("dctID", doctorCardInfo.getDoctorInfo().getId());
+			}
+		}
+		return doctorDataGatherDao.getObjectCollectionWithNoPage(sb.toString(), params, null);
+	}
+
+	@Override
+	public DoctorCardInfo saveOrUpdateDoctorCardInfo(
+			DoctorCardInfo doctorCardInfo) {
+		Long id = doctorCardInfo.getId();
+		if(id==null){
+			doctorDataGatherDao.saveObject(doctorCardInfo);
+		}else{
+			doctorDataGatherDao.updateObject(doctorCardInfo);
+		}
+		return doctorCardInfo;
+	}
+
+	@Override
+	public List<DoctorLifeInfo> getDoctorLifeInfos(DoctorLifeInfo doctorLifeInfo) {
+		StringBuilder sb = new StringBuilder();
+		Map<String,Object> params = new HashMap<String,Object>();
+		sb.append("from DoctorLifeInfo c where 1=1 ");
+		if(doctorLifeInfo!=null){
+			if(doctorLifeInfo.getDoctorInfo()!=null&&doctorLifeInfo.getDoctorInfo().getId()!=null){
+				sb.append(" and c.doctorInfo.id = :dctID");
+				params.put("dctID", doctorLifeInfo.getDoctorInfo().getId());
+			}
+		}
+		return doctorDataGatherDao.getObjectCollectionWithNoPage(sb.toString(), params, null);
+	}
+
+	@Override
+	public DoctorLifeInfo saveOrUpdateDoctorLifeInfo(
+			DoctorLifeInfo doctorLifeInfo) {
+		Long id = doctorLifeInfo.getId();
+		if(id==null){
+			doctorDataGatherDao.saveObject(doctorLifeInfo);
+		}else{
+			doctorDataGatherDao.updateObject(doctorLifeInfo);
+		}
+		return doctorLifeInfo;
+	}
+
+	@Override
+	public List<DoctorSignApprovalFlowRecord> getDoctorSignApprovalFlowRecord(
+			DoctorSignApprovalFlowRecord doctorSignApprovalFlowRecord) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DoctorSignApprovalFlowRecord saveOrUpdateDoctorSignApprovalFlowRecord(
+			DoctorSignApprovalFlowRecord doctorSignApprovalFlowRecord) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public void setDoctorDataGatherDao(DoctorDataGatherDao doctorDataGatherDao) {
+		this.doctorDataGatherDao = doctorDataGatherDao;
+	}
+}

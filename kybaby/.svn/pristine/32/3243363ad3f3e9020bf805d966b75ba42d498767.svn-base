@@ -1,0 +1,32 @@
+﻿ <html lang="zh-cn">
+<head>
+    <title>我的角色</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/chooseRole.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/chooseRole.js"></script>
+</head>
+<body>
+
+<div id="header">
+    <div class="header-left" onclick="return_before()"><span>我的角色</span></div>
+    <div class="header-center"></div>
+    <div class="header-right"></div>
+</div>
+<!--header-->
+<div id="container">
+	<p class="ys">我是医生</p>
+	<p class="hs">我是护士</p>
+	<p class="js">我是技师</p>
+	
+	<button class="nextbtn">下一步</button>
+</div>
+</body>
+</html>

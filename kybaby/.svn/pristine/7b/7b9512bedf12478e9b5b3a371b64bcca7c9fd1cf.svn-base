@@ -1,0 +1,156 @@
+﻿<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<title>家庭医生</title>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/family_doctor.css"/>
+	<link href="css/royalslider.css" rel="stylesheet" type="text/css" />
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="js/jquery.royalslider.min.js"></script>
+	<script src="js/modernizr-2.8.3.min.js"></script>
+	<script src="js/config.js"></script>
+	<script src="js/layer/layer.js"></script>
+	<style>
+		.layui-layer-title{
+			padding: 0;
+			background: #FF813D;
+			color: #fff;
+			text-align: center;
+		}
+		.layui-layer-btn .layui-layer-btn0{
+			padding: 0;
+			margin: 0;
+			background: url("images/images_login_regist/regist_btn.png")no-repeat;
+			background-size: 100% 100%;
+			width: 100px;
+			height: 35px;
+			line-height: 35px;
+			text-align: center;
+			border:none;
+			color: #FF8543;
+		}
+		.layui-layer-btn a {
+			border: none;
+		}
+		.layui-layer-btn {
+			text-align: center;
+		}
+		.layui-layer-page{
+			max-width: 420px;
+		}
+		.layui-layer-content{
+			overflow: hidden;
+		}
+		.rsBulletsAdd{
+			display: block;
+		}
+		@media screen and (max-width: 800px) and (min-width: 0px) {
+			.royalSlider.heroSlider, .royalSlider.heroSlider .rsOverflow {
+				height: auto !important;
+			}
+		}
+		.rsMinW .rsBullet {
+			width: 7px;
+			height: 7px;
+		}
+		.rsMinW .rsBullets {
+			position: fixed;
+			bottom: 50px;
+			z-index: 100;
+			display: block;
+			background: white;
+		}
+		@media screen and (max-width: 800px) and (min-width: 0px) {
+			.royalSlider.heroSlider, .royalSlider.heroSlider .rsOverflow {
+				height: auto !important;
+			}
+		}
+		.rsMinW .rsBullet span {
+			box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.3);
+			width: 7px;
+			height: 7px;
+		}
+		.rsMinW .rsBullet.rsNavSelected span {
+			box-shadow: 0 0 1px 1px rgba(255, 129, 61, 0.3);
+			background: #FF813D;
+			border: 1px solid #FF813D;
+			width: 7px;
+			height: 7px;
+		}
+	</style>
+</head>
+<body>
+
+<div id="header">
+	<div class="header-left" onclick="window.location.href='main.html'"><span>家庭医生</span></div>
+	<div class="header-center"></div>
+	<div class="header-right"></div>
+</div>
+<!--header-->
+<div id="container">
+	<!--<div class="doctor_information">-->
+	<!--<div id="doctor_header"></div>-->
+	<!--<div class="doctor_introduction">-->
+	<!--<p>肖家河家庭医生团队</p>-->
+	<!--<p>肖家河社区卫生服务中心</p>-->
+	<!--<p>服务时间：<span>2016-11-11</span>至<span>2017-11-11</span></p>-->
+	<!--</div>-->
+	<!--</div>-->
+	<div id="before_login">
+		<p class="gray_s"></p>
+		<div class="family_doctor_list"></div>
+	</div>
+	<div class="products_img">
+		<div class="sliderContainer fullWidth clearfix">
+			<div id="full-width-slider" class="royalSlider heroSlider rsMinW">
+				<!--<div class="rsContent">-->
+				<!--<div class="doctor_information">-->
+				<!--<div class="doctor_header"></div>-->
+				<!--<div class="doctor_introduction">-->
+				<!--<p>肖家河家庭医生团队</p>-->
+				<!--<p>肖家河社区卫生服务中心</p>-->
+				<!--<p>服务时间：<span>2016-11-11</span>至<span>2017-11-11</span></p>-->
+				<!--</div>-->
+				<!--</div>-->
+				<!--<p class="gray_s"></p>-->
+				<!--<div class="family_doctor_list">-->
+				<!--<div><img src="images/images_family_doctor/consulting.png" alt=""/><p>图文咨询</p></div>-->
+				<!--<div><img src="images/images_family_doctor/outpatient_appointment.png" alt=""/><p>门诊预约</p></div>-->
+				<!--<div onclick="window.location.href='family_doctor_erbao.html'"><img src="images/images_family_doctor/his_appointment.png" alt=""/><p>儿保预约</p></div>-->
+				<!--<div><img src="images/images_family_doctor/vaccine.png" alt=""/><p>疫苗接种预约</p></div>-->
+				<!--<div><img src="images/images_family_doctor/health_records.png" alt=""/><p>健康记录</p></div>-->
+				<!--<div><img src="images/images_family_doctor/knowledge_base.png" alt=""/><p>临床知识库</p></div>-->
+				<!--</div>-->
+				<!--</div>-->
+			</div>
+		</div>
+	</div>
+	<div id="bottom_before">
+		<div class="login_button" style="font-size: 16px" onclick="isReadXieYi()">签约您的儿童家庭医生</div>
+		<div id="read_text">
+			<p><span id="cbUserAgreement"></span>已阅读并同意《<span style="color: #25C1F4" onclick="window.location.href='family_doctor_xiexi.html'">家庭医生签约协议</span>》</p>
+			<p style="color: #989898">具体服务内容以所购套餐为准</p>
+		</div>
+	</div>
+
+	<!--<p onclick="window.location.href='family_doctor_erbao.html'">儿保预约</p>-->
+	<!--<p onclick="window.location.href='family_doctor_erbao.html'">家庭医生儿保预约</p>-->
+	<!--<p onclick="window.location.href='family_doctor_hisrecord.html'">儿保记录</p>-->
+	<!--<p onclick="window.location.href='family_doctor_pay.html'">支付</p>-->
+	<!--<p onclick="window.location.href='family_doctor_pay2.html'">支付2</p>-->
+	<!--<p onclick="window.location.href='family_doctor_servicepay.html'">购买家庭医生服务</p>-->
+</div>
+<!--container-->
+<div id="bottom_button">
+	<div id="bottom_after" class="login_button" onclick="window.location.href='family_doctor_allservice.html'">签约更多家庭医生</div>
+</div>
+<script src="js/main.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/family_doctor.js"></script>
+</body>
+</html>

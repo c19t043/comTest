@@ -1,0 +1,346 @@
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+header {
+    overflow: hidden;
+    padding-top: 6px;
+    height: 39px;
+    width: 100%;
+}
+
+.headerLeft > img {
+    width: 29px;
+    height: 29px;
+    background: rgb(162, 162, 162) none repeat scroll 0% 0%;
+    border-radius: 100%;
+    padding: 2px;
+    margin-left: 20px;
+}
+
+.headerRight > span {
+    margin-right: 15px;
+    padding: 4px 8px;
+    border-radius: 22px;
+    background: rgb(162, 162, 162) none repeat scroll 0% 0%;
+    color: white;
+}
+
+#container {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#doctorName {
+    font-size: 16px;
+}
+#hospital {
+    font-size: 14px;
+}
+
+.description {
+    overflow: hidden;
+    padding: 10px 0;
+}
+
+.description > img {
+    width: 64px;
+    height: 64px;
+    float: left;
+    margin-left: 15px;
+    border-radius: 100%;
+}
+
+.description > div {
+    float: left;
+    line-height: 32px;
+    margin-left: 14px;
+}
+
+ul, li {
+    list-style: none;
+}
+
+ul {
+    overflow: hidden;
+    width: 100%;
+}
+
+li {
+    float: left;
+    text-align: center;
+    line-height: 40px;
+}
+
+.doctorType > li {
+    width: 33.3%;
+    color: #bababa;
+}
+
+.doctorLevel > li {
+    width: 33.3%;
+    color: #222222;
+}
+
+
+.recentTime {
+    padding: 0px 15px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #FF813D;
+    font-size: 14px;
+}
+
+#recentTime > li {
+    width: 13%;
+    line-height: 25px;
+    height: 50px;
+    display: inline-block;
+    margin: 0px;
+    float: none;
+}
+#recentTime {
+    padding: 15px 0px;
+    font-size: 14px;
+    height: 50px;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    margin: 0px;
+    text-align: center;
+    background: url("../images/images_family_doctor/bg.png");
+    background-size: 100% 100%;
+}
+
+.doctorAppoint {
+    color: #48D8AB;
+}
+.areaAppoint {
+    color: #EE5F66;
+}
+.activeAppoint {
+    color: #ffffff;
+    background: #ff813d;
+}
+
+.address {
+    height: 52px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.addressImg {
+    width: 10%;
+    margin-left: 5%;
+    float: left;
+    height: 52px;
+}
+
+.addressDes {
+    float: left;
+    height: 52px;
+    width: 70%;
+    margin-left: 5%;
+}
+
+.addressDes > div {
+    display: table;
+    width: 100%;
+}
+
+.addressImg > img {
+    width: 18px;
+    height: 18px;
+    margin-top: 18px;
+}
+
+.addressDes > div > .ssss {
+    width: 100%;
+    height: 52px;
+    vertical-align: middle;
+    display: table-cell;
+    font-size: 14px;
+}
+
+#chooseAppointmentTime {
+    overflow: hidden;
+    width: 100%;
+}
+
+#chooseAppointmentTime > li {
+    width: 20%;
+    float: left;
+    margin: 0px 0px 8px 4%;
+    border: 1px solid #bababa;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 4px;
+    position: relative;
+    line-height: 26px;
+    font-size: 14px;
+}
+#chooseAppointmentTime > li.N{
+    background: #eeeeee;
+}
+#chooseAppointmentTime > li.activeStyle {
+    border-color: #ff813d;
+}
+h5{
+    padding: 0px 15px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #bbb;
+    font-weight: 500;
+}
+h5>input{
+    width: 15px;
+    height: 15px;
+    border: none;
+}
+#chooseAppointmentTime > li > img {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    right: -5px;
+    top: -3px;
+}
+
+p {
+    font-size: 15px;
+}
+
+#container p, h4 {
+    color: #505050;
+    padding: 0px 15px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    line-height: 28px;
+    font-size: 14px;
+}
+
+.contactWay {
+    text-align: center;
+}
+
+p > span {
+    color: #ff813d;
+}
+
+table {
+    width: 100%;
+}
+
+table td {
+    margin-bottom: 10px;
+    line-height: 34px;
+}
+
+td img {
+    width: 18px;
+    height: 18px;
+    margin-top: -3px;
+}
+
+h3 {
+    padding-left: 15px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.contactName {
+    width: 25%;
+}
+
+.contactPhone {
+    width: 50%;
+}
+
+.isChecked {
+    width: 25%;
+}
+
+#addContactCover {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    display: none;
+}
+
+#coverFooter {
+    width: 100%;
+    height: 46px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 22px;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+}
+
+#coverHeader {
+    width: 100%;
+    height: 45px;
+    background: #fff;
+}
+
+#coverHeader .header-left {
+    width: 60%;
+    float: left;
+    line-height: 45px;
+    height: 45px;
+    color: #FF813D;
+    padding-left: 20px;
+}
+
+p.input {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #DEDEDE;
+    font-size: 15px;
+    background: #fff;
+}
+
+p label {
+    text-indent: 22px;
+    width: 25%;
+}
+
+p input {
+    height: 30px;
+    margin-top: 0px;
+    border: none;
+    width: 65%;
+}
+
+p input#verificationCode {
+    width: 45%;
+}
+
+p span#verification-code {
+    padding: 3px 4px;
+    background: #00BCD4;
+    color: #fff;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.header-left div {
+    background: url("../images/prev_01.png") no-repeat center center;
+    background-size: 25px;
+    height: 45px;
+}

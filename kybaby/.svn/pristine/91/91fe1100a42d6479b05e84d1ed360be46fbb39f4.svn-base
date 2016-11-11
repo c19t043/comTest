@@ -1,0 +1,272 @@
+
+.personal_list > div {
+    width: 100%;
+    height: 50px;
+    padding: 0px 15px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.personal_list .personal_left{
+    float: left;
+    height: 50px;
+    line-height: 50px;
+    width: 90%;
+}
+ .personal_list .personal_left1 {
+      float: left;
+      width: 90%;
+  }
+.personal_list>.list{
+    margin: 5px 0;
+    overflow: hidden;
+    height: auto;
+}
+.personal_list .personal_right {
+    float: right;
+    width: 10%;
+    height: 50px;
+    text-align: right;
+    background: url("../images/next.png")no-repeat right;
+    background-size: 9px;
+}
+
+.personal_list .personal_left1 {
+    line-height: 30px;
+    font-size: 13px;
+}
+
+.personal_left1 > span {
+    color: #ff813d;
+    padding: 3px 8px;
+    background: url("../images/images_family_doctor/erbao_choose.png")no-repeat;
+    background-size: 100% 100%;
+}
+
+.next_time {
+    width: 100%;
+    height: 50px;
+}
+.next_time>img{
+    display: inline-block;
+    width: 28px;
+    margin: 11px 0 11px 15px;
+}
+.next_time>span{
+    margin-left: 6px;
+    display: inline-block;
+}
+#coverall, #covertime {
+    width: 100%;
+    position: fixed;
+    background: rgba(0, 0, 0, .6);
+    top: 0px;
+    left: 0px;
+    z-index: 2000;
+    height: 100%;
+    display: none;
+}
+
+#cover {
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+}
+
+#cover1 {
+    padding: 16px 30px;
+    background: #ffffff;
+    position: absolute;
+    bottom: 4px;
+    left: 0px;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#cover1 ul {
+    overflow: hidden;
+    width: 100%;
+}
+
+#cover1 > div {
+    color: #ff813d;
+    overflow: hidden;
+}
+#cover1 > div>p{
+    width: 50%;
+    float: left;
+}
+.cancal{
+    text-align: right;
+}
+#cover1 li {
+    width: 32%;
+    float: left;
+    margin: 5px 0px 5px 1%;
+    border-radius: 3px;
+    padding-left: 4px;
+    border: 1px solid #ff813d;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 12px;
+}
+
+#date {
+    overflow: hidden;
+    text-align: center;
+    line-height: 45px;
+    background: #ff813d;
+    color: #ffffff;
+    font-size: 17px;
+}
+
+#date > div {
+    width: 30%;
+    float: left;
+}
+#cover > header{
+    overflow: hidden;
+    width: 100%;
+    color: #ff813d;
+    line-height: 30px;
+    padding-top: 5px;
+    background: #fff;
+    font-size: 13px;
+    letter-spacing: 1.2px;
+}
+ #cover > #content {
+     background: #ffffff;
+     font-size: 14px;
+    overflow: hidden;
+    width: 100%;
+    color: #313131;
+}
+#cover > header > div, #cover > #content > div {
+    width: 13.2%;
+    margin: 2px 0px 2px 0.95%;
+    text-align: center;
+    float: left;
+}
+#cover > #content > div{
+    line-height: 21px;
+    font-size: 14px;
+    height: 40px;
+}
+
+.gray {
+    color: #bababa;
+}
+
+#cover > #content > div.active {
+    outline: 1px solid #ff813d;
+    padding-top: 2px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+#cover > #content > div.active>div{
+    color: #ff813d;
+    line-height: 18px;
+    font-size: 10px;
+}
+#cover > #content > div.activespe {
+    background: #ff813d;
+    color: #ffffff;
+}
+
+#description {
+    text-align: center;
+    margin-top: -22px;
+    margin-bottom: 60px;
+}
+
+#description > span {
+    color: #ff813d;
+}
+#yuyuexuzhi{
+    position: fixed;
+    bottom: 60px;
+    right: 30px;
+    line-height: 34px;
+    font-size: 14px;
+}
+#user_xieyi{
+    margin-left: 5px;
+    display: inline-block;
+}
+#cbUserAgreement{
+    display: inline-block;
+    width: 15px;
+    height:15px;
+    margin-bottom: -2px;
+    background: url(../images/images_family_doctor/readed.png)no-repeat center;
+    background-size: 100%;
+}
+.cbUserAgreement>#cbUserAgreement{
+    background: #272636;
+}
+.instructions{
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: 2000;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    /*padding: 20px 15px;*/
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: none;
+}
+.instructions>div{
+    text-align: right;
+}
+/*µ¯¿ò*/
+#layer_title{
+    background: #ff813d;
+    line-height: 42px;
+    color: #fff;
+    text-align: center;
+}
+#layer_content{
+    padding: 10px 15px;
+    text-align: left;
+    font-size: 15px;
+}
+#layer_closed{
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    margin-left: -40px;
+    text-align: center;
+    display: inline-block;
+    width: 80px;
+    height: 35px;
+    line-height: 35px;
+    background: #fff;
+    background-image: url("../images/images_family_doctor/erbao_choose.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    color: #ff813d;
+}
+#prevMonth{
+    display: inline-block;
+    float: left;
+}
+#nextMonth{
+    display: inline-block;
+    float: right;
+}
+#cancel_button{
+    padding: 5px auto 8px;
+    height: 50px;
+    background: #fff;
+    text-align: center;
+}

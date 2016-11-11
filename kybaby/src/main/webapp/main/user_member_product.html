@@ -1,0 +1,132 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>商城</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/service_products.css">
+    <link href="css/royalslider.css" rel="stylesheet" type="text/css"/>
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
+    <style>
+        .history_price{
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<div id="header">
+    <div class="header-left">商城</div>
+    <div class="header-center"></div>
+    <div class="header-right"></div>
+</div>
+<!--header-->
+
+<div id="container">
+    <p class="gray_s"></p>
+    <div id="searchbox2">
+        <div class="searchf">
+            <input placeholder="搜索产品名称" type="text"/>
+            <span id="search" onclick="searchMessage()"></span>
+        </div>
+    </div>
+    <div class="health_products" style="margin-top: 20px;">
+        <h2 class="item_title">儿童健康商城</h2>
+        <div>
+            <ul id="memberProduct">
+                <li class="products_item" onclick="window.location.href='health_products.html'">
+                    <div class="products_img">
+                        <img src="images/health_products.png" alt=""/>
+                    </div>
+                    <div class="products_content">
+                        <h3>健康预约卡</h3>
+
+                        <p>本产品包含一次专家坐诊，预约服务</p>
+                        <span>￥199.00</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="footer">
+    <ul>
+        <a href="javascript:void(0)" onclick="window.location.href='main.html'"><li><p><img src="images/images_main/main_dark.png" width="23"></p><p>首页
+        </p></li></a>
+        <a href="javascript:void(0)" onclick="window.location.href='service_products.html'"><li><p><img src="images/images_main/service_dark.png" width="23"></p><p>服务
+        </p></li></a>
+        <a href="javascript:void(0)">
+            <li class="select"><p><img src="images/images_main/member_light.png" width="23"></p>
+
+                <p>商城</p></li>
+        </a>
+        <!--<a href="javascript:void(0)" onclick="window.location.href='assistant.html'"><li><p><img src="images/footer_icon03_off.png" width="23"></p><p>助手</p></li></a>-->
+        <!--<a href="javascript:void(0)" onclick="window.location.href='chatCircle.html'"><li><p><img src="images/footer_icon05_off.png" width="23"></p><p>妈妈圈</p></li></a>-->
+        <a href="javascript:void(0)" onclick="window.location.href='personalcenter.html'"><li><p><img src="images/images_main/personal_dark.png" width="23"></p><p>我</p></li></a>
+    </ul>
+</div>
+
+<script>
+        $(function () {
+            searchMessage();
+        });
+        function searchMessage() {
+            var text = $('.searchf>input').val().trim();
+            $.ajax({
+                type: 'post',
+                url: host + 'getProductInfo.action',
+                cache: false,
+                async: false,
+                data: {
+                    action: "getProductInfo",
+                    "productName": text
+                },
+                success: function (result) {
+                    //ale(result.userId);
+                    $('#exclusiveProduct').empty();
+                    $('#memberProduct').empty();
+                    //会员产品
+                    if (result.memberProductList != null) {
+                        for (var i = 0; i < result.memberProductList.length; i++) {
+                            var memberProductList = result.memberProductList[i];
+                            var l=memberProductList.shortIntroduction;
+                            if(memberProductList.shortIntroduction!=null &&memberProductList.shortIntroduction.length>13){
+                                l=memberProductList.shortIntroduction.substr(0,13)+'...';
+                            }
+                            var historyPrice = "";
+                            if(!(memberProductList.historyPrice==null || memberProductList.historyPrice=='')){
+                                //$('<span class="history_price" style="display: inline-block;font-size: 14px;margin-right: 5px;float:none">&yen;'+ memberProductList.historyPrice+'</span>').prependTo(".money");
+                                historyPrice+='<span class="history_price" style="display: inline-block;font-size: 14px;margin-right: 5px;">&yen;'+ memberProductList.historyPrice+'</span>';
+                            }
+                            $('#memberProduct').append('<li class="products_item" onclick="window.location.href=\'health_products.html?'+memberProductList.id+'\'"> ' +
+                                    '<div class="products_img"> ' +
+                                    '<img src="'+hostBG+"images/product/"+memberProductList.smallPicture+'" alt=""/> ' +
+                                    '</div> ' +
+                                    '<div class="products_content"> ' +
+                                    '<h3>'+memberProductList.name+'</h3> ' +
+                                    '<p>'+l+'</p>'+
+                                    '<p class="money">'+historyPrice+'<span class="price">&yen;'+ memberProductList.totalPrice+'</span></p> ' +
+                                    '</div> ' +
+                                    '</li>'
+                            );
+                        }
+    //                    if(memberProductList.historyPrice!=null){
+    //                        $('<span class="history_price" style="display: inline-block;font-size: 14px;margin-right: 5px;float:none">&yen;'+ memberProductList.historyPrice+'</span>').prependTo(".money");
+    ////                            $(".money").append('<span class="history_price">&yen;'+ memberProductList.historyPrice+'</span>');
+    //                    }
+                    }
+                },
+                error:function(){
+                    layer();
+                }
+            });
+
+        };
+
+</script>
+</body>
+</html>

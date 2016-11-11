@@ -1,0 +1,274 @@
+@charset "utf-8";
+.mypage {
+  width: 90%;
+  padding: 10px 5% 20px 5%;
+  background: #fff;
+  clear: both;
+  overflow: hidden;
+}
+
+.myphoto {
+
+  float: left;
+  /*vertical-align: middle;*/
+  text-align: center;
+  padding-top: 20px;
+
+}
+
+.myphoto .myphoto_img {
+  width: 60px;
+  height: 60px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+.myphoto .myphoto_img img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.myinfo {
+  margin-left: 70px;
+  vertical-align: middle;
+  position: relative;
+}
+
+.doctor_right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 0.785em;
+}
+
+.doctor_right .juli {
+  background: url(../images/icon_dingwei.png) left top no-repeat;
+  background-size: 20%;
+  height: 30px;
+  line-height: 30px;
+  padding-left: 20px;
+}
+
+.myinfo p {
+  font-size: 0.875em;
+  width: 100%;
+  line-height: 22px;
+}
+
+.myinfo .my_indent {
+  width: 68%;
+  text-indent: -32%;
+  padding: 0 0 0 32%;
+}
+
+.myinfo .myname {
+  width: 100%;
+  font-size: 1.25em;
+  line-height: 24px;
+}
+
+.myinfo .small {
+  font-size: 0.75em;
+}
+
+.mymark {
+  color: #c8c8c8;
+  width: 100%;
+  clear: both;
+  overflow: hidden;
+}
+
+.mymark .mark_list {
+  width: 100%;
+  line-height: 30px;
+  vertical-align: middle;
+  clear: both;
+  overflow: hidden;
+}
+
+.mymark .mark_list .mark_list_left {
+  font-size: 0.875em;
+  width: 60px;
+  float: left;
+  text-align: right;
+}
+
+.mymark .mark_list .mark_list_right {
+  width: 66%;
+  padding-left: 5px;
+  float: left;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.mymark .mark_list .mark_list_right img {
+  padding-left: 3px;
+  width: 16px;
+  height: 16px;
+  position: relative;
+  top: -3px;
+}
+
+.mypage_tab {
+  width: 100%;
+  margin: 10px 0;
+  clear: both;
+  overflow: hidden;
+}
+
+.mypage_tab ul li {
+  padding: 5px;
+  margin: 5px;
+  text-align: center;
+  float: left;
+  font-size: 0.875em;
+  color: white;
+  background-color: #ff813d;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.bg_white {
+  background: #fff;
+}
+
+.mypage_service {
+  width: 90%;
+  margin: 0 auto;
+  padding-bottom: 20px;
+  background: #fff;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.mypage_service .tit {
+  line-height: 2.5em;
+}
+
+.service_box {
+  width: 130px;
+  margin: 0 10px 0 0;
+  display: inline-block;
+}
+
+.mypage_service::-webkit-scrollbar {
+  display: none;
+}
+
+.service_box .service_img {
+  width: 130px;
+  height: 130px;
+  /*background: #000;*/
+}
+
+.service_box .service_img img {
+  width: 130px;
+  height: 130px;
+}
+
+.service_box .service_tit {
+  line-height: 30px;
+  font-size: 0.875em;
+  width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.service_box .sale {
+  width: 60%;
+  float: left;
+  font-size: 0.75em;
+  text-align: left;
+}
+
+.service_box .price {
+  width: 40%;
+  float: right;
+  font-size: 0.75em;
+  text-align: right;
+  color: red;
+}
+
+.mypage_personal {
+  width: 100%;
+  padding: 5px 0 20px;
+  background: #fff;
+  clear: both;
+  overflow: hidden;
+}
+
+.mypage_personal_top {
+  width: 90%;
+  padding: 0 5%;
+  clear: both;
+  overflow: hidden;
+}
+
+.mypage_personal .personal {
+  width: 40%;
+  float: left;
+  font-size: 0.875em;
+}
+
+/*.mypage_personal .release {*/
+/*width: 20%;*/
+/*float: right;*/
+/*border: 1px solid #ff813d;*/
+/*text-align: center;*/
+/*-webkit-border-radius: 5px;*/
+/*-moz-border-radius: 5px;*/
+/*border-radius: 5px;*/
+/*line-height: 25px;*/
+/*color: #ff813d;*/
+/*font-size: 0.875em;*/
+/*}*/
+.mypage_personal .myarticle {
+  width: 90%;
+  padding: 0 5% 10px 5%;
+  margin-top: 10px;
+  font-size: 0.875em;
+  border-bottom: 1px solid #f7f7f7;
+  clear: both;
+  overflow: hidden;
+}
+
+.mypage_personal .myarticle .article_date,
+.mypage_personal .myarticle .article_title {
+  line-height: 24px;
+}
+
+.mypage_personal .myarticle .comment {
+  background: url(../images/icon_comment.png) no-repeat left center;
+  background-size: 16px;
+  width: 30%;
+  float: left;
+  padding-left: 20px;
+  line-height: 30px;
+  font-size: 0.75em;
+  color: #c8c8c8;
+}
+
+.mypage_personal .myarticle .view {
+  background: url(../images/icon_view.png) no-repeat left center;
+  background-size: 16px;
+  width: 30%;
+  float: left;
+  padding-left: 25px;
+  line-height: 30px;
+  font-size: 0.75em;
+  color: #c8c8c8;
+}
+
+.mypage_personal .myarticle .right {
+  width: 20%;
+  float: right;
+  line-height: 30px;
+  font-size: 1.5em;
+  text-align: center;
+  color: #c8c8c8;
+}

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>计免订单处理</title>
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=8">
+	<meta http-equiv="Expires" content="0">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Cache-control" content="no-cache">
+	<meta http-equiv="Cache" content="no-cache">
+	<style type="text/css">
+		table{
+			border:1px solid black;
+			border-collapse:collapse;
+		}
+		tr{
+			border:1px solid black;
+		}
+		td{
+			height:40px;width:150px;
+			text-align: center;
+			border:1px solid black;
+		}
+	</style>
+  </head>
+  
+  <body>
+   	<table id="tableId">
+   		<tr>
+   			<td colspan="8">
+   				<table>
+					<tr>
+						<td style="width:350px;">
+							<span>开放日期：</span>
+							<input type="text" id="openDate_query" 
+							 onfocus="WdatePicker({isShowClear:true,dateFmt:'yyyy-MM-dd',readOnly:true});"
+							 placeholder="开放日期">
+						</td>
+						<td style="width:380px;">
+							<span>预约机构：</span>
+							<select id="orgName_query"  style="width:250px;">
+							</select>
+						</td>
+						<td style="width:350px;">
+							<span>订单状态：</span>
+							<select id="orderStatus_query" style="width:80px;">
+								<option ></option>
+								<option value="已预约">已预约</option>
+								<option value="已取消">已取消</option>
+								<option value="已登记">已登记</option>
+							</select>
+						</td>
+						<td><input type="button" id="query_order" value="查询订单"></td>
+					</tr>
+					<tr>
+						<td><input type="button" id="handle_order" value="批量操作"></td>
+					</tr>
+					<tr>
+						<td><span>返回信息：</span></td>
+						<td colspan="7" id="resultInfo"></td>
+					</tr>
+				</table>
+   			</td>
+   		</tr>
+   		<tr>
+   			<td><input type="checkbox" id="td_box" name="add1"></td>
+   			<td>id</td>
+ 			<td>用户姓名</td>
+ 			<td>下单时间</td>
+ 			<td>开放日期</td>
+ 			<td>预约时间</td>
+ 			<td>预约机构</td>
+ 			<td>订单状态</td>
+ 			<td>操作</td>
+   		</tr>
+   	</table>
+   	<script type="text/javascript" src="../admin/js/jquery-1.11.3.min.js"></script>
+   	<script type="text/javascript" src="../admin/js/date/WdatePicker.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			
+			$("#handle_order").click(function(){
+				var ids = "";
+				$("[name='add']:visible").each(function(){
+					if($(this).prop("checked")){
+						ids+=$(this).val()+",";
+					}
+				});
+				ids = ids.substring(0,ids.length-1);
+				editorOrderStatus(null,ids);
+			});
+			
+			$("#td_box").click(function(){
+				//var td_box = this;
+				var checked = $("#td_box").prop("checked");
+				$("[name='add']").each(function(){
+					if(checked){
+						$(this).prop("checked",true);
+					}else{
+						$(this).prop("checked",false);
+					}
+				});
+			});
+			
+			$("#query_order").click(function(){
+				var openDate = $("#openDate_query").val();
+				var orgName = $("#orgName_query").val();
+				var orderStatus = $("#orderStatus_query").val();
+				list(openDate,orgName,orderStatus);
+			});
+			
+			OrgNameList();
+			
+			list();
+		})
+		
+		function OrgNameList(){
+			$.ajax({
+				url:"/kybabyBG/kyinterface/org_list.action",
+				type:"POST",
+				async:true,
+				success:function(result){
+					$("#orgName_query").empty();
+					var content = "<option></option>";
+					for(var i=0,len=result.length;i<len;i++){
+						content+="<option value='"+result[i].orgName+"'>"+result[i].orgName+"</option>";
+					}
+					$("#orgName_query").append(content);
+				}
+			});
+		}
+		
+		function list(openDate,orgName,orderStatus){
+			$.ajax({
+				url:"/kybabyBG/kyinterface/innoculation_list.action",
+				type:"POST",
+				async:true,
+				data:{
+					"innoculationInfo.openDate":openDate?openDate:"",
+					"innoculationInfo.orgName":orgName?orgName:"",
+					"innoculationInfo.status":orderStatus?orderStatus:""
+				},
+				success:function(result){
+					$(".add").remove();
+					for(var i=0,len=result.length;i<len;i++){
+						var row = result[i];
+						var content="<tr class='add'>"
+							+"<td id='"+row.id+"'><input type='checkbox' value='"+row.id+"' name='add'></td>"
+							+"<td>"+row.id+"</td>"
+							+"<td>"+row.username+"</td>"
+							+"<td>"+row.submitDate+"</td>"
+							+"<td>"+row.openDate+"</td>"
+							+"<td>"+row.bespeak+"</td>"
+							+"<td>"+row.orgName+"</td>"
+							+"<td>"+row.orderStatus+"</td>"
+							+"<td><a href='javascript:void();'>已登记</a></td>"
+							+"</tr>";
+						$("#tableId").append(content);
+						var a = $("#"+row.id).siblings(":has(a)").children();
+						if(row.orderStatus =="已登记"){
+							$("#"+row.id).children().hide();
+							a.hide();
+						}
+						a.click(function(){
+							var row = $(this).parent().parent().children(":first-child")[0];
+							var rowid = $(row).attr("id");
+							//var id = row.id;
+							var id = rowid;
+							editorOrderStatus(id);
+						});
+					}
+				}
+			});
+		}
+		function editorOrderStatus(id,ids){
+			$.ajax({
+				url:"/kybabyBG/kyinterface/doInnoculationOrder.action",
+				type:"POST",
+				async:true,
+				data:{
+					"innoculationInfo.id":id?id:"",
+					"innoculationInfo.ids":ids?ids:""
+				},
+				success:function(result){
+					$("#resultInfo").text(result);
+				}
+			});
+		}
+	</script>
+  </body>
+</html>

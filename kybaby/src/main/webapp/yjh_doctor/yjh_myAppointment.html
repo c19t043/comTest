@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <title>门诊订单</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/myAppointment.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+	<script src="js/MD5.js"></script>
+    <script src="js/myAppointment.js"></script>
+    <style>
+        .head_nav{
+            overflow: hidden;
+            padding: 12px 0;
+            background: #FF813D;
+        }
+        .head_nav>div{
+            float:left;
+            width:50%;
+            box-sizing:border-box;
+            -moz-box-sizing:border-box; /* Firefox */
+            -webkit-box-sizing:border-box; /* Safari */
+            text-align: center;
+            color: #fff;
+            font-size: 15px;
+        }
+        .head_nav>div>span{
+            padding-left: 6px;
+            padding-right: 6px;
+        }
+        .leftmeu{
+            border-right: 1px solid #fff;
+        }
+        .select>span{
+            padding-bottom: 2px;
+            border-bottom: 1px solid #fff;
+        }
+        .listdetail{
+            border-bottom: 1px solid #CACACA;
+        }
+    </style>
+</head>
+<body>
+
+<div id="header">
+    <div class="header-left" onclick="window.location.href='index.html'"><span>门诊订单</span></div>
+    <div class="header-center"></div>
+    <div class="header-right"></div>
+</div>
+<!--header-->
+
+<div id="container">
+    <div class="ul_box">
+        <ul id="select_cli" style="display: none">
+            <li class="blue" style="border-right: 1px solid #8c8c8c"><span>全部</span></li>
+            <li style="border-right: 1px solid #8c8c8c"><span>已接单</span></li>
+            <li style="border-right: 1px solid #8c8c8c"><span>未付款</span></li>
+            <li style="border-right: 1px solid #8c8c8c"><span>已完成</span></li>
+            <li>已取消</li>
+        </ul>
+        <ul id="select_cli1">
+            <li class="blue" style="border-right: 1px solid #8c8c8c"><span>全部</span></li>
+            <li style="border-right: 1px solid #8c8c8c"><span>已预约</span></li>
+            <li style="border-right: 1px solid #8c8c8c"><span>已取消</span></li>
+            <li><span>已完成</span></li>
+        </ul>
+    </div>
+    <p class="gray_s"></p>
+    <!--内容-->
+    <div class="info_box" style="display:none" id="info_box_all">
+        <!--<div class="order_divbox">-->
+        <!--<span class="top_sj">2015-11-16 19:42:34</span>-->
+        <!--<span class="top_zt">未付款</span>-->
+
+        <!--<p class="gray_2"></p>-->
+
+        <!--<div class="info">-->
+        <!--<div class="img">-->
+        <!--<img src="/kybabyBG/admin//images/product/pic_small20151102044659.jpg">-->
+        <!--</div>-->
+        <!--<div class="text_box">-->
+        <!--<span>服务产品</span>&nbsp;-->
+        <!--<span class="font1">母乳成分分析</span>-->
+        <!--<br>-->
+        <!--<span style="color:black" class="font1">王婷</span>-->
+        <!--<br>-->
+        <!--<span style="visibility:visible" class="font1">职称：</span>-->
+        <!--<span class="font1">医师</span>-->
+        <!--<br>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<p class="gray_2"></p>-->
+
+        <!--<div class="top_je " style="display:block">-->
+        <!--<span>实付金额：</span>-->
+        <!--<span class="font2">¥200</span>-->
+        <!--<span class="button">取消订单</span>-->
+        <!--</div>-->
+        <!--<p class="gray_1"></p>-->
+        <!--</div>-->
+        <!--<div class="order_divbox">-->
+        <!--<span class="top_sj">2015-11-16 19:42:34</span>-->
+        <!--<span class="top_zt">未付款</span>-->
+
+        <!--<p class="gray_2"></p>-->
+
+        <!--<div class="info">-->
+        <!--<div class="img">-->
+        <!--<img src="/kybabyBG/admin/images/product/pic_small20151102044659.jpg">-->
+        <!--</div>-->
+        <!--<div class="text_box">-->
+        <!--<span>服务产品</span>&nbsp;-->
+        <!--<span class="font1">母乳成分分析</span>-->
+        <!--<br>-->
+        <!--<span style="color:black" class="font1">王婷</span>-->
+        <!--<br>-->
+        <!--<span style="visibility:visible" class="font1">职称：</span>-->
+        <!--<span class="font1">医师</span>-->
+        <!--<br>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<p class="gray_2"></p>-->
+
+        <!--<div class="top_je " style="display:block">-->
+        <!--<span>实付金额：</span>-->
+        <!--<span class="font2">¥200</span>-->
+        <!--<span class="button">取消订单</span>-->
+        <!--</div>-->
+        <!--<p class="gray_1"></p>-->
+        <!--</div>-->
+    </div>
+    <div class="info_boxdoc" id="info_boxdoc">
+        <!--<h6>您预约的医生：</h6>-->
+
+        <div class="doctor_list" id="doctor_list">
+            <!--<div class="listdetail">-->
+            <!--<img src="images/zxq_11.png">-->
+
+            <!--<div class="basicinfo">-->
+            <!--<p class="detail_name">张医生&nbsp;&nbsp;<span>实付金额￥300</span></p>-->
+
+            <!--<p class="detail_time">2015-11-22 23:33:44</p>-->
+
+            <!--<p class="detail_address">成都市高新区金杨路</p>-->
+            <!--</div>-->
+            <!--<div class="pjdoctor" id="pjdoctor">评价医生</div>-->
+            <!--<div class="pjdoctor">已完成</div>-->
+            <!--<p class="gray_2"></p>-->
+            <!--</div>-->
+            <!--<div class="listdetail">-->
+            <!--<img src="images/zxq_11.png">-->
+
+            <!--<div class="basicinfo">-->
+            <!--<p class="detail_name">张医生</p>-->
+
+            <!--<p class="detail_time">2015-11-22 23:33:44</p>-->
+
+            <!--<p class="detail_address">成都市高新区金杨路</p>-->
+            <!--</div>-->
+            <!--<div class="pjdoctor nonecolor">评价医生</div>-->
+            <!--<p class="gray_2"></p>-->
+            <!--</div>-->
+        </div>
+    </div>
+</div>
+</body>
+</html>

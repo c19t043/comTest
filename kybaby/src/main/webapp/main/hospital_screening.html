@@ -1,0 +1,469 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>检化验结果</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <!--<link rel="stylesheet" href="css/consult.css"/>-->
+    <link rel="stylesheet" href="css/payMethodCover.css"/>
+    <link rel="stylesheet" href="css/hospital.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/MD5.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/wx_weixinpay.js"></script>
+    <script src="js/hospital.js"></script>
+    <!--<script src="js/hospital_screening.js"></script>-->
+    <style>
+        body{
+            background: #f4f4f4;
+        }
+        .pay_cost_list{
+            background: #ffffff;
+            margin-bottom: 10px;
+            padding: 0 18px;
+            line-height: 40px;
+            width: 100%;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        .message{
+            padding: 8px 40px 8px 0;
+            background: url("images/images_icon/next.png") center right no-repeat;
+            background-size: 10px;
+            position: relative;
+        }
+        .money{
+            overflow: hidden;
+        }
+        .payMoney{
+            width: 50%;
+            float: left;
+            color: #b30000;
+        }
+        .pay{
+            width: 30%;
+            float: right;
+            margin-top: 4px;
+            background: url("images/images_login_regist/images_login.png") no-repeat;
+            height: 32px;
+            line-height: 32px;
+            color: #ff813d;
+            font-size: 17px;
+            background-size: 100% 100%;
+            text-align: center;
+        }
+        .color-gray{
+            font-size: 14px;
+        }
+        /*.gray_s{*/
+            /*width: 120%;*/
+            /*margin-left: -20px;*/
+        /*}*/
+        #inspection_div{
+            display: none;
+        }
+
+        #check_div,#inspection_div{
+            background: #fff;
+            font-size: 15px;
+        }
+        #check_div>div,#inspection_div>div{
+            padding: 0 15px;
+            line-height: 50px;
+            background-image: url("images/next.png");
+            background-repeat: no-repeat;
+            background-position: right center;
+            background-size: 9px;
+            margin-right: 12px;
+        }
+        #check_div>div>p,#inspection_div>div>p{
+            overflow: hidden;
+        }
+        #check_div>div span,#inspection_div>div span{
+            float: right;
+        }
+        /*时间控件*/
+        .android-ics .dw .dwb-a {
+            background: #ff813d;
+        }
+
+        #information li{
+            padding: 0 15px;
+            line-height: 50px;
+            font-size: 15px;
+            border-bottom: 1px solid #e8e8e8;
+            background: #fff;
+        }
+        #information label{
+            width: 80px;
+        }
+        #information li{
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-box;
+            display: -o-box;
+            display: box;
+        }
+        #report div{
+            padding: 12px 0;
+            line-height: 25px;
+            font-size: 13px;
+        }
+        #report div,#information li span{
+            text-align: left;
+            display: block;
+            -webkit-box-flex: 1;
+            -moz-box-flex: 1;
+            -ms-box-flex: 1;
+            -o-box-flex: 1;
+            box-flex: 1;
+        }
+        #information h2{
+            font-size: 18px;
+            line-height: 50px;
+            padding-left: 12px;
+            color: #ff813d;
+            font-weight: 100;
+        }
+        h4{
+            font-size: 16px;
+            line-height: 50px;
+            padding-left: 12px;
+            color: #505050;
+            font-weight: 100;
+            background: #f4f4f4;
+        }
+        #report_title{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div id="header">
+    <div class="header-left" onclick="return_before();"><span>检化验结果</span></div>
+    <div class="header-center"></div>
+    <div class="header-right"></div>
+</div>
+<!--header-->
+<div id="container">
+    <ul class="nav" id="nav1">
+        <li class="selected"><span>检查结果</span></li>
+        <li><span>检验结果</span></li>
+    </ul>
+    <ul class="nav" id="nav2">
+        <li class="select"><span>本月记录</span></li>
+        <li><span>历史记录</span></li>
+    </ul>
+    <!--<div id="choose_time">-->
+    <!--<p>开始时间：<input type="text" class="baby_birthday" placeholder="请选择开始时间" readonly="" name="time" id="startDate"></p>-->
+    <!--<p>结束时间：<input type="text" class="baby_birthday" placeholder="请选择结束时间" readonly="" name="time" id="endDate"></p>-->
+    <!--<p class="gray_1"></p>-->
+    <!--</div>-->
+    <div id="check_div" class="screen">
+        <!--<div>-->
+        <!--<p>王洋 <span>2015-03-15</span></p>-->
+        <!--<p>XXXXX项目</p>-->
+        <!--</div>-->
+    </div>
+    <div id="inspection_div" class="screen">
+        <!--<div>-->
+        <!--<p>张宇 <span>2015-03-15</span></p>-->
+        <!--<p>XXXXX项目</p>-->
+        <!--</div>-->
+    </div>
+</div>
+<div id="information">
+    <div id="head"><span>检查详情</span></div>
+    <p class="gray_s"></p>
+    <div id="information_div">
+        <ul></ul>
+    </div>
+</div>
+<script>
+    var timeFlag,pageNo,stop=true;
+    var n_id = window.location.search.substring(1);
+    $(function() {
+        timeFlag = 1;//1为本月记录
+        pageNo = 1;//分页
+        check(timeFlag, pageNo);
+        $("#nav1>li").click(function(){
+            pageNo=1;
+            $("#inspection_div").html("");
+            $("#check_div").html("");
+            $(this).addClass("selected").siblings("li").removeClass("selected");
+            $(".screen").eq($(this).index()).show().siblings(".screen").hide();
+            if ($(".select span").text() == "本月记录") {
+                timeFlag = 1;
+            } else {
+                timeFlag = 0;
+            }
+            if($(".selected span").text() == "检验结果"){
+                inspection(timeFlag, pageNo);
+            }else{
+                check(timeFlag, pageNo);
+            }
+        })
+        $("#nav2>li").click(function () {
+            pageNo=1;
+            $("#inspection_div").html("");
+            $("#check_div").html("");
+            $(this).addClass("select").siblings("li").removeClass("select");
+            if ($(".select span").text() == "本月记录") {
+                timeFlag = 1;
+            } else {
+                timeFlag = 0;
+            }
+            if($(".selected span").text()=="检验结果"){
+                inspection(timeFlag, pageNo);
+            }else{
+                check(timeFlag, pageNo);
+            }
+        })
+    })
+    //检验记录
+    function inspection(flag,no){
+        hf_loading(true);
+        if($(".prompt").length>0){
+            $(".prompt").remove();
+        }
+        $.ajax({
+            type: 'post',
+            url: spInterfaceService + 'querySpInspectRecords.action',
+            cache: false,
+            async: true,
+            data:  {
+                "timeFlag ":flag,
+                "pageNo":no,
+                "visitCardID":n_id,
+            },
+            success: function (result) {
+                hf_loading(false);
+                if (result.mess == '请登录') {
+                    ale('请登录', '24px');
+                    link_to("login.html");
+                }
+                else if (result.mess == '成功') {
+                    if (result.spInspectRecords.length != null) {
+                        var spInspectRecords = result.spInspectRecords;
+                        for (var i = 0; i < spInspectRecords.length; i++) {
+                            var records = spInspectRecords[i];
+                            $("#inspection_div").append('<div data-id = "' + records.id + '"><p>' + records.residentName + '<span>' + records.proTime + '</span></p><p>' + records.appItem + '</p></div>' +
+                                    '<p class="gray_1"></p>');
+                        }
+                        $("#inspection_div>div").click(function () {
+                            var id = $(this).data("id");
+                            $("#information").show();
+                            $("#head span").text("检验详情");
+                            $("title").text("检验详情");
+                            hf_loading(true);
+                            $.ajax({
+                                type: 'post',
+                                url: spInterfaceService + 'querySpInspectResultInfo.action',
+                                cache: false,
+                                async: true,
+                                data:  {spQueryMessageID: id},
+                                success: function (result) {
+                                    hf_loading(false);
+                                    if(result.mess=='请登录'){
+                                        ale('请登录', '24px');
+                                        link_to("login.html");
+                                    }
+                                    else if(result.mess=='成功'){
+                                        if(result.spInspectRecord!=null){
+                                            var spInspectRecord = result.spInspectRecord;
+                                            $("#information_div ul").html('<li><label>姓名：</label><span>'+spInspectRecord.residentName+'</span></li><li><label>性别：</label><span>'+spInspectRecord.sex+'</span></li>' +
+                                                    '<li><label>年龄：</label><span>'+spInspectRecord.age+'</span></li><li><label>申请项目：</label><span>'+spInspectRecord.appItem+'</span></li>' +
+                                                    '<li><label>申请科室：</label><span>'+spInspectRecord.appDep+'</span></li><li><label>申请人：</label><span>'+spInspectRecord.appDoctor+'</span></li>' +
+                                                    '<li><label>标本：</label><span>'+spInspectRecord.sample+'</span></li><li><label>检验时间：</label><span>'+spInspectRecord.proTime+'</span></li>' +
+                                                    '<li><label>检验人：</label><span>'+spInspectRecord.proDoctor+'</span></li><li><label>采集人：</label><span>'+spInspectRecord.acqDoctor+'</span></li>' +
+                                                    '<li><label>审核时间：</label><span>'+spInspectRecord.audTime+'</span></li><li><label>审核人：</label><span>'+spInspectRecord.audDoctor+'</span></li>');
+                                            if(spInspectRecord.spInspectInfos!=null){
+                                                $("#report_title").show();
+                                                var html = '';
+                                                for(var i=0;i<spInspectRecord.spInspectInfos.length;i++){
+                                                    var record = spInspectRecord.spInspectInfos[i];
+                                                    var j = i+1;
+                                                    html+='<h4>报告'+j+'</h4><ul><li><label>结果：</label><div>'+record.result+'</div></li>' +
+                                                            '<li><label>标志：</label><span>'+record.mark+'</span></li><li><label>单位：</label><span>'+record.unit+'</span></li>' +
+                                                            '<li><label>参考值：</label><span>'+record.reference+'</span></li></ul>'
+                                                }
+                                            }
+                                            $("#information_div").append(html);
+                                            $("#information #head").click(function(){
+                                                $("#information").hide();
+                                                $("#information ul").html("");
+                                                $("title").text("检化验结果");
+                                            })
+                                        }
+                                    }else{
+                                        ale(result.mess.substring(3));
+                                    }
+                                },
+                                error: function () {
+                                    hf_loading(false);
+                                    layer();
+                                }
+                            });
+                        })
+                    }
+                } else {
+                    if (no == 1) {
+                        $("#inspection_div").html("");
+                        no_data("没有相关检验记录");
+                    } else {
+                        if($(".ajaxtips").length==0) {
+                            $("#advice_item").append("<div class='ajaxtips' style='font-size:18px;text-align: center;color: #ff813d'>没有更多检验记录了~</div>");
+                        }
+                        setTimeout(function(){$(".ajaxtips").hide(); $(this).scrollTop($(this).scrollTop()-20);},1000);
+                    }
+                }
+                stop=true;
+            },
+            error: function () {
+                hf_loading(false);
+                layer();
+                console.log(no,flag);
+            }
+        });
+    }
+    //检查记录
+    function check(flag,no){
+        if(stop==true) {
+            stop = false;
+            hf_loading(true);
+            if($(".prompt").length>0){
+                $(".prompt").remove();
+            }
+            $.ajax({
+                type: 'post',
+                url: spInterfaceService + 'querySpCheckRecords.action',
+                cache: false,
+                async: true,
+                data:  {
+                    "timeFlag ":flag,
+                    "pageNo":no,
+                    "visitCardID":n_id,
+                },
+                success: function (result) {
+                    hf_loading(false);
+                    if(result.mess=='请登录'){
+                        ale('请登录', '24px');
+                        link_to("login.html");
+                    }
+                    else if(result.mess=='成功'){
+                        if(result.spCheckRecords!=null){
+                            var spCheckRecords = result.spCheckRecords;
+                            for(var i=0;i<spCheckRecords.length;i++){
+                                var records = spCheckRecords[i];
+                                $("#check_div").append('<div data-id = "'+records.id+'"><p>'+records.residentName+'<span>'+records.appTime+'</span></p><p>'+records.appItem+'</p></div>' +
+                                        '<p class="gray_1"></p>');
+                            }
+                            $("#check_div div").click(function(){
+                                var id = $(this).data("id")
+                                $("#information").show();
+                                $("#head span").text("检查详情");
+                                $("title").text("检查详情");
+                                hf_loading(true);
+                                $.ajax({
+                                    type: 'post',
+                                    url: spInterfaceService + 'querySpCheckReport.action',
+                                    cache: false,
+                                    async: true,
+                                    data:  {spQueryMessageID: id},
+                                    success: function (result) {
+                                        hf_loading(false);
+                                        if(result.mess=='请登录'){
+                                            ale('请登录', '24px');
+                                            link_to("login.html");
+                                        }
+                                        else if(result.mess=='成功'){
+                                            if(result.spCheckRecord!=null){
+                                                var spCheckRecord = result.spCheckRecord;
+                                                $("#information ul").html('<li><label>姓名：</label><span>'+spCheckRecord.residentName+'</span></li><li><label>性别：</label><span>'+spCheckRecord.sex+'</span></li>' +
+                                                        '<li><label>年龄：</label><span>'+spCheckRecord.age+'</span></li><li><label>申请项目：</label><span>'+spCheckRecord.appItem+'</span></li>' +
+                                                        '<li><label>申请科室：</label><span>'+spCheckRecord.appDep+'</span></li><li><label>申请医生：</label><span>'+spCheckRecord.audDoctor+'</span></li>' +
+                                                        '<li><label>申请时间：</label><span>'+spCheckRecord.appTime+'</span></li><li><label>报告医生：</label><span>'+spCheckRecord.audDoctor+'</span></li>' +
+                                                        '<li><label>报告时间：</label><span>'+spCheckRecord.audTime+'</span></li>');
+                                                if(spCheckRecord.spCheckReports!=null){
+                                                    $("#report_title").show();
+                                                    var html = '';
+                                                    for(var i=0;i<spCheckRecord.spCheckReports.length;i++){
+                                                        var report = spCheckRecord.spCheckReports[i];
+                                                        var j = i+1;
+                                                        html+='<h4>报告'+j+'</h4><ul><li><label>描述信息：</label><div>'+report.desInfo+'</div></li>' +
+                                                                '<li><label>提示信息：</label><div>'+report.proInfo+'</div></li></ul>'
+                                                    }
+                                                }
+                                                $("#information").append(html);
+                                                $("#information #head").click(function(){
+                                                    $("#information").hide();
+                                                    $("#information ul").html("");
+                                                    $("title").text("检化验结果");
+                                                })
+                                            }
+                                        }else{
+                                            ale(result.mess.substring(3));
+                                        }
+                                    },
+                                    error: function () {
+                                        hf_loading(false);
+                                        layer();
+                                    }
+                                });
+                            })
+                        }
+                    }else{
+                        if(no==1){
+                            $("#check_div").html("");
+                            no_data("没有相关检查记录");
+                        }else{
+                            if($(".ajaxtips").length==0) {
+                                $("#advice_item").append("<div class='ajaxtips' style='font-size:18px;text-align: center;color: #ff813d'>没有更多检查记录了~</div>");
+                            }
+                            setTimeout(function(){$(".ajaxtips").hide(); $(this).scrollTop($(this).scrollTop()-20);},1000);
+                        }
+                    }
+                    stop=true;
+                },
+                error: function () {
+                    hf_loading(false);
+                    layer();
+                    console.log(no,flag);
+                }
+            });
+        }
+    }
+    $(window).scroll(function() {
+        if ($(this).scrollTop() + $(window).height() + 20 >= $(document).height() && $(this).scrollTop() > 20) {
+            pageNo=pageNo+1;
+            if($(".selected span").text()=="检验结果"){
+                if($("#information_div").css("display")=="none"){
+                    if($(".ajaxtips").length==0) {
+                        inspection(timeFlag, pageNo);
+                    }else{
+                        $(".ajaxtips").show();
+                        setTimeout(function(){$(".ajaxtips").hide(); $(this).scrollTop($(this).scrollTop()-20);},1000);
+                    }
+                }
+            }else{
+                if($(".ajaxtips").length==0) {
+                    check(timeFlag, pageNo);
+                }else{
+                    $(".ajaxtips").show();
+                    setTimeout(function(){$(".ajaxtips").hide(); $(this).scrollTop($(this).scrollTop()-20);},1000);
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>

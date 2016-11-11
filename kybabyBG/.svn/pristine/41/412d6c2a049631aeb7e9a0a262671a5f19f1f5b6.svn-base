@@ -1,0 +1,28 @@
+.fj{
+    width:900px;
+    margin-left:30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.fj label{
+    display: inline-block;
+    width: 120px;
+    text-align: center;
+}
+.fj input{
+    width: 120px;
+}
+.fj select{
+    width: 124px;
+}
+
+.tishi{
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    color: #009DD9;
+    font-weight: bold;
+}
+#bottom_div{
+	height:200px;
+}

@@ -1,0 +1,388 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/beforeConsultation.css">
+    <link rel="stylesheet" href="css/showlargeimage.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/showlargeimage.js"></script>
+    <style>
+        #header {
+            width: 100%;
+            height: 45px;
+            background: #1cba93;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            z-index: 999;
+            color: white;
+        }
+
+        #header .header-left {
+            width: 20%;
+            float: left;
+            line-height: 45px;
+            font-size: 30px;
+            height: 45px;
+        }
+
+        #header .header-center {
+            width: 60%;
+            float: left;
+            line-height: 45px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            font-size: 16px;
+        }
+
+        #header .header-right {
+            width: 20%;
+            float: right;
+            line-height: 45px;
+            height: 45px;
+        }
+
+        #header .header-right div {
+            width: 100%;
+            background: url("images/normalicon/close.png") no-repeat center center;
+            background-size: 18px;
+            height: 45px;
+        }
+
+        #more {
+            display: inline-block;
+            width: 15%;
+            height: 50px;
+            float: left;
+            background: url("images/consulting/more.png") no-repeat center center;
+            background-size: 22px;
+        }
+
+        #showBusiness {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            background: #f0f0f0;
+            width: 100%;
+        }
+
+        #showBusiness ul {
+            overflow: hidden;
+            padding: 0 15px;
+        }
+
+        #showBusiness ul li {
+            width: 25%;
+            float: left;
+            padding: 5px 0;
+            text-align: center;
+            font-size: 12px;
+            line-height: 26px;
+        }
+
+        #showBusiness ul li img {
+            width: 40px;
+        }
+
+        #sendImg {
+            display: block;
+            width: 40px;
+            height: 40px;
+            position: relative;
+            top: -40px;
+            opacity: 0;
+            z-index: 2;
+        }
+
+        .text img {
+            width: 26px;
+            margin-right: 10px;
+        }
+        .liability{
+            padding-top: 15px;
+        }
+        .liability>span{
+            padding: 5px 20px;
+            background:#f7f7f7;
+            border-radius: 6px;
+            font-size: 12px;
+        }
+        footer>.illness_impression{
+            padding: 3px 15px;
+            font-size: 14px;
+        }
+        footer>.illness_impress{
+            padding: 3px 15px;
+            font-size: 12px;
+        }
+        footer>.illness_impress>span{
+            display: inline-block;
+            padding: 2px 6px;
+            color: #ff831d;
+        }
+    </style>
+</head>
+<body style="background-color: white">
+
+<div id="header">
+    <div class="header-left"><p></p></div>
+    <div class="header-center" id="daohanglan"></div>
+    <div class="header-right"></div>
+</div>
+<!--header-->
+
+<div id="container" style="margin: 45px 0 0">
+    <div id="userMessage">
+        <div class="row">
+            姓名：<span id="baby_name"></span>
+        </div>
+        <div class="row text-center">
+            年龄：<span id="baby_birth"></span>
+        </div>
+        <div class="row text-right">
+            性别：<span id="baby_sex"></span>
+        </div>
+    </div>
+    <div class="text_box" id="liaotian"  style="padding-bottom: 50px">
+        <div class="bqbox" id="tagList">
+
+        </div>
+
+    </div>
+</div>
+<footer style="display: none"></footer>
+<script src="js/plugins.js"></script>
+<script>
+    var logId;
+    var audioFileName;
+    var doct_img_ico = '';
+    var user_img_ico = '';
+    var lastDate = '';
+    var packgeId;
+    var submitTime;
+    $(function () {
+        logId = window.location.search.substring(1);
+        $('#container').height($(window).height() - 95);
+        histConsult();
+    });
+
+    function histConsult() {
+        $.ajax({
+            type: 'post',
+            async: false,
+            url: host + 'consultManage.action',
+            data: {action: "detail", logId: logId, 'isEnd': 'Y'},
+            success: function (result) {
+                user_img_ico = result.userImg.toString().split('::')[0];
+                doct_img_ico = result.doctorImg;
+
+                if (doct_img_ico == null || doct_img_ico == 'null' || doct_img_ico == '') {
+                    doct_img_ico = 'lt_doctor.png';
+                }
+                var userMes;
+                if (result.consultBabyInfo != null) {
+                    userMes = result.consultBabyInfo;
+                    $("#baby_name").text(userMes.babyName);
+                    $("#baby_sex").text(userMes.sex);
+                    $.ajax({
+                        type:'post',
+                        url:urlWay.clinicHost+'doctorClinic.action',
+                        cache:false,
+                        async:false,
+                        data:{action : "getCurrentTime"},
+                        success:function(result){
+                            if (result.mes == '请登录') {
+                                ale('请登录', '24px');
+                                window.location.href = "login.html";
+                            }
+                            else if (result.mes == "成功") {
+                                var date=result.currentTime.split(' ')[0];
+                                var year=date.split('-')[0];
+                                var month=date.split('-')[1];
+                                var nowYear=year-userMes.birthday.split('-')[0];
+                                var nowMonth=month-userMes.birthday.split('-')[1];
+                                var babyMonth=nowYear*12+nowMonth;
+                                if(babyMonth<12){
+                                    babyMonth=babyMonth+'个月';
+                                }else{
+                                    if(babyMonth%12==0){
+                                        babyMonth=Math.floor(babyMonth/12)+'岁';
+                                    }else{
+                                        babyMonth=Math.floor(babyMonth/12)+'岁'+babyMonth%12+'个月';
+                                    }
+                                }
+                                $("#baby_birth").text(babyMonth);
+                            }
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+
+                        }
+                    });
+                    $("#daohanglan,title").text('与' + result.userImg.toString().split('::')[1] + '咨询');
+                }
+                if(user_img_ico==null || user_img_ico==''|| user_img_ico== 'null'){
+                    user_img_ico = 'userFaceIcon/lt_user.png';
+                }else{
+                    user_img_ico='userFaceIcon/'+user_img_ico;
+                }
+                if (result.tagNameList != null) {
+                    for (var i = 0; i < result.tagNameList.length; i++) {
+                        $("#tagList").append("<span class='biaoqian'>" + result.tagNameList[i] + "</span>");
+                    }
+                }
+                $('#liaotian').html('');
+                for (var j = 0; j < result.someConsultList.length; j++) {
+
+                    var color = "#fff";
+                    var background = "#4fc1e9"
+                    if (result.someConsultList[j].doctorReply.toString().substring(0, 10).indexOf('导诊建议') != -1) {
+                        result.someConsultList[j].doctorReply = "<span class='dzjy'>导诊建议：</span>" + result.someConsultList[j].doctorReply.toString().substring(5);
+                        color = "rgb(229,78,10)";
+                        background = "rgb(255,195,65)";
+                    }
+                    var showTime = '';
+                    if (j == 0) {
+                        submitTime = result.someConsultList[j].submitTime;
+                        showTime = submitTime;
+                    } else {
+                        var nextSubmitTime = result.someConsultList[j].submitTime;
+                        var compareTime = periodTime(nextSubmitTime);
+                        if (compareTime != false) {
+                            showTime = compareTime;
+                        }
+                    }
+                    if (result.someConsultList[j].isReply == "N") {//用户
+                        if (result.someConsultList[j].symptomImage != null && result.someConsultList[j].symptomImage != "") {//有图
+                            if (result.someConsultList[j].msgType == 2) {//语言
+                                $("#liaotian").append(
+                                        "<div class='consulleft'>" +
+                                        "<div class='consulleft_photo'><img src='" + hostBG + "images/" + user_img_ico + "' width='40'></div>" +
+                                        "<div class='consulleft_txt'>" +
+                                        "<p class='time'>" + showTime + "</p>" +
+                                        "<p class='ysk_yy' onclick='playAndpaused(this)'><audio src='" + hostBG + "voice/" + result.someConsultList[j].doctorReply + "'></audio></p>" +
+                                        "<p class='zz_pic showlargeimage'><img src='" + hostBG + "images/consultPicture/" + result.someConsultList[j].symptomImage + "' /></p>" +
+                                        "</div>" +
+                                        "</div>"
+                                );
+                            } else {
+                                var symptomDescribe = '';
+                                if (result.someConsultList[j].symptomDescribe != '') {
+                                    symptomDescribe = "<p class='text'>" + result.someConsultList[j].symptomDescribe + "</p>";
+                                }
+                                $("#liaotian").append(
+                                        "<div class='consulleft'>" +
+                                        "<p class='time'>" + showTime + "</p>" +
+                                        "<div class='consulleft_photo'><img src='" + hostBG + "images/" + user_img_ico + "' width='40'></div>" +
+                                        "<div class='consulleft_txt'>" +
+                                        symptomDescribe +
+                                        "<p class='zz_pic showlargeimage'><img src='" + hostBG + "images/consultPicture/" + result.someConsultList[j].symptomImage + "' /></p>" +
+                                        "</div>" +
+                                        "</div>"
+                                );
+                            }
+                        } else {
+                            if (result.someConsultList[j].msgType == 2) {
+                                $("#liaotian").append(
+                                        "<div class='consulleft'>" +
+                                        "<p class='time'>" + showTime + "</p>" +
+                                        "<div class='consulleft_photo'><img src='" + hostBG + "images/" + user_img_ico + "' width='40'></div>" +
+                                        "<div class='consulleft_txt'>" +
+                                        "<p class='ysk_yy' onclick='playAndpaused(this)'><audio src='" + hostBG + "voice/" + result.someConsultList[j].doctorReply + "'></audio></p>" +
+                                        "</div>" +
+                                        "</div>"
+                                );
+                            } else {
+                                $("#liaotian").append(
+                                        "<div class='consulleft'>" +
+                                        "<p class='time'>" + showTime + "</p>" +
+                                        "<div class='consulleft_photo'><img src='" + hostBG + "images/" + user_img_ico + "' width='40'></div>" +
+                                        "<div class='consulleft_txt'>" +
+                                        "<p class='text'>" + result.someConsultList[j].symptomDescribe + "</p>" +
+                                        "</div>" +
+                                        "</div>"
+                                );
+                            }
+                        }
+                    } else {
+                        if (result.someConsultList[j].msgType == 2) {
+                            $("#liaotian").append(
+                                    "<div class='consulright'>" +
+                                    "<p class='time'>" + showTime + "</p>" +
+                                    "<div class='consulright_txt'>" +
+                                    "<p class='ysk_yy' onclick='playAndpaused(this)'><audio src='" + hostBG + "voice/" + result.someConsultList[j].doctorReply + "'></audio></p>" +
+                                    "</div>" +
+                                    "<div class='consulright_photo'><img src='" + hostBG + "images/doctorFaceIcon/" + doct_img_ico + "' width='40'></div>" +
+                                    "</div>"
+                            );
+                        } else {
+                            var doctorReply = '';
+                            if (result.someConsultList[j].doctorReply != '') {
+                                if (result.someConsultList[j].doctorReply.indexOf('family_doctor_patient.html') > -1) {
+                                    doctorReply = "<p class='text'>儿科门诊预约</p>";
+                                } else if (result.someConsultList[j].doctorReply.indexOf('family_doctor_erbao.html') > -1) {
+                                    doctorReply = "<p class='text'>儿保门诊预约</p>";
+                                } else if (result.someConsultList[j].doctorReply.indexOf('family_doctor_vaccine.html') > -1) {
+                                    doctorReply = "<p class='text'>计免预约</p>";
+                                }else if(result.someConsultList[j].doctorReply.indexOf('family_doctor_expert_team.html')>-1){
+                                    doctorReply="<p class='text'>推荐团队</p>";
+                                }
+                                else {
+                                    doctorReply = "<p class='text'>" + result.someConsultList[j].doctorReply + "</p>";
+                                }
+                            } else if (result.someConsultList[j].doctorReplyImg != '' || result.someConsultList[j].doctorReplyImg != null) {
+                                doctorReply = "<p class='image showlargeimage'><img src='" + hostBG + "images/consultPicture/" + result.someConsultList[j].doctorReplyImg + "'/></p>";
+                            }
+                            $("#liaotian").append(
+                                    "<div class='consulright'>" +
+                                    "<p class='time'>" + showTime + "</p>" +
+                                    "<div class='consulright_txt'>" +
+                                    doctorReply +
+                                    "</div>" +
+                                    "<div class='consulright_photo'><img src='" + hostBG + "images/doctorFaceIcon/" + doct_img_ico + "' width='40'></div>" +
+                                    "</div>"
+                            );
+                        }
+                    }
+                }
+                if(result.consultIllRecordList!=null && result.consultIllRecordList.length!=0){
+                    var commonDiseaseListHtml='<div class="illness_impress">';
+                    for (var j= 0,len=result.consultIllRecordList.length;j<len;j++){
+                        commonDiseaseListHtml+='<span>'+result.consultIllRecordList[j].commonDisease.allName+'</span>';
+                    }
+                    commonDiseaseListHtml+='</div>';
+                    $("footer").html('<p class="illness_impression">病情印象：</p>'+commonDiseaseListHtml).css({height:"auto"}).show();
+                }
+                if (result.someConsultList[result.someConsultList.length - 1].submitTime != lastDate) {
+                    $('#container').scrollTop(1000000);
+                    lastDate = result.someConsultList[result.someConsultList.length - 1].submitTime;
+                }
+                showLargeImage.showImage();
+            }
+        });
+    }
+    function periodTime(nextSubmitTime) {//5分钟一段时间显示
+        var showTime;
+        submitTimeHour = submitTime.split(' ')[1].split(':')[0];
+        submitTimeMin = submitTime.split(' ')[1].split(':')[1];
+        nextSubmitTimeHour = nextSubmitTime.split(' ')[1].split(':')[0];
+        nextSubmitTimeMin = nextSubmitTime.split(' ')[1].split(':')[1];
+
+        if ((nextSubmitTimeHour - submitTimeHour) * 60 + nextSubmitTimeMin - submitTimeMin > 5) {
+            submitTime = nextSubmitTime;
+            showTime = nextSubmitTime;
+            return showTime;
+            //console.log(nextSubmitTimeHour+'=='+submitTimeHour+'=='+nextSubmitTimeMin+'=='+submitTimeMin+'=='+j);
+        }
+        return false;
+    }
+</script>
+</body>
+</html>

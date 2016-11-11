@@ -1,0 +1,136 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>儿保套餐项目</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/orgservice.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/config.js"></script>
+    <style>
+        #plan_ul{
+            overflow: auto;
+        }
+        .plan_li{
+            border-bottom: 1px solid #e8e8e8;
+            padding: 8px 18px;
+            background: #efefef;
+            /*position: absolute;*/
+            left: 0px;
+        }
+        .plan_li>p{
+            line-height: 28px;
+        }
+        .plan_times{
+            font-size: 18px;
+        }
+        .plan_item{
+            height: 28px;
+            font-size: 14px;
+            color: #8C8C8C;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .select{background: #FF813D}
+        .select>.plan_times,.select>.plan_item{
+            color: #fff;
+        }
+        /*.has_been{background: #efefef;border-color: #e8e8e8}*/
+        #header{
+            border-bottom: 1px solid #e8e8e8;
+        }
+    </style>
+</head>
+<body>
+
+<div id="header">
+    <div class="header-left" onclick="return_before()"><span>儿保套餐项目</span></div>
+    <div class="header-center"></div>
+    <div class="header-right"></div>
+</div>
+<!--header-->
+<div id="container" style="margin-bottom: 0">
+    <div id="searchbox">
+        <div class="searchf">
+            <input placeholder="请输入标题查询" type="text"/>
+            <!--<img onclick="searchMessage()" src="images/iconfont-sousuo.png" alt=""/>-->
+            <span id="search" onclick="searchMessage()"></span>
+        </div>
+    </div>
+    <div>
+        <ul id="plan_ul">
+            <!--<li class="plan_li">-->
+                <!--<p class="plan_times">4个月</p>-->
+                <!--<p class="plan_item">儿保、中医保健、儿保、中医保健</p>-->
+            <!--</li>-->
+            <!--<li class="plan_li has_been">-->
+                <!--<p class="plan_times">2个月</p>-->
+                <!--<p class="plan_item">儿保、中医保健、儿保、中医保健</p>-->
+            <!--</li>-->
+            <!--<li class="plan_li select">-->
+                <!--<p class="plan_times">3个月</p>-->
+                <!--<p class="plan_item">儿保、中医保健、儿保、中医保健</p>-->
+            <!--</li>-->
+        </ul>
+    </div>
+</div>
+<!--container-->
+<script>
+    $(function(){
+        var num="";
+        var childcareProjectTypeId = window.location.href.split("?")[1].split("&")[1];
+        $.ajax({
+            type:'post',
+            url:hostOrgbusiness+'childCareChargeManage.action',
+            cache:false,
+            async:false,
+            data:{
+                action:"getChildcareProjectList",
+                "childcareProjectType.id":childcareProjectTypeId
+            },
+            success:function(result){
+                var item = result.childcareProjectList;
+                if(item!=0){
+                    var data = window.location.href.split("?")[1].split("&")[0];
+                    for(var i=0;i<item.length;i++){
+                        $("#plan_ul").append("<li class='plan_li'><p class='plan_times'>"+item[i].projectTitle+"</p><p class='plan_item'>"+item[i].projectContent+"</p></li>");
+                        if(data==item[i].id){
+                            $(".plan_li").eq(i).addClass("select");
+                            num = item[i].sort-1;
+                        }
+                    }
+                }
+            },
+            error:function(){
+                layer();
+            }
+        });
+        $("#plan_ul").height($(window).height()-($("#header").height())-($(".searchbox").height()));
+//        $("#plan_ul").height($(window).height()-(45+52+20+5));
+        var topValue = 73 * num;
+        $("#plan_ul").scrollTop(topValue);
+    });
+    function searchMessage(){
+        var val=$('#searchbox input').val().trim();
+        var list=$('.plan_times');
+        $('.plan_li').hide();
+        if(val==''|| val == null){
+            $('.plan_li').show();
+        }else{
+            $(list).each(function () {
+                var text=$(this).text().trim();
+                if(text.indexOf(val)>-1){
+                    $(this).parent().show();
+                }
+            });
+        }
+    }
+</script>
+<script src="js/main.js"></script>
+<script src="js/plugins.js"></script>
+</body>
+</html>

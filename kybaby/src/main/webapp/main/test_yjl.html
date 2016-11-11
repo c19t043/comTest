@@ -1,0 +1,396 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>lalalal</title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="x-ua-compatible" content="=ie=edge"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <script src="js/jquery-2.1.3.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #gameTable{
+            margin: 60px auto;
+            overflow: hidden;
+            text-align: center;
+            font-size: 22px;
+            color: #FF813d;
+            list-style: none;
+            display: none;
+        }
+        #gameTable>li{
+            float: left;
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            border: 1px solid #d5d5d5;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        .gameSnake{
+            margin: 60px auto;
+            text-align: center;
+            font-size: 12px;
+            color: #FF813d;
+            display: none;
+            position: relative;
+        }
+        #gameSnake{
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            list-style: none;
+        }
+        #gameSnake>li{
+            float: left;
+            width: 15px;
+            height: 15px;
+            font-size: 12px;
+            line-height: 15px;
+            border: 1px solid #d5d5d5;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            background: #f4f4f4;
+            overflow: hidden;
+        }
+        #food{
+            position: absolute;
+            background: blueviolet;
+            width: 15px;
+            height: 15px;
+        }
+        .snake{
+            position: absolute;
+            background: blue;
+            width: 15px;
+            height: 15px;
+            /*-webkit-transition: all 0.5s;*/
+            /*-moz-transition: all 0.5s;*/
+            /*-ms-transition: all 0.5s;*/
+            /*-o-transition: all 0.5s;*/
+            /*transition: all 0.5s;*/
+        }
+        .snake:nth-child(1){
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<ul id="gameTable">
+
+</ul>
+<div id="chooseDifficulty" style="display: none">
+    <p onclick="gameTable.getRandomArr(9)">3*3</p>
+    <p onclick="gameTable.getRandomArr(16)">4*4</p>
+    <p onclick="gameTable.getRandomArr(25)">5*5</p>
+</div>
+<div class="gameSnake">
+    <ul id="gameSnake">
+
+    </ul>
+    <div id="food">
+
+    </div>
+    <div id="snake">
+        <div class="snake" der="right" data-x="10" data-y="10"></div>
+        <div class="snake" der="right" data-x="9" data-y="10"></div>
+        <div class="snake" der="right" data-x="8" data-y="10"></div>
+    </div>
+</div>
+<div id="snakeDifficulty" style="display: none">
+    <p onclick="gameSnake.showGame(30)">30*30</p>
+    <p onclick="gameSnake.showGame(40)">40*40</p>
+    <p onclick="gameSnake.showGame(50)">50*50</p>
+</div>
+<script>
+    var height=0;
+
+    $(function () {
+        //gameTable.getRandomArr(9);
+        gameSnake.showGame(30);
+    });
+    var gameSnake= function () {
+        return {
+            timeOut:null,
+            showGame: function (number) {//贪吃蛇显示格子
+                var html='';
+                var x=0,y=1;
+                for(var i= 0;i<number*number;i++){
+                    if(i%number==0){
+                        y=i/number+1;
+                        x=1;
+                    }else{
+                        x++;
+                    }
+                    html+='<li data-x="'+x+'" data-y="'+y+'"></li>';
+                }
+                $('.gameSnake').css({width:number*15,height:number*15}).show();
+                $('#gameSnake').html(html).css({width:number*15,height:number*15});
+                $('#snakeDifficulty').show();
+                this.snakeStart(number);
+            },
+            snakeStart: function (number) {//蛇的初始化
+                $('.snake').eq(0).css({left:9*15,top:9*15});
+                $('.snake').eq(1).css({left:8*15,top:9*15});
+                $('.snake').eq(2).css({left:7*15,top:9*15});
+                this.foodRandom(number);
+            },
+            foodRandom : function (number) {//随机出现食物
+                var coordinates_x=Math.ceil(Math.random()*number);
+                var coordinates_y=Math.ceil(Math.random()*number);
+                $('#food').attr('data-x',coordinates_x).attr('data-y',coordinates_y).css({'left':(coordinates_x-1)*15,'top':(coordinates_y-1)*15});
+                var isEat=this.snakeEatFood('Initialize',number);
+                if(isEat){//没吃
+                    this.keyDownEvent(number);
+                    this.snakeMove(number);
+                }
+            },
+            snakeMove: function (number) {//蛇自己跑
+                gameSnake.timeOut=setInterval(function () {
+                    var snakeObj=$('.snake');//当前蛇位置元素
+                    for(var i= snakeObj.length-1;i>=0;i--){//修改蛇属性
+                        var prevDer=$(snakeObj).eq(i-1).attr('der');
+                        var now_x=parseInt($(snakeObj).eq(i).attr('data-x'));
+                        var now_y=parseInt($(snakeObj).eq(i).attr('data-y'));
+                        switch (prevDer){
+                            case 'left' :
+                                $(snakeObj).eq(i).attr('der',prevDer).attr('data-x',now_x-1);
+                                break;
+                            case 'top' :
+                                $(snakeObj).eq(i).attr('der',prevDer).attr('data-y',now_y-1);
+                                break;
+                            case 'right' :
+                                $(snakeObj).eq(i).attr('der',prevDer).attr('data-x',now_x+1);
+                                break;
+                            case 'bottom' :
+                                $(snakeObj).eq(i).attr('der',prevDer).attr('data-y',now_y+1);
+                                break;
+                        }
+                    }
+                    var snakeNowObj=$('.snake');//修改蛇属性后元素
+                    $(snakeNowObj).each(function () {//设置当前位置
+                        var x=parseInt($(this).attr('data-x'));
+                        var y=parseInt($(this).attr('data-y'));
+                        $(this).animate({"left":(x-1)*15,"top":(y-1)*15},500);
+                    });
+                },500);
+                gameSnake.snakeEatFood('Normal',number);
+            },
+            snakeEatFood: function (type,number) {//蛇吃食物
+                var data_x=$('#food').attr('data-x');
+                var data_y=$('#food').attr('data-y');
+                var snake=$('.snake');
+                $(snake).each(function (index) {
+                    if($(this).attr('data-x')==data_x && $(this).attr('data-y')==data_y){
+                        if(type=='Initialize'){//判断食物出现时是不是在蛇身上
+                            return false;
+                        }else{
+                            var lastSnake=$('.snake:last');
+                            var der=$(lastSnake).attr('der');
+                            switch (der){
+                                case 'left':
+                                    var left_x=parseInt($(lastSnake).attr('data-x'))+1;
+                                    $('#snake').append($(lastSnake).clone().attr('data-x',left_x));
+                                    $('.snake:last').css({left:(left_x-1)*15});
+                                    break;
+                                case 'top':
+                                    var left_y=parseInt($(lastSnake).attr('data-y'))+1;
+                                    $('#snake').append($(lastSnake).clone().attr('data-y',left_y));
+                                    $('.snake:last').css({left:(left_y-1)*15});
+                                    break;
+                                case 'right':
+                                    var left_x=parseInt($(lastSnake).attr('data-x'))-1;
+                                    $('#snake').append($(lastSnake).clone().attr('data-x',left_x));
+                                    $('.snake:last').css({left:(left_x-1)*15});
+                                    break;
+                                case 'bottom':
+                                    var left_y=parseInt($(lastSnake).attr('data-y'))-1;
+                                    $('#snake').append($(lastSnake).clone().attr('data-y',left_y));
+                                    $('.snake:last').css({left:(left_y-1)*15});
+                                    break;
+                            }
+                        }
+                        gameSnake.foodRandom(number);
+                        return false;
+                    }
+                });
+                return true;
+            },
+            keyDownEvent: function (number) {//按键事件
+                $(window).keydown(function (e) {
+                    var ev= e ||window.event;
+                    var headDer=$('.snake:first').attr('der');//蛇头的方向
+                    switch (ev.keyCode){
+                        case 37 :
+                            if(headDer=='left' || headDer=='right'){//按下左键，如果蛇头方向为左右，这不执行左键
+                                return false;
+                            }
+                            gameSnake.isGameOver(number,'left');
+                            break;
+                        case 38 :
+                            if(headDer=='top' || headDer=='bottom'){
+                                return false;
+                            }
+                            gameSnake.isGameOver(number,'top');
+                            break;
+                        case 39 :
+                            if(headDer=='left' || headDer=='right'){
+                                return false;
+                            }
+                            gameSnake.isGameOver(number,'right');
+                            break;
+                        case 40 :
+                            if(headDer=='top' || headDer=='bottom'){
+                                return false;
+                            }
+                            gameSnake.isGameOver(number,'bottom');
+                            break;
+                    }
+                });
+            },
+            isGameOver: function (number,headDer) {//判断游戏是否结束
+                var headSnake=$('.snake:first');
+                var data_x=parseInt($(headSnake).attr('data-x'));
+                var data_y=parseInt($(headSnake).attr('data-y'));
+                switch (headDer){//通过蛇头判断是否结束
+                    case 'left' :
+                        if(data_x==1){
+                            alert('结束');
+                        }
+                        data_x--;
+                        break;
+                    case 'top' :
+                        if(data_y==1){
+                            alert('结束');
+                        }
+                        data_y--;
+                        break;
+                    case 'right' :
+                        if(data_x==number){
+                            alert('结束');
+                        }
+                        data_x++;
+                        break;
+                    case 'bottom' :
+                        if(data_y==number){
+                            alert('结束');
+                        }
+                        data_y++;
+                        break;
+                }
+                var snakeObj=$('.snake');//当前蛇位置元素
+                for(var i= snakeObj.length-1;i>0;i--){//修改蛇属性
+                    var prevDer=$(snakeObj).eq(i-1).attr('der');
+                    var now_x=parseInt($(snakeObj).eq(i).attr('data-x'));
+                    var now_y=parseInt($(snakeObj).eq(i).attr('data-y'));
+                    if(data_y==now_y && now_x==data_x){//蛇头在蛇身上
+                        alert('结束');
+                        return false;
+                    }
+                    switch (prevDer){
+                        case 'left' :
+                            $(snakeObj).eq(i).attr('der',prevDer).attr('data-x',now_x-1);
+                            break;
+                        case 'top' :
+                            $(snakeObj).eq(i).attr('der',prevDer).attr('data-y',now_y-1);
+                            break;
+                        case 'right' :
+                            $(snakeObj).eq(i).attr('der',prevDer).attr('data-x',now_x+1);
+                            break;
+                        case 'bottom' :
+                            $(snakeObj).eq(i).attr('der',prevDer).attr('data-y',now_y+1);
+                            break;
+                    }
+                }
+                $(headSnake).attr('data-x',data_x).attr('data-y',data_y).attr('der',headDer);
+                setTimeout(function () {
+                    var snakeNowObj=$('.snake');//修改蛇属性后元素
+                    $(snakeNowObj).each(function () {//设置当前位置
+                        var x=parseInt($(this).attr('data-x'));
+                        var y=parseInt($(this).attr('data-y'));
+                        $(this).animate({"left":(x-1)*15,"top":(y-1)*15},500);
+                    });
+                },500);
+                gameSnake.snakeEatFood('Normal',number);
+            }
+        }
+    }();
+    var gameTable= function () {//简单九宫格游戏
+        return {
+            nullNum:null,
+            success:[],
+            getRandomArr: function (number) {//游戏开始获取随机数
+                var randomArr=[];
+                var html='';
+                for(var i= 0;i<number;i++){
+                    this.getRandom(randomArr,number);
+                }
+                for(var j= 0;j<number;j++){
+                    var n=j;
+                    if(j+1==number){
+                        n='';
+                    }else{
+                        n++;
+                    }
+                    this.success.push(n);
+                    var text=randomArr[j];
+                    if(randomArr[j]==number){
+                        text='';
+                        this.nullNum=j;
+                    }
+                    html+='<li data-index="'+j+'">'+text+'</li>';
+                }
+                $('#gameTable').html(html).css({width:Math.sqrt(number)*100+'px',height:Math.sqrt(number)*100+'px'}).show();
+                $('#chooseDifficulty').show();
+                this.canMove(number);
+            },
+            getRandom: function (arr,number) {//获取随机数组【1-number】
+                var num=Math.ceil(Math.random()*number);
+                if($.inArray(num,arr)==-1){
+                    arr.push(num);
+                    return arr;
+                }else{
+                    this.getRandom(arr,number);
+                }
+            },
+            canMove: function (number) {
+                $('#gameTable>li').click(function () {//可以移动的
+                    var _this=this;
+                    if($(_this).text()==''){//如果是空的结束
+                        return false;
+                    }
+                    var index=parseInt($(_this).attr('data-index'));//当前元素index
+                    var canMoveArr=[index-Math.sqrt(number),index-1,index+1,index+Math.sqrt(number)];//当前元素上下左右index
+                    if($.inArray(gameTable.nullNum,canMoveArr)==-1){//不在数组这不可移动
+                        return false;
+                    }
+                    $('#gameTable>li[data-index='+gameTable.nullNum+']').text($(_this).text());
+                    $(_this).text('');
+                    gameTable.nullNum=index;
+                    gameTable.isSuccess();
+                });
+            },
+            isSuccess: function () {//是否成功
+                var obj=$('#gameTable>li');
+                var time=0;
+                $(obj).each(function (i) {//索引和文本匹配
+                    var num=$(this).text();
+                    if(gameTable.success[i]!=num){//有一个不匹配这不匹配
+                        time=1;
+                        return false;
+                    }
+                });
+                if(time==1){
+                    return false;
+                }
+                alert('通关成功!');
+            }
+        }
+    }();
+</script>
+</body>
+</html>

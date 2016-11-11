@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<script src="js/jquery-1.11.3.min.js"></script>
+<title>康优宝贝</title>
+</head>
+
+<body style="width:100%;margin:0px;padding:0px;background-color:#fafafa;">
+<div><img id="imageId" src="images/ba_02.png"/ style="width:100%;height:100%; display: none; "></div>
+
+<form name="alipayment" action="../alipay/alipayapi.jsp" method="post" id="alipayment">
+	 	<input type="hidden" id="WIDseller_email" name="WIDseller_email">
+	 	<input type="hidden" id="WIDout_trade_no" name="WIDout_trade_no">
+	 	<input type="hidden" id="WIDsubject" name="WIDsubject">
+	 	<input type="hidden" id="WIDtotal_fee" name="WIDtotal_fee">
+        <input type="hidden" id="business_category" name="business_category">
+        <input type="hidden" id="useBalanceAll" name="useBalanceAll">
+        <input type="hidden" id="useDiscountMoney" name="useDiscountMoney">
+        <input type="hidden" id="doctorId" name="doctorId">
+</form>
+
+<script>
+    var ua = window.navigator.userAgent.toLowerCase();
+    //ale("Type="+ua.match(/MicroMessenger/i));
+    //ale("Result="+ua.match(/MicroMessenger/i) != 'micromessenger');
+    if(ua.match(/MicroMessenger/i) != 'micromessenger'){
+    //ale("JOIN IN");
+       arrHref=decodeURIComponent(window.location.search.substring(1)).split("&");
+
+       WIDseller_email=arrHref[0].split("=")[1];
+       WIDout_trade_no=arrHref[1].split("=")[1];
+       WIDsubject=arrHref[2].split("=")[1];
+       WIDtotal_fee=arrHref[3].split("=")[1];
+       business_category=arrHref[4].split("=")[1];
+        if(business_category){
+            useBalanceAll=arrHref[5].split("=")[1];
+            useDiscountMoney=arrHref[6].split("=")[1];
+            doctorId=arrHref[7].split("=")[1];
+            $("#business_category").val(business_category);
+            $("#useBalanceAll").val(useBalanceAll);
+            $("#useDiscountMoney").val(useDiscountMoney);
+            $("#doctorId").val(doctorId);
+        }
+       //var flag="false::"+qu+"::"+jiedao+"::"+xiangxi;
+
+       /* ale("flag="+flag);
+       ale("WIDseller_email="+WIDseller_email);
+       ale("WIDout_trade_no="+WIDout_trade_no);
+       ale("WIDsubject="+WIDsubject);
+       ale("WIDtotal_fee="+WIDtotal_fee); */
+
+
+       //$("#flag").val(flag);
+       $("#WIDseller_email").val(WIDseller_email);
+       $("#WIDout_trade_no").val(WIDout_trade_no);
+       $("#WIDsubject").val(WIDsubject);
+       $("#WIDtotal_fee").val(WIDtotal_fee);
+
+       //ale("JOIN IN");
+
+       $("#alipayment").submit();
+
+       //ale("JOIN IN");
+
+      /*  $.ajax({
+ 	         	url:'../userzone/sessionManage.action',
+		        cache:false,
+		        async:false,
+		        type:'post',
+		        data:{action:"addAddress",area:qu,street:jiedao,detailAddress:xiangxi},
+		        success:function(result) {
+                    if(result.mes=="添加成功"){
+        				window.location.href="../alipay/alipayapi.jsp?"+WIDseller_email+"&"+WIDout_trade_no+"&"+WIDsubject+"&"+WIDtotal_fee;
+
+                    }
+		        }
+ 	    	 }); */
+    }else{
+    	$("#imageId").show();
+    }
+  </script>
+</body>
+
+</html>

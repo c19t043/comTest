@@ -1,0 +1,119 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/config.js"></script>
+    <style>
+        .health_information>span{
+            display: inline-block;
+            margin: 0 15px;
+            color:#e8e8e8;
+        }
+        .effective_time{
+            text-align: right;
+            color: #909090;
+        }
+        .health_information_div{
+            padding: 12px 15px;
+            line-height: 32px;
+            box-shadow: 0px 5px 5px 0px #eee;
+            background: #F7F7F7;
+        }
+    </style>
+</head>
+<body>
+
+<div id="header" class="doctor_header">
+    <div class="header-left"><p></p></div>
+    <div class="header-center"></div>
+    <div class="header-right">
+        <div></div>
+    </div>
+</div>
+<!--header-->
+
+<div id="container">
+    <div class="health_information_div">
+        <p class="health_information"></p>
+        <!--<p class="effective_time">有效时间：2011-11-11至2012-12-12</p>-->
+    </div>
+    <p class="gray_3"></p>
+    <div class="package_item" onclick="goLink('health_record_new.html')">
+        <div class="package_name">基本信息</div>
+        <div class="page_jump_arrow"></div>
+    </div>
+    <p class="gray_3"></p>
+    <div class="package_item" onclick="goLink('userpatient_list.html')">
+        <div class="package_name">门诊记录</div>
+        <div class="page_jump_arrow"></div>
+    </div>
+    <p class="gray_3"></p>
+    <div class="package_item" onclick="goLink('family_doctor_hisrecord.html')">
+        <div class="package_name">儿保记录</div>
+        <div class="page_jump_arrow"></div>
+    </div>
+    <p class="gray_3"></p>
+    <div class="package_item">
+        <div class="package_name" onclick="goLink('family_doctor_vaccine_record.html')">计免记录</div>
+        <div class="page_jump_arrow"></div>
+    </div>
+    <p class="gray_3"></p>
+    <!--<div class="package_item">-->
+        <!--<div class="package_name">成长记录</div>-->
+        <!--<div class="page_jump_arrow"></div>-->
+    <!--</div>-->
+    <!--<p class="gray_3"></p>-->
+    <!--<div class="package_item">-->
+        <!--<div class="package_name">成长曲线</div>-->
+        <!--<div class="page_jump_arrow"></div>-->
+    <!--</div>-->
+    <!--<p class="gray_3"></p>-->
+</div>
+<!--container-->
+<!--footer-->
+
+
+<script src="js/plugins.js"></script>
+<script>
+    var userId=window.location.search.substring(1);
+    $(function () {
+        $.ajax({
+            type: 'post',
+            url: urlWay.fdmanage + 'fdUserManage.action',
+            cache: false,
+            async: false,
+            data: {
+                action: "getUserInfoAtDoctor",
+                "userInfo.id":userId
+            },
+            success: function (result) {
+                if (result.mes == '请登录') {
+                    ale('请登录', '24px');
+                    window.location.href = "login.html";
+                }
+                else if (result.mes == "成功") {
+                    var user=result.userInfo;
+                    $('title,.header-center').html(user.babyName+'健康记录');
+                    $('.health_information').html(user.babyName+'<span>&#124;</span>'+user.sex+'<span>&#124;</span>'+user.moonSage+'个月');
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                layer();
+            }
+        });
+
+    });
+    function goLink(url){
+        window.location.href=url+'?'+userId;
+    }
+</script>
+
+</body>
+</html>

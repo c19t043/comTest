@@ -1,0 +1,104 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>我的订单</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/myorder.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/myorder.js"></script>
+</head>
+<body>
+
+<div id="header">
+    <div class="header-left"></div>
+    <div class="header-center">我的订单</div>
+    <div class="header-right"></div>
+</div>
+<!--header-->
+
+<div id="container">
+    <p class="gray_2"></p>
+    <div class="ul_box">
+        <ul id="ul_cli">
+            <li class="blue">全部</li>
+            <li>已接单</li>
+            <li>已签到</li>
+            <li>已取消</li>
+            <li>已完成</li>
+        </ul>
+    </div>
+    <!--<p class="gray_1"></p>-->
+    <!--内容-->
+    <!--<div class="info_box">
+        <span class="top_sj" id="orderTime"></span>
+        <p class="gray_2"></p>
+        <div class="info">
+            <div class="img">
+
+            </div>
+            <div class="text_box">
+                <span>服务产品</span>&nbsp;<span  class="font1" id="productName"></span><br/>
+                <span  class="font1">家长姓名：</span><span  class="font1" id="parentName"></span><br/>
+                <span  class="font1">手机号：</span><span  class="font1" id="phoneNum"></span><br/>
+                <span  class="font1">地址：</span><span  class="font1 SL" id="address"></span>
+            </div>
+        </div>
+        <p class="gray_2"></p>
+        <div class="top_je " id="inButtom">
+                <span>收入金额：</span>
+              <span class="font2" id="myMoney"></span>
+                  <span class="button" id="status">已下单</span>
+        </div>
+    </div>
+-->
+</div>
+
+
+
+
+
+<!--container-->
+
+<div id="footer">
+    <ul>
+
+        <a href="consultation.html">
+            <li >
+                <p><img src="images/footer_icon01_off.png" width="23"></p>
+                <p>咨询</p>
+            </li>
+        </a>
+        <a href="javascript:void(0)">
+            <li class="select">
+                <p><img src="images/footer_icon02_on.png" width="23"></p>
+                <p>订单</p>
+            </li>
+        </a>
+				<a href="chatCircle.html">
+					<li>
+						<p><img src="images/footer_icon04_off.png" width="23"></p>
+						<p>医生圈</p>
+					</li>
+				</a>
+        <a href="personalcenter.html">
+            <li>
+                <p><img src="images/footer_icon03_off.png" width="23"></p>
+                <p>个人</p>
+            </li>
+        </a>
+    </ul>
+</div>
+<!--footer-->
+
+
+
+<script src="js/plugins.js"></script>
+
+</body>
+</html>

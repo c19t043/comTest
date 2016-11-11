@@ -1,0 +1,55 @@
+.row {
+  width: 100%;
+  background-color: white;
+  clear: both;
+  overflow: hidden;
+}
+#container{
+  font-size: 15px;
+}
+.row label {
+  display: inline-block;
+  width: 30%;
+  line-height: 50px;
+  text-indent: 1em;
+  float: left;
+}
+
+.row span {
+  display: inline-block;
+  width: 60%;
+  color: darkgrey;
+  line-height: 50px;
+}
+
+.row input {
+  width: 60%;
+  color: darkgrey;
+  line-height: 50px;
+  border: 0;
+}
+
+.sex {
+  width: 60%;
+  color: darkgrey;
+  border: 0;
+  height: 40px;
+  margin: 5px 0 5px 0;
+  outline: none;
+}
+
+#city {
+  height: 50px;
+  line-height: 50px;
+}
+
+#city select {
+  width: 23%;
+  color: darkgrey;
+  border: 0;
+  height: 24px !important;
+  line-height: 24px !important;
+  margin: 5px 0 5px 0;
+  outline: none;
+  background: #fff;
+}

@@ -1,0 +1,240 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>医嘱处方列表</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <!--<link rel="stylesheet" href="css/consult.css"/>-->
+    <link rel="stylesheet" href="css/payMethodCover.css"/>
+    <link rel="stylesheet" href="css/hospital.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/MD5.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/wx_weixinpay.js"></script>
+    <script src="js/hospital.js"></script>
+    <!--<script src="js/hospital_screening.js"></script>-->
+    <style>
+        body{
+            background: #f4f4f4;
+        }
+        #advice_list{
+            background: #fff;
+            font-size: 15px;
+        }
+        #advice_list>div{
+            padding: 0 15px;
+            line-height: 50px;
+            background-image: url("images/next.png");
+            background-repeat: no-repeat;
+            background-position: right center;
+            background-size: 9px;
+            margin-right: 12px;
+        }
+        #advice_list>div>p,#inspection_div>div>p{
+            overflow: hidden;
+        }
+        #advice_list>div span,#inspection_div>div span{
+            float: right;
+            color: #909090;
+        }
+
+        .pay_cost_list{
+            background: #ffffff;
+            margin-bottom: 10px;
+            padding: 0 18px;
+            line-height: 40px;
+            width: 100%;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        .message{
+            padding: 8px 40px 8px 0;
+            background: url("images/images_icon/next.png") center right no-repeat;
+            background-size: 10px;
+            position: relative;
+        }
+        .color-gray{
+            font-size: 14px;
+        }
+        #information li{
+            padding: 0 15px;
+            line-height: 50px;
+            font-size: 15px;
+            border-bottom: 1px solid #e8e8e8;
+            background: #fff;
+        }
+        #information label{
+            width: 80px;
+        }
+        #information li{
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-box;
+            display: -o-box;
+            display: box;
+        }
+        #information div,#information li span{
+            text-align: left;
+            display: block;
+            -webkit-box-flex: 1;
+            -moz-box-flex: 1;
+            -ms-box-flex: 1;
+            -o-box-flex: 1;
+            box-flex: 1;
+        }
+    </style>
+</head>
+<body>
+
+<div id="header">
+    <div class="header-left" onclick="return_before();"><span>医嘱处方列表</span></div>
+    <div class="header-center"></div>
+    <div class="header-right"></div>
+</div>
+<!--header-->
+<div id="container">
+    <ul class="nav" id="nav1">
+        <li class="selected"><span>本月记录</span></li>
+        <li><span>历史记录</span></li>
+    </ul>
+    <div id="advice_list">
+        <!--<div class="advice_item" onclick="window.location.href='hospital_advice_detail.html?'+10">-->
+            <!--<p>王洋 <span>2015-03-15</span></p>-->
+            <!--<p>执行科室</p>-->
+        <!--</div>-->
+    </div>
+</div>
+<div id="information">
+    <div id="head"><span>医嘱处方详情</span></div>
+    <p class="gray_s"></p>
+    <div id="information_div"><ul></ul></div>
+</div>
+<script>
+    var timeFlag,pageNo,stop=true;
+    var n_id = window.location.search.substring(1);
+    $(function() {
+        timeFlag = 1;//1为本月记录
+        pageNo = 1;//分页
+        loading(timeFlag, pageNo);
+        $("#nav1>li").click(function () {
+            pageNo=1;
+            $("#advice_list").html("");
+            $(this).addClass("selected").siblings("li").removeClass("selected");
+//            $("#container>ul").eq($(this).index()).show().siblings("ul").hide();
+            if ($(this).children("span").text() == "本月记录") {
+                timeFlag = 1;
+            } else {
+                timeFlag = 0;
+            }
+            loading(timeFlag, pageNo);
+        })
+    })
+    function loading(flag,no){
+        if(stop==true){
+            stop=false;
+            hf_loading(true);
+            if($(".prompt").length>0){
+                $(".prompt").remove();
+            }
+            $.ajax({
+                type: 'post',
+                url: spInterfaceService + 'queryDoctorAdvisesInfoOfUserOwned.action',
+                cache: false,
+                async: true,
+                data:  {
+                    "timeFlag ":flag,
+                    "pageNo":no,
+                    "visitCardID":n_id,
+                },
+                success: function (result) {
+                    hf_loading(false);
+                    if(result.mess=='请登录'){
+                        ale('请登录', '24px');
+                        link_to("login.html");
+                    }
+                    else if(result.mess=='成功'){
+                        if(result.doctorAdviseInfos.length>0){
+                            var adviseInfos = result.doctorAdviseInfos;
+                            for(var i=0;i<adviseInfos.length;i++){
+                                var adviseInfo = adviseInfos[i];
+                                $("#advice_list").append('<div class="advice_item" data-id="'+adviseInfo.id+'"><p>'+adviseInfo.spVisitRecord.residentName+'<span>'+adviseInfo.date+'</span></p>' +
+                                        '<p>'+adviseInfo.openDoctor+'</p><p>'+adviseInfo.exedep+'</p></div><p class="gray_1"></p>');
+                            }
+                            $(".advice_item").click(function(){
+                                var id = $(this).data("id");
+                                $("#information").show();
+                                $("title").text("医嘱处方详情");
+                                $.ajax({
+                                    type:'post',
+                                    url:spInterfaceService+'queryDoctorAdvisesInfo.action',
+                                    cache:false,
+                                    async:true,
+                                    data:{spQueryMessageID:id},
+                                    success:function(result){
+                                        if(result.mess=='成功'){
+                                            if(result.doctorAdviseInfo!=null){
+                                                var adviseInfo = result.doctorAdviseInfo;
+                                                $("#information ul").html('<li><label>开嘱医生：</label><span>'+adviseInfo.openDoctor+'</span></li><li><label>医嘱内容：</label><div>'+adviseInfo.medicalTxt+'</div></li>' +
+                                                        '<li><label>嘱托：</label><div>'+adviseInfo.entrust+'</div></li><li><label>单量：</label><span>'+adviseInfo.single+'</span></li>' +
+                                                        '<li><label>频次：</label><span>'+adviseInfo.frequency+'</span></li><li><label>天数：</label><span>'+adviseInfo.days+'</span></li>' +
+                                                        '<li><label>总量：</label><span>'+adviseInfo.total+'</span></li><li><label>用法：</label><div>'+adviseInfo.usage+'</div></li>' +
+                                                        '<li><label>皮试结果：</label><div>'+adviseInfo.skinResults+'</div></li><li><label>执行科室：</label><div>'+adviseInfo.exedep+'</div></li>' +
+                                                        '<li><label>时间方案：</label><div>'+adviseInfo.timeplan+'</div></li>');
+                                            }
+                                            $("#information #head").click(function(){
+                                                $("#information").hide();
+                                                $("#information ul").html("");
+                                                $("title").text("医嘱处方详情");
+                                            })
+                                        }else{
+
+                                        }
+                                    }
+                                });
+                            })
+                        }
+                    }else{
+                        if(no==1){
+                            $("#advice_list").html("");
+                            no_data("没有相关医嘱信息");
+                        }else{
+                            if($(".ajaxtips").length==0) {
+                                $("#advice_item").append("<div class='ajaxtips' style='font-size:18px;text-align: center;color: #ff813d'>没有更多医嘱信息了~</div>");
+                            }
+                            setTimeout(function(){$(".ajaxtips").hide(); $(this).scrollTop($(this).scrollTop()-20);},1000);
+                        }
+                    }
+                    stop=true;
+                },
+                error: function () {
+                    hf_loading(false);
+                    layer();
+                    console.log(no,flag);
+                }
+            });
+        }
+    }
+    $(window).scroll(function() {
+        if($("#information").css("display")=="none"){
+            if ($(this).scrollTop() + $(window).height() + 20 >= $(document).height() && $(this).scrollTop() > 20) {
+                pageNo=pageNo+1;
+                if($(".ajaxtips").length==0) {
+                    loading(timeFlag, pageNo);
+                }else{
+                    $(".ajaxtips").show();
+                    setTimeout(function(){$(".ajaxtips").hide(); $(this).scrollTop($(this).scrollTop()-20);},1000);
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>

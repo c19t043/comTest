@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>项目结果管理</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit" />
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/basic.js"></script>
+<script src="js/common.js"></script>
+<script src="js/childresult_manage.js"></script>
+<link rel="stylesheet" type="text/css" href="css/common.css">
+<link rel="stylesheet" type="text/css" href="css/iconfont/iconfont.css">
+<link rel="stylesheet" type="text/css" href="css/childresult_manage.css">
+</head>
+<body>
+
+<div id="headcon" class="headcon">
+
+</div>
+
+<div class="middlecon">
+	<div id="leftcon" class="leftcon">
+
+	</div>
+	
+	<div id="rightcon" class="rightcon">
+		<div class="content">
+			<div id="con_position" class="con_position">
+				<h1 id="con_tit" class="con_tit"></h1>
+				<div id="con_meu" class="con_meu">
+					<span>首页</span>
+					<span>/</span>
+					<span class="first"></span>
+					<span>/</span>
+					<span class="second"></span>
+				</div>
+				<div class="con_contral">
+                    <span class="tishi">产品结果库：</span>
+				</div>
+				<table id="table_title" class="table_title">
+
+				</table>
+			</div>
+			<div class="table_h">
+				<table id="table_content" class="table_content">
+                   
+				</table>
+			</div>
+			<div class="con_page">
+				<span class="a">共&nbsp;<span id="con_num" class="con_num"></span>&nbsp;条数据</span>
+				<div class="button_cli">
+					<span class="button" onclick="page_click('default','1')">首页</span>
+					<span class="button" onclick="page_click('default','prev')" >上一页</span>
+					<span class="num" id="now_page_num" >1</span>
+					<span class="button" onclick="page_click('default','next')">下一页</span>
+					<span class="button" onclick="page_click('default','end')">尾页</span>
+				</div>
+				<div class="page_go">
+					<span class="b">共&nbsp;<span id="page_num" class="page_num"></span>&nbsp;页</span>
+					<span class="c">跳转到&nbsp;<input id="go_page" type="number" value="1" min="1">&nbsp;页</span>
+					<span class="button" onclick="page_click_go()">Go</span>
+				</div>
+			</div>
+			<div id="bottom_div" class="bottom_div">
+			  <div class="bottom_div_tit">
+				  <span class="tit_info"></span>
+				  <span id="button_add_click" onclick="contral_info('add')" class="button_style button_add">确认</span>
+					<span id="button_update_click" onclick="contral_info('update')" class="button_style button_change">确认</span>
+					<span id="button_cancel_click" class="button_style button_cancel">取消</span>
+				</div>
+				<div id="bottom_div_con" class="bottom_div_con">
+                    <div class="fj">
+                        <label>结果名称：</label>
+                        <input id="show_name" type="text">
+                        <label>对应项目：</label>
+                        <select id="show_object"></select>
+                        <label>结果类型：</label>
+                        <select id="show_type">
+                            <option>选择</option>
+                            <option>输入</option>
+                        </select>
+                    </div>
+                    <div class="fj">
+                        <label>结果单位：</label>
+                        <input id="show_unit" type="text" placeholder="例如：kg" />
+                        <label>是否需要提示：</label>
+                        <select id="show_isNeedRemind">
+                        	<option>N</option>
+                            <option>Y</option>
+                        </select>
+                        <label>结果选项：</label>
+                        <input id="show_result" type="text" placeholder="多个请以,分割">
+                    </div>
+                    <div class="fj">
+                        <label>最大值：</label>
+                        <input id="show_max" type="text" placeholder="例如：20">
+                        <label>最小值：</label>
+                        <input id="show_min" type="text" placeholder="例如：20">
+                        <label>最大值提示：</label>
+                        <input id="show_maxRemind" type="text" placeholder="例如：营养过剩">
+                    </div>
+                    <div class="fj">
+                        <label>最小值提示：</label>
+                        <input id="show_minRemind" type="text" placeholder="例如：营养不足">
+                        <label>选项（是）提示：</label>
+                        <input id="show_yes_remind" type="text">
+                        <label>选项（否）提示：</label>
+                        <input id="show_no_remind" type="text">
+                    </div>
+                    <div class="fj">
+                    	<label>结果备注标示：</label>
+                        <input id="resultRemarkFlag" type="text" placeholder="必须是结果选项中的">
+                    </div>
+				</div>
+			</div>
+		</div>	
+	</div>
+</div>
+
+
+</body>
+</html>
+   

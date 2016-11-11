@@ -1,0 +1,529 @@
+.row{
+    display: inline-block;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    background-color: white;
+    font-size: 0.875em;
+    text-indent: 1em;
+}
+.font1{
+    margin-left: 5px;
+}
+.font2{
+    margin-left: 15px;
+    color: #c8c8c8;
+}
+.font3{
+    margin-left: 5em;
+    color: #c8c8c8;
+    line-height: 50px;
+}
+.font4{
+    float: right;
+    margin-right: 5em;
+    color: #c8c8c8;
+    line-height: 50px;
+    clear: both;
+    display: inline-block;
+    width: 80%;
+    text-align: right;
+}
+.bqbox{
+    width: 90%;
+    padding: 0 5%;
+    margin-top: 10px;
+}
+.biaoqian {
+    /* background-color: #F7F7F7;
+    color: #969696;
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin-top: 5px;
+    display: inline-block; */
+
+    background-color: #F7F7F7;
+    color: #969696;
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin: 5px 10px;
+}
+.ZZimg{
+    display: block;
+    margin-left: 5em;
+    width: 200px;
+    margin-top: 10px;
+}
+.wenben{
+    margin-left: 1em;
+    margin-top: 10px;
+    max-width: 70%;
+    display: inline-block;
+}
+.wenbens{
+    float: right;
+    margin-right: 1em;
+    max-width: 70%;
+    display: inline-block;
+    clear: both;
+}
+.wenben img{
+    width: 40px;
+    float: left;
+}
+.wenbens img{
+    width: 40px;
+    float: right;
+}
+.yhk{
+    margin-left: 4em;
+    background-color:  #50c1e9;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+    display: block;
+    margin-top: 5px;
+}
+.ysk{
+    margin-right: 4em;
+    background-color: #F7F7F7;
+    color: #969696;
+    padding: 5px 10px;
+    border-radius: 10px;
+    display: block;
+    margin-top: 5px;
+}
+/*.ysk_yy{*/
+/*display: block;*/
+/*margin:0 4em;*/
+/*width: 50px;*/
+/*height: 30px;*/
+/*text-align: center;*/
+/*background:#ECECEC url("../images/icon_bofang01.png") no-repeat 5px center / 16px;*/
+/*/!*#ECECEC*!/*/
+/*-webkit-border-radius: 5px;*/
+/*-moz-border-radius: 5px;*/
+/*border-radius: 5px;*/
+/*}*/
+/*.ysk_yy_jieshu{*/
+/*display: block;*/
+/*margin:0 4em;*/
+/*width: 50px;*/
+/*height: 30px;*/
+/*text-align: center;*/
+/*background:#ECECEC url("../images/icon_bofang02.png") no-repeat 5px center / 16px;*/
+/*-webkit-border-radius: 5px;*/
+/*-moz-border-radius: 5px;*/
+/*border-radius: 5px;*/
+/*}*/
+
+footer{
+    display: inline-block;
+    width: 100%;
+    max-height: 120px;
+    min-height: 50px;
+    background-color: #f0f0f0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+.before img{
+    width: 30px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+/*.after img{*/
+    /*width: 30px;*/
+
+/*}*/
+footer input{
+    width: 100%;
+    height: 30px;
+    margin-top: 10px;
+    border: none;
+    background: #f0f0f0;
+    border-bottom: 1px solid #1cba93;
+}
+.before{
+    display: inline-block;
+    width: 10%;
+    height: 50px;
+    float: left;
+}
+.after{
+    display: inline-block;
+    float: right;
+    width: 12%;
+    text-align: center;
+    /* background: url("../images/consulting/send.png") no-repeat center center; */
+    /* background-size: 22px; */
+    height: 25px;
+    line-height: 25px;
+    background: #1CBA93;
+    color: #fff;
+    border-radius: 10px;
+    min-width: 25px;
+    margin: 12px 7px 6px 0;
+    font-size: 12px;
+}
+.con{
+    display: inline-block;
+    width: 70%;
+    max-height: 120px;
+    float: left;
+}
+.con>#msgText{
+    width: 100%;
+    margin-top: 10px;
+    border: none;
+    background: #f0f0f0;
+    border-bottom: 1px solid #1cba93;
+    min-height: 20px;
+    max-height: 80px;
+    line-height: 20px;
+    _height: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 3px;
+    outline: 0;
+    font-size: 12px;
+    word-wrap: break-word;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-user-modify: read-write-plaintext-only;
+}
+.after span{
+    display: inline-block;
+    width: 50%;
+    height: 30px;
+    line-height: 30px;
+    color: white;
+    background-color:  #50c1e9;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 10px;
+    position: relative;
+    top: 1px;
+}
+
+/*new*/
+.consultop {
+    width: 90%;
+    padding: 0 5%;
+    background: #fff;
+}
+.consultop_time {
+    width: 80%;
+    margin: 10px auto;
+    text-align: right;
+    color: #c8c8c8;
+    line-height: 1.5em;
+    font-size: 1em;
+}
+.consultop_tab {
+    width: 80%;
+    margin: 0 auto;
+    clear: both;
+    overflow: hidden;
+}
+.consultop_tab p {
+    padding: 5px;
+    margin: 2px 3px;
+    float: right;
+    color: #969696;
+    background: #f7f7f7;
+    line-height: 1.5em;
+    font-size: 0.875em;
+    border-radius: 5px;
+}
+.consultop_img {
+    width: 80%;
+    margin: 10px auto;
+    clear: both;
+    overflow: hidden;
+}
+.consultop_img img {
+    width: 200px;
+    height: 100px;
+    background: red;
+    float: right;
+}
+.user_info {
+    clear: both;
+    overflow: hidden;
+}
+.user_txt {
+    max-width: 70%;
+    margin-top: 5px;
+    padding: 5px 2%;
+    background: #4fc1e9;
+    color: #fff;
+    float: right;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 0.875em;
+    line-height: 1.5em;
+}
+.user_photo {
+    width: 15%;
+    float: right;
+}
+.user_photo img {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+
+/*���*/
+.consulleft {
+    width: 90%;
+    padding: 0 5%;
+    margin: 20px auto;
+    background: #fff;
+    clear: both;
+    overflow: hidden;
+}
+.consulleft_photo {
+    width: 15%;
+    float: left;
+}
+.consulleft_photo img {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    height:40px;
+    width:40px;
+}
+.consulleft_txt {
+    margin-left: 18%;
+    padding-top: 5px;
+}
+.consulleft .time {
+    width: 100%;
+    color: #909090;
+    line-height: 3em;
+    font-size: 12px;
+    text-align: center;
+}
+.consulleft_txt .text {
+    max-width: 70%;
+    padding: 5px 5%;
+    /*color: white;*/
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    display: inline-block;
+    font-size: 0.875em;
+    line-height: 1.5em;
+    /*background: #1cba93;*/
+    border: 2px solid #1cba93;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    word-break:break-all;
+}
+.consulleft_txt p.zz_pic{
+    width:70%;
+}
+.consulleft_txt p.zz_pic img{
+
+    float:left;
+}
+/*�ұ�*/
+.consulright {
+    width: 90%;
+    padding: 0 5%;
+    margin: 10px auto;
+    background: #fff;
+    clear: both;
+    overflow: hidden;
+}
+.consulright_txt {
+    width: 80%;
+    float: left;
+    padding-top: 5px;
+}
+.consulright .time {
+    width: 100%;
+    color: #909090;
+    line-height: 3em;
+    font-size: 12px;
+    text-align: center;
+}
+.consulleft .image {
+    float: left;
+}
+.consulright .image {
+    float: right;
+}
+.consulright_txt .text {
+    float: right;
+    max-width: 70%;
+    padding: 5px 5%;
+    color: white;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    display: inline-block;
+    font-size: 0.875em;
+    line-height: 1.5em;
+    background: #1cba93;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    word-break:break-all;
+}
+.consulright_photo {
+    width: 15%;
+    float: right;
+}
+.consulright_photo img {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+.consulleft .ysk_yy {
+    float: left;
+}
+.consulleft .ysk_yy_jieshu {
+    float: left;
+}
+.consulright .ysk_yy {
+    float: right;
+}
+.consulright .ysk_yy_jieshu {
+    float: right;
+}
+
+.ysk_yy{
+    display: block;
+    /*margin:0 4em;*/
+    width: 50px;
+    height: 30px;
+    text-align: center;
+    background:#ECECEC url("../images/icon_bofang01.png") no-repeat 5px center / 16px;
+    /*#ECECEC*/
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+.ysk_yy_jieshu{
+    display: block;
+    /*margin:0 4em;*/
+    width: 50px;
+    height: 30px;
+    text-align: center;
+    background:#ECECEC url("../images/icon_bofang02.png") no-repeat 5px center / 16px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+.dzjy{
+    color: #ff0000;
+    font-weight: bold;
+    display: block;
+    background: rgb(255,195,65) url(../images/dz_icon.png) no-repeat left center;
+    font-size: 16px;
+    background-size: 20px;
+    text-indent: 21px;
+}
+#illnessImpression{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.3);
+    z-index: 10000;
+}
+#illness_impression_content{
+    background: white;
+    width: 94%;
+    height: 92%;
+    position: absolute;
+    left: 3%;
+    top:4%;
+}
+#illness_impression_content>.top{
+    padding: 10px;
+    overflow: hidden;
+    color: #1cba93;
+    font-size: 14px;
+    line-height: 24px;
+}
+#illness_impression_content>.top>.text-left{
+    float: left;
+    font-size: 22px;
+    width: 20%;
+}
+#illness_impression_content>.top>.text-center{
+    float: left;
+    width: 60%;
+}
+#illness_impression_content>.top>.text-right{
+    float: left;
+    width: 20%;
+}
+#illness_impression_content>.top>.text-right>span{
+    padding: 3px 12px;
+    border-radius: 14px;
+    font-size: 12px;
+    border: 1px solid #1cba93;
+}
+#search{
+    padding: 10px 24px;
+}
+#search>input{
+    border: 1px solid #d5d5d5;
+    width: 90%;
+    line-height: 20px;
+    border-radius: 40px;
+    background: url("../images/iconfont-sousuo1.png") no-repeat;
+    background-size: 17px 17px;
+    background-position: 12px center;
+    padding: 6px 0 6px 10%;
+}
+#hasChooseTag,#canChooseTag{
+    padding: 0 18px;
+}
+#hasChooseTag>p,#canChooseTag>p{
+    color: #1cba93;
+    line-height: 36px;
+}
+#canChooseTagList,#hasChooseTagList{
+    overflow: auto;
+    padding-bottom: 8px;
+}
+
+#canChooseTagList>span,#hasChooseTagList>span{
+    padding: 3px 8px;
+    font-size: 12px;
+    display: inline-block;
+    border: 1px solid #e8e8e8;
+    border-radius: 20px;
+    margin: 8px 0 0 18px;
+}
+#hasChooseTagList>span{
+    background: #1cba93;
+    color: white;
+    border: 1px solid #1cba93;
+}
+#canChooseTagList>span.selected{
+    border: 1px solid #1cba93;
+}
+footer>p{
+    text-align: center;
+    padding-top: 14px;
+}
+footer>p>span{
+    padding: 6px 30px;
+    border:1px solid #1cba93;
+    color: #1cba93;
+    border-radius: 40px;
+}

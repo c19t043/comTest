@@ -1,0 +1,340 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>历史咨询</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/mask.css">
+    <link rel="stylesheet" href="css/consultation.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/config.js"></script>
+    <!-- for APP -->
+    <style>
+        #tab_nav{
+            overflow: hidden;
+            font-size: 15px;
+            text-align: center;
+            padding: 10px 0;
+            line-height: 30px;
+        }
+        .tab_item{
+            float: left;
+            display: inline-block;
+            width: 50%;
+        }
+        .tab_item>span{
+            display: inline-block;
+        }
+        .new_message_red{
+            padding: 3px;
+            border-radius: 100%;
+            background: #e95c6a;
+            position: absolute;
+            right: 12px;
+            top: 6px;
+        }
+        .tab_text{
+            padding: 0 21px;
+            position: relative;
+        }
+        .selected .tab_text{
+            border-bottom: 1px solid #1cba93;
+        }
+        #header {
+            background: #1cba93;
+            color: white;
+        }
+        .consultation_left .number{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+
+<div id="header">
+    <div class="header-left" onclick="sessionStorage.setItem('history','');"><p></p></div>
+    <div class="header-center">历史咨询</div>
+    <div class="header-right"></div>
+</div>
+<div id="content">
+    <div id="container" style="margin-bottom: 0">
+        <ul id="tab_nav">
+            <li class="tab_item selected normal">
+                <span class="tab_text">普通咨询<span class="new_message_red"></span></span>
+            </li>
+            <li class="tab_item signing">
+                <span class="tab_text">签约用户咨询<span class="new_message_red"></span></span>
+            </li>
+        </ul>
+    </div>
+    <div id="normal"></div>
+    <div id="signing" style="display: none"></div>
+    <!--header-->
+    <div id="mask"></div>
+</div>
+
+<script src="js/plugins.js"></script>
+<script>
+    $(function(){
+        $('.tab_item').click(function () {
+            $(this).addClass('selected').siblings().removeClass('selected');
+            var text = $(this).children(".tab_text").text();
+            sessionStorage.setItem('history',text);
+            if($(this).hasClass('signing')){
+                $('#signing').show();
+                $('#normal').hide();
+                getConsultation(1);//家庭医生咨询
+            }else{
+                $('#normal').show();
+                $('#signing').hide();
+                getConsultation(2);//普通咨询
+            }
+        });
+        getConsultation(2);
+        var session=sessionStorage.getItem('history');
+        for(var i=0;i<$(".tab_item").length;i++){
+            if($(".tab_item").eq(i).children("span").text()==session){
+                $(".tab_item").eq(i).trigger("click");
+                sessionStorage.setItem('history',$(".tab_item").eq(i).children("span").text());
+            }
+        }
+    });
+    function getConsultation(type){
+        $.ajax({
+            type : 'post',
+            async: false ,
+            url : host+'consultManage.action',
+            data : {action:"getAll",'isEnd':'Y',userType:type},
+            success : function(result) {
+
+                if(result.mes=="无数据"){
+//				$("#").append("暂无咨询记录");
+                }
+                if(result.mes=="成功"){
+                    $("#normal,#signing").html('');
+
+                    for(var i=0;i<result.userInfoStrList.length;i++){
+
+                        var userStr = result.userInfoStrList[i].split("::");
+                        var img_ico = userStr[1];
+                        if(userStr[1] == 'null'){
+                            img_ico = 'lt_user.png';
+                        }
+                        var consultStr = result.someCousultStrList[i].split("::");
+                        if(consultStr[3]==2){
+                            if(consultStr[1]==""||consultStr[1]==null){
+                                if(result.newMesNumList[i]==0){
+                                    var ssss='[图片]';
+                                    if(consultStr[4]!=null &&consultStr[4]!=''){
+                                        //ssss="<img src='" + hostBG + "images/consultPicture/" + consultStr[4] + "' width='40'>";
+                                    };
+                                    $("#normal").append("<div class='consultation_box' onclick=\"window.location.href='end_beforeConsultation.html?"+consultStr[0]+"'\">"+
+                                    "<div class='consultation_left'>"+
+                                    "<div class='consultation_photo'>"+
+                                    "<img width='60' height='60' src='"+hostBG+"images/userFaceIcon/"+img_ico+"' />"+
+                                    "</div>"+
+                                    "</div>"+
+                                    "<div class='consultation_right'>"+
+                                    "<p class='consultation_name'>"+userStr[0]+"</p>"+
+                                    "<p class='consultation_time'>"+consultStr[2]+"</p>"+
+                                    "<p class='consultation_note'>"+ssss+"</p>"+
+
+                                    "</div>"+
+                                    "</div>"+
+                                    "<p class='gray_3'></p>");
+                                }
+                                else{
+                                    var ssss='[图片]';
+                                    if(consultStr[4]!=null &&consultStr[4]!=''){
+                                        //ssss="<img src='" + hostBG + "images/consultPicture/" + consultStr[4] + "' width='40'>";
+                                    };
+                                    $("#normal").append("<div class='consultation_box' onclick=\"window.location.href='end_beforeConsultation.html?"+consultStr[0]+"'\">"+
+                                    "<div class='consultation_left'>"+
+                                    "<div class='consultation_photo'>"+
+                                    "<img width='60' height='60' src='"+hostBG+"images/userFaceIcon/"+img_ico+"' />"+
+                                    "</div>"+
+                                    "<div class='number'>"+result.newMesNumList[i]+"</div>"+
+                                    "</div>"+
+                                    "<div class='consultation_right'>"+
+                                    "<p class='consultation_name'>"+userStr[0]+"</p>"+
+                                    "<p class='consultation_time'>"+consultStr[2]+"</p>"+
+                                    "<p class='consultation_note'>"+ssss+"</p>"+
+
+                                    "</div>"+
+                                    "</div>"+
+                                    "<p class='gray_3'></p>");
+                                }
+
+                            }
+                            else{
+                                if(result.newMesNumList[i]==0){
+                                    var doctorReply;
+                                    if(consultStr[1].indexOf('family_doctor_patient.html')>-1){
+                                        doctorReply="儿科门诊预约";
+                                    }else if(consultStr[1].indexOf('family_doctor_erbao.html')>-1){
+                                        doctorReply="儿保门诊预约";
+                                    }else if(consultStr[1].indexOf('family_doctor_vaccine.html')>-1){
+                                        doctorReply="计免预约";
+                                    }else if(consultStr[1].indexOf('family_doctor_expert_team.html')>-1){
+                                        doctorReply="推荐团队";
+                                    } else{
+                                        doctorReply=consultStr[1];
+                                    }
+                                    $("#normal").append("<div class='consultation_box' onclick=\"window.location.href='end_beforeConsultation.html?"+consultStr[0]+"'\">"+
+                                    "<div class='consultation_left'>"+
+                                    "<div class='consultation_photo'>"+
+                                    "<img width='60' height='60' src='"+hostBG+"images/userFaceIcon/"+img_ico+"' />"+
+                                    "</div>"+
+                                    "</div>"+
+                                    "<div class='consultation_right'>"+
+                                    "<p class='consultation_name'>"+userStr[0]+"</p>"+
+                                    "<p class='consultation_time'>"+consultStr[2]+"</p>"+
+                                    "<p class='consultation_note'>"+doctorReply+"</p>"+
+
+                                    "</div>"+
+                                    "</div>"+
+                                    "<p class='gray_3'></p>");
+                                }
+                                else{
+                                    var doctorReply;
+                                    if(consultStr[1].indexOf('family_doctor_patient.html')>-1){
+                                        doctorReply="儿科门诊预约";
+                                    }else if(consultStr[1].indexOf('family_doctor_erbao.html')>-1){
+                                        doctorReply="儿保门诊预约";
+                                    }else if(consultStr[1].indexOf('family_doctor_vaccine.html')>-1){
+                                        doctorReply="计免预约";
+                                    } else{
+                                        doctorReply=consultStr[1];
+                                    }
+                                    $("#normal").append("<div class='consultation_box' onclick=\"window.location.href='end_beforeConsultation.html?"+consultStr[0]+"'\">"+
+                                    "<div class='consultation_left'>"+
+                                    "<div class='consultation_photo'>"+
+                                    "<img width='60' height='60' src='"+hostBG+"images/userFaceIcon/"+img_ico+"' />"+
+                                    "</div>"+
+                                    "<div class='number'>"+result.newMesNumList[i]+"</div>"+
+                                    "</div>"+
+                                    "<div class='consultation_right'>"+
+                                    "<p class='consultation_name'>"+userStr[0]+"</p>"+
+                                    "<p class='consultation_time'>"+consultStr[2]+"</p>"+
+                                    "<p class='consultation_note'>"+doctorReply+"</p>"+
+
+                                    "</div>"+
+                                    "</div>"+
+                                    "<p class='gray_3'></p>");
+                                }
+
+                            }
+                        }else{
+                            if(consultStr[1]==""||consultStr[1]==null){
+                                if(result.newMesNumList[i]==0){
+                                    var ssss='[图片]';
+                                    if(consultStr[4]!=null &&consultStr[4]!=''){
+                                        //ssss="<img src='" + hostBG + "images/consultPicture/" + consultStr[4] + "' width='40'>";
+                                    };
+                                    $("#signing").append("<div class='consultation_box' onclick=\"window.location.href='end_afterConsultation.html?"+consultStr[0]+"&"+consultStr[5]+"'\">"+
+                                    "<div class='consultation_left'>"+
+                                    "<div class='consultation_photo'>"+
+                                    "<img width='60' height='60' src='"+hostBG+"images/userFaceIcon/"+img_ico+"' />"+
+                                    "</div>"+
+
+                                    "</div>"+
+                                    "<div class='consultation_right'>"+
+                                    "<p class='consultation_name'>"+userStr[0]+"</p>"+
+                                    "<p class='consultation_time'>"+consultStr[2]+"</p>"+
+                                    "<p class='consultation_note'>"+ssss+"</p>"+
+
+                                    "</div>"+
+                                    "</div>"+
+                                    "<p class='gray_3'></p>");
+                                }
+                                else{
+                                    var ssss='[图片]';
+                                    if(consultStr[4]!=null &&consultStr[4]!=''){
+                                        //ssss="<img src='" + hostBG + "images/consultPicture/" + consultStr[4] + "' width='40'>";
+                                    };
+                                    $("#signing").append("<div class='consultation_box' onclick=\"window.location.href='end_afterConsultation.html?"+consultStr[0]+"&"+consultStr[5]+"'\">"+
+                                    "<div class='consultation_left'>"+
+                                    "<div class='consultation_photo'>"+
+                                    "<img width='60' height='60' src='"+hostBG+"images/userFaceIcon/"+img_ico+"' />"+
+                                    "</div>"+
+                                    "<div class='number'>"+result.newMesNumList[i]+"</div>"+
+                                    "</div>"+
+                                    "<div class='consultation_right'>"+
+                                    "<p class='consultation_name'>"+userStr[0]+"</p>"+
+                                    "<p class='consultation_time'>"+consultStr[2]+"</p>"+
+                                    "<p class='consultation_note'>"+ssss+"</p>"+
+
+                                    "</div>"+
+                                    "</div>"+
+                                    "<p class='gray_3'></p>");
+                                }
+                            }
+                            else{
+                                if(result.newMesNumList[i]==0){
+                                    var doctorReply;
+                                    if(consultStr[1].indexOf('family_doctor_patient.html')>-1){
+                                        doctorReply="儿科门诊预约";
+                                    }else if(consultStr[1].indexOf('family_doctor_erbao.html')>-1){
+                                        doctorReply="儿保门诊预约";
+                                    }else if(consultStr[1].indexOf('family_doctor_vaccine.html')>-1){
+                                        doctorReply="计免预约";
+                                    } else{
+                                        doctorReply=consultStr[1];
+                                    }
+                                    $("#signing").append("<div class='consultation_box' onclick=\"window.location.href='end_afterConsultation.html?"+consultStr[0]+"&"+consultStr[5]+"'\">"+
+                                    "<div class='consultation_left'>"+
+                                    "<div class='consultation_photo'>"+
+                                    "<img width='60' height='60' src='"+hostBG+"images/userFaceIcon/"+img_ico+"' />"+
+                                    "</div>"+
+                                    "</div>"+
+                                    "<div class='consultation_right'>"+
+                                    "<p class='consultation_name'>"+userStr[0]+"</p>"+
+                                    "<p class='consultation_time'>"+consultStr[2]+"</p>"+
+                                    "<p class='consultation_note'>"+doctorReply+"</p>"+
+
+                                    "</div>"+
+                                    "</div>"+
+                                    "<p class='gray_3'></p>");
+                                }
+                                else{
+                                    var doctorReply;
+                                    if(consultStr[1].indexOf('family_doctor_patient.html')>-1){
+                                        doctorReply="儿科门诊预约";
+                                    }else if(consultStr[1].indexOf('family_doctor_erbao.html')>-1){
+                                        doctorReply="儿保门诊预约";
+                                    }else if(consultStr[1].indexOf('family_doctor_vaccine.html')>-1){
+                                        doctorReply="计免预约";
+                                    } else{
+                                        doctorReply=consultStr[1];
+                                    }
+                                    $("#signing").append("<div class='consultation_box' onclick=\"window.location.href='end_afterConsultation.html?"+consultStr[0]+"&"+consultStr[5]+"'\">"+
+                                    "<div class='consultation_left'>"+
+                                    "<div class='consultation_photo'>"+
+                                    "<img width='60' height='60' src='"+hostBG+"images/userFaceIcon/"+img_ico+"' />"+
+                                    "</div>"+
+                                    "<div class='number'>"+result.newMesNumList[i]+"</div>"+
+                                    "</div>"+
+                                    "<div class='consultation_right'>"+
+                                    "<p class='consultation_name'>"+userStr[0]+"</p>"+
+                                    "<p class='consultation_time'>"+consultStr[2]+"</p>"+
+                                    "<p class='consultation_note'>"+doctorReply+"</p>"+
+
+                                    "</div>"+
+                                    "</div>"+
+                                    "<p class='gray_3'></p>");
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

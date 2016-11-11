@@ -1,0 +1,165 @@
+package com.kybaby.bo.impl;
+
+import java.util.List;
+
+import com.kybaby.bo.OrderBo;
+import com.kybaby.dao.OrderDao;
+import com.kybaby.domain.BabyBasicData;
+import com.kybaby.domain.DoctorAccount;
+import com.kybaby.domain.DoctorInfo;
+import com.kybaby.domain.DoctorPoints;
+import com.kybaby.domain.HealthPath;
+import com.kybaby.domain.HealthPlan;
+import com.kybaby.domain.HealthPlanRemind;
+import com.kybaby.domain.ItemResult;
+import com.kybaby.domain.OrderInfo;
+import com.kybaby.domain.OrderResults;
+import com.kybaby.domain.Product;
+import com.kybaby.domain.ProductItem;
+import com.kybaby.domain.RecommentAwardRecord;
+import com.kybaby.domain.UserAccount;
+import com.kybaby.domain.UserCoupon;
+import com.kybaby.domain.UserInfo;
+import com.kybaby.domain.UserPoints;
+
+/**
+ * @author sujiantang
+ *
+ */
+public class OrderBoImpl implements OrderBo{
+
+	private OrderDao orderDao;
+
+
+	public OrderInfo getOrderByOrderId(Long id) {
+		return orderDao.getOrderByOrderId(id);
+	}
+	
+	public List getOrderListByDoctorId(Long id) {
+		return orderDao.getOrderListByDoctorId(id);
+	}
+	
+	public List newGetOrderListByDoctorId(Long id) {
+		return orderDao.newGetOrderListByDoctorId(id);
+	}
+	
+	public void update(OrderInfo orderInfo) {
+		orderDao.update(orderInfo);
+	}
+	
+	public List<List> getOrderDetailByOrderId(Long orderId) {
+		return orderDao.getOrderDetailByOrderId(orderId);
+	}
+	
+	public Long getUserIdByOrderId(Long orderId) {
+		return orderDao.getUserIdByOrderId(orderId);
+	}
+
+	public BabyBasicData getBabyBasicDataByUserId(Long userId) {
+		return orderDao.getBabyBasicDataByUserId(userId);
+	}
+	
+	public ProductItem getItemById(Long id) {
+		return orderDao.getItemById(id);
+	}
+	
+	// 对项目进行排序,DUMMY的放在后面
+	public List<Long> getOrderedItemId(String ids){
+		return orderDao.getOrderedItemId(ids);
+	}
+
+	public ItemResult getItemResultById(Long id) {
+		return orderDao.getItemResultById(id);
+	}
+
+	public HealthPlan getHealthPlanById(Long id) {
+		return orderDao.getHealthPlanById(id);
+	}
+
+	public HealthPath getHealthPathById(Long id) {
+		return orderDao.getHealthPathById(id);
+	}
+	
+	public OrderDao getOrderDao() {
+		return orderDao;
+	}
+
+	public void setOrderDao(OrderDao orderDao) {
+		this.orderDao = orderDao;
+	}
+
+	public void saveOrderResults(OrderResults orderResults) {
+		orderDao.saveOrderResults(orderResults);
+	}
+
+	public void saveHealthPlanRemind(HealthPlanRemind healthPlanRemind) {
+		orderDao.saveHealthPlanRemind(healthPlanRemind);
+	}
+
+	public void saveBabyBasicData(BabyBasicData babyBasicData) {
+		orderDao.saveBabyBasicData(babyBasicData);
+	}
+
+	public DoctorInfo getDoctorByDoctorId(Long doctorId) {
+		return orderDao.getDoctorByDoctorId(doctorId);
+	}
+
+	public void updateDoctorInfo(DoctorInfo doctorInfo) {
+		orderDao.updateDoctorInfo(doctorInfo);
+	}
+
+	public Product getProductById(Long productId) {
+		return orderDao.getProductById(productId);
+	}
+
+	public void updateProduct(Product product) {
+		orderDao.updateProduct(product);
+	}
+
+	public List<RecommentAwardRecord> getRecommentAwardRecordByUserId(
+			Long userId) {
+		return orderDao.getRecommentAwardRecordByUserId(userId);
+	}
+
+	public List<RecommentAwardRecord> getRecommentAwardRecordByDoctorId(
+			Long doctorId) {
+		return orderDao.getRecommentAwardRecordByDoctorId(doctorId);
+	}
+
+	public UserInfo getUserByUserId(Long userId) {
+		return orderDao.getUserByUserId(userId);
+	}
+
+	public void saveUserAccount(UserAccount userAccount) {
+		orderDao.saveUserAccount(userAccount);
+	}
+
+	public void saveUserPoints(UserPoints userPoints) {
+		orderDao.saveUserPoints(userPoints);
+	}
+
+	public Long getActivityIdByCouponId(Long couponId) {
+		return orderDao.getActivityIdByCouponId(couponId);
+	}
+
+	public void saveUserCoupon(UserCoupon userCoupon) {
+		orderDao.saveUserCoupon(userCoupon);
+	}
+
+	public void updateAwared(RecommentAwardRecord recommentAwardRecord) {
+		orderDao.updateAwared(recommentAwardRecord);
+	}
+
+	public void updateUserInfo(UserInfo userInfo) {
+		orderDao.updateUserInfo(userInfo);
+	}
+
+	public void saveDoctorAccount(DoctorAccount doctorAccount) {
+		orderDao.saveDoctorAccount(doctorAccount);
+	}
+
+	public void saveDoctorPoints(DoctorPoints doctorPoints) {
+		orderDao.saveDoctorPoints(doctorPoints);
+	}
+
+}

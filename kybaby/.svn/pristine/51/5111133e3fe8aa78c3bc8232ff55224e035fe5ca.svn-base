@@ -1,0 +1,539 @@
+.row{
+    display: inline-block;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    background-color: white;
+    font-size: 0.875em;
+    text-indent: 1em;
+}
+.font1{
+    margin-left: 5px;
+}
+.font2{
+    margin-left: 15px;
+    color: #c8c8c8;
+}
+.font3{
+    float: left;
+    margin-left: 5em;
+    color: #c8c8c8;
+    line-height: 50px;
+    clear: both;
+}
+.font4{
+    float: right;
+    margin-right: 5em;
+    color: #c8c8c8;
+    line-height: 50px;
+    clear: both;
+}
+.biaoqian {
+    float: right;
+    margin-right: 5em;
+    background-color: #F7F7F7;
+    color: #969696;
+    padding: 5px 10px;
+    border-radius: 10px;
+    clear: both;
+}
+.ZZimg{
+    display: block;
+    float: right;
+    margin-right: 5em;
+    width: 200px;
+    margin-top: 10px;
+    clear: both;
+}
+.wenben{
+    float: left;
+    margin-left: 1em;
+    max-width: 70%;
+    display: inline-block;
+    clear: both;
+}
+.wenbens{
+    float: right;
+    margin-right: 1em;
+    max-width: 70%;
+    display: inline-block;
+    clear: both;
+}
+.wenben img{
+    margin-top: 10px;
+    width: 40px;
+    float: left;
+    clear: both;
+}
+.wenbens img{
+    margin-top: 10px;
+    width: 40px;
+    float: right;
+    clear: both;
+}
+.yhk{
+    margin-left: 4em;
+    background-color: #F7F7F7;
+    color: #969696;
+    padding: 5px 10px;
+    border-radius: 10px;
+    display: block;
+    margin-top: 15px;
+}
+.yhk_yy{
+    display: block;
+    margin-left: 4em;
+    margin-right: 4em;
+    width: 45px!important;
+    height: 30px;
+    margin-top: 15px;
+    overflow: hidden!important;
+    text-align: center;
+    background: #fff;
+    /*border-radius: 10px;*/
+    /*background: url(../images/icon_laba.png) 10% center no-repeat #F7F7F7  ;*/
+    /*background-size: 15%;*/
+}
+.red{
+    display: block;
+    background-color: red;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    float: right;
+}
+.ysk{
+    margin-right: 4em;
+    color: white;
+    background-color:  #50c1e9;
+    padding: 5px 10px;
+    border-radius: 10px;
+    display: block;
+    margin-top: 15px;
+}
+/*.ysk_yy{*/
+    /*display: block;*/
+    /*margin:0 4em;*/
+    /*width: 50px;*/
+    /*height: 30px;*/
+    /*text-align: center;*/
+    /*background:#ECECEC url("../images/icon_bofang01.png") no-repeat 5px center / 16px;*/
+    /*/!*#ECECEC*!/*/
+    /*-webkit-border-radius: 5px;*/
+    /*-moz-border-radius: 5px;*/
+    /*border-radius: 5px;*/
+/*}*/
+/*.ysk_yy_jieshu{*/
+    /*display: block;*/
+    /*margin:0 4em;*/
+    /*width: 50px;*/
+    /*height: 30px;*/
+    /*text-align: center;*/
+    /*background:#ECECEC url("../images/icon_bofang02.png") no-repeat 5px center / 16px;*/
+    /*-webkit-border-radius: 5px;*/
+    /*-moz-border-radius: 5px;*/
+    /*border-radius: 5px;*/
+/*}*/
+footer{
+    display: inline-block;
+    width: 100%;
+    max-height: 120px;
+    background-color: #fff;
+    border-top: 1px solid #E7E7E7;
+    position: fixed;
+    bottom: 0px;
+}
+.before img{
+    width: 30px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.after img{
+    width: 30px;
+
+}
+.liability{
+    position: fixed;
+    left: 0;
+    top: 127px;
+    width: 100%;
+    background: #ffffff;
+}
+#text_box{
+    padding-top: 97px;
+}
+.liability>span{
+    /*padding: 5px 20px;*/
+    background:#f7f7f7;
+    border-radius: 6px;
+    font-size: 12px;
+}
+footer>.illness_impression{
+    padding: 3px 15px;
+    font-size: 14px;
+}
+footer>.illness_impress{
+    padding: 3px 15px;
+    font-size: 12px;
+}
+footer>.illness_impress>span{
+    display: inline-block;
+    padding: 2px 6px;
+    color: #ff831d;
+}
+
+footer input{
+    padding: 0 3%;
+    width: 94%;
+    height: 30px;
+    margin-top: 10px;
+    border: none;
+    border-bottom:1px solid #FE8C4E;
+    background: #f7f7f7;
+}
+.before{
+    display: inline-block;
+    width: 10%;
+    height: 50px;
+    float: left;
+}
+.after{
+    display: inline-block;
+    float: right;
+    width: 16%;
+    text-align: center;
+}
+.con{
+    display: inline-block;
+    width: 67%;
+    max-height: 120px;
+    margin-left: 1%;
+    float: left;
+}
+.con>#newMsgContent{
+    width: 100%;
+    margin-top: 10px;
+    border: none;
+    background: #F7F7f7;
+    border-bottom: 1px solid #ff831d;
+    min-height: 20px;
+    max-height: 80px;
+    line-height: 20px;
+    _height: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 3px;
+    outline: 0;
+    font-size: 12px;
+    word-wrap: break-word;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-user-modify: read-write-plaintext-only;
+}
+
+.after span{
+    display: inline-block;
+    width: 85%;
+    height: 30px;
+    line-height: 30px;
+    color: white;
+    background: url(../images/images_family_doctor/erbao_point_light.png)no-repeat center;
+    background-size: 100% 100%;
+    border-radius: 5px;
+    text-align: center;
+    margin: 10px 15px 0 0;
+    position: relative;
+    top: 1px;
+}
+.tittle{
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    color:#50c1e9 ;
+}
+
+
+/*new*/
+.consultop {
+    width: 90%;
+    padding: 0 5%;
+    background: #fff;
+    margin: 15px auto;
+}
+.consultop_time {
+    width: 80%;
+    text-align: right;
+    color: #c8c8c8;
+    line-height: 15px;
+    font-size: 11px;
+}
+.consultop_tab {
+    width: 80%;
+    margin: 0 auto;
+    clear: both;
+    overflow: hidden;
+}
+.consultop_tab p {
+    padding: 5px;
+    margin: 2px 3px;
+    float: right;
+    color: #969696;
+    background: #f7f7f7;
+    line-height: 1.5em;
+    font-size: 0.875em;
+    border-radius: 5px;
+}
+.consultop_img {
+    width: 80%;
+    margin: 10px auto;
+    clear: both;
+    overflow: hidden;
+}
+.consultop_img img {
+    float: right;
+}
+.user_info {
+    clear: both;
+    overflow: hidden;
+}
+.user_txt {
+    max-width: 70%;
+    margin: 5px 15px 0 0;
+    padding: 5px 2%;
+    background: #ff813d;
+    color: #000;
+    float: right;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 0.875em;
+    line-height: 1.5em;
+}
+.user_photo {
+    width: 15%;
+    float: right;
+}
+.user_photo img {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    width:40px;
+    height:40px;
+}
+
+
+/*新增*/
+.consulleft {
+    width: 90%;
+    padding: 0 5%;
+    margin: 15px auto;
+    background: #fff;
+    clear: both;
+    overflow: hidden;
+}
+.consulleft_photo {
+    width: 15%;
+    margin-top: 10px;
+    float: left;
+}
+.consulleft_photo img {
+    width: 40px;
+    height: 40px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+.consulleft_txt {
+    margin-left: 18%;
+}
+.consulleft_txt .time {
+    width: 100%;
+    color: #c8c8c8;
+    line-height: 15px;
+    font-size: 10px;
+    text-align: left;
+}
+.consulleft_txt .text {
+    max-width: 80%;
+    padding: 5px 2%;
+    background: #fff;
+    color: #000;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    font-size: 0.875em;
+    line-height: 1.5em;
+    margin-top: 5px;
+    border:2px solid #FD8D4E;
+    word-break:break-all;
+}
+
+.consulright {
+    width: 90%;
+    padding: 0 5%;
+    margin: 15px auto;
+    background: #fff;
+    clear: both;
+    overflow: hidden;
+}
+.consulright_txt {
+    width: 80%;
+    float: left;
+}
+.consulright_txt .time {
+    width: 100%;
+    color: #c8c8c8;
+    line-height: 15px;
+    font-size: 11px;
+    text-align: right;
+}
+.consulright_txt .text {
+    max-width: 80%;
+    padding: 5px 2%;
+    background: #ff813d;
+    color: #000;
+    float: right;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    font-size: 0.875em;
+    line-height: 1.5em;
+    margin-top: 5px;
+    word-break:break-all;
+}
+.consulright_photo {
+    width: 15%;
+    margin-top: 10px;
+    float: right;
+}
+.consulright_photo img {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+ width: 40px;
+    height: 40px;
+}
+
+.consulright_txt .ysk_yy{
+	float:right;
+}
+.consulleft_txt .ysk_yy{
+	float:left;
+}
+
+.ysk_yy{
+    display: block;
+    /*margin:0 4em;*/
+    width: 50px;
+    height: 30px;
+    text-align: center;
+    background:#ECECEC url("../images/icon_bofang01.png") no-repeat 5px center / 16px;
+    /*#ECECEC*/
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+.consulright_txt .ysk_yy_jieshu{
+	float:right;
+}
+.consulleft_txt .ysk_yy_jieshu{
+	float:left;
+}
+.ysk_yy_jieshu{
+    display: block;
+    /*margin:0 4em;*/
+    width: 50px;
+    height: 30px;
+    text-align: center;
+    background:#ECECEC url("../images/icon_bofang02.png") no-repeat 5px center / 16px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+.dzjy{
+    color: #ff0000;
+    font-weight: bold;
+    display: block;
+    background: rgb(255,195,65) url(../images/dz_icon.png) no-repeat left center;
+    font-size: 16px;
+    background-size: 20px;
+    text-indent: 21px;
+}
+/*新增*/
+#doctor_information{
+    padding:5px 15px;
+    text-align: center;
+    background: #f7f7f7;
+    overflow: hidden;
+    line-height: 30px;
+    font-size: 15px;
+    position: fixed;
+    left: 0;
+    top: 45px;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+#doctor_head{
+    border: 1px solid #eee;
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    border-radius: 70px;
+    overflow: hidden;
+    float: left;
+}
+#doctor_head>img{
+    width: 100%;
+}
+#item_name{
+    overflow: hidden;
+    box-shadow: 0 0 15px 6px #F7F7f7;
+}
+#item_name>div{
+    width: 100%;
+    float: left;
+    text-align: center;
+}
+#item_name>div>span{
+    margin: 6px 0;
+    padding: 4px;
+    display: inline-block;
+}
+/*.select>span{*/
+    /*border-bottom: 2px solid #FF813E;*/
+/*}*/
+#doctor_data{
+    width: 71%;
+    float: left;
+    margin: 3px 0 0 8px;
+    text-align: left;
+    color: #505050;
+}
+#doctor_other {
+    font-size: 13px;
+}
+#doctor_information span{
+    margin: 0px 5px;
+    display: inline-block;
+    color: #ff813d;
+}
+#overdue_footer{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    background: #F7F7F7;
+    font-size: 15px;
+}
+#overdue_footer>p{
+    margin: 20px;
+    text-align: center;
+    line-height: 25px;
+}

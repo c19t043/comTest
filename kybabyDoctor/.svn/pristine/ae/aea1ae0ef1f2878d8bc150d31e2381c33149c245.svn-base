@@ -1,0 +1,83 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>角色选择</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/regist.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/config.js"></script>
+    
+    <style>
+        body{
+            text-align: center;
+        }
+        h2{
+            margin: 35px 0;
+            color: #1cba93;
+            font-weight: 400;
+            font-size: 25px;
+        }
+        p{
+            color: #909090;
+            margin-bottom: 35px;
+        }
+        img{
+            margin-top: 9px;
+        }
+        #role_item>div{
+            width: 90%;
+            margin: 20px auto;
+            color: #fff;
+            text-align: right;
+            font-size: 17px;
+            line-height: 45px;
+            border-radius: 23px;
+        }
+        #role_item_div1{
+            background: #FF9459;
+        }
+        #role_item_div2{
+            background: #1CBA93;
+        }
+        #role_item_div3{
+            background: #43D1CF;
+        }
+        #role_item>div>div{
+            margin: 0 auto;
+            width: 100px;
+        }
+        #role_item_div1>div{
+            background: url("images/menu/icon_doctor.png")no-repeat left center;
+            background-size: 24px;
+        }
+        #role_item_div2>div{
+            background: url("images/menu/icon_nurse.png")no-repeat left center;
+            background-size: 21px;
+        }
+        #role_item_div3>div{
+            background: url("images/menu/icon_technician.png")no-repeat left center;
+            background-size: 22px;
+        }
+    </style>
+</head>
+<body>
+    <h2>我的角色</h2>
+    <p>首次注册请根据您的情况选择角色</p>
+    <div id="role_item">
+        <div id="role_item_div1" onclick="window.location.href='Doctorauthentication.html?医生'">
+            <div>我是医生</div>
+        </div>
+        <div id="role_item_div2" onclick="window.location.href='Nurseregist.html?护士'">
+            <div>我是护士</div>
+        </div>
+        <div id="role_item_div3" onclick="window.location.href='technician_authenticate.html?技师'">
+            <div>我是技师</div>
+        </div>
+    </div>
+</body>
+</html>

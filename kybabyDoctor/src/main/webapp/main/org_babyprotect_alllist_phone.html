@@ -1,0 +1,250 @@
+﻿<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>所有儿保预约列表</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <script src="js/date/WdatePicker.js"></script>
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/config.js"></script>
+    <!--<script src="js/org_main.js"></script>-->
+    <script src="js/main.js"></script>
+    <script src="js/plugins.js"></script>
+    <style>
+        body {
+            min-width: 320px;
+            background: #ffffff;
+            color: #505050;
+        }
+        *{
+            font-size: 12px;
+        }
+        .gray_ss {
+            width: 100%;
+            height: 4px;
+            background: #F7F7F7;
+        }
+
+        .gray_s {
+            width: 100%;
+            height: 10px;
+            background: #F7F7F7;
+        }
+
+        table {
+            width: 90%;
+            text-align: center;
+            line-height: 30px;
+            margin: 0px auto;
+        }
+
+        tbody > tr:nth-child(2n) {
+            background: #dddddd;
+        }
+        /*新增*/
+        .blank{
+            height: 5px;
+        }
+        label{
+            margin-left: 3px;
+            width: 80px;
+        }
+        input[type=text]{width: 95px}
+        input[type=checkbox]{
+            vertical-align: -2px;
+            margin-right: 3px;
+        }
+        select{
+            width: 98px;
+            height: 25px;
+        }
+    </style>
+</head>
+<body style="min-width:320px;">
+<div id="header" class="doctor_header">
+    <div class="header-left"><p></p></div>
+    <div class="header-center">所有儿保预约列表</div>
+    <div class="header-right"></div>
+</div>
+
+<div class="middlecon">
+    <div id="rightcon" class="rightcon" style="width: 100%;float: none">
+        <div class="content">
+            <div id="con_position" class="con_position">
+                <div class="con_contral" style="margin-top: 50px">
+                    <!--<label><input type="checkbox">手机号：</label><input type="text" id="search_phone" style="width: 100px">-->
+                    <!--<label><input type="checkbox">姓名：</label><input type="text" id="search_parentName" style="width: 100px">-->
+                    <label>是否收费:</label><select name="" id="search_isMoney">
+                    <option selected value="Y">Y</option>
+                    <option value="N">N</option>
+                    </select>
+                    <span class="bu" onclick="search_click()"
+                                   style="float: right;padding: 3px 14px;border-radius: 4px;background: #4a8bc2;color:#fff;margin-right: 3px">查找</span><br/>
+                    <div class="blank"></div>
+                    <label><input type="checkbox">预约编号：</label><input type="text" id="search_num"><br/>
+                    <div class="blank"></div>
+                    <label><input type="checkbox">状态:</label><select name="" id="search_status"><br/>
+                    <option value="已预约">已预约</option>
+                    <option value="用户取消">用户取消</option>
+                    <option value="已登记">已登记</option></select><br/>
+                    <div class="blank"></div>
+                    <label><input type="checkbox">医生姓名：</label><input type="text" id="search_doctor"><br/>
+                    <div class="blank"></div>
+                    <label><input type="checkbox">起始时间：</label><input type="text" id="search_startTime"
+                                                                              onfocus="WdatePicker()"style="margin-right: 0"> ~ <input
+                        type="text"
+                        id="search_endTime"
+                        onfocus="WdatePicker()">
+                    <div class="blank"></div>
+                </div>
+                <table id="table_title" class="table_title" style="width: 100%">
+
+                </table>
+            </div>
+            <div class="table_h">
+                <table id="table_content" class="table_content" style="width: 100%">
+
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<div id="footer">-->
+<!--<p>打印</p>-->
+<!--</div>-->
+<script>
+    var orgId = '';
+    $(function () {
+        search_click();
+    });
+    function search_click() {
+        $('#table_content').empty();
+        var search_phone, search_parentName, search_babyName, search_startTime, search_endTime,search_isMoney,search_doctor;
+//        $('.con_contral input:checkbox').get(0).checked ? search_phone = $.trim($('#search_phone').val()) : search_phone = '';
+        search_isMoney = $.trim($('#search_isMoney>option:selected').val());
+        $('.con_contral input:checkbox').get(0).checked ? search_parentName = $.trim($('#search_num').val()) : search_parentName = '';
+        $('.con_contral input:checkbox').get(1).checked ? search_babyName = $.trim($('#search_status>option:selected').val()) : search_babyName = '';
+        $('.con_contral input:checkbox').get(2).checked ? search_doctor = $.trim($('#search_doctor').val()) : search_doctor = '';
+        ($('.con_contral input:checkbox').get(3).checked && $.trim($('#search_startTime').val()) != '') ? search_startTime = $.trim($('#search_startTime').val()) : search_startTime = '';
+        ($('.con_contral input:checkbox').get(3).checked && $.trim($('#search_endTime').val()) != '') ? search_endTime = $.trim($('#search_endTime').val()) : search_endTime = '';
+        $.ajax({
+            type: 'post',
+            url: urlWay.orgBusinessHost + 'orgBusinessManage.action',
+            cache: false,
+            async: false,
+            data: {
+                action: "getChildCareAppointmentList",
+                "userChildcareAppointmentInfo.openBeginDate":search_startTime,
+                "userChildcareAppointmentInfo.openEndDate":search_endTime,
+                "userChildcareAppointmentInfo.preEncoding":search_parentName,
+                "userChildcareAppointmentInfo.status":search_babyName,
+                "hospitalBasicInfo.id":orgId,
+                "userChildcareAppointmentInfo.isMoney":search_isMoney,
+                "userChildcareAppointmentInfo.doctorInfo.doctorName":search_doctor
+            },
+            success: function (result) {
+                if (result.mes == '请登录') {
+                    ale('请登录', '24px');
+                    window.location.href = "org_login.html";
+                }
+                else if (result.mes == "成功") {
+                    var userInoculationAppointmentInfoList = result.userChildcareAppointmentInfoList;
+                    if (userInoculationAppointmentInfoList != null) {
+                        var html = '';
+                        if(search_isMoney=='Y'){
+                            $('#table_title').html(
+                                    "<tr>" +
+                                    "<th width='26%'>日期</th>" +
+                                    "<th width='27%'>时间段</th>" +
+                                    "<th width='27%'>家长手机号</th>" +
+                                    "<th width='20%'>医生姓名</th>" +
+                                    "</tr>"
+                            );
+                            for (var j = 0, l = userInoculationAppointmentInfoList.length; j < l; j++) {
+                                var preEncoding=userInoculationAppointmentInfoList[j].preEncoding;
+                                if(preEncoding==null){
+                                    preEncoding='';
+                                }
+                                var doctor=userInoculationAppointmentInfoList[j].doctorInfo;
+                                if(doctor==null){
+                                    doctor='';
+                                }else{
+                                    doctor=userInoculationAppointmentInfoList[j].doctorInfo.doctorName;
+                                }
+                                var windowName=userInoculationAppointmentInfoList[j].organServicePlaceSet;
+                                if(windowName==null){
+                                    windowName='';
+                                }else{
+                                    windowName=userInoculationAppointmentInfoList[j].organServicePlaceSet.windowName;
+                                }
+                                var time='';
+                                if(userInoculationAppointmentInfoList[j].organChildcareOpenResources.timeDivisionNeed=='时间段'){
+                                    time=userInoculationAppointmentInfoList[j].organChildcareOpenResourcesDatail.openStartTime + '~' + userInoculationAppointmentInfoList[j].organChildcareOpenResourcesDatail.openEndTime;
+                                }else{
+                                    time=userInoculationAppointmentInfoList[j].organChildcareOpenResourcesDatail.segment;
+                                }
+                                html += '<tr style="font-size: 12px;">' +
+                                '<td width="26%">' + userInoculationAppointmentInfoList[j].organChildcareOpenResources.openDate + '</td>' +
+                                '<td width="27%">' +  time+ '</td>' +
+                                '<td width="27%">' + userInoculationAppointmentInfoList[j].userInfo.phone + '</div> ' +
+                                '<td width="20%">' + doctor + '</td>' +
+                                '</tr> ';
+                            }
+                        }else{
+                            $('#table_title').html(
+                                    "<tr>" +
+                                    "<th width='26%'>日期</th>" +
+                                    "<th width='27%'>时间段</th>" +
+                                    "<th width='27%'>家长手机号</th>" +
+                                    "<th width='20%'>预约编号</th>" +
+                                    "</tr>"
+                            );
+                            for (var j = 0, l = userInoculationAppointmentInfoList.length; j < l; j++) {
+                                var preEncoding=userInoculationAppointmentInfoList[j].preEncoding;
+                                if(preEncoding==null){
+                                    preEncoding='';
+                                }
+                                var doctor=userInoculationAppointmentInfoList[j].doctorInfo;
+                                if(doctor==null){
+                                    doctor='';
+                                }else{
+                                    doctor=userInoculationAppointmentInfoList[j].doctorInfo.doctorName;
+                                }
+                                var windowName=userInoculationAppointmentInfoList[j].organServicePlaceSet;
+                                if(windowName==null){
+                                    windowName='';
+                                }else{
+                                    windowName=userInoculationAppointmentInfoList[j].organServicePlaceSet.windowName;
+                                }
+                                var time='';
+                                if(userInoculationAppointmentInfoList[j].organChildcareOpenResources.timeDivisionNeed=='时间段'){
+                                    time=userInoculationAppointmentInfoList[j].organChildcareOpenResourcesDatail.openStartTime + '~' + userInoculationAppointmentInfoList[j].organChildcareOpenResourcesDatail.openEndTime;
+                                }else{
+                                    time=userInoculationAppointmentInfoList[j].organChildcareOpenResourcesDatail.segment;
+                                }
+                                html += '<tr style="font-size: 12px;">' +
+                                '<td width="26%">' + userInoculationAppointmentInfoList[j].organChildcareOpenResources.openDate + '</td>' +
+                                '<td width="27%">' +  time+ '</td>' +
+                                '<td width="27%">' + userInoculationAppointmentInfoList[j].userInfo.phone + '</div> ' +
+                                '<td width="20%">' + preEncoding + '</td>' +
+                                '</tr> ';
+                            }
+                        }
+                        $('#table_content').html(html);
+                    }
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+            }
+        });
+    }
+</script>
+</body>
+</html>

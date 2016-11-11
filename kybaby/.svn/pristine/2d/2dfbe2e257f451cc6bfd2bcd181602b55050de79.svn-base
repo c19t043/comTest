@@ -1,0 +1,67 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>我的主页</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/sharePointPatient.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/sha1.js"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="js/jquery.qrcode.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/sharePointPatient.js"></script>
+</head>
+<body>
+<div id="myheader">
+    <div>我的主页</div>
+</div>
+<!--header-->
+<div id="container">
+    <div class="description">
+        <img src="" alt=""/>
+
+        <div id="doctorMessage">
+
+        </div>
+    </div>
+    <div class="gray_s"></div>
+    <ul class="doctorType">
+        <li>所属科室</li>
+        <li>医生职称</li>
+        <li>临床经验</li>
+    </ul>
+    <ul class="doctorLevel">
+    </ul>
+    <div class="gray_s"></div>
+    <div id="doctorIntroduction">
+        <p>医师简介</p>
+
+        <div id="description" class="description">
+
+        </div>
+    </div>
+    <div class="gray_s"></div>
+    <div class="professional">
+        <div>专业方向</div>
+        <div id="professional"></div>
+    </div>
+    <div class="gray_s"></div>
+    <div class="goodat">
+        <div>擅长领域</div>
+        <div id="goodat"></div>
+    </div>
+</div>
+<!--<div id="footer" onclick="window.location.href='http://www.qiyico.com/download/index.html'">-->
+    <!--<img src="images/downloadimg.jpg" alt=""/>-->
+<!--</div>-->
+<div id="footer">
+    <div class="login_button" onclick="sharePointPatient.login()">登录</div>
+    <div class="login_button" onclick="sharePointPatient.regist()">注册</div>
+</div>
+</body>
+</html>

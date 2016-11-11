@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <title>我的订单</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/myAppointment.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+	<script src="js/MD5.js"></script>
+    <script src="js/myAppointment.js"></script>
+    <style>
+        .head_nav{
+            overflow: hidden;
+            padding: 12px 0;
+            background: #FF813D;
+        }
+        .head_nav>div{
+            float:left;
+            width:50%;
+            box-sizing:border-box;
+            -moz-box-sizing:border-box; /* Firefox */
+            -webkit-box-sizing:border-box; /* Safari */
+            text-align: center;
+            color: #fff;
+            font-size: 15px;
+        }
+        .head_nav>div>span{
+            padding-left: 6px;
+            padding-right: 6px;
+        }
+        .leftmeu{
+            border-right: 1px solid #fff;
+        }
+        .select>span{
+            padding-bottom: 2px;
+            border-bottom: 1px solid #fff;
+        }
+        .listdetail{
+            border-bottom: 1px solid #CACACA;
+        }
+    </style>
+</head>
+<body>
+
+<div id="header">
+    <!--<div class="header-left"><p></p></div>-->
+    <!--<div class="header-center"><span data-name="我的预约门诊" class="select selbtn leftmeu">门诊服务订单</span><span-->
+            <!--data-name="家庭医生订单" class="selbtn rightmeu">上门服务订单</span></div>-->
+    <!--<div class="header-right"></div>-->
+    <div class="header-left" onclick="sessionStorage.setItem('myAppointment','');sessionStorage.setItem('myAppointment1','');sessionStorage.setItem('myAppointment2','');window.location.href='personalcenter.html'"><span>我的订单</span></div>
+    <div class="header-center"></div>
+    <div class="header-right"></div>
+</div>
+<!--header-->
+
+<div id="container">
+    <div class="head_nav">
+        <div data-name="我的预约门诊" class="selbtn leftmeu select"><span>门诊服务订单</span></div>
+        <div data-name="家庭医生订单" class="selbtn rightmeu"><span>上门服务订单</span></div>
+    </div>
+    <div class="ul_box">
+        <ul id="select_cli" style="display: none">
+            <li class="blue" style="border-right: 1px solid #8c8c8c"><span>全部</span></li>
+            <li style="border-right: 1px solid #8c8c8c"><span>已接单</span></li>
+            <li style="border-right: 1px solid #8c8c8c"><span>未付款</span></li>
+            <li style="border-right: 1px solid #8c8c8c"><span>已完成</span></li>
+            <li><span>已取消</span></li>
+        </ul>
+        <ul id="select_cli1">
+            <li class="blue" style="border-right: 1px solid #8c8c8c"><span>全部</span></li>
+            <li style="border-right: 1px solid #8c8c8c"><span>已预约</span></li>
+            <li style="border-right: 1px solid #8c8c8c"><span>已取消</span></li>
+            <li><span>已完成</span></li>
+        </ul>
+    </div>
+    <p class="gray_s"></p>
+    <!--内容-->
+    <div class="info_box" style="display:none" id="info_box_all">
+        <!--<div class="order_divbox">-->
+        <!--<span class="top_sj">2015-11-16 19:42:34</span>-->
+        <!--<span class="top_zt">未付款</span>-->
+
+        <!--<p class="gray_2"></p>-->
+
+        <!--<div class="info">-->
+        <!--<div class="img">-->
+        <!--<img src="/kybabyBG/admin//images/product/pic_small20151102044659.jpg">-->
+        <!--</div>-->
+        <!--<div class="text_box">-->
+        <!--<span>服务产品</span>&nbsp;-->
+        <!--<span class="font1">母乳成分分析</span>-->
+        <!--<br>-->
+        <!--<span style="color:black" class="font1">王婷</span>-->
+        <!--<br>-->
+        <!--<span style="visibility:visible" class="font1">职称：</span>-->
+        <!--<span class="font1">医师</span>-->
+        <!--<br>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<p class="gray_2"></p>-->
+
+        <!--<div class="top_je " style="display:block">-->
+        <!--<span>实付金额：</span>-->
+        <!--<span class="font2">¥200</span>-->
+        <!--<span class="button">取消订单</span>-->
+        <!--</div>-->
+        <!--<p class="gray_1"></p>-->
+        <!--</div>-->
+        <!--<div class="order_divbox">-->
+        <!--<span class="top_sj">2015-11-16 19:42:34</span>-->
+        <!--<span class="top_zt">未付款</span>-->
+
+        <!--<p class="gray_2"></p>-->
+
+        <!--<div class="info">-->
+        <!--<div class="img">-->
+        <!--<img src="/kybabyBG/admin/images/product/pic_small20151102044659.jpg">-->
+        <!--</div>-->
+        <!--<div class="text_box">-->
+        <!--<span>服务产品</span>&nbsp;-->
+        <!--<span class="font1">母乳成分分析</span>-->
+        <!--<br>-->
+        <!--<span style="color:black" class="font1">王婷</span>-->
+        <!--<br>-->
+        <!--<span style="visibility:visible" class="font1">职称：</span>-->
+        <!--<span class="font1">医师</span>-->
+        <!--<br>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<p class="gray_2"></p>-->
+
+        <!--<div class="top_je " style="display:block">-->
+        <!--<span>实付金额：</span>-->
+        <!--<span class="font2">¥200</span>-->
+        <!--<span class="button">取消订单</span>-->
+        <!--</div>-->
+        <!--<p class="gray_1"></p>-->
+        <!--</div>-->
+    </div>
+    <div class="info_boxdoc" id="info_boxdoc">
+        <!--<h6>您预约的医生：</h6>-->
+
+        <div class="doctor_list" id="doctor_list">
+            <!--<div class="listdetail">-->
+            <!--<img src="images/zxq_11.png">-->
+
+            <!--<div class="basicinfo">-->
+            <!--<p class="detail_name">张医生&nbsp;&nbsp;<span>实付金额￥300</span></p>-->
+
+            <!--<p class="detail_time">2015-11-22 23:33:44</p>-->
+
+            <!--<p class="detail_address">成都市高新区金杨路</p>-->
+            <!--</div>-->
+            <!--<div class="pjdoctor" id="pjdoctor">评价医生</div>-->
+            <!--<div class="pjdoctor">已完成</div>-->
+            <!--<p class="gray_2"></p>-->
+            <!--</div>-->
+            <!--<div class="listdetail">-->
+            <!--<img src="images/zxq_11.png">-->
+
+            <!--<div class="basicinfo">-->
+            <!--<p class="detail_name">张医生</p>-->
+
+            <!--<p class="detail_time">2015-11-22 23:33:44</p>-->
+
+            <!--<p class="detail_address">成都市高新区金杨路</p>-->
+            <!--</div>-->
+            <!--<div class="pjdoctor nonecolor">评价医生</div>-->
+            <!--<p class="gray_2"></p>-->
+            <!--</div>-->
+        </div>
+    </div>
+    <div style="display:none;width: 80%; padding: 20px 0px; position: fixed; top: 25%; left: 10%; background: rgb(102, 102, 102);" id="zPayMethod">
+        <p style="font-size:18px; color:#FFF; text-align:center; padding:0 0 20px 0;">请选择支付方式</p>
+        <p class="selcli" style="color:#00FF44;padding:0 0 10px 0; width:130px; margin:0 auto; text-align:left;"><label style="color:#00FF44;background:rgb(102, 102, 102);opacity:0.9;padding:0 20px 0 0;font-size:16px;" for="wx_way">微信支付:</label><input checked="checked" class="checkbo" mark="微信" id="wx_way" type="radio" name="zhifu" value="weixin" style="position:relative;top:5px;float:right; line-height:21px;"></p>
+        <p class="selcli" style="display: none; color:#00FF44;padding:0 0 10px 0; width:130px; margin:0 auto; text-align:left;"><label style="color:#00FF44;background:rgb(102, 102, 102);opacity:0.9;padding:0 20px 0 0;font-size:16px;" for="zfb_way">支付宝支付:</label><input class="checkbo" mark="支付宝" id="zfb_way" type="radio" name="zhifu" value="zhifubao" style="position:relative;top:5px;float:right; line-height:21px;"></p>
+        <p class="selcli" style="display: none; color:#00FF44;padding:0 0 10px 0; width:130px; margin:0 auto; text-align:left;"><label style="color:#00FF44;background:rgb(102, 102, 102);opacity:0.9;padding:0 20px 0 0;font-size:16px;" for='yl_way'>银联支付:</label><input class="checkbo" mark="银联" id='yl_way' type="radio" name="zhifu" value="yinlian" style="position:relative;top:5px;float:right; line-height:21px;"></p>
+        <p style="text-align:center; margin-top: 10px;">
+            <input type="button" value="取消" onclick="quxiao()" style="width: 40%; height: 40px; font-size: 1em; line-height: 1em; -webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-appearance: none; border: none; border-radius: 5px; background-color: #eee; color: #666;" id="btnCancel">
+            <input type="button" value="确认" onclick="goPay(this);" style="width:40%; margin:0 0 0 20px; height: 40px; font-size: 1em; line-height: 1em; -webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-appearance: none; border: none; border-radius: 5px; background-color: #eee; color: #666;" id="btnOrderPay">
+        </p>
+    </div>
+</div>
+</body>
+</html>

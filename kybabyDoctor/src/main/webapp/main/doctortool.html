@@ -1,0 +1,99 @@
+﻿<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<title>医生工具</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/main.css">
+	<script src="js/modernizr-2.8.3.min.js"></script>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/config.js"></script>
+	<script src="js/autoLogin.js"></script>
+    <script src="js/main.js"></script>
+</head>
+<body>
+
+<div id="header">
+	<div class="header-left"><div onclick="window.location.href='consultation.html'"></div></div>
+	<div class="header-center">医生工具</div>
+	<div class="header-right"></div>
+</div>
+<!--header-->
+<style>
+    body{
+        background: #ffffff;
+    }
+    .header-left>div{
+        background: url("images/prev_01.png") no-repeat center center;
+        background-size: 25px;
+        height: 45px;
+    }
+    .personal_list>div{
+        width: 100%;
+        height: 50px;
+        padding: 0px 15px 0px 30px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    .personal_list .personal_left {
+        float: left;
+        height: 50px;
+        line-height: 50px;
+        width: 75%;
+    }
+    .personal_list .personal_right {
+        float: right;
+        font-size: 2em;
+        color: #c8c8c8;
+        width: 10%;
+        height: 50px;
+        line-height: 50px;
+        text-align: right;
+    }
+    .gray_s{
+        width: 100%;
+        height: 10px;
+        background: #f7f7f7;
+        clear: both;
+    }
+    .gray_ss{
+        width: 100%;
+        height: 2px;
+        background: #f7f7f7;
+        clear: both;
+    }
+
+</style>
+<div id="container">
+	<!--personal_list02-->
+	<div class="personal_list">
+		<div class="list02" onclick="window.location.href='toolmommanage.html'">
+			<p class="personal_left">儿童/孕产妇健康管理</p>
+			<p class="personal_right">&gt;</p>
+		</div>
+	</div>
+	<p class="gray_ss"></p>
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list02" onclick="window.location.href='toolreferralrecord.html'">
+            <p class="personal_left">转诊</p>
+            <p class="personal_right">&gt;</p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+    <!--personal_list01-->
+    <div class="personal_list">
+        <div class="list01" onclick="window.location.href='toolResidenthealthrecords.html'">
+            <p class="personal_left">居民健康档案</p>
+            <p class="personal_right">&gt;</p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+</div>
+
+<script src="js/plugins.js"></script>
+
+</body>
+</html>

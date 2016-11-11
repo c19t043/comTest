@@ -1,0 +1,224 @@
+﻿<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<title>注册</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/regist.css">
+	<script src="js/modernizr-2.8.3.min.js"></script>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<!--<script type="text/javascript" src="js/jquery.cityselect.js"></script>-->
+	<script type="text/javascript" src="js/jsAddress.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/config.js"></script>
+	<!------------时间控件--------------->
+	<script src="js/mobiscroll_002.js" type="text/javascript"></script>
+	<script src="js/mobiscroll_004.js" type="text/javascript"></script>
+	<link href="js/mobiscroll_002.css" rel="stylesheet" type="text/css">
+	<link href="js/mobiscroll.css" rel="stylesheet" type="text/css">
+	<script src="js/mobiscroll.js" type="text/javascript"></script>
+	<script src="js/mobiscroll_003.js" type="text/javascript"></script>
+	<script src="js/mobiscroll_005.js" type="text/javascript"></script>
+	<link href="js/mobiscroll_003.css" rel="stylesheet" type="text/css">
+	<!------------时间控件end--------------->
+    <script src="js/sha1.js"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script src="js/userRegist.js"></script>
+
+
+</head>
+<body>
+
+<div id="header">
+    <div class="header-left" onclick="return_before()"><span>注册</span></div>
+    <div class="header-center"></div>
+    <div class="header-right" onclick="return_before()" id="header_right_button"><span>已有登录账号</span></div>
+</div>
+<div id="container">
+    <div class="logo_box"><img id="login_logo" src='images/images_login_regist/login_regist_logo.png' /></div>
+
+	<div class="step_1" id="registFirstStep">
+		<div class="message">
+            <label for="regist_phone">手机号</label>
+            <input id="regist_phone" type="number" placeholder="请输入手机号"/>
+        </div>
+
+		<p class="gray_s"></p>
+        <div class="message">
+            <label for="regist_code">验证码</label>
+            <input id="regist_code" type="number" placeholder="请输入验证码"/>
+            <span id="get_reg_code" class="get_reg_code button_new01" onclick="getCheckwords()">获取验证码</span>
+        </div>
+
+		<p class="gray_s"></p>
+        <div class="message">
+            <label for="regist_password">密码</label>
+            <input id="regist_password" type="password" placeholder="请输入密码"/>
+        </div>
+
+		<p class="gray_s"></p>
+        <div class="message">
+            <label for="regist_rpassword">确认密码</label>
+            <input id="regist_rpassword" type="password" placeholder="请确认密码"/>
+        </div>
+	</div>
+    <p class="gray_s"></p>
+	<div class="login_button next_step" id="btnNextStep" onclick="nextStep()">下一步</div>
+	<div class="step_2" style="display:none" id="registNextStep">
+        <div class="message">
+            <label for="regist_baby_name">宝宝姓名</label>
+            <input id="regist_baby_name" type="text" placeholder="请输入姓名"/>
+        </div>
+
+		<p class="gray_s"></p>
+
+        <div class="message">
+            <label>宝宝性别</label>
+            <div style="width: 60%;padding-left: 15px;overflow: hidden">
+                <label style="width: 20px" class="sex" for="regist_baby_boy">男</label><input id="regist_baby_boy" type="radio" name="sex" value="男"
+                                                                                             checked/>
+                <label style="width: 20px" class="sex" for="regist_baby_girl">女</label><input id="regist_baby_girl" type="radio" name="sex" value="女"/>
+            </div>
+        </div>
+
+		<p class="gray_s"></p>
+        <div class="message">
+            <label for="appDate">宝宝生日</label>
+            <input type="text" placeholder="请选择宝宝生日" readonly name="time" id="appDate"/>
+        </div>
+
+		<p class="gray_s" style="display:none"></p>
+		<label style="display:none">地址</label>
+
+		<div id="city" style="display:none">
+			<select class="prov" id="addressProvince"></select>
+			<select class="city" id="addressCity"></select>
+			<select class="dist" id="addressArea"></select>
+		</div>
+<!-- 		<p class="gray_2"></p> -->
+<!-- 		<input id="street_address" placeholder="街道" type="text"/> -->
+
+<!-- 		<div id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;"></div> -->
+<!-- 		<p class="gray_2"></p> -->
+<!-- 		<input id="xxaddress" type="text" placeholder="请填写门牌号"/> -->
+
+		<p class="gray_s"></p>
+        <div class="message">
+            <label for="regist_codes" id="regist_codes1">邀请码</label>
+            <input id="regist_codes" type="text" placeholder="请输入推荐人手机号"/>
+        </div>
+        <p class="gray_s"></p>
+	</div>
+    <p class="agreement" id="userAgreement" style="display:none"><input type="checkbox" id="cbUserAgreement" checked="checked"/><span id="user_xieyi">已阅读"康优宝贝"《用户协议》</span></p>
+	<div onclick="regist()" style="display:none" class="login_button regist" id="btnRegist">注册</div>
+
+</div>
+
+</body>
+<script type="text/javascript">
+	$(function(){
+		addressInit('addressProvince', 'addressCity', 'addressArea','四川','成都','武侯区');
+	});
+</script>
+
+<script>
+	$(function () {
+		var currYear = (new Date()).getFullYear();
+
+		var opt = {};
+		opt.date = {preset: 'date'};
+		opt.datetime = {preset: 'datetime'};
+		opt.time = {preset: 'time'};
+		opt.default = {
+			theme: 'android-ics light', //皮肤样式
+			display: 'modal', //显示方式
+			mode: 'scroller', //日期选择模式
+			dateFormat: 'yyyy-mm-dd',
+			lang: 'zh',
+			showNow: true,
+			nowText: "今天",
+			startYear: currYear - 50, //开始年份
+			endYear: currYear//结束年份
+		};
+
+		$("#appDate").mobiscroll($.extend(opt['date'], opt['default']));
+		var optDateTime = $.extend(opt['datetime'], opt['default']);
+		var optTime = $.extend(opt['time'], opt['default']);
+//		$("#appDate").mobiscroll(optDateTime).datetime(optDateTime);
+//		 $("#appTime").mobiscroll(optTime).time(optTime);
+	});
+</script>
+
+<script type="text/javascript">
+
+	window.onload = function () {
+		var strLong = null;
+		var strLati = null;
+		// 百度地图API功能
+		function G(id) {
+			return document.getElementById(id);
+		}
+		var map = new BMap.Map("");
+		var ac = new BMap.Autocomplete(    //建立一个自动完成的对象
+			{
+				"input": "street_address"
+				, "location": map
+			});
+
+		ac.addEventListener("onhighlight", function (e) {  //鼠标放在下拉列表上的事件
+			var str = "";
+			var _value = e.fromitem.value;
+			var value = "";
+			if (e.fromitem.index > -1) {
+				value = _value.province + _value.city + _value.district + _value.street + _value.business;
+			}
+			str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value;
+
+			value = "";
+			if (e.toitem.index > -1) {
+				_value = e.toitem.value;
+				value = _value.province + _value.city + _value.district + _value.street + _value.business;
+			}
+			str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
+			G("searchResultPanel").innerHTML = str;
+		});
+
+		var myValue;
+		ac.addEventListener("onconfirm", function (e) {    //鼠标点击下拉列表后的事件
+			var _value = e.item.value;
+			myValue = _value.province + _value.city + _value.district + _value.street + _value.business;
+			G("searchResultPanel").innerHTML = "onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue;
+
+			setPlace();
+		});
+
+		function setPlace() {
+
+			
+			
+			
+			function myFun() {
+				var pp = local.getResults().getPoi(0).point;    //获取第一个智能搜索的结果
+				strLong = pp.lng;//经度
+				strLati = pp.lat;//纬度
+				//getStoreDetails(strLong, strLati);
+			}
+
+			var local = new BMap.LocalSearch(map, { //智能搜索
+				onSearchComplete: myFun
+			});
+			local.search(myValue);
+		}
+	}
+</script>
+
+<div id="user_xieyi_box"></div>
+<div id="user_xieyi_tit" style="display:none">
+	<div class="a" onclick="hide_user_xieyi()"><p></p></div>
+	<div class="b">用户协议</div>
+	<div class="c"></div>
+</div>
+
+</html>

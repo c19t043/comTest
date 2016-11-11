@@ -1,0 +1,94 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>多点执业设置</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/appointmentDetail.css"/>
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/sha1.js"></script>
+    <script src="js/jquery.qrcode.min.js"></script>
+</head>
+<body>
+<div id="header">
+    <div class="header-left"><p></p></div>
+    <div class="header-center">预约门诊详情</div>
+    <div class="header-right"></div>
+</div>
+<!--header-->
+<div id="container">
+    <div id="user_info">
+        <img class="parentImg" src="" alt=""/>
+        <div>
+            <!--秋宝宝妈妈爱<br/>-->
+            <!--联系人：李秋燕-->
+        </div>
+        <img class="contactUs" src="images/contactUs.jpg" alt=""/>
+    </div>
+    <p class="time">
+        <img src="images/apdi.jpg" alt=""/>
+        <span></span>
+    </p>
+    <p class="address">
+        <img src="images/apdi.jpg" alt=""/>
+        <span></span>
+    </p>
+    <div id="meet">
+        <div id="meetPro"><img src="images/meet_progress.jpg" alt=""/></div>
+        <div id="dialog">
+            <div id="start">
+                <span></span><br/>
+                预约成功，请保持电话畅通。
+            </div>
+            <div id="ongoing" class="filter"><span></span><br/>会面成功，请于门诊完成后结束会面。</div>
+            <div id="end" class="filter"><span></span><br/>结束会面，感谢您对我们的支持。</div>
+        </div>
+    </div>
+    <div id="status">
+        <div class="confirm" onclick="sureMeet(this)">
+
+        </div>
+        <div class="call">
+            拨打客服电话
+        </div>
+    </div>
+    <div id="cover">
+        <div class="cover">
+            <h4>提示</h4>
+            <p>确认结束本次会面吗？</p>
+            <div class="isSure">
+                <div class="cancel">取消</div>
+                <div class="sure">确定</div>
+            </div>
+        </div>
+    </div>
+    <div id="cover2">
+        <div class="cover">
+            <h4>提示</h4>
+            <p>用户还没有完成二维码扫描，确定要关闭吗？</p>
+            <div class="isSure2">
+                <div class="cancel2">取消</div>
+                <div class="sure2">确定</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="cover1">
+        <div class="cancel_sure">X</div>
+        <p>请让用户扫描此二维码</p>
+        <div class="cover1">
+        </div>
+    </div>
+</div>
+<script src="js/plugins.js"></script>
+<script src="js/config.js"></script>
+<script src="js/appointmentDetail.js"></script>
+
+</body>
+</html>

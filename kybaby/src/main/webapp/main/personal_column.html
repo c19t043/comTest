@@ -1,0 +1,53 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<title>个人专栏</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/personal_column.css">
+	<script src="js/modernizr-2.8.3.min.js"></script>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="js/jquery.cityselect.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/config.js"></script>
+	<script src="js/personal_column.js"></script>
+</head>
+<body style="background-color: white">
+
+<div id="header">
+    <div class="header-left" onclick="return_before()"><span>个人专栏</span></div>
+	<div class="header-center"></div>
+	<div class="header-right"></div>
+</div>
+<div id="container">
+	<p class="gray_s"></p>
+	<div class="text_box" id="doctorArticle">
+		<!-- <span class="tittle">标题</span>
+			<p>这是一段测试的文字这是一段测试的文字这是一段测试的文字这是一段测试的文字这是一段测试的文字这是一段测试的文字</p>
+			<span class="tittle">标题</span>
+			<p>这是一段测试的文字这是一段测试的文字这是一段测试的文字这是一段测试的文字这是一段测试的文字这是一段测试的文字</p>
+			<span class="tittle">标题</span>
+			<p>这是一段测试的文字这是一段测试的文字这是一段测试的文字这是一段测试的文字这是一段测试的文字这是一段测试的文字</p> -->
+	</div>
+	<textarea placeholder="请输入评论" id="comments"></textarea>
+
+	<div class="text_box">
+		<span>评论</span><br/>
+
+		<div id="userCommentsList">
+			<!-- <div class="touxiang"></div>
+			<div class="box">
+					<span>用户名</span><br/>
+					<span  class="text">2015-08-09 12:00:00</span><br/>
+					<span  class="text">写的不错，多写点有意义的东西</span>
+			</div> -->
+		</div>
+	</div>
+	<p class="gray_s"></p>
+
+	<div class="button_01" style="margin-top: 20px" onclick="addComment()">评论</div>
+</div>
+</body>
+</html>

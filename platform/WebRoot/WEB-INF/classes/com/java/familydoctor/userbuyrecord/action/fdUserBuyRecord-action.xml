@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package namespace="/familydoctor/userBuyRecord" name="FdUserBuyRecordAction" extends="com.java.platform">
+		<!-- 信息列表  -->
+		<action name="getFdUserBuyRecordList" class="fdUserBuyRecordAction" method="getFdUserBuyRecordList">
+			<result name="success">/familydoctor/userbuyrecord/userbuyrecord_list.jsp</result>
+		</action>
+	</package>
+</struts>

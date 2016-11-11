@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head  class="no-js" lang="zh-cn">
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <script src="../../main/js/config.js"></script>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+        body{
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            background: #DA9289;
+        }
+        #gif{
+            width: 100%;
+            height: 170px;
+        }
+        img.gif{
+            width: 100%;
+            height: 170px;
+        }
+        .title{
+            width: 100%;
+            line-height: 28px;
+            padding: 10px 0px;
+            text-align: center;
+            color: #222;
+            font-size: 16px;
+            background: #DA9289;
+            border-bottom:5px solid #F4EAD4 ;
+        }
+        .title>img{
+            width: 50%;
+            height: 60px;
+        }
+        .content{
+            background: #DA9289;
+            padding-top: 10px;
+        }
+        .content>p{
+            color: white;
+            font-size:16px;
+            margin-bottom: 10px;
+        }
+        .content>img{
+            width: 100%;
+            margin: -5px 0px;
+            position: relative;
+            bottom:0px;
+        }
+        .a{
+            left: -100%;
+        }
+        .b{
+            left: 100%;
+        }
+        .c{
+            left: -100%;
+        }
+        .d{
+            left: 100%;
+        }
+        .e{
+            left: -100%;
+        }
+    </style>
+    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        var urlstr=decodeURIComponent(window.location.search.substring(1));
+        urlstr=urlstr.split('&')[0]+'&'+urlstr.split('&')[1]+'&'+urlstr.split('&')[2]+'&'+urlstr.split('&')[3]+'&'+urlstr.split('&')[4];
+        $(function () {
+            $('.a').animate({left:'0px'},300);
+            $('.b').animate({left:'0px'},400);
+            $('.c').animate({left:'-2%'},500);
+            setTimeout(out,200);
+            function out(){
+                $('.d').animate({left:'0px'},300);
+                $('.e').animate({left:'0px'},400);
+            }
+        });
+        var arr=['title6.png','title6.6.png'];
+        var n=-1;
+        function changeImage(){
+            n++;
+            if(n==2){
+                n=0;
+            }
+            $('#title>img').prop('src','images/'+arr[n]);
+        }
+        setInterval(changeImage,400);
+        function speWay(){
+            $('#cover').css({display:'block'});
+        }
+        function clos(){
+            $('#cover').css({display:'none'});
+        }
+        function nextQuestion(div){
+            var str=urlstr+'&'+$(div).attr('data-info');
+            var answer=str;
+            var arr=str.split('&');
+            var sum=0;
+            for(var i= 0,len=arr.length;i<len;i++){
+                sum+=parseInt(arr[i].split('-')[2]);
+            }
+            if(sum>=22){
+                window.location.href='anwer.html?'+answer;
+            }else if(sum>=12&&sum<22){
+                window.location.href='anwertwo.html?'+answer;
+            }else{
+                window.location.href='anwerthree.html?'+answer;
+            }
+        }
+    </script>
+    <script src="js/sha1.js"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="js/sharetoother.js" type="text/javascript"></script>
+    <audio style="display: none" src="images/DJ舞曲-印度亲嘴歌.mp3" onplay="this.currentTime=5" autoplay controls></audio>
+</head>
+<body>
+<div id="gif"><img class="gif" src="images/QQ图片20160203133111.gif" alt=""/></div>
+<div id="title" class="title">
+    <img src="images/title6.png" alt=""/>
+</div>
+<div class="content">
+    <p>如果老公无法满足你，你的选择是？</p>
+    <img onclick="nextQuestion(this)" data-info="6-a-2" class="a" src="images/6a.png" alt=""/><br/>
+    <img class="b" onclick="nextQuestion(this)" data-info="6-b-5" src="images/6b.png" alt=""/><br/>
+    <img class="c" onclick="nextQuestion(this)" data-info="6-c-2" src="images/6c.png" alt=""/><br/>
+    <img onclick="nextQuestion(this)" class="d" data-info="6-d-3" src="images/6d.png" alt=""/><br/>
+    <img class="e" onclick="nextQuestion(this)" data-info="6-e-1" src="images/6e.png" alt=""/><br/>
+</div>
+</body>
+</html>

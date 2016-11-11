@@ -1,0 +1,544 @@
+<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+    <title>医生资料</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/org_doctorDataManage.css">
+    <script src="js/modernizr-2.8.3.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/org_doctorDataMan_docInfo_basic.js"></script>
+    <style>
+        #doc_portrait img{
+            margin: 0;
+        }
+        #layer_box{
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1000;
+            background: rgba(0,0,0,.3);
+            display: none;
+        }
+        #layer_div{
+            position: absolute;
+            width: 80%;
+            top:15%;
+            left: 10%;
+            max-width: 380px;
+            height: 70%;
+            max-height: 480px;
+            background: #fff;
+        }
+        #layer_div>div{
+            display: none;
+        }
+        .layer_title{
+            background: #1CBA93;
+            line-height: 45px;
+            font-size: 17px;
+            text-align: center;
+            color: #fff;
+        }
+        #layer_div ul{
+            overflow: auto;
+        }
+        .layer_list li,.layer_list_two li{
+            padding: 0 18px;
+            border-bottom: 1px solid #e8e8e8;
+            line-height: 45px;
+        }
+        .bottom_button{
+            margin: 10px 0;
+            position: absolute;
+            left: 10%;
+            bottom: 0px;
+            width: 80%;
+            line-height: 35px;
+            background: #fff;
+            border: 1px solid #1CBA93;
+            border-radius: 20px;
+            color: #1CBA93;
+            font-size: 17px;
+            text-align: center;
+        }
+        /*yjl*/
+        .text{
+            border: 1px solid #e8e8e8;
+        }
+        .updateImg{
+            margin: 8px 10px 0 0;
+            width: 40px;
+            height: 40px;
+            display: inline-block;
+            position: relative;
+        }
+        .hidden{
+            display: none;
+        }
+        form.file .canvas {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 1;
+        }
+        form.file .canvas1 {
+            display: none;
+        }
+        form.file {
+            width: 40px;
+            height: 40px;
+        }
+        form.file>.h_img{
+            margin: 0;
+        }
+        .file > input {
+            opacity: 0;
+            filter: alpha(opacity=0);
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            padding: 0;
+        }
+        .removeImg{
+            position: absolute;
+            top: -9px;
+            z-index: 10;
+            width: 18px;
+            height: 18px;
+            color: #505050;
+            line-height: 18px;
+            right: -9px;
+            text-align: center;
+            border-radius: 100%;
+            background: #e8e8e8;
+        }
+        #bottom_save>p{
+            border: 1px solid #1CBA93;
+            border-radius: 20px;
+            font-size: 18px;
+            line-height: 45px;
+            color: #1CBA93;
+            text-align: center;
+        }
+        #bottom_save{
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 6px 10%;
+            background: #f4f4f4;
+        }
+        #container{
+            margin-bottom: 60px;
+        }
+        .text_box{
+            padding: 10px;
+        }
+        #textinstructions{
+            color: #909090;
+            padding: 6px 15px;
+            line-height: 22px;
+        }
+    </style>
+</head>
+<body>
+<!--header-->
+<div id="header" class="doctor_header">
+    <div class="header-left"><p></p></div>
+    <div class="header-center">医生资料</div>
+    <div class="header-right text-center">
+        <span onclick="save_button(this)">提交</span>
+    </div>
+</div>
+<div id="container">
+    <div>
+        <ul class="header_nav flex_cont">
+            <li data-type="basic" class="flex_item header_nav_select">基本信息</li>
+            <li class="interval"><span>|</span></li>
+            <li data-type="identify" class="flex_item">身份提交</li>
+            <li class="interval"><span>|</span></li>
+            <li data-type="life" class="flex_item">生活信息</li>
+            <li class="interval"><span>|</span></li>
+            <li data-type="evaluate" class="flex_item">评价</li>
+        </ul>
+    </div>
+    <div data-type="basic" class="doctor_information basic">
+        <div>
+            <div class="information_div flex_cont">
+                <label>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</label>
+                <p class="flex_item"><input type="text" id="doc_name" placeholder="医生姓名"/></p>
+            </div>
+            <p class="gray_3"></p>
+            <div class="information_div flex_cont">
+                <label>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</label>
+                <ul id="doc_sex" class="flex_item choose_ul">
+                    <li class="c_selected" id="man"><span class="select_option" data-sex="1"></span><span class="choose_item">男</span></li>
+                    <li id="woman"><span class="select_option" data-sex="0"></span><span class="choose_item">女</span></li>
+                </ul>
+            </div>
+            <p class="gray_3"></p>
+            <div class="information_div flex_cont">
+                <label>手机号码：</label>
+                <p class="flex_item"><input type="number" onblur="doctorDataMan.checkMobile()" id="doc_tel" placeholder="手机号码"/></p>
+            </div>
+            <p class="gray_3"></p>
+            <div class="information_div flex_cont">
+                <label>头&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;像：</label>
+                <div class="flex_item" id="doc_portrait">
+                    <div class="updateImg">
+                        <form class="file" action="" method="post" enctype="multipart/form-data">
+                            <img src="images/menuicon/icon_add.png" class="h_img"/>
+                            <canvas width="40" height="40" class="canvas"></canvas>
+                            <input type="file" class="input" accept="images/*" onchange="loadImage(this,'头像')"/>
+                            <canvas class="canvas1"></canvas>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <p class="gray_3"></p>
+            <div class="information_div flex_cont layer_choose" data-id="0">
+                <label>就职医院：</label>
+                <p id="doc_hospital" class="flex_item text-right">请选择</p>
+                <i class="s_icon n_icon"></i>
+            </div>
+            <p class="gray_3"></p>
+            <div class="information_div flex_cont layer_choose" data-id="1">
+                <label>就职科室：</label>
+                <p id="doc_department" class="flex_item text-right">请选择</p>
+                <i class="s_icon n_icon"></i>
+            </div>
+            <p class="gray_3"></p>
+            <div class="information_div flex_cont layer_choose" data-id="2">
+                <label>医生职称：</label>
+                <p id="doc_title" class="flex_item text-right">请选择</p>
+                <i class="s_icon n_icon"></i>
+            </div>
+            <p class="gray_3"></p>
+            <div class="information_div flex_cont">
+                <label>临床经验：</label>
+                <p class="flex_item" id="doc_experience"><input type="number"></p>
+                <span class="s_text">年</span>
+            </div>
+            <p class="gray_1"></p>
+        </div>
+        <div id="direction_information">
+            <div class="information_div flex_cont layer_choose" data-id="3" data-name="professional">
+                <label>主专业方向：</label>
+                <p id="doc_direction" class="flex_item text-right">请选择</p>
+                <i class="s_icon n_icon"></i>
+            </div>
+            <p class="gray_3"></p>
+            <div class="information_div flex_cont layer_choose" data-id="4" data-name="professional">
+                <label>亚专业：</label>
+                <p id="doc_professional" class="flex_item text-right">请选择</p>
+                <i class="s_icon n_icon"></i>
+            </div>
+            <p class="gray_3"></p>
+            <div class="information_div flex_cont layer_choose" data-id="5" data-name="professional">
+                <label>病种：</label>
+                <p id="doc_diseases" class="flex_item text-right">请选择</p>
+                <i class="s_icon n_icon"></i>
+            </div>
+            <p class="gray_1"></p>
+        </div>
+        <div>
+            <p class="info_title">个人擅长：</p>
+            <p class="gray_1"></p>
+            <div class="information_div flex_cont text_box">
+                <p class="flex_item text" id="good_at" contenteditable="true"></p>
+            </div>
+            <p class="gray_1"></p>
+        </div>
+        <div>
+            <div class="information_div flex_cont layer_choose" data-id="6">
+                <label>开户行：</label>
+                <p id="doc_bank" class="flex_item text-right">请选择</p>
+                <i class="s_icon n_icon"></i>
+            </div>
+            <p class="gray_3"></p>
+            <div class="information_div flex_cont">
+                <label>银行卡号：</label>
+                <p class="flex_item"><input type="number" id="doc_bankCard" placeholder="银行卡号"/></p>
+            </div>
+            <p class="gray_1"></p>
+        </div>
+        <div>
+            <p class="info_title">开通服务：</p>
+            <p class="gray_1"></p>
+            <div class="information_div flex_cont" id="doc_service">
+                <div></div>
+            </div>
+        </div>
+        <div id="referees_div">
+            <p class="gray_1"></p>
+            <div class="information_div flex_cont">
+                <label id="referees">推荐人（选填）：</label>
+                <p class="flex_item"><input type="number" id="referees_tel" placeholder="请输入医生的手机号"/></p>
+            </div>
+        </div>
+    </div>
+    <div data-type="life" style="display: none" class="doctor_information identify">
+        <div>
+            <div class="information_div flex_cont">
+                <label>毕业学校：</label>
+                <p class="flex_item"><input type="text" id="school" placeholder="毕业学校"/></p>
+            </div>
+            <p class="gray_3"></p>
+            <div class="information_div flex_cont layer_choose" data-id="7">
+                <label>学位：</label>
+                <p id="degree" class="flex_item text-right">请选择</p>
+                <i class="s_icon n_icon"></i>
+            </div>
+            <p class="gray_3"></p>
+            <div class="information_div flex_cont">
+                <label>院内月收入：</label>
+                <p class="flex_item" id="salary"><input type="number"></p>
+                <span class="s_text">K</span>
+            </div>
+            <p class="gray_3"></p>
+            <div class="information_div flex_cont">
+                <label>是否离异：</label>
+                <ul id="divorced" class="flex_item choose_ul">
+                    <li data-sex="Y"><span class="select_option"></span><span class="choose_item">是</span></li>
+                    <li class="c_selected" data-sex="N"><span class="select_option"></span><span class="choose_item">否</span></li>
+                </ul>
+            </div>
+            <p class="gray_1"></p>
+        </div>
+        <div>
+            <p class="info_title">特殊爱好：</p>
+            <p class="gray_1"></p>
+            <div class="information_div flex_cont text_box">
+                <p class="flex_item text" id="hobby" contenteditable="true"></p>
+            </div>
+            <p class="gray_1"></p>
+        </div>
+        <div>
+            <p class="info_title">其他：</p>
+            <p class="gray_1"></p>
+            <div class="information_div flex_cont text_box">
+                <p class="flex_item text" id="other" contenteditable="true"></p>
+            </div>
+            <p class="gray_1"></p>
+        </div>
+    </div>
+    <div data-type="identify" style="display: none" class="doctor_information life">
+        <div>
+            <div class="information_div flex_cont">
+                <label>身份证号：</label>
+                <p class="flex_item"><input type="number" id="ID_card" placeholder="身份证号"/></p>
+            </div>
+            <p class="gray_1"></p>
+        </div>
+        <div>
+            <div class="information_div flex_cont">
+                <label>执业证号：</label>
+                <p class="flex_item"><input type="number" id="practice_num" placeholder="执业证号"/></p>
+            </div>
+            <p class="gray_3"></p>
+            <div class="information_div_img flex_cont">
+                <label>执业证书：</label>
+                <div class="flex_item" id="practice_certificate">
+                    <div class="updateImg">
+                        <form class="file" action="" method="post" enctype="multipart/form-data">
+                            <img src="images/menuicon/icon_add.png" class="h_img"/>
+                            <canvas width="40" height="40" class="canvas"></canvas>
+                            <input type="file" class="input" accept="images/*" onchange="loadImage(this,'执业证书')"/>
+                            <canvas class="canvas1"></canvas>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <p class="gray_1"></p>
+        </div>
+        <div>
+            <div class="information_div_img flex_cont">
+                <label>资格证书：</label>
+                <div class="flex_item" id="qualification_certificate">
+                    <div class="updateImg">
+                        <form class="file" action="" method="post" enctype="multipart/form-data">
+                            <img src="images/menuicon/icon_add.png" class="h_img"/>
+                            <canvas width="40" height="40" class="canvas"></canvas>
+                            <input type="file" class="input" accept="images/*" onchange="loadImage(this,'资格证书')"/>
+                            <canvas class="canvas1"></canvas>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <p class="gray_1"></p>
+        </div>
+        <div>
+            <div class="information_div_img flex_cont">
+                <label>职称证书：</label>
+                <div class="flex_item" id="certificate_title">
+                    <div class="updateImg">
+                        <form class="file" action="" method="post" enctype="multipart/form-data">
+                            <img src="images/menuicon/icon_add.png" class="h_img"/>
+                            <canvas width="40" height="40" class="canvas"></canvas>
+                            <input type="file" class="input" accept="images/*" onchange="loadImage(this,'职称证书')"/>
+                            <canvas class="canvas1"></canvas>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <p class="gray_1"></p>
+        </div>
+    </div>
+    <div data-type="evaluate" style="display: none" class="doctor_information evaluate">
+        <div>
+            <p class="info_title">对医生的评价：</p>
+            <p class="gray_1"></p>
+            <div class="information_div flex_cont text_box">
+                <p class="flex_item text" id="evaluation" contenteditable="true"></p>
+            </div>
+            <p class="gray_1"></p>
+        </div>
+    </div>
+</div>
+<div id="bottom_save">
+    <p onclick="save_button(this)">保存</p>
+</div>
+<div id="layer_box">
+    <div id="layer_div">
+        <div id="layer_list_hospital">
+            <p class="layer_title">就职医院</p>
+            <div>
+                <div class="search_div">
+                    <div class="flex_cont">
+                        <input type="text" class="flex_item" placeholder="搜索"/>
+                        <span></span>
+                    </div>
+                </div>
+                <p class="gray_1"></p>
+                <div class="layer_list basic_information" data-id="0">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+        <div id="layer_list_department">
+            <p class="layer_title">科室</p>
+            <div>
+                <div class="layer_list basic_information" data-id="1">
+                    <ul>
+                        <li>儿科</li>
+                        <li>妇产科</li>
+                        <li>儿童保健科</li>
+                        <li>内科</li>
+                        <li>全科</li>
+                        <li>中医推拿</li>
+                        <li>心理科</li>
+                        <li>乳腺科</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="layer_list_title">
+            <p class="layer_title">职称</p>
+            <div>
+                <div class="layer_list basic_information" data-id="2">
+                    <ul></ul>
+                </div>
+            </div>
+        </div>
+        <div id="layer_list_direction">
+            <p class="layer_title">主专业方向</p>
+            <div>
+                <div class="search_div">
+                    <div class="flex_cont">
+                        <input type="text" class="flex_item" placeholder="搜索"/>
+                        <span></span>
+                    </div>
+                </div>
+                <p class="gray_1"></p>
+                <div class="layer_list direction_information" data-id="3">
+                    <ul>
+                        <li>内科</li>
+                        <li>外科</li>
+                        <li>耳鼻喉科</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="layer_list_professional">
+            <p class="layer_title">亚专业</p>
+            <div>
+                <div class="search_div">
+                    <div class="flex_cont">
+                        <input type="text" class="flex_item" placeholder="搜索"/>
+                        <span></span>
+                    </div>
+                </div>
+                <p class="gray_1"></p>
+                <div class="layer_list_two" data-id="4">
+                    <ul></ul>
+                </div>
+                <p class="bottom_button">下一步</p>
+            </div>
+        </div>
+        <div id="layer_list_diseases">
+            <p class="layer_title">病种</p>
+            <div>
+                <div class="search_div">
+                    <div class="flex_cont">
+                        <input type="text" class="flex_item" placeholder="搜索"/>
+                        <span></span>
+                    </div>
+                </div>
+                <p class="gray_1"></p>
+                <div class="layer_list_two" data-id="5">
+                    <ul></ul>
+                </div>
+                <p class="bottom_button">确定</p>
+            </div>
+        </div>
+        <div id="layer_list_bank">
+            <p class="layer_title">银行卡开户行</p>
+            <div>
+                <div class="layer_list direction_information" data-id="6">
+                    <ul>
+                        <li>工商银行</li>
+                        <li>建设银行</li>
+                        <li>中国银行</li>
+                        <li>农业银行</li>
+                        <li>交通银行</li>
+                        <li>成都银行</li>
+                        <li>招商银行</li>
+                        <li>邮政储蓄</li>
+                        <li>广发银行</li>
+                        <li>中信银行</li>
+                        <li>兴业银行</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="layer_list_degree">
+            <p class="layer_title">学位</p>
+            <div>
+                <div class="layer_list direction_information" data-id="7">
+                    <ul>
+                        <li>博士后</li>
+                        <li>博士</li>
+                        <li>硕士</li>
+                        <li>双学士</li>
+                        <li>本科</li>
+                        <li>大专</li>
+                        <li>高中(中专)</li>
+                        <li>初中</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,100 @@
+﻿.fj{
+    width:900px;
+    margin-left:30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.fj label{
+    display: inline-block;
+    width: 80px;
+    text-align: center;
+}
+.fj input{
+    width: 100px;
+}
+.fj input:last-of-type{
+    width: 350px;
+}
+.fj select{
+    width: 120px;
+}
+.bu {
+    width: 60px;
+    height: 22px;
+    line-height: 22px;
+    margin: 0 auto;
+    cursor: pointer;
+    border: 2px solid rgb(74, 139, 194);
+    border-radius: 5px;
+    display: inline-block;
+    text-align: center;
+}
+.tab{
+    width: 100%;
+    color: #000000;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+    border: 1px solid grey;
+
+}
+.tab th{
+    background-color: #dcdcdc;
+    height: 30px;
+    font-weight: normal;
+}
+.tab td{
+    text-align: center;
+    height: 30px;
+}
+
+.tishi{
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    color: #009DD9;
+    font-weight: bold;
+}
+.con_contral select{
+    width: 120px;
+}
+.bus{
+    display: inline-block;
+    width: 80px;
+    height: 30px;
+    background-color: #FDB42B;
+    color: white;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor:pointer;
+}
+.con_contral input[type="checkbox"]{
+    position: relative;
+    top: 1px;
+}
+.con_contral input[type="text"] {
+    width: 100px;
+}
+.bottom_div_con input{
+	background:#fff;
+	border:0;
+	color: #000;
+}
+table td{
+    max-width: 216px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+table.tab td{
+	color:#666;
+  border-bottom: 1px solid #E0E0E0;
+}
+table.tab tr:hover{
+	background:#ccc;
+}
+table.tab td.red{
+	color:Red;
+	font-weight:bold;
+}

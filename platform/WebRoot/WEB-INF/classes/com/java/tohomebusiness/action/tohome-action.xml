@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>	
+	<package namespace="/tohome/orderInfoManager" name="orderInfoAction" extends="com.java.platform">
+		<!-- 信息列表  -->
+		<action name="getOrderInfoList" class="orderInfoAction" method="getOrderInfoList">
+			<result name="success">/tohome/orderInfo/order_info_list.jsp</result>
+		</action>
+	</package>
+</struts>

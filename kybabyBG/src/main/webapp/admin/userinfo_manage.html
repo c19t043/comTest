@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>用户信息管理</title>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit" />
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/date/WdatePicker.js"></script>
+<script src="js/basic.js"></script>
+<script src="js/common.js"></script>
+<script src="js/userinfo_manage.js"></script>
+<link rel="stylesheet" type="text/css" href="css/common.css">
+<link rel="stylesheet" type="text/css" href="css/iconfont/iconfont.css">
+<link rel="stylesheet" type="text/css" href="css/userinfo_manage.css">
+</head>
+<body>
+
+<div id="headcon" class="headcon">
+
+</div>
+
+<div class="middlecon">
+	<div id="leftcon" class="leftcon">
+
+	</div>
+	
+	<div id="rightcon" class="rightcon">
+		<div class="content">
+			<div id="con_position" class="con_position">
+				<h1 id="con_tit" class="con_tit"></h1>
+				<div id="con_meu" class="con_meu">
+					<span>首页</span>
+					<span>/</span>
+					<span class="first"></span>
+					<span>/</span>
+					<span class="second"></span>
+				</div>
+				<div class="con_contral">
+	        <label ><input type="checkbox">手机号：</label><input type="text" id="search_phone">
+	        <label><input type="checkbox">家长姓名：</label><input type="text" id="search_parentName">
+	        <label ><input type="checkbox">宝宝姓名：</label><input type="text" id="search_babyName">
+	        <label><input type="checkbox">起始时间：</label><input type="text" id="search_startTime" onfocus="WdatePicker()">~<input type="text" id="search_endTime" onfocus="WdatePicker()">
+	        <span class="bu" onclick="search_click()">查找</span>
+				</div>
+				<table id="table_title" class="table_title">
+
+				</table>
+			</div>
+			<div class="table_h">
+				<table id="table_content" class="table_content">
+
+
+				</table>
+			</div>
+			<div class="con_page">
+				<span class="a">共&nbsp;<span id="con_num" class="con_num"></span>&nbsp;条数据</span>
+				<div class="button_cli">
+					<span class="button" onclick="page_click('default','1')">首页</span>
+					<span class="button" onclick="page_click('default','prev')" >上一页</span>
+					<span class="num" id="now_page_num" >1</span>
+					<span class="button" onclick="page_click('default','next')">下一页</span>
+					<span class="button" onclick="page_click('default','end')">尾页</span>
+				</div>
+				<div class="page_go">
+					<span class="b">共&nbsp;<span id="page_num" class="page_num"></span>&nbsp;页</span>
+					<span class="c">跳转到&nbsp;<input id="go_page" type="number" value="1" min="1">&nbsp;页</span>
+					<span class="button" onclick="page_click_go()">Go</span>
+				</div>
+			</div>
+			<div id="bottom_div" class="bottom_div">
+			  <div class="bottom_div_tit">
+				  <span class="tit_info"></span>
+				  <span id="button_add_click" class="button_style button_add">确认</span>
+					<span id="button_update_click" class="button_style button_change">确认</span>
+					<span id="button_cancel_click" class="button_style button_cancel">取消</span>
+				</div>
+				<div id="bottom_div_con" class="bottom_div_con">
+					<div class="bottom_div_con_all">
+						<span>注册日期：</span>
+						<span id="show_time"></span>
+					</div>
+					<div class="bottom_div_con_all">
+						<span>地址：</span>
+						<span id="show_address"></span>
+					</div>
+					<div class="bottom_div_con_first">
+						<span>家长姓名：</span>
+						<span id="show_parentname"></span>
+					</div>
+					<div class="bottom_div_con_first">
+						<span>联系方式：</span>
+						<span id="show_phone"></span>
+					</div>
+					<div class="bottom_div_con_first">
+						<span>状态：</span>
+						<select id="show_status">
+							<option value="Y">Y</option>
+							<option value="N">N</option>
+						</select>
+					</div>
+					<div class="bottom_div_con_first">
+						<span>宝宝姓名：</span>
+						<span id="show_babyname"></span>
+					</div>
+					<div class="bottom_div_con_first">
+						<span>宝宝性别：</span>
+						<span id="show_sex"></span>
+					</div>
+					<div class="bottom_div_con_first">
+						<span>出生日期：</span>
+						<span id="show_birthday"></span>
+					</div>
+					<div class="bottom_div_con_first">
+						<span>积分：</span>
+						<span id="show_points"></span>
+					</div>
+					<div class="bottom_div_con_first">
+						<span>余额：</span>
+						<span id="show_money"></span>元
+					</div>
+
+
+				</div>
+			</div>
+		</div>	
+	</div>
+</div>
+
+
+</body>
+</html>
+    

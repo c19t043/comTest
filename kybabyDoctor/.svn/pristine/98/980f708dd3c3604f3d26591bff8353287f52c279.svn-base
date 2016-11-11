@@ -1,0 +1,555 @@
+﻿<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<title>个人基本信息</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/main.css">
+	<script src="js/modernizr-2.8.3.min.js"></script>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/config.js"></script>
+	<script src="js/autoLogin.js"></script>
+    <script src="js/main.js"></script>
+</head>
+<body>
+
+<div id="header">
+    <div class="header-left"><p></p></div>
+    <div class="header-center">个人基本信息</div>
+    <div class="header-right"></div>
+</div>
+<!--header-->
+<style>
+    body{
+        background: #ffffff;
+    }
+    .personal_list{
+        width: 100%;
+        height: 50px;
+        padding: 0px 15px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        line-height: 50px;
+    }
+    .personal_list .personal_left {
+        float: left;
+        height: 50px;
+        line-height: 50px;
+        width: 35%;
+    }
+    .personal_list .personal_right {
+        float: right;
+        color: #c8c8c8;
+        width: 65%;
+        height: 50px;
+        line-height: 50px;
+        text-align: right;
+    }
+    .personal_right>span{
+        border: 1px solid #eeeeee;
+    }
+    .personal_right>input{
+        border: none;
+        width: 100px;
+        text-align: right;
+    }
+
+    .normal{
+        padding: 4px 4px;
+    }
+    .normal1{
+        padding: 4px 9px;
+    }
+    .abnormal{
+        padding: 4px 20px;
+    }
+    .personal_list>input{
+        border: none;
+        line-height: 36px;
+        width: 100%;
+        background: #ffffff;
+    }
+    .gray_s{
+        width: 100%;
+        height: 10px;
+        background: #f7f7f7;
+        clear: both;
+    }
+    .gray_ss{
+        width: 100%;
+        height: 2px;
+        background: #f7f7f7;
+        clear: both;
+    }
+    .blue{
+        background: #4FC1E9;
+        color: #ffffff;
+    }
+    .guidance,.guidance1{
+        width: 100%;
+        padding: 0px 15px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        background: #f7f7f7;
+        line-height: 34px;
+        overflow: hidden;
+    }
+    .guidance>p,.guidance1>p{
+        background: #f7f7f7;
+    }
+    .guidance>div,.guidance1>div{
+        float: left;
+        margin:5px 0px;
+        width: 32%;
+        background: #ffffff;
+        text-align: center;
+    }
+    .guidance>.sec1,.guidance1>.sec1{
+        margin-left: 2%;
+    }
+    .guidance>.fou1,.guidance1>.fou1{
+        margin-left: 2%;
+    }
+    .guidance>.fif1,.guidance1>.fif1{
+        margin-left: 2%;
+    }
+    .guidance>.fir1,.guidance1>.fir1{
+        width: 66%;
+    }
+    .guidance>.sec,.guidance1>.sec{
+        margin-left: 2%;
+    }
+    .guidance>.thi,.guidance1>.thi{
+        margin-left: 2%;
+    }
+    .guidance>.fif,.guidance1>.fif{
+        margin-left: 2%;
+        width: 66%;
+    }
+
+    .guidance>input,.guidance1>input{
+        width: 100%;
+        border: none;
+        line-height: 34px;
+    }
+
+    .guidance>div.blue,.guidance1>div.blue{
+        background: #4FC1E9;
+        color: #ffffff;
+    }
+    #footer {
+        width: 100%;
+        height: 50px;
+        padding: 10px 15px 5px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        text-align: center;
+        line-height: 35px;
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+        background: #F7F7F7;
+    }
+    #footer p{
+        color: white;
+        font-size: 22px;
+        width: 100%;
+        background: #4FC1E9;
+    }
+
+</style>
+<p class="gray_s"></p>
+<div id="container">
+
+    <div class="personal_list">
+        <p class="personal_left">姓名</p>
+        <p class="personal_right">
+            张雯雯
+        </p>
+    </div>
+    <p class="gray_ss"></p>
+
+    <!--personal_list02-->
+    <div class="personal_list">
+        <p class="personal_left">性别</p>
+        <p class="personal_right">
+            女
+        </p>
+    </div>
+    <p class="gray_ss"></p>
+
+    <!--personal_list02-->
+    <div class="personal_list">
+        <p class="personal_left">出生日期</p>
+        <p class="personal_right">
+            1980年5月25日
+        </p>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list">
+        <p class="personal_left">身份证号</p>
+        <p class="personal_right">
+            510521198005253586
+        </p>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list">
+        <p class="personal_left">工作单位</p>
+        <p class="personal_right">
+
+        </p>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list">
+        <p class="personal_left">本人电话</p>
+        <p class="personal_right">
+
+        </p>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list">
+        <p class="personal_left">联系人姓名</p>
+        <p class="personal_right">
+
+        </p>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list">
+        <p class="personal_left">联系人电话</p>
+        <p class="personal_right">
+
+        </p>
+    </div>
+    <p class="gray_ss"></p>
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">常住类型</p>
+            <p class="personal_right">
+                <span class="abnormal blue">户籍</span>
+                <span class="normal" style="padding: 4px 12px;">非户籍</span>
+            </p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">民族</p>
+            <p class="personal_right">
+                <span class="abnormal blue">汉族</span>
+                <span class="normal">少数民族</span>
+            </p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list">
+        <input type="text" placeholder="填写具体的少数民族名称"/>
+    </div>
+
+    <div class="personal_list" style="background: #f7f7f7">
+        血型
+    </div>
+
+    <div class="guidance" id="guidance">
+        <div class="fir">A型</div>
+        <div class="sec blue">B型</div>
+        <div class="thi">O型</div>
+        <div class="fou">AB型</div>
+        <div class="fif">不详</div>
+    </div>
+    <p class="gray_ss"></p>
+    <!--personal_list02-->
+    <div class="personal_list" style="background: #f7f7f7">
+        RH阴性
+    </div>
+    <!--personal_list02-->
+    <div class="guidance" id="guidance1">
+        <div class="fir">否</div>
+        <div class="sec blue">是</div>
+        <div class="thi">不详</div>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        文化程度
+    </div>
+    <!--personal_list02-->
+    <div class="guidance" id="guidance2">
+        <div class="fir" style="width: 66%;">文盲或半文盲</div>
+        <div class="sec">小学</div>
+        <div class="fir">初中</div>
+        <div class="sec" style="width: 66%;">高中/技校/中专</div>
+        <div class="fir blue" style="width: 66%;">大学专科及以上</div>
+        <div class="sec">不详</div>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        职业
+    </div>
+    <!--personal_list02-->
+    <div class="guidance" id="guidance3">
+        <div class="fir" style="width: 100%">国家机关、党群组织、企业、事业单位负责人</div>
+        <div class="fir" style="width: 100%">办事人员和有关人员</div>
+        <div class="fir blue" style="width: 100%">商业、服务业人员</div>
+        <div class="fir" style="width: 100%">农、林、牧、渔、水利业生产人员</div>
+        <div class="fir" style="width: 100%">生产、运输设备操作人员及有关人员</div>
+        <div class="fir">军人</div>
+        <div class="sec" style="width: 66%">专业技术人员</div>
+        <div class="fir" style="width: 100%">不便分类的其他从业人员</div>
+    </div>
+    <p class="gray_ss"></p>
+    <!--personal_list02-->
+    <div class="personal_list" style="background: #f7f7f7">
+        婚姻状况
+    </div>
+    <!--personal_list02-->
+    <div class="guidance" id="guidance4">
+        <div class="fir">未婚</div>
+        <div class="sec">已婚</div>
+        <div class="sec">丧偶</div>
+        <div class="fir">离婚</div>
+        <div class="sec blue" style="width: 66%;">未说明的婚姻状况</div>
+    </div>
+    <p class="gray_ss"></p>
+
+    <div class="personal_list" style="background: #f7f7f7">
+        医疗费用支付方式
+    </div>
+    <!--personal_list02-->
+    <div class="guidance" id="guidance5">
+        <div class="fir" style="width: 100%">城镇职工基本医疗保险</div>
+        <div class="fir" style="width: 66%">城镇居民基本医疗保险</div>
+        <div class="sec">全公费</div>
+        <div class="fir blue" style="width: 66%">新型农村合作医疗</div>
+        <div class="sec" style="width: 32%">贫困救助</div>
+        <div class="fir" style="width: 66%">商业医疗保险</div>
+        <div class="sec">全自费</div>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list" style="background: #f7f7f7">
+        <input type="text" placeholder="其他请在此填写"/>
+    </div>
+    <p class="gray_s"></p>
+    <p class="gray_s"></p>
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">药物过敏史</p>
+            <p class="personal_right">
+                <span class="normal blue" style="padding: 4px 28px">无</span>
+                <span class="abnormal" style="padding: 4px 28px">有</span>
+            </p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+    <!--personal_list02-->
+    <div class="guidance" id="guidance6">
+        <div class="fir">青霉素</div>
+        <div class="sec">磺胺</div>
+        <div class="thi">链霉素</div>
+    </div>
+    <p class="gray_ss"></p>
+
+    <div class="personal_list" style="background: #f7f7f7">
+        <input type="text" placeholder="其他请在此填写"/>
+    </div>
+    <p class="gray_s"></p>
+    <p class="gray_s"></p>
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">暴露史</p>
+            <p class="personal_right">
+                <span class="normal blue" style="padding: 4px 28px">无</span>
+                <span class="abnormal" style="padding: 4px 28px">有</span>
+            </p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+    <!--personal_list02-->
+    <div class="guidance" id="guidance7">
+        <div class="fir">化学品</div>
+        <div class="sec">毒物</div>
+        <div class="thi">射线</div>
+    </div>
+    <p class="gray_ss"></p>
+
+    <div class="personal_list" style="background: #f7f7f7">
+        疾病
+    </div>
+
+    <p class="gray_ss"></p>
+    <!--personal_list02-->
+    <div class="guidance1" id="guidance8">
+        <div class="fir blue">无</div>
+        <div class="sec">高血压</div>
+        <div class="sec">糖尿病</div>
+
+        <div class="fir">冠心病</div>
+        <div class="sec" style="width: 66%">慢性阻塞性肺疾病</div>
+
+        <div class="fir">恶性肿瘤</div>
+        <div class="sec">脑卒中</div>
+        <div class="sec">结核病</div>
+
+        <div class="fir" style="width: 66%">重性精神疾病</div>
+        <div class="sec">肝炎</div>
+        <div class="fir">职业病</div>
+        <div class="sec" style="width: 66%">其他法定传染病</div>
+    </div>
+    <p class="gray_ss"></p>
+
+    <div class="personal_list" style="background: #f7f7f7">
+        <input type="text" placeholder="其他请在此填写"/>
+    </div>
+    <p class="gray_s"></p>
+    <p class="gray_s"></p>
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">手术</p>
+            <p class="personal_right">
+                <span class="normal blue" style="padding: 4px 28px">无</span>
+                <span class="abnormal" style="padding: 4px 28px">有</span>
+            </p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">外伤</p>
+            <p class="personal_right">
+                <span class="normal blue" style="padding: 4px 28px">无</span>
+                <span class="abnormal" style="padding: 4px 28px">有</span>
+            </p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+    <!--personal_list02-->
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">输血</p>
+            <p class="personal_right">
+                <span class="normal blue" style="padding: 4px 28px">无</span>
+                <span class="abnormal" style="padding: 4px 28px">有</span>
+            </p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+    <!--personal_list02-->
+
+    <div class="personal_list" style="background: #f7f7f7">
+        家族史-父亲
+    </div>
+
+    <p class="gray_ss"></p>
+    <!--personal_list02-->
+    <div class="guidance1" id="guidance9">
+        <div class="fir blue">无</div>
+        <div class="sec">高血压</div>
+        <div class="sec">糖尿病</div>
+
+        <div class="fir">冠心病</div>
+        <div class="sec" style="width: 66%">慢性阻塞性肺疾病</div>
+
+        <div class="fir">恶性肿瘤</div>
+        <div class="sec">脑卒中</div>
+        <div class="sec">结核病</div>
+
+        <div class="fir" style="width: 66%">重性精神疾病</div>
+        <div class="sec">肝炎</div>
+        <div class="fir">先天畸形</div>
+        <div class="sec" style="width: 66%">其他法定传染病</div>
+    </div>
+    <p class="gray_ss"></p>
+
+    <div class="personal_list" style="background: #f7f7f7">
+        家族史-母亲
+    </div>
+
+    <p class="gray_ss"></p>
+    <!--personal_list02-->
+    <div class="guidance1" id="guidance10">
+        <div class="fir blue">无</div>
+        <div class="sec">高血压</div>
+        <div class="sec">糖尿病</div>
+
+        <div class="fir">冠心病</div>
+        <div class="sec" style="width: 66%">慢性阻塞性肺疾病</div>
+
+        <div class="fir">恶性肿瘤</div>
+        <div class="sec">脑卒中</div>
+        <div class="sec">结核病</div>
+
+        <div class="fir" style="width: 66%">重性精神疾病</div>
+        <div class="sec">肝炎</div>
+        <div class="fir">先天畸形</div>
+        <div class="sec" style="width: 66%">其他法定传染病</div>
+    </div>
+    <p class="gray_ss"></p>
+    <div class="personal_list">
+        <div class="list02">
+            <p class="personal_left">遗传病史</p>
+            <p class="personal_right">
+                <span class="normal blue" style="padding: 4px 28px">无</span>
+                <span class="abnormal" style="padding: 4px 28px">有</span>
+            </p>
+        </div>
+    </div>
+    <p class="gray_ss"></p>
+    <!--personal_list02-->
+    <div class="personal_list" style="background: #f7f7f7">
+        <input type="text" placeholder="其他请在此填写"/>
+    </div>
+
+    <div class="personal_list" style="background: #f7f7f7">
+        残疾情况
+    </div>
+
+    <p class="gray_ss"></p>
+    <!--personal_list02-->
+    <div class="guidance1" id="guidance11">
+        <div class="fir blue">无残疾</div>
+        <div class="sec">视力残疾</div>
+        <div class="sec">听力残疾</div>
+        <div class="fir">言语残疾</div>
+        <div class="sec">肢体残疾</div>
+        <div class="sec">智力残疾</div>
+        <div class="fir">精神残疾</div>
+    </div>
+    <p class="gray_ss"></p>
+    <!--personal_list02-->
+    <div class="personal_list" style="background: #f7f7f7">
+        <input type="text" placeholder="其他请在此填写"/>
+    </div>
+    <p class="gray_s"></p>
+    <p class="gray_s"></p>
+</div>
+<footer id="footer">
+    <p>保存</p>
+</footer>
+
+<script src="js/plugins.js"></script>
+<script>
+    $(function () {
+        $('.personal_right>span').click(function () {
+            $(this).addClass('blue').siblings().removeClass('blue');
+        });
+        $('.guidance>div').click(function () {
+            $(this).addClass('blue').siblings().removeClass('blue');
+        });
+        $('.guidance1>div').click(function () {
+            $(this).toggleClass('blue');
+        });
+        $('#footer>p').click(function () {
+            ale('保存成功');
+            setTimeout(function () {
+                window.history.back();
+            },2000);
+        });
+    });
+</script>
+</body>
+</html>

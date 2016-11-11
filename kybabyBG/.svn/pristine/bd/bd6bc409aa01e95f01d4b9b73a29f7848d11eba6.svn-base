@@ -1,0 +1,22 @@
+.fj{
+    width:950px;
+    margin-left:30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.fj label{
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+}
+.fj input{
+    width: 120px;
+}
+
+.tishi{
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    color: #009DD9;
+    font-weight: bold;
+}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>医生薪酬记录</title>
+	<meta charset="utf-8">
+	<meta name="renderer" content="webkit" />
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/date/WdatePicker.js"></script>
+	<script src="js/basic.js"></script>
+	<script src="js/common.js"></script>
+	<script src="js/doctorMoneyRecordList.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/iconfont/iconfont.css">
+	<link rel="stylesheet" type="text/css" href="css/doctorMoneyRecordList.css">
+</head>
+<body>
+
+<div id="headcon" class="headcon">
+
+</div>
+
+<div class="middlecon">
+	<div id="leftcon" class="leftcon">
+
+	</div>
+
+	<div id="rightcon" class="rightcon">
+		<div class="content">
+			<div id="con_position" class="con_position">
+				<h1 id="con_tit" class="con_tit"></h1>
+				<div id="con_meu" class="con_meu">
+					<span>首页</span>
+					<span>/</span>
+					<span class="first"></span>
+					<span>/</span>
+					<span class="second"></span>
+				</div>
+				<div class="con_contral">
+					<label>医生姓名：</label><input style="width: 120px" id="doctorName_con" type="text">
+					<label>工作日期：</label><input id="workDate_con" onfocus="WdatePicker()" type="text" readonly="readonly">
+                    <span onclick="search_click()" class="bu">查找</span>
+				</div>
+				<table id="table_title" class="table_title">
+
+				</table>
+			</div>
+			<div class="table_h">
+				<table id="table_content" class="table_content">
+
+				</table>
+			</div>
+			<div class="con_page">
+				<span class="a">共&nbsp;<span id="con_num" class="con_num"></span>&nbsp;条数据</span>
+				<div class="button_cli">
+					<span class="button" onclick="page_click('default','1')">首页</span>
+					<span class="button" onclick="page_click('default','prev')" >上一页</span>
+					<span class="num" id="now_page_num" >1</span>
+					<span class="button" onclick="page_click('default','next')">下一页</span>
+					<span class="button" onclick="page_click('default','end')">尾页</span>
+				</div>
+				<div class="page_go">
+					<span class="b">共&nbsp;<span id="page_num" class="page_num"></span>&nbsp;页</span>
+					<span class="c">跳转到&nbsp;<input id="go_page" type="number" value="1" min="1">&nbsp;页</span>
+					<span class="button" onclick="page_click_go()">Go</span>
+				</div>
+			</div>
+			
+			<div id="bottom_div" class="bottom_div">
+				<div class="bottom_div_tit">
+					 <span class="tit_info"></span>
+					 <span id="button_add_click" onclick="saveOrUpdate()" class="button_style button_add">确认</span>
+					<span id="button_cancel_click" class="button_style button_cancel">取消</span>
+				</div>
+				<div id="bottom_div_con" class="bottom_div_con">
+					<form id="data_form" action="" method="post" enctype="multipart/form-data">
+						<p style="color: red;font-size: 12px;">说明：医生薪酬在当天下班前修改有效；单例费用在用户下单前有效；必须配置面对用户类型（用于控制医生和用户关系）。</p>
+			            <div class="fj">
+			            	<input id="keyId" type="hidden" name="doctorMoneyRecord.id"/>
+							<label>业务分类：</label>
+							<input id="businessType" type="text" readonly="readonly">
+							
+							<label>医生姓名：</label>
+							<input id="doctorName" name="doctorMoneyRecord.doctorInfo.doctorName" type="text" readonly="readonly">
+							
+							<label>工作日期：</label>
+							<input id="workDate" name="doctorMoneyRecord.workDate" type="text" readonly="readonly">
+			            </div>
+			            <div class="fj">
+							<label>计划开始时间：</label>
+							<input id="workStartTime" name="doctorMoneyRecord.workStartTime" type="text" readonly="readonly">
+							
+							<label>计划结束时间：</label>
+							<input id="workEndTime" name="doctorMoneyRecord.workEndTime" type="text" readonly="readonly">
+							
+							<label>多点执业地点：</label>
+							<input id="workPlace" type="text" readonly="readonly">
+			            </div>
+			            <div class="fj">
+							<label>医生当天薪酬：</label>
+							<input id="money" name="doctorMoneyRecord.money" type="number" style="border-color: red;">
+							
+							<label>单例费用：</label>
+							<input id="moneyPer" name="doctorMoneyRecord.moneyPer" type="number" style="border-color: red;">
+							
+							<label>备注：</label>
+							<input id="remark" name="doctorMoneyRecord.remark" type="text" style="border-color: red;">
+							
+							<label>面对用户类型：</label>
+							<select id="userType" name="doctorMoneyRecord.userType.id" style="border-color: red;"></select>
+			            </div>
+		          	</form>
+				</div>
+			</div>
+		</div>	
+	</div>
+</div>
+
+  </body>
+</html>

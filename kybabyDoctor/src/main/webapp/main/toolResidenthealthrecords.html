@@ -1,0 +1,184 @@
+﻿<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<title>居民健康档案</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/main.css">
+	<script src="js/modernizr-2.8.3.min.js"></script>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/config.js"></script>
+	<script src="js/autoLogin.js"></script>
+    <script src="js/main.js"></script>
+</head>
+<body>
+
+<div id="header">
+	<div class="header-left"><p></p></div>
+	<div class="header-center">居民健康档案</div>
+	<div class="header-right"></div>
+</div>
+<!--header-->
+<style>
+    body{
+        background: #ffffff;
+    }
+    .personal_list>div{
+        width: 100%;
+        height: 50px;
+        padding: 0px 15px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    .personal_list .personal_left {
+        float: left;
+        height: 50px;
+        line-height: 50px;
+        width: 85%;
+        font-size: 14px;
+    }
+    .personal_list .personal_right {
+        float: right;
+        font-size: 1.8em;
+        color: #c8c8c8;
+        width: 10%;
+        height: 50px;
+        line-height: 44px;
+        text-align: right;
+    }
+    .gray_s{
+        width: 100%;
+        height: 10px;
+        background: #f7f7f7;
+        clear: both;
+    }
+    .gray_ss{
+        width: 100%;
+        height: 2px;
+        background: #f7f7f7;
+        clear: both;
+    }
+    .search{
+        width: 94%;
+        margin: 0px auto;
+        overflow: hidden;
+        line-height: 40px;
+    }
+    .search>div{
+        float: left;
+        width: 77%;
+        margin-left: 3%;
+        border: 1px solid #bbb;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    .search>div>img{
+        margin: 0px 5px;
+    }
+    .search>div>input{
+        border: none;
+        width: 80%;
+    }
+    .search>p{
+        width: 14%;
+        float: right;
+        text-align: center;
+        border: 1px solid #bbb;
+        margin-right: 3%;
+    }
+</style>
+<div id="container">
+    <!--personal_list02-->
+    <div class="search">
+        <div>
+            <img src="images/iconfont-sousuo1.png" alt=""/>
+            <input id="idnumber" type="text" placeholder="请输入孕产妇身份证号"/>
+        </div>
+        <p id="search">搜索</p>
+    </div>
+    <div id="content">
+        <!--personal_list02-->
+        <p class="gray_ss"></p>
+        <div class="personal_list">
+            <div class="list02" onclick="window.location.href='toolbabymomfamilly.html'">
+                <p class="personal_left">张雯雯家庭&nbsp;&nbsp;&nbsp;&nbsp;510521198005253586</p>
+                <p class="personal_right">&gt;</p>
+            </div>
+        </div>
+        <p class="gray_ss"></p>
+        <!--personal_list02-->
+        <div class="personal_list">
+            <div class="list02" onclick="window.location.href='toolbabymomfamilly.html'">
+                <p class="personal_left">李小璐家庭&nbsp;&nbsp;&nbsp;&nbsp;510521198409103413</p>
+                <p class="personal_right">&gt;</p>
+            </div>
+        </div>
+        <p class="gray_ss"></p>
+        <!--personal_list01-->
+        <div class="personal_list">
+            <div class="list01" onclick="window.location.href='toolbabymomfamilly.html'">
+                <p class="personal_left">石小康家庭&nbsp;&nbsp;&nbsp;&nbsp;510521198609102345</p>
+                <p class="personal_right">&gt;</p>
+            </div>
+        </div>
+        <p class="gray_ss"></p>
+
+    </div>
+</div>
+
+<script src="js/plugins.js"></script>
+<script>
+    $(function () {
+        $('#search').click(function () {
+            var text=$('#idnumber').val().trim();
+            var arr=['510521198809103586','510521198809103587','510521198809103588'];
+            var arr1=['张雯雯家庭','李小璐家庭','石小康家庭'];
+            var html='';
+            if(text==''){
+                for(var j= 0,le=arr.length;j<le;j++){
+                    html+='<p class="gray_ss"></p> ' +
+                    '<div class="personal_list"> ' +
+                    '<div class="list02" onclick="window.location.href=\'babymomfamilly.html\'"> ' +
+                    '<p class="personal_left">'+arr1[j]+'&nbsp;&nbsp;&nbsp;&nbsp;'+arr[j]+'</p> ' +
+                    '<p class="personal_right">&gt;</p> ' +
+                    '</div> ' +
+                    '</div>';
+                }
+                $('#content').html(html);
+            }else{
+                var istrue=0;
+                for(var i= 0,len=arr.length;i<len;i++){
+                    if(arr[i].indexOf(text)!=-1){
+                        html+='<p class="gray_ss"></p> ' +
+                        '<div class="personal_list"> ' +
+                        '<div class="list02" onclick="window.location.href=\'babymomfamilly.html\'"> ' +
+                        '<p class="personal_left">'+arr1[i]+'&nbsp;&nbsp;&nbsp;&nbsp;'+arr[i]+'</p> ' +
+                        '<p class="personal_right">&gt;</p> ' +
+                        '</div> ' +
+                        '</div>';
+                        istrue=1;
+                    }
+                }
+                if(istrue==0){
+                    ale('没有找到相关患者身份证号');
+                    for(var j= 0,le=arr.length;j<le;j++){
+                        html+='<p class="gray_ss"></p> ' +
+                        '<div class="personal_list"> ' +
+                        '<div class="list02" onclick="window.location.href=\'babymomfamilly.html\'"> ' +
+                        '<p class="personal_left">'+arr1[j]+'&nbsp;&nbsp;&nbsp;&nbsp;'+arr[j]+'</p> ' +
+                        '<p class="personal_right">&gt;</p> ' +
+                        '</div> ' +
+                        '</div>';
+                    }
+                }
+                $('#content').html(html);
+            }
+
+        });
+    });
+</script>
+</body>
+</html>

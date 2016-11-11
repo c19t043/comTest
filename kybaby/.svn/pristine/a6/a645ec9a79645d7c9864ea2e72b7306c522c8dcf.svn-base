@@ -1,0 +1,416 @@
+﻿<!doctype html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<title>订单确认</title>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1"/>
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/orderconfirm.css">
+	<script src="js/modernizr-2.8.3.min.js"></script>
+	<script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/plugins.js"></script>
+	<script src="js/config.js"></script>
+
+    <script type="text/javascript" src="js/jquery.cityselect.js"></script>
+    <script type="text/javascript" src="js/jsAddress.js"></script>
+
+    <script src="js/MD5.js"></script>
+	<script src="js/orderconfirm.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=AoTC2HVRMga7z2OF66sTTiqO"></script>
+    <style>
+        #outToAddress{
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 1911;
+            left: 0;
+            background-color: #ffffff;
+        }
+        #addressHeader {
+            width: 100%;
+            padding: 0 20px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            height: 45px;
+            background: #fff;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            z-index: 1999;
+            left: 0;
+        }
+
+        #addressHeader .header-left,#addressHeader .headerLeft {
+            width: 50%;
+            float: left;
+            line-height: 45px;
+            height: 45px;
+            color: #ff813d;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            text-align: left;
+            font-size: 16px;
+        }
+        #addressHeader .header-left p,#addressHeader .headerLeft p {
+            background: url("images/prev_01.png") no-repeat center center;
+            background-size: 30px;
+            height: 45px;
+        }
+
+        #addressHeader .header-center {
+            width: 0%;
+            float: left;
+            line-height: 45px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            font-size: 15px;
+        }
+        #addressHeader .header-right {
+            width: 15%;
+            float: right;
+            line-height: 45px;
+            height: 45px;
+        }
+        #addressHeader .header-right div{
+            background:url("images/images_login_regist/regist_btn.png") no-repeat ;
+            background-size: 100% 100%;
+            width: 60px;
+            float: right;
+            height: 34px;
+            margin-right: 0;
+            line-height: 34px;
+            margin-top: 5px;
+            text-align: center;
+        }
+        .historyAddress{
+            padding: 5px 15px;
+        }
+        #addAddress{
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 2911;
+            left: 0;
+            background-color: #ffffff;
+        }
+        #street_address,#xxaddress{
+            margin: 0 8px;
+            padding: 0 8px;
+            display: inline-block;
+            width: 90%;
+            height: 35px;
+            border: 1px solid #ccc;
+        }
+        #city>select{
+            height: 38px;
+            padding: 0 5px;
+            border: 1px solid #ccc;
+            color: grey;
+        }
+        #container{
+            font-size: 15px;
+        }
+        #city{
+            padding-bottom: 12px;
+        }
+        #street_address,#searchResultPanel,#xxaddress{
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="header">
+    <div class="header-left" id="backoff"><span>订单确认</span></div>
+	<div class="header-center"></div>
+	<div class="header-right"></div>
+</div>
+<!--header-->
+
+<div id="container">
+	<p class="gray_s"></p>
+	<div class="order_box">
+		<div class="order_left" id="productImage"></div>
+		<div class="order_right clearfix" id="productBasicInfo">
+			<!-- <p class="tit">一岁儿保</p>
+			<p class="button_tab">幼儿教导</p>
+			<p class="button_tab">幼儿教导</p>
+			<p class="button_tab">幼儿教导</p>
+			<p class="button_tab">幼儿教导</p>
+			<p class="button_tab">幼儿教导</p>
+			<p class="button_tab">幼儿教导</p> -->
+		</div>
+	</div>
+	<p class="order_sum">订单总金额：<span class="red" id="productTotalPrice"></span></p>
+	<p class="gray_s"></p>
+
+	<div class="confirm_list01" id="parentInfo">
+		<!-- <div class="clearfix"><p class="text-left float-left">小红</p> <p class="text-right float-right">139812341415</p></div>
+		<p>四川省     成都市   高新区   </p>
+		<p>剑南大道天府三街  保利心语一栋二单元201   </p> -->
+	</div>
+	<p class="gray_s"></p>
+	<div onclick="chooseTimeClick()" class="confirm_list02">
+		<p id="chooseTime">上门时间</p>
+	</div>
+	<p class="gray_s"></p>
+	<!--  
+	<div onclick="chooseDoctorClick()" class="confirm_list03">
+		<p id="selectDoctorName" >选择医生</p>
+	</div>
+	-->
+	<div class="confirm_list04 clearfix" id="coupons_link">
+		<p class="float-left">优惠券</p>
+		<p class="discount_state" id="coupon">选择优惠券</p>
+	</div>
+	<p class="gray_s"></p>
+	<div class="confirm_list05">
+		<p class="float-left">可<span id="canUsePoints"></span>积分抵&yen;<span id="point_sum">0</span></p>
+		<div class="btn_box">
+			<div class="choose1">on</div>
+			<div class="choose2">off</div>
+			<div class="ch1" flag="off"></div>
+		</div>
+	</div>
+	<p class="gray_s"></p>
+	<div class="confirm_common">
+		<p class="text-right">实付金额： <span class="red">&yen;</span><span class="red" id="real_sum"></span></p>
+	</div>
+	<p class="gray_s"></p>
+	<div class="confirm_list06">
+		<p class="float-left">可用余额&yen;<span id="canuse_sum"></span></p>
+		<p class="use_sum">-&yen;<span id="use_sum"></span></p>
+		<div class="btn_box">
+			<div class="choose3">on</div>
+			<div class="choose4">off</div>
+			<div class="ch2" flag="off"></div>
+		</div>
+	</div>
+	<p class="gray_s"></p>
+	<div class="confirm_common">
+		<p class="text-left">您还需支付：<span class="pay_sum">&yen;<span id="still_sum"></span></span></p>
+	</div>
+	<p class="gray_s"></p>
+	<div class="pay_way">
+		<p class="pay_wx"><label for="wx_pay">微信支付</label><input type="radio" name="pay" payMethod="微信支付" id="wx_pay" onclick="clickPayMethod(this)"></p>
+		<p class="pay_zfb" style="display: none;"><label for="zfb_pay">支付宝支付</label><input type="radio" name="pay" payMethod="支付宝支付" id="zfb_pay" onclick="clickPayMethod(this)"></p>
+		<p class="pay_yl" style="display: none;"><label for="yl_pay">银联支付</label><input type="radio" name="pay" id="yl_pay" onclick="clickPayMethod()"></p>
+	</div>
+	<div class="login_button" onclick="payProduct()">确定</div>
+
+
+
+
+
+</div>
+<div id="outToAddress" style="display: none">
+    <div id="addressHeader">
+        <div class="headerLeft" id="closeOutToAddress" onclick="$('#outToAddress').hide();">上门地址</span></div>
+        <div class="header-center"></div>
+        <div class="header-right"><div>修改</div></div>
+    </div>
+    <div id="city" style="margin: 50px 8px 0px 8px">
+        <select class="prov" id="addressProvince"></select>
+        <select class="city" id="addressCity"></select>
+        <select class="dist" id="addressArea"></select>
+    </div>
+    <!--<p class="gray_s"></p>-->
+    <input id="street_address" placeholder="街道" type="text"/>
+
+    <div id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;"></div>
+    <!--<p class="gray_s"></p>-->
+    <input id="xxaddress" type="text" placeholder="请填写门牌号"/>
+
+</div>
+
+<!--container-->
+<script>
+	$(function(){
+		$(".choose2").click(function () {
+		   if($("#real_sum").text()==0){
+		    	ale("实际支付金额小于等于零,无须使用积分");
+		    } else if($("#point_sum").text()==0){
+		    	ale("你没有可用的积分");
+		    } else{
+		    	$(".ch1").animate({left: "20"});
+				$(".ch1").attr('flag','on');
+				payAmountCaculation(productPrice,accountPoints,pointsProperties,accountBalance);
+			}
+		});
+		$(".choose1").click(function () {
+		 
+				$(".ch1").animate({left: "0"});
+				$(".ch1").attr('flag','off');
+				payAmountCaculation(productPrice,accountPoints,pointsProperties,accountBalance);
+		});
+	})
+	$(function(){
+		$(".choose4").click(function () {
+			if($('#canuse_sum').text() == '0'){
+				ale("你没有可用的余额");
+				return false;
+			}
+			$(".ch2").animate({left: "20"});
+			$(".use_sum").show();
+			$(".ch2").attr('flag','on');
+			cashAmountCaculate(accountBalance);
+		});
+		$(".choose3").click(function () {
+			$(".ch2").animate({left: "0"});
+			$(".ch2").attr('flag','off');
+			$(".use_sum").hide();
+			cashAmountCaculate(accountBalance);
+		});
+	})
+</script>
+<script type="text/javascript">
+
+    window.onload = function () {
+        var strLong = null;
+        var strLati = null;
+        // 百度地图API功能
+        function G(id) {
+            return document.getElementById(id);
+        }
+        var map = new BMap.Map("");
+        var ac = new BMap.Autocomplete(    //建立一个自动完成的对象
+                {
+                    "input": "street_address"
+                    , "location": map
+                });
+
+        ac.addEventListener("onhighlight", function (e) {  //鼠标放在下拉列表上的事件
+            var str = "";
+            var _value = e.fromitem.value;
+            var value = "";
+            if (e.fromitem.index > -1) {
+                value = _value.province + _value.city + _value.district + _value.street + _value.business;
+            }
+            str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value;
+
+            value = "";
+            if (e.toitem.index > -1) {
+                _value = e.toitem.value;
+                value = _value.province + _value.city + _value.district + _value.street + _value.business;
+            }
+            str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
+            G("searchResultPanel").innerHTML = str;
+        });
+
+        var myValue;
+        ac.addEventListener("onconfirm", function (e) {    //鼠标点击下拉列表后的事件
+            var _value = e.item.value;
+            myValue = _value.province + _value.city + _value.district + _value.street + _value.business;
+            G("searchResultPanel").innerHTML = "onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue;
+
+            setPlace();
+        });
+
+        function setPlace() {
+            function myFun() {
+                var pp = local.getResults().getPoi(0).point;    //获取第一个智能搜索的结果
+                strLong = pp.lng;//经度
+                strLati = pp.lat;//纬度
+                //getStoreDetails(strLong, strLati);
+            }
+
+            var local = new BMap.LocalSearch(map, { //智能搜索
+                onSearchComplete: myFun
+            });
+            local.search(myValue);
+        }
+    }
+</script>
+<script>
+    $(function () {
+        $('#parentInfo').click(function () {
+            $('#outToAddress').show();
+            $.ajax({
+                type:'post',
+                async:false,
+                url:host+'getUserInfo.action',
+                data:{
+                    action:"getUser"
+                },
+                success:function(result){
+                    var userProvince=result.usr.userProvince;
+                    var userCity=result.usr.userCity;
+                    var userArea=result.usr.userArea;
+                    var userStreet=result.usr.userStreet;
+                    var detailAddress=result.usr.detailAddress;
+                    if(userArea!=null){
+                        addressInit('addressProvince', 'addressCity', 'addressArea','四川','成都',userArea);
+                    }else{
+                        addressInit('addressProvince', 'addressCity', 'addressArea','四川','成都','武侯区');
+                    }
+//                alert($('#street_address').val());
+//                $('#street_address').val(userStreet);
+//                alert($('#street_address').val());
+//                $('#xxaddress').val(detailAddress);
+                },
+                error: function () {
+                    layer();
+                }
+            });
+
+        });
+        $('#addressHeader .header-right div').click(function () {
+            var answer=confirm('您确定要修改吗？');
+            if(answer==false){
+                return false;
+            }
+            var userProvince=$.trim($("#addressProvince").val());
+            var userCity=$.trim($("#addressCity").val());
+            var userArea=$.trim($("#addressArea").val());
+            var userStreet=$.trim($("#street_address").val());
+            var detailAddress=$.trim($("#xxaddress").val());
+            var myGeo = new BMap.Geocoder();
+            myGeo.getPoint(userStreet, function(point){
+                if (point) {
+                    var userLng=point.lng;//经度
+                    var userLat=point.lat;//纬度
+                    $.ajax({
+                        type:'post',
+                        async:false,
+                        url:host+'getUserInfo.action',
+                        data:{
+                            action:"updateUserAddress",
+                            "usr.userProvince":userProvince,
+                            "usr.userCity":userCity,
+                            "usr.userArea":userArea,
+                            "usr.userStreet":userStreet,
+                            "usr.detailAddress":detailAddress,
+                            "usr.userLng":userLng,
+                            "usr.userLat":userLat
+                        },
+                        success:function(result){
+                            $('.new_by_yjl').html(userProvince+userCity+userArea);
+                            $('.new_by_yjl2').html(userStreet);
+                            ale('修改成功');
+                            setTimeout(function () {
+                                $('#outToAddress').hide();
+                            },2000);
+                        },
+                        error: function () {
+                            layer();
+                        }
+                    });
+
+                }else{
+                    ale("请核对您的地址!");
+                }
+            }, userCity);
+        });
+    });
+</script>
+</body>
+</html>
