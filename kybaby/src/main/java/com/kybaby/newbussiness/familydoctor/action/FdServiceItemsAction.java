@@ -2,6 +2,7 @@ package com.kybaby.newbussiness.familydoctor.action;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 
@@ -9,8 +10,13 @@ import java.util.List;
 
 
 
+
+import java.util.Map;
+
 import com.kybaby.action.NewBaseAction;
+import com.kybaby.domain.DoctorInfo;
 import com.kybaby.domain.UserInfo;
+import com.kybaby.newbussiness.familydoctor.domain.FdRoleInfo;
 import com.kybaby.newbussiness.familydoctor.domain.FdServiceItems;
 import com.kybaby.newbussiness.familydoctor.domain.FdServiceMember;
 import com.kybaby.newbussiness.familydoctor.domain.FdServiceOrder;
@@ -18,6 +24,7 @@ import com.kybaby.newbussiness.familydoctor.domain.FdServicePackage;
 import com.kybaby.newbussiness.familydoctor.domain.FdServiceTeams;
 import com.kybaby.newbussiness.familydoctor.domain.FdServiceTimes;
 import com.kybaby.newbussiness.familydoctor.domain.FdUserBuyRecord;
+import com.kybaby.newbussiness.familydoctor.fo.FdDoctorMemberFo;
 import com.kybaby.util.ConstantManage;
 import com.kybaby.util.DateManage;
 import com.kybaby.util.MyMath;
@@ -74,9 +81,9 @@ public class FdServiceItemsAction extends NewBaseAction{
 	 */
 	private List<FdServiceTimes> fdServiceTimesList = new ArrayList<>();
 	/**
-	 * 家庭医生服务时间列表
+	 * 家庭医生成员
 	 */
-	private List<FdServiceMember> fdServiceMemberList = new ArrayList<>();
+	private List<FdDoctorMemberFo> fdServiceMemberList = new ArrayList<>();
 
 	public String execute() throws Exception {
 		Long userId = (Long) ActionContext.getContext().getSession().get("userId");
@@ -150,7 +157,25 @@ public class FdServiceItemsAction extends NewBaseAction{
 		 * 得到家庭医生服务团队成员信息
 		 */
 		else if(action.equals("getFdServiceMemberList")){
-			this.fdServiceMemberList = this.fdServiceItemsService.getFdServiceMemberList(fdServiceTeams,null);
+			Map<DoctorInfo,List<FdRoleInfo>> linkMap = new LinkedHashMap<>();
+			List<FdServiceMember> fdServiceMemberList = this.fdServiceItemsService.getFdServiceMemberList(fdServiceTeams,null);
+			if(fdServiceMemberList != null){
+				for(FdServiceMember fm : fdServiceMemberList){
+					linkMap.put(fm.getDoctorInfo(), null);
+				}
+				for(Map.Entry<DoctorInfo,List<FdRoleInfo>> entry:linkMap.entrySet()){ 
+					List<FdRoleInfo> roleList = new ArrayList<>();
+					FdDoctorMemberFo fo = new FdDoctorMemberFo();
+					for(FdServiceMember fm : fdServiceMemberList){
+						if(fm.getDoctorInfo().getId().longValue() == entry.getKey().getId().longValue()){
+							roleList.add(fm.getFdRoleInfo());
+						}
+					}
+					fo.setDoctorInfo(entry.getKey());
+					fo.setRoleList(roleList);
+					this.fdServiceMemberList.add(fo);
+				}
+			}
 		}
 		/**
 		 * 购买处理（订单及购买记录信息）
@@ -449,10 +474,10 @@ public class FdServiceItemsAction extends NewBaseAction{
 	public void setFdServiceTimesList(List<FdServiceTimes> fdServiceTimesList) {
 		this.fdServiceTimesList = fdServiceTimesList;
 	}
-	public List<FdServiceMember> getFdServiceMemberList() {
+	public List<FdDoctorMemberFo> getFdServiceMemberList() {
 		return fdServiceMemberList;
 	}
-	public void setFdServiceMemberList(List<FdServiceMember> fdServiceMemberList) {
+	public void setFdServiceMemberList(List<FdDoctorMemberFo> fdServiceMemberList) {
 		this.fdServiceMemberList = fdServiceMemberList;
 	}
 	public FdServiceTeams getFdServiceTeams() {

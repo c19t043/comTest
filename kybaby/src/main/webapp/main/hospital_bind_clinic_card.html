@@ -242,7 +242,7 @@
             }else{
                 $("#id_card").text("身份证号");
                 $("#last_li").hide();
-                $(".login_button").text("查询用户信息");
+                $(".login_button").text("确定");
                 $("#card").attr("placeholder","身份证号");
                 $(".color-basic").text("获取身份信息");
                 $("title").text("获取身份信息");
@@ -261,7 +261,7 @@
             var card=$('#card').val();
             var sex=$('.selected>.select_sex').text();
             var name = '';
-            if($(".login_button").text()=="查询用户信息"){
+            if($(".login_button").text()=="确定"){
                 var names=$('#baby_name').val();
                 var id = '';
                 var baby_birthday = $("#appDate").val();

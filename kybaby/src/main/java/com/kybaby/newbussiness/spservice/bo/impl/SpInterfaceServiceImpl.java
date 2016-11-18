@@ -115,6 +115,7 @@ public class SpInterfaceServiceImpl implements SpInterfaceService{
 			userInfo.setSp_ResidentName(visitCardInfo.getName());
 			userInfo.setSp_PaperNum(visitCardInfo.getIdentityCard());
 			userInfo.setSp_BirthDay(visitCardInfo.getBirthday());
+			userInfo.setSp_SelfPhone(visitCardInfo.getPhone());
 			switch(visitCardInfo.getSex()){
 				case "男":userInfo.setSp_SexCD("1");break;
 				case "女":userInfo.setSp_SexCD("2");break;
@@ -595,7 +596,7 @@ public class SpInterfaceServiceImpl implements SpInterfaceService{
 				if(eventIDsOfCostWithNoQuery.contains(spVisitRecord.getEventID())) continue;
 				
 				List<SpCostInfo> spCostInfos_temp = new ArrayList<SpCostInfo>();
-				List<SpCostInfo> ret_CostInfos = null;
+				List<SpCostInfo> ret_CostInfos  = new ArrayList<SpCostInfo>();
 				if(SpServiceConstant.COST_TYPE_NO.equals(costType)){
 					//未收费
 					ret_CostInfos = this.getSpCostInfo(userID,spVisitRecord,SpServiceConstant.COST_TYPE_NO);
@@ -695,7 +696,7 @@ public class SpInterfaceServiceImpl implements SpInterfaceService{
 			
 			for (SpVisitRecord spVisitRecord : tmp_visitRecords) {
 				
-				if(tmp_advise_eventID.equals(spVisitRecord.getEventID())&&
+				if(tmp_advise_eventID.equals(spVisitRecord.getEventID())&&StringUtils.isNotBlank(spDoctorAdviceInfo.getUpdateTime())&&
 						spDoctorAdviceInfo.getUpdateTime().equals(spVisitRecord.getUpdateTime())){
 					
 					spDoctorAdviceInfo.setOptime(spVisitRecord.getOptime());

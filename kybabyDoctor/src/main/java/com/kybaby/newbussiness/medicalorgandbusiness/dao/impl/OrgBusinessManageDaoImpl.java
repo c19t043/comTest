@@ -2,8 +2,10 @@ package com.kybaby.newbussiness.medicalorgandbusiness.dao.impl;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.classic.Session;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
@@ -14,6 +16,7 @@ import com.kybaby.newbussiness.medicalorgandbusiness.domain.ArchivesInfo;
 import com.kybaby.newbussiness.medicalorgandbusiness.domain.OrgBusinessRelation;
 import com.kybaby.newbussiness.medicalorgandbusiness.domain.OrganModuleInfo;
 import com.kybaby.newbussiness.medicalorgandbusiness.domain.OrganOperator;
+import com.kybaby.newbussiness.medicalorgandbusiness.domain.PageBean;
 import com.kybaby.newbussiness.medicalorgandbusiness.domain.UserChildcareAppointmentInfo;
 import com.kybaby.newbussiness.medicalorgandbusiness.domain.UserInoculationAppointmentInfo;
 import com.kybaby.newbussiness.medicalorgandbusiness.domain.VaccineInfo;
@@ -69,9 +72,11 @@ public class OrgBusinessManageDaoImpl extends HibernateDaoSupport implements Org
 	}
 	@Override
 	public List<UserChildcareAppointmentInfo> getUserChildcareAppointmentInfoList(
-			HospitalBasicInfo hospitalBasicInfo,UserChildcareAppointmentInfo userChildcareAppointmentInfo,Boolean isNowDate) {
+			HospitalBasicInfo hospitalBasicInfo,UserChildcareAppointmentInfo userChildcareAppointmentInfo,
+			Boolean isNowDate,PageBean pageBean) {
 		List params = new ArrayList<>();
 		StringBuffer hql = new StringBuffer("from UserChildcareAppointmentInfo p where 1=1 ");
+		hql.append("and p.id not in (select t.id from UserChildcareAppointmentInfo t where t.orderNum like '%.')");
 		if(hospitalBasicInfo != null){
 			if(hospitalBasicInfo.getId() != null){
 				hql.append(" and p.hospitalBasicInfo.id=?");
@@ -131,8 +136,33 @@ public class OrgBusinessManageDaoImpl extends HibernateDaoSupport implements Org
 		}else{
 			hql.append(" order by p.organChildcareOpenResources.openDate desc,p.organChildcareOpenResourcesDatail.openStartTime ,p.preEncoding");
 		}
-		
-		List<UserChildcareAppointmentInfo> list =  this.getHibernateTemplate().find(hql.toString(),params.toArray());
+		List<UserChildcareAppointmentInfo> list = new ArrayList<>();
+		//得到总条数
+		if(pageBean != null){
+			Session session = this.getHibernateTemplate().getSessionFactory().openSession();
+			//分页数据
+			Query query=session.createQuery(hql.toString());
+			//得到总条数
+			String hqlCount = "select count(*) as allRows " + hql;
+			Query queryCount = session.createQuery(hqlCount);
+			for (int i = 0 ; i < params.size() ; i++){
+				query.setParameter( i, params.get(i));
+				queryCount.setParameter( i, params.get(i));
+			}
+			List listCount = queryCount.list();
+			Iterator iter = listCount.iterator();  
+			if(iter.hasNext()){ 
+				Integer rows = Integer.valueOf(iter.next().toString());
+				pageBean.setRowsCount(rows.intValue());
+			}
+			
+			query.setFirstResult((pageBean.getCurPage()-1)*pageBean.getPageSize());
+			query.setMaxResults(pageBean.getPageSize());
+			list = query.list();
+			session.close();
+		}else{
+			list =  this.getHibernateTemplate().find(hql.toString(),params.toArray());
+		}
 		if(!list.isEmpty()){
 			return list;
 		}

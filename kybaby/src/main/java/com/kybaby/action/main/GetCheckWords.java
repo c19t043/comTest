@@ -26,7 +26,7 @@ public class GetCheckWords extends BaseAction {
 
 	String uri = "http://send.18sms.com/msg/HttpBatchSendSM";//应用地址
 	String account = "003024";//账号
-	String pswd = "Qiyiguo1919";//密码
+	String pswd = "KYbaby_qiyico_19";//密码
 
 	//String mobiles = "13541280713,15208361596";//手机号码，多个号码使用","分割
 	//String content = "i love you  forever";//短信内容

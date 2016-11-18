@@ -5,10 +5,21 @@ import java.util.List;
 import com.kybaby.common.CommonDao;
 import com.kybaby.domain.DoctorInfo;
 import com.kybaby.newbussiness.doctorclinic.domain.RoleSelect;
+import com.kybaby.newbussiness.doctorsign.domain.DoctorOrderSummary;
 import com.kybaby.newbussiness.doctorsign.domain.DoctorRegisterMaintenance;
 import com.kybaby.newbussiness.doctorsign.domain.DoctorSignApprovalFlowRecord;
 
 public interface DoctorDataGatherDao extends CommonDao{
+	/**
+	 * 根据医生ID删除服务类容
+	 * @param dctID
+	 */
+	void deleteDoctorServiceContent(Long dctID);
+	/**
+	 * 根据医生id串获取医生订单汇总数据
+	 * @param ids
+	 */
+	List<DoctorOrderSummary> getDoctorOrderGather(String ids);
 	/**
 	 * 获取最新审批流程
 	 * @param doctorID 医生ID

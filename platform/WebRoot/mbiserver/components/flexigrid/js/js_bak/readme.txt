@@ -1,0 +1,1 @@
+jQuery与mootools合并之前的版本。

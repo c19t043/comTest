@@ -9,9 +9,6 @@
     <link rel="stylesheet" href="css/org_doctorDataManage.css">
     <script src="js/modernizr-2.8.3.min.js"></script>
     <script src="js/jquery-1.11.3.min.js"></script>
-    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-    <script src="js/sha1.js"></script>
-    <script src="js/jquery.qrcode.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/config.js"></script>
     <style>
@@ -35,45 +32,45 @@
     </ul>
     <div class="search_div">
         <div class="flex_cont">
-            <input type="text" class="flex_item" placeholder="搜索"/>
-            <span></span>
+            <input type="text" class="flex_item" placeholder="输入医生姓名或者医院搜索"/>
+            <span onclick="searchList()"></span>
         </div>
     </div>
     <div id="both_info">
         <div id="no_order">
             <!--<div class="doc_list">-->
-                <!--<div class="doc_title">-->
-                    <!--<div class="signing_time">2016年9月</div>-->
-                    <!--<div class="signing_num">数量：2</div>-->
-                <!--</div>-->
-                <!--<ul>-->
-                    <!--<li class="flex_cont flex_simple">-->
-                        <!--<div class="doc_information">-->
-                            <!--<p class="doc_name">莫青霜</p>-->
-                            <!--<p class="doc_time">10-28</p>-->
-                        <!--</div>-->
-                        <!--<div class="flex_item doc_work">-->
-                            <!--<p class="doc_hospital">四川省妇幼保健院</p>-->
-                            <!--<p class="doc_position"><span>副主任医师</span><span>儿童保健科</span></p>-->
-                        <!--</div>-->
-                        <!--<div>-->
-                            <!--<p class="order_number">98次</p>-->
-                        <!--</div>-->
-                    <!--</li>-->
-                    <!--<li class="flex_cont flex_simple">-->
-                        <!--<div class="doc_information">-->
-                            <!--<p class="doc_name">黑岩</p>-->
-                            <!--<p class="doc_time">10-28</p>-->
-                        <!--</div>-->
-                        <!--<div class="flex_item doc_work">-->
-                            <!--<p class="doc_hospital">四川省妇幼保健院</p>-->
-                            <!--<p class="doc_position"><span>副主任医师</span><span>儿童保健科</span></p>-->
-                        <!--</div>-->
-                        <!--<div>-->
-                            <!--<p class="order_number">6次</p>-->
-                        <!--</div>-->
-                    <!--</li>-->
-                <!--</ul>-->
+            <!--<div class="doc_title">-->
+            <!--<div class="signing_time">2016年9月</div>-->
+            <!--<div class="signing_num">数量：2</div>-->
+            <!--</div>-->
+            <!--<ul>-->
+            <!--<li class="flex_cont flex_simple">-->
+            <!--<div class="doc_information">-->
+            <!--<p class="doc_name">莫青霜</p>-->
+            <!--<p class="doc_time">10-28</p>-->
+            <!--</div>-->
+            <!--<div class="flex_item doc_work">-->
+            <!--<p class="doc_hospital">四川省妇幼保健院</p>-->
+            <!--<p class="doc_position"><span>副主任医师</span><span>儿童保健科</span></p>-->
+            <!--</div>-->
+            <!--<div>-->
+            <!--<p class="order_number">98次</p>-->
+            <!--</div>-->
+            <!--</li>-->
+            <!--<li class="flex_cont flex_simple">-->
+            <!--<div class="doc_information">-->
+            <!--<p class="doc_name">黑岩</p>-->
+            <!--<p class="doc_time">10-28</p>-->
+            <!--</div>-->
+            <!--<div class="flex_item doc_work">-->
+            <!--<p class="doc_hospital">四川省妇幼保健院</p>-->
+            <!--<p class="doc_position"><span>副主任医师</span><span>儿童保健科</span></p>-->
+            <!--</div>-->
+            <!--<div>-->
+            <!--<p class="order_number">6次</p>-->
+            <!--</div>-->
+            <!--</li>-->
+            <!--</ul>-->
             <!--</div>-->
         </div>
         <div id="have_order"></div>
@@ -81,6 +78,28 @@
 </div>
 </body>
 <script>
+    function searchList(){//搜索
+        var val=$('.search_div input').val();
+        var text=$('.header_nav_select').text();
+        if(text=='未开单'){
+            serDetail(val,'no_order');
+        }else{
+            serDetail(val,'have_order');
+        }
+    }
+    function serDetail(val,type){
+        if(val==''){
+            $('#'+type+' li').show();
+            $('#'+type+' .doc_list .doc_title').show();
+            $('#'+type+' .doc_list').find('.signing_num').show();
+            return;
+        }
+        $('#'+type+' li').hide();
+        $('#'+type+' li[data-content*='+val+']').show();
+        $('#'+type+' .doc_list .doc_title').hide();
+        $('#'+type+' li[data-content*='+val+']').parent().prev().show();
+        $('#'+type+' li[data-content*='+val+']').parent().prev().find('.signing_num').hide();
+    }
     $(function(){
         $.ajax({
             type: 'post',
@@ -88,12 +107,12 @@
             cache: false,
             async: true,
             data: {
-                action: "queryDoctorOrderSummary",
+                action: "queryDoctorOrderSummary"
             },
             success: function (result) {
                 if (result.mes == '请登录') {
                     ale('请登录', '24px');
-                    link_to("login.html");
+                    link_to("org_login.html");
                 }
                 else if (result.mes == "成功") {
                     //未开单
@@ -107,10 +126,29 @@
                             if(signDoctors.objs!=null) {
                                 for(var j=0;j<signDoctors.objs.length;j++){
                                     var objs = signDoctors.objs[j];
-                                    var registerTime = objs.registerTime.substring(5,10);
-                                    $("#both_info>#no_order .doc_list").eq(i).find('ul').append('<li class="flex_cont flex_simple">' +
-                                            '<div class="doc_information"><p class="doc_name">'+objs.doctorName+'</p><p class="doc_time">'+registerTime+'</p></div>' +
-                                            '<div class="flex_item doc_work"><p class="doc_hospital">'+objs.doctorEmployer+'</p><p class="doc_position"><span>'+objs.doctorTitle+'</span><span>'+objs.department+'</span></p></div>' +
+                                    var registerTime = '';
+                                    if(objs.registerTime!=null){
+                                        registerTime = objs.registerTime.substring(5,10);
+                                    }
+                                    var doctorName = '';
+                                    if(objs.doctorName!=null){
+                                        doctorName = objs.doctorName;
+                                    }
+                                    var doctorEmployer = '';
+                                    if(objs.doctorEmployer!=null){
+                                        doctorEmployer = objs.doctorEmployer;
+                                    }
+                                    var doctorTitle = '';
+                                    if(objs.doctorTitle!=null){
+                                        doctorTitle = objs.doctorTitle;
+                                    }
+                                    var department = '';
+                                    if(objs.department!=null){
+                                        department = objs.department;
+                                    }
+                                    $("#both_info>#no_order .doc_list").eq(i).find('ul').append('<li data-content="'+doctorName+' '+doctorEmployer+'" class="flex_cont flex_simple">' +
+                                            '<div class="doc_information"><p class="doc_name">'+doctorName+'</p><p class="doc_time">'+registerTime+'</p></div>' +
+                                            '<div class="flex_item doc_work"><p class="doc_hospital">'+doctorEmployer+'</p><p class="doc_position"><span>'+doctorTitle+'</span><span>'+department+'</span></p></div>' +
                                             '</li>');
                                 }
                             }
@@ -122,16 +160,39 @@
                             var doctorOrderSummarys = result.doctorOrderSummarys[i];
                             $("#both_info>#have_order").append('<div class="doc_list">' +
                                     '<div class="doc_title">' +
-                                    '<div class="signing_time">'+doctorOrderSummarys.time+'</div><div class="signing_num">数量：'+doctorOrderSummarys.count+'</div></div>' +
+                                    '<div class="signing_time">'+doctorOrderSummarys.time+'</div></div>' +
                                     '<ul></ul></div>');
                             if(doctorOrderSummarys.objs!=null) {
                                 for(var j=0;j<doctorOrderSummarys.objs.length;j++){
                                     var obj = doctorOrderSummarys.objs[j];
-                                    var registerTimes = obj.visitDate.substring(5);
-                                    var doctorInfo = obj.doctorInfo;
-                                    $("#both_info>#have_order .doc_list").eq(i).find('ul').append('<li class="flex_cont flex_simple">' +
-                                            '<div class="doc_information"><p class="doc_name">'+doctorInfo.doctorName+'</p><p class="doc_time">'+registerTimes+'</p></div>' +
-                                            '<div class="flex_item doc_work"><p class="doc_hospital">'+doctorInfo.doctorEmployer+'</p><p class="doc_position"><span>'+doctorInfo.doctorTitle+'</span><span>'+doctorInfo.department+'</span></p></div>' +
+                                    var doctorInfo='';
+                                    if(obj.doctorInfo!=null){
+                                        doctorInfo = obj.doctorInfo;
+                                    }
+                                    var visitDate = '';
+                                    if(obj.visitDate!=null){
+                                        visitDate = obj.visitDate.substring(5);
+                                    }
+                                    var doctorName = '';
+                                    if(doctorInfo.doctorName!=null){
+                                        doctorName = doctorInfo.doctorName;
+                                    }
+                                    var doctorEmployer = '';
+                                    if(doctorInfo.doctorEmployer!=null){
+                                        doctorEmployer = doctorInfo.doctorEmployer;
+                                    }
+                                    var doctorTitle = '';
+                                    if(doctorInfo.doctorTitle!=null){
+                                        doctorTitle = doctorInfo.doctorTitle;
+                                    }
+                                    var department = '';
+                                    if(doctorInfo.department!=null){
+                                        department = doctorInfo.department;
+                                    }
+                                    $("#both_info>#have_order .doc_list").eq(i).find('ul').append('<li data-content="'+doctorName+' '+doctorEmployer+'" class="flex_cont flex_simple">' +
+                                            '<div class="doc_information"><p class="doc_name">'+doctorName+'</p><p class="doc_time">'+visitDate+'</p></div>' +
+                                            '<div class="flex_item doc_work"><p class="doc_hospital">'+doctorEmployer+'</p><p class="doc_position"><span>'+doctorTitle+'</span><span>'+department+'</span></p></div>' +
+                                            '<div>'+obj.count+'次</div>' +
                                             '</li>');
                                 }
                             }
@@ -155,6 +216,8 @@
             $("#no_order").show();
             $("#have_order").hide();
         }
+        $('.search_div input').val('');
+        searchList();
     })
 </script>
 </html>

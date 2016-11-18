@@ -14,6 +14,8 @@
 		<action name="json_*" class="majorAction" method="{1}">
 			<result name="success" type="json"></result>
 		</action>
+		<action name="doctorJson_*" class="doctorOrderGathrerAction" method="{1}">
+		</action>
 	</package>
 	<package namespace="/doctorManager/major" name="marjorAction" extends="com.java.platform">
 		<!-- 

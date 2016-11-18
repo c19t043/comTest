@@ -9,8 +9,8 @@ import test.HttpClientUtils;
 
 public class SignDoctorTest {
 	
-	//private final String url = "http://localhost:8080/kybabyDoctor/DoctorDataGather/doctorDataGather.action";
-	private final String url = "http://dev.qiyico.com/kybaby/DoctorDataGather/doctorDataGather.action";
+	private final String url = "http://localhost:8080/kybabyDoctor/DoctorDataGather/doctorDataGather.action";
+	//private final String url = "http://dev.qiyico.com/kybaby/DoctorDataGather/doctorDataGather.action";
 	/**
 	 * 维护医生信息查询
 	 */
@@ -85,8 +85,11 @@ public class SignDoctorTest {
 		params.put("doctorInfo.doctorName", "测试2016118");//医生姓名
 		params.put("doctorInfo.doctorSex", "男");//医生姓名
 		params.put("doctorInfo.doctorPhone", "23699080687");//电话
+		params.put("doctorInfo.doctorType", "23699080687");//医生类型
 		params.put("doctorInfo.doctorTitle", "主任医师");//职称
 		params.put("doctorInfo.doctorEmployer", "成都市第一人民医院");//工作单位
+		params.put("doctorInfo.hospitalId", "1");//工作单位id
+		params.put("doctorInfo.doctorType", "康优儿保医生");//工作单位id
 		params.put("doctorInfo.department", "儿科");//科室
 		params.put("doctorInfo.clinicalExperience", "20");//临床经验
 		params.put("doctorInfo.major.id", "3");//主专业
@@ -96,7 +99,8 @@ public class SignDoctorTest {
 		params.put("doctorInfo.imgBase64", "1234");//图片base64编码
 		params.put("doctorInfo.bankAccountName", "工商银行");//开户行
 		params.put("doctorInfo.bankCard", "6212264000036285290");//银行卡
-		params.put("doctorInfo.doctorComment", "4396");//个人擅长
+		params.put("doctorInfo.doctorComment", "4396");//个人简介
+		params.put("doctorInfo.recommendPhone", "4396");//推荐人电话
 		params.put("doctorInfo.doctorImpression", "好影响");//医生评价
 		params.put("doctorInfo.idCardNum", "123456");//身份证
 		params.put("doctorInfo.idCard", "123456");//职业资格证号

@@ -93,13 +93,30 @@ public class MajorServiceImpl extends ServiceImpl implements MajorService{
 	 * @return
 	 */
 	private String getDoctorTypeOfSecondNode(DoctorMajor major){
-		if(major.getParent()==null){//根节点
+		DoctorMajor parentMajor = null;
+		//获取父节点
+		if(major.getParent()==null){
 			return  null;
-		}else if(super.get(major.getParent().getId(), DoctorMajor.class).getParent()==null){//二级节点
-			return  super.get(major.getParent().getId(), DoctorMajor.class).getMajor();
-		}else{//三级及三级一下节点
-			return  super.get(major.getParent().getId(), DoctorMajor.class).getDoctorType();
+		}else{
+			parentMajor = super.get(major.getParent().getId(), DoctorMajor.class);
 		}
+		
+		DoctorMajor parentTop = null;
+		if(parentMajor.getParent()==null){//父节点处于根节点
+			return parentMajor.getMajor();
+		}else{
+			parentTop= super.get(parentMajor.getParent().getId(), DoctorMajor.class);
+		}
+		
+		DoctorMajor parentTopTop = null;
+		if(parentTop.getParent()==null){//父节点处于跟二级节点
+			return  parentMajor.getMajor();
+		}else{//三级及三级一下节点
+			parentTopTop= super.get(parentTop.getParent().getId(), DoctorMajor.class);
+		}
+		
+		//父节点处于跟三级节点
+		return  parentMajor.getDoctorType();
 	}
 	@Override
 	public List<Map<String, Object>> getIndexTree() {

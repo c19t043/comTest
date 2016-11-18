@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.java.mbi.server.report.vo.Report" table="MBI_REPORT">
+        <id name="reportId" type="java.lang.String">
+            <column name="REPORT_ID" length="32" />
+			<generator class="uuid"></generator>
+        </id>
+		<many-to-one name="reportType" class="com.java.mbi.server.report.vo.ReportType" fetch="select" not-found="ignore">
+        	<column name="REPORT_TYPE" length="32"/>
+        </many-to-one> 
+        <property name="reportName" type="java.lang.String">
+            <column name="REPORT_NAME" length="512" />
+        </property>
+        <property name="sqlStr" type="java.lang.String">
+            <column name="SQL_STR" length="4000" />
+        </property>
+        <!-- <property name="reportSql" type="java.lang.String">
+            <column name="REPORT_SQL" length="4000" />
+        </property>
+		<set name="reportUserExecSet" cascade="all" inverse="false">
+			<key>
+				<column name="REPORT_ID" length="32"></column>
+			</key>
+			<one-to-many class="com.java.mbi.server.report.vo.ReportUserExec" />
+		</set>
+ 		<set name="selectDimStructSet" cascade="save-update" table="MBI_REPORT_DIMSTRUCT" order-by="DIM_STRUCT_ID"> 
+			<key column="REPORT_ID"></key>
+			<many-to-many class="com.java.mbi.server.dimandstruct.vo.DimStruct" column="DIM_STRUCT_ID"></many-to-many> 
+		</set>
+		<set name="selectDimStructSet" cascade="all" inverse="false" order-by="SORT">
+			<key>
+				<column name="REPORT_ID" length="32"></column>
+			</key>
+			<one-to-many class="com.java.mbi.server.report.vo.ReportDimStruct" />
+		</set>
+		<set name="selectMeasureValueSet" cascade="save-update" table="MBI_REPORT_MEASUREVALUE" order-by="MEASURE_VALUE_ID"> 
+			<key column="REPORT_ID"></key>
+			<many-to-many class="com.java.mbi.server.measurevalueandgroup.vo.MeasureValue" column="MEASURE_VALUE_ID"></many-to-many> 
+		</set>
+		<set name="selectMeasureValueSet" cascade="all" inverse="false" order-by="SORT">
+			<key>
+				<column name="REPORT_ID" length="32"></column>
+			</key>
+			<one-to-many class="com.java.mbi.server.report.vo.ReportMeasureValue" />
+		</set>
+		<set name="selectSelfDefinedKpiValueSet" cascade="all" inverse="false" order-by="SORT">
+			<key>
+				<column name="REPORT_ID" length="32"></column>
+			</key>
+			<one-to-many class="com.java.mbi.server.report.vo.ReportSelfDefinedKpiValue" />
+		</set>
+    	<property name="selectPart" type="java.lang.String">
+            <column name="SELECT_PART" length="1024" />
+        </property>
+    	<property name="fromPart" type="java.lang.String">
+            <column name="FROM_PART" length="512" />
+        </property>
+    	<property name="dimStructFromPart" type="java.lang.String">
+            <column name="DIMSTRUCT_FROM_PART" length="512" />
+        </property>
+    	<property name="measureValueFromPart" type="java.lang.String">
+            <column name="MEASUREVALUE_FROM_PART" length="512" />
+        </property>
+        <property name="selfDefinedKpiFromPart" type="java.lang.String">
+            <column name="selfDefinedKpi_FROM_PART" length="512" />
+        </property>-->
+    	<property name="wherePart" type="java.lang.String">
+            <column name="WHERE_PART" length="512" />
+        </property>
+    	<property name="groupByPart" type="java.lang.String">
+            <column name="GROUPBY_PART" length="512" />
+        </property>
+    	<property name="orderByPart" type="java.lang.String">
+            <column name="ORDERBY_PART" length="512" />
+        </property>
+       	<set name="userSet" cascade="save-update" table="MBI_REPORT_USER">
+			<key column="REPORT_ID"></key>
+			<many-to-many class="com.java.platform.user.vo.User" column="USER_ID"></many-to-many> 
+		</set>
+    	<property name="description" type="java.lang.String">
+            <column name="DESCRIPTION" length="1024" />
+        </property>
+		<many-to-one name="createPerson" class="com.java.platform.user.vo.User" fetch="select">
+        	<column name="CREATE_PERSON" length="39"/>
+        </many-to-one>
+        <property name="createTime" type="java.util.Date">
+            <column name="CREATE_TIME" length="19" />
+        </property>
+        <many-to-one name="modifyPerson" class="com.java.platform.user.vo.User" fetch="select">        
+            <column name="MODIFY_PERSON" length="39"/>
+        </many-to-one>
+        <property name="modifyTime" type="java.util.Date">
+            <column name="MODIFY_TIME" length="19" />
+        </property>  
+    </class>
+</hibernate-mapping>

@@ -76,7 +76,7 @@ public class ChildCareChargeManage extends NewBaseAction{
 			uca.setIsMoney("Y");
 			uca.setStatus(ConstantManage.HASE_BOOKED_CLINIC_ORDER);
 			this.userChildcareAppointmentInfoList = this.orgBusinessManageService.
-					getUserChildcareAppointmentInfoList(organOperator.getHospitalBasicInfo(), uca,true);
+					getUserChildcareAppointmentInfoList(organOperator.getHospitalBasicInfo(), uca,true,null);
 			if("已上班".equals(organChildcareOpenDoctor.getWorkStatus())){
 				old.setStartTime(DateManage.getDateStr("yyyy-MM-dd HH:mm:ss"));
 			}else if("已下班".equals(organChildcareOpenDoctor.getWorkStatus())){
@@ -130,7 +130,7 @@ public class ChildCareChargeManage extends NewBaseAction{
 				this.getChildCareCount(uca,true);
 				uca.setStatus(ConstantManage.HASE_BOOKED_CLINIC_ORDER);
 				this.userChildcareAppointmentInfoList = this.orgBusinessManageService.
-						getUserChildcareAppointmentInfoList(organOperator.getHospitalBasicInfo(), uca,true);
+						getUserChildcareAppointmentInfoList(organOperator.getHospitalBasicInfo(), uca,true,null);
 			}
 		}
 		return "success";
@@ -147,7 +147,7 @@ public class ChildCareChargeManage extends NewBaseAction{
 		}
 		//得到机构所有订单
 		List<UserChildcareAppointmentInfo> allList = this.orgBusinessManageService.
-				getUserChildcareAppointmentInfoList(organOperator.getHospitalBasicInfo(), uc, flag);
+				getUserChildcareAppointmentInfoList(organOperator.getHospitalBasicInfo(), uc, flag,null);
 		// 已预月人数
 		int bookingSum = 0;
 		// 已预检人数

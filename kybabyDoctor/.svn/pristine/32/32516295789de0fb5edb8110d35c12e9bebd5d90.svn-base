@@ -1,7 +1,0 @@
-package com.kybaby.newbussiness.doctorsign.dao;
-
-import com.kybaby.common.CommonDao;
-
-public interface DoctorDataGatherDao extends CommonDao{
-
-}

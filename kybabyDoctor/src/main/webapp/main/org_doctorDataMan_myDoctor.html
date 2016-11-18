@@ -18,7 +18,7 @@
 <body>
 <!--header-->
 <div id="header" class="doctor_header">
-    <div class="header-left"><p></p></div>
+    <div class="header-left" onclick="sessionStorage.setItem('org_doctorDataMan_myDoctor','')"><p></p></div>
     <div class="header-center">我签的医生</div>
     <div class="header-right"></div>
 </div>
@@ -37,7 +37,7 @@
     <div class="search_div">
         <div class="flex_cont">
             <input type="text" class="flex_item" placeholder="搜索"/>
-            <span></span>
+            <span onclick="search_box()"></span>
         </div>
     </div>
     <div id="both_info">
@@ -95,6 +95,7 @@
 </div>
 <script>
     $(function(){
+        var session=sessionStorage.getItem('org_doctorDataMan_myDoctor');
         $.ajax({
             type: 'post',
             url: urlWay.doctorDataGather+'doctorDataGather.action',
@@ -107,7 +108,7 @@
             success: function (result) {
                 if (result.mes == '请登录') {
                     ale('请登录', '24px');
-                    link_to("login.html");
+                    link_to("org_login.html");
                 }
                 else if (result.mes == "成功") {
                     if(result.signDoctors!=null){
@@ -124,10 +125,29 @@
                                     if(doctorInfo.flowStatus=="未提交"||doctorInfo.flowStatus=="驳回"){
                                         button_div = '<p class="s_btn">提交审核</p>';
                                     }
-                                    var registerTime = doctorInfo.registerTime.substring(5,10);
+                                    var registerTime = '';
+                                    if(doctorInfo.registerTime!=null){
+                                        registerTime = doctorInfo.registerTime.substring(5,10);
+                                    }
+                                    var doctorName = '';
+                                    if(doctorInfo.doctorName!=null){
+                                        doctorName = doctorInfo.doctorName;
+                                    }
+                                    var doctorEmployer = '';
+                                    if(doctorInfo.doctorEmployer!=null){
+                                        doctorEmployer = doctorInfo.doctorEmployer;
+                                    }
+                                    var doctorTitle = '';
+                                    if(doctorInfo.doctorTitle!=null){
+                                        doctorTitle = doctorInfo.doctorTitle;
+                                    }
+                                    var department = '';
+                                    if(doctorInfo.department!=null){
+                                        department = doctorInfo.department;
+                                    }
                                     $("#both_info .doc_list").eq(i).find('ul').append('<li class="flex_cont flex_simple" data-id="'+doctorInfo.id+'">' +
-                                            '<div class="doc_information"><p class="doc_name">'+doctorInfo.doctorName+'</p><p class="doc_time">'+registerTime+'</p></div>' +
-                                            '<div class="flex_item doc_work"><p class="doc_hospital">'+doctorInfo.doctorEmployer+'</p><p class="doc_position"><span>'+doctorInfo.doctorTitle+'</span><span>'+doctorInfo.department+'</span></p></div>' +
+                                            '<div class="doc_information"><p class="doc_name">'+doctorName+'</p><p class="doc_time">'+registerTime+'</p></div>' +
+                                            '<div class="flex_item doc_work"><p class="doc_hospital">'+doctorEmployer+'</p><p class="doc_position"><span>'+doctorTitle+'</span><span>'+department+'</span></p></div>' +
                                             '<div>'+button_div+'<p class="signing_state">'+doctorInfo.flowStatus+'</p></div></li>');
                                 }
                             }
@@ -137,6 +157,16 @@
                             link_to('org_doctorDataMan_docInfo_basic.html?'+doctor_id);
                         })
                         $(".header_nav>.flex_item").click(function(){
+                            $("li").each(function(){
+                                $(this).show();
+                            })
+                            $(".signing_num").each(function(){
+                                $(this).show();
+                            })
+                            $(".doc_title").each(function(){
+                                $(this).show();
+                            })
+                            sessionStorage.setItem('org_doctorDataMan_myDoctor',$(this).text());
                             $(this).addClass("header_nav_select").siblings(".flex_item").removeClass("header_nav_select");
                             for(var i=0;i<$(".doc_list").length;i++){
                                 var flag = 0;
@@ -181,7 +211,15 @@
                                 $(".doc_list").eq(i).find(".signing_num").text("数量："+flag);
                             }
                         });
+                        if(session!=''||session!=null||session!=undefined){
+                            $(".header_nav>.flex_item").each(function(){
+                                if($(this).text()==session){
+                                    $(this).trigger("click");
+                                }
+                            })
+                        }
                         $(".s_btn").click(function(){
+                            event.stopPropagation();
                             var doc_id = $(this).parents("li").data("id");
                             $.ajax({
                                 type: 'post',
@@ -195,7 +233,7 @@
                                 success: function (result) {
                                     if (result.mes == '请登录') {
                                         ale('请登录', '24px');
-                                        link_to("login.html");
+                                        link_to("org_login.html");
                                     }
                                     else if (result.mes == "成功") {
                                         ale("提交成功");
@@ -210,7 +248,8 @@
                             });
                         })
                     }
-                } else {
+                }
+                else {
                     ale(result.mes);
                 }
             },
@@ -219,6 +258,42 @@
             }
         });
     });
+    function search_box(){
+        $("li").each(function(){
+            $(this).show();
+        })
+        $(".signing_num").each(function(){
+            $(this).show();
+        })
+        $(".doc_title").each(function(){
+            $(this).show();
+        })
+        var searchName = $(".search_div input").val().trim();
+        if (searchName == "") {
+            $("li").each(function(){
+                $(this).show();
+            })
+        }else {
+            $("ul li").each(
+                    function () {
+                        var doc_name = $(this).find(".doc_name").text();
+                        var doc_hospital = $(this).find(".doc_hospital").text();
+                        if (searchName.indexOf(doc_name) != -1 || searchName.indexOf(doc_hospital) != -1 || doc_name.indexOf(searchName) != -1 || doc_hospital.indexOf(searchName) != -1) {
+                            $(this).show();
+                        } else {
+                            $(this).hide();
+                        }
+                    });
+            $(".doc_title").each(function(){
+                $(this).find(".signing_num").hide();
+            })
+            $("ul").each(function(){
+                if($("ul").children("li").length==0){
+                    $(this).prev(".doc_title").hide();
+                }
+            })
+        }
+    }
 </script>
 </body>
 </html>

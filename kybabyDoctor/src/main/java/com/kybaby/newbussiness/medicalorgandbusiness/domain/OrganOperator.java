@@ -13,10 +13,19 @@ public class OrganOperator implements java.io.Serializable {
 	private HospitalBasicInfo hospitalBasicInfo;
 	private String loginName;
 	private String password;
+	private String showName;
 	private String homePageUrl;
 
 	public Long getId() {
 		return this.id;
+	}
+
+	public String getShowName() {
+		return showName;
+	}
+
+	public void setShowName(String showName) {
+		this.showName = showName;
 	}
 
 	public void setId(Long id) {

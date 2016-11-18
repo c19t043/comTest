@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.java.mbi.server.subjecttype.vo.SubjectType" table="MBI_SUBJECT_TYPE">
+        <id name="subjectTypeId" type="java.lang.String">
+            <column name="SUBJECT_TYPE_ID" length="32" />
+             <generator class="uuid"></generator>
+        </id>
+        <property name="subjectTypeName" type="java.lang.String">
+            <column name="SUBJECT_TYPE_NAME" length="256" />
+        </property>
+		<many-to-one name="parent" not-found="ignore" class="com.java.mbi.server.subjecttype.vo.SubjectType" fetch="select">
+        	<column name="PARENT" length="32"/>
+        </many-to-one>
+        <property name="sort" type="java.lang.Integer">
+            <column name="SORT" />
+        </property>
+        <property name="layer" type="java.lang.String">
+            <column name="LAYER" length="128" />
+        </property>
+        <property name="description" type="java.lang.String">
+            <column name="DESCRIPTION" length="1024" />
+        </property>
+  		<many-to-one name="createPerson" class="com.java.platform.user.vo.User" fetch="select">
+        	<column name="CREATE_PERSON" length="39"/>
+        </many-to-one>
+        <property name="createTime" type="java.util.Date">
+            <column name="CREATE_TIME" length="19" />
+        </property>
+        <many-to-one name="modifyPerson" class="com.java.platform.user.vo.User" fetch="select">        
+            <column name="MODIFY_PERSON" length="39"/>
+        </many-to-one>
+        <property name="modifyTime" type="java.util.Date">
+            <column name="MODIFY_TIME" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

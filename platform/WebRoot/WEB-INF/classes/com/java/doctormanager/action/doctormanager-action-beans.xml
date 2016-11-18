@@ -7,4 +7,9 @@
 		<property name="majorService" ref="majorService" />
 	</bean>
 	
+	
+		
+	<bean id="doctorOrderGathrerAction" class="com.java.doctormanager.action.DoctorOrderGathrerAction" scope="prototype">
+		<property name="doctorOrderGathrerService" ref="doctorOrderGathrerService" />
+	</bean>
 </beans>

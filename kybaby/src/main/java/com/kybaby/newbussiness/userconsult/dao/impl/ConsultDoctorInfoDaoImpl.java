@@ -39,6 +39,7 @@ public class ConsultDoctorInfoDaoImpl extends HibernateDaoSupport implements Con
 				params.add("%"+doctorInfo.getDepartment().trim()+"%");
 			}
 		}
+		hql.append(" order by sort");
 		List<ConsultDoctorInfo> list = this.getHibernateTemplate().find(hql.toString(),params.toArray());
 		if(!list.isEmpty())
 			return list;

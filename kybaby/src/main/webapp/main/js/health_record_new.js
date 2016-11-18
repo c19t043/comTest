@@ -25,7 +25,8 @@ $(function () {
                 data:recordHealth,
                 success: function (result) {
                     ale('保存成功');
-                    getHealthMessage();
+                    location.reload();
+                    //getHealthMessage();
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     layer();
@@ -181,8 +182,10 @@ function getHealthMessage(){
                             $(this).removeAttr('selected');
                             if(val==''&& $(this).text()=='请选择'){
                                 $(this).attr('selected','selected');
+                                console.log($(this));
                             }else if($(this).text() == val){
                                 $(this).attr('selected','selected');
+                                console.log($(this));
                             }
                         });
                         if(obj.parent().next().hasClass("forDesc")){

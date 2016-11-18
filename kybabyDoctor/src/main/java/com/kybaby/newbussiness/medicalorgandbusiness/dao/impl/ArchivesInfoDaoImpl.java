@@ -54,6 +54,10 @@ public class ArchivesInfoDaoImpl extends HibernateDaoSupport implements Archives
 				
 				hqlCount.append(" and p.hospitalBasicInfo.id=:hospitalId");
 			}
+			if(archivesInfo.getUserInfo() != null && archivesInfo.getUserInfo().getId() != null){
+				hql.append(" and p.userInfo.id=:userInfoId");
+				hqlCount.append(" and p.userInfo.id=:userInfoId");
+			}
 		}
 		if(organOperator != null){
 			if(organOperator.getHospitalBasicInfo() != null && organOperator.getHospitalBasicInfo().getId() != null){
@@ -90,6 +94,10 @@ public class ArchivesInfoDaoImpl extends HibernateDaoSupport implements Archives
 			if(archivesInfo.getHospitalBasicInfo() != null && !"".equals(archivesInfo.getHospitalBasicInfo().getId().toString())){
 				query.setLong("hospitalId", archivesInfo.getHospitalBasicInfo().getId());
 				queryCount.setLong("hospitalId", archivesInfo.getHospitalBasicInfo().getId());
+			}
+			if(archivesInfo.getUserInfo() != null && archivesInfo.getUserInfo().getId() != null){
+				query.setLong("userInfoId", archivesInfo.getUserInfo().getId());
+				queryCount.setLong("userInfoId", archivesInfo.getUserInfo().getId());
 			}
 		}
 		if(organOperator != null){

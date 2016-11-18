@@ -1,12 +1,9 @@
 package com.kybaby.domain;
 
-import java.beans.IntrospectionException;
-import java.beans.PropertyDescriptor;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
 
 import com.kybaby.newbussiness.doctorsign.domain.DoctorMajor;
 import com.kybaby.newbussiness.medicalorgandbusiness.domain.OrganOperator;
@@ -58,6 +55,8 @@ public class DoctorInfo implements java.io.Serializable {
 	private String licenseImage;
 	private String isLogin;
 	private String openId;
+	private String authenticationTime;
+	private String opTime;
 	/**
 	 * 医生简介
 	 */
@@ -127,12 +126,53 @@ public class DoctorInfo implements java.io.Serializable {
 	private String doctorType;
 	
 	private String imgBase64;
-	
+	public List<String> requiredFieldIsEmpty(){
+		List<String> list = new ArrayList<String>();
+		if(StringUtils.isBlank(this.getDoctorName())){
+			list.add("医生姓名");
+		};//医生姓名
+		if(StringUtils.isBlank(this.getDoctorSex())){
+			list.add("医生性别");
+		};//医生性别
+		if(StringUtils.isBlank(this.getDoctorPhone())){
+			list.add("电话");
+		};//电话
+		if(StringUtils.isBlank(this.getDoctorImage())){
+			list.add("图像");
+		};//图像
+		if(StringUtils.isBlank(this.getDoctorEmployer())){
+			list.add("工作单位");
+		};//工作单位
+		if(StringUtils.isBlank(this.getDepartment())){
+			list.add("科室");
+		};//科室
+		if(StringUtils.isBlank(this.getDoctorTitle())){
+			list.add("职称");
+		};//职称
+		if(StringUtils.isBlank(this.getClinicalExperience())){
+			list.add("临床经验");
+		};//临床经验
+		if(this.getMajor()==null||this.getMajor().getId()==null){
+			list.add("主专业");
+		};//主专业
+		if(StringUtils.isBlank(this.getIdCard())){
+			list.add("执业证号");
+		};//执业证号
+		if(StringUtils.isBlank(this.getServiceTypeIds())){
+			list.add("开通服务");
+		};//开通服务
+		if(StringUtils.isBlank(this.getDoctorType())){
+			list.add("医生类型");
+		};//医生类型
+		return list;
+	}
 	public void allCopy(DoctorInfo doctorInfo){
 		this.setDoctorName(doctorInfo.getDoctorName());//医生姓名
 		this.setDoctorSex(doctorInfo.getDoctorSex());//医生姓名
 		this.setDoctorPhone(doctorInfo.getDoctorPhone());//电话
+		this.setDoctorImage(doctorInfo.getDoctorImage());//图像
 		this.setDoctorEmployer(doctorInfo.getDoctorEmployer());//工作单位
+		this.setHospitalId(doctorInfo.getHospitalId());//工作单位id
 		this.setDepartment(doctorInfo.getDepartment());//科室
 		this.setDoctorTitle(doctorInfo.getDoctorTitle());//职称
 		this.setClinicalExperience(doctorInfo.getClinicalExperience());//临床经验
@@ -144,6 +184,7 @@ public class DoctorInfo implements java.io.Serializable {
 		this.setBankCard(doctorInfo.getBankCard());//银行卡
 		this.setDoctorComment(doctorInfo.getDoctorComment());//个人擅长介绍
 		this.setRecommendPhone(doctorInfo.getRecommendPhone());//推荐人
+		this.setDoctorType(doctorInfo.getDoctorType());//医生类型
 		//保存身份证明
 		this.setIdCard(doctorInfo.getIdCard());//执业证号
 		this.setIdCardNum(doctorInfo.getIdCardNum());//身份证
@@ -154,7 +195,6 @@ public class DoctorInfo implements java.io.Serializable {
 		this.setDoctorComment(doctorInfo.getDoctorComment());//个人擅长介绍
 		this.setBankAccountName(doctorInfo.getBankAccountName());//开户行
 		this.setBankCard(doctorInfo.getBankCard());//银行卡
-		this.setServiceTypeIds(doctorInfo.getServiceTypeIds());//开通服务
 		this.setRecommendPhone(doctorInfo.getRecommendPhone());//推荐人
 		//保存身份证明
 		this.setIdCardNum(doctorInfo.getIdCardNum());//身份证
@@ -382,7 +422,18 @@ public class DoctorInfo implements java.io.Serializable {
 	public void setBankAccountName(String bankAccountName) {
 		this.bankAccountName = bankAccountName;
 	}
-
+	public String getAuthenticationTime() {
+		return authenticationTime;
+	}
+	public void setAuthenticationTime(String authenticationTime) {
+		this.authenticationTime = authenticationTime;
+	}
+	public String getOpTime() {
+		return opTime;
+	}
+	public void setOpTime(String opTime) {
+		this.opTime = opTime;
+	}
 	public String getBankCard() {
 		return this.bankCard;
 	}

@@ -4,35 +4,35 @@
 
 
 //WEI XIN
-var host="http://dev.qiyico.com/main/";
+var host="http://localhost:8080/kybaby/main/";
 var hostBG="/kybabyBG/admin/";
-var hostName = "http://dev.qiyico.com/";
-var hostMain = "http://dev.qiyico.com/main/";
-var hostOrgbusiness = "http://dev.qiyico.com/orgbusiness/";
-var hostOperationbussiness = "http://dev.qiyico.com/operationbussiness/";
+var hostName = "http://localhost:8080/kybaby/";
+var hostMain = "http://localhost:8080/kybaby/main/";
+var hostOrgbusiness = "http://localhost:8080/kybaby/orgbusiness/";
+var hostOperationbussiness = "http://localhost:8080/kybaby/operationbussiness/";
 //微信id
 var appId  = 'wxe143c55a723e1738';//测试服务器
 //var appId  = 'wxc592f8c1fcf1ba64';//正式服务器
 //多点执业Action
-var clinicHost = "http://dev.qiyico.com/clinic/";
+var clinicHost = "http://localhost:8080/kybaby/clinic/";
 //会员卡
-var memberHost = "http://dev.qiyico.com/memberManage/";
+var memberHost = "http://localhost:8080/kybaby/memberManage/";
 //妈妈圈路径
-var ringHost="http://dev.qiyico.com/ring/";
+var ringHost="http://localhost:8080/kybaby/ring/";
 //家庭医生
-var familyDoctorHost="http://dev.qiyico.com/familydoctor/";
-var messageHost="http://dev.qiyico.com/messagecenter/";
+var familyDoctorHost="http://localhost:8080/kybaby/familydoctor/";
+var messageHost="http://localhost:8080/kybaby/messagecenter/";
 //照片
-var photo = "http://dev.qiyico.com/platform/";
+var photo = "http://localhost:8080/platform/";
 //咨询
-var consult = "http://dev.qiyico.com/consult/";
+var consult = "http://localhost:8080/kybaby/consult/";
 //健康商城
-var mall = "http://dev.qiyico.com/b2cManager/";
+var mall = "http://localhost:8080/kybaby/b2cManager/";
 //中联接口
-var zhonglian='http://dev.qiyico.com/platform/SpInterfaceService/';
-var spInterfaceService='http://dev.qiyico.com/spInterfaceService/';
+var zhonglian='http://localhost:8080/platform/SpInterfaceService/';
+var spInterfaceService='http://localhost:8080/kybaby/spInterfaceService/';
 //测评
-var testManager = 'http://dev.qiyico.com/testManager/';
+var testManager = 'http://localhost:8080/kybaby/testManager/';
 
 function ale(str,font){
     $('body').append('<div id="alert-cover" onclick="closeAlertCover()"> <div id="alert-content"> ' +

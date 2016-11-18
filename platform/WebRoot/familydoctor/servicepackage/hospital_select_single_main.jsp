@@ -152,7 +152,12 @@ var $j = jQuery.noConflict();
 	}
 	
 	function insertObject(id,name) {
-		objects = new object(name,id);
-		$j('#cheakObject').html(name);
+		if(id==objects.id){
+			objects = new object("","");
+			$j('#cheakObject').html("");
+		}else{
+			objects = new object(name,id);
+			$j('#cheakObject').html(name);
+		}
 	}
 </script>

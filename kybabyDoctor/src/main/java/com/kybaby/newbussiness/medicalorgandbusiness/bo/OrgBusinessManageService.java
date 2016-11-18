@@ -6,6 +6,7 @@ import com.kybaby.newbussiness.doctorclinic.domain.HospitalBasicInfo;
 import com.kybaby.newbussiness.medicalorgandbusiness.domain.OrgBusinessRelation;
 import com.kybaby.newbussiness.medicalorgandbusiness.domain.OrganModuleInfo;
 import com.kybaby.newbussiness.medicalorgandbusiness.domain.OrganOperator;
+import com.kybaby.newbussiness.medicalorgandbusiness.domain.PageBean;
 import com.kybaby.newbussiness.medicalorgandbusiness.domain.UserChildcareAppointmentInfo;
 import com.kybaby.newbussiness.medicalorgandbusiness.domain.UserInoculationAppointmentInfo;
 import com.kybaby.newbussiness.medicalorgandbusiness.domain.VaccineInfo;
@@ -31,7 +32,7 @@ public interface OrgBusinessManageService {
 	 * @return
 	 */
 	List<UserChildcareAppointmentInfo> getUserChildcareAppointmentInfoList(
-				HospitalBasicInfo hospitalBasicInfo,UserChildcareAppointmentInfo userChildcareAppointmentInfo,Boolean isNowDate);
+				HospitalBasicInfo hospitalBasicInfo,UserChildcareAppointmentInfo userChildcareAppointmentInfo,Boolean isNowDate,PageBean pageBean);
 	/**
 	 * 保存或更新儿保预约
 	 * @param userChildcareAppointmentInfo

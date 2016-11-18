@@ -3,6 +3,8 @@ package com.kybaby.bo.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.kybaby.bo.MajorBo;
 import com.kybaby.dao.MajorDao;
 import com.kybaby.domain.DoctorGoodField;
@@ -19,6 +21,7 @@ public class MajorBoImpl implements MajorBo {
 	
 	public List<String> getMajorNameListByIdStr(String idStr) {
 		List<String> majorNameList=new ArrayList<String>();
+		if(StringUtils.isBlank(idStr)) return majorNameList;
 		String[] majorIdsList=idStr.split("::");
 		for(int i =0;i<majorIdsList.length;i++){
 			long majorId=Long.valueOf(majorIdsList[i]);

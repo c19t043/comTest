@@ -27,6 +27,7 @@ public class DoctorOrderGathrerServiceImpl extends ServiceImpl implements Doctor
 
 	@Override
 	public void saveGatherDoctorOrderData() {
+		//System.out.println("定时汇总开单量开始"+System.currentTimeMillis());
 		String currentDate = DateManage.formatDateStr_yyyy_MM_dd(new Date());
 		String startDate = currentDate+" 00:00:00";
 		String endDate = currentDate+" 23:59:59";
@@ -69,6 +70,7 @@ public class DoctorOrderGathrerServiceImpl extends ServiceImpl implements Doctor
 						"咨询", consultOrderInfo.getId(), currentDate);
 			}
 		}
+		System.out.println("定时汇总开单量结束"+System.currentTimeMillis());
 	}
 	/**
 	 * 保存汇总信息
@@ -93,10 +95,13 @@ public class DoctorOrderGathrerServiceImpl extends ServiceImpl implements Doctor
 		StringBuilder sb = new StringBuilder();
 		Map<String,Object> params = new HashMap<String,Object>();
 		sb.append("from ConsultOrderInfo c where 1=1 and c.orderStatus <> '未付款'");
-		sb.append(" and c.orderTime >= :startDate");
+		sb.append(" and c.orderTime >= '"+startDate+"'");
+		sb.append(" and c.orderTime <= '"+endDate+"'");
+		/*sb.append(" and c.orderTime >= :startDate");
 		sb.append(" and c.orderTime <= :endDate");
 		params.put("startDate", startDate);
-		params.put("endDate", endDate);
+		params.put("endDate", endDate);*/
+		
 		return super.list(sb.toString(), -1, -1, params);
 	}
 	/**
@@ -106,11 +111,14 @@ public class DoctorOrderGathrerServiceImpl extends ServiceImpl implements Doctor
 	private List<UserChildcareAppointmentInfo> getCurrentDayChildCareOrders(String startDate, String endDate){
 		StringBuilder sb = new StringBuilder();
 		Map<String,Object> params = new HashMap<String,Object>();
-		sb.append("from UserChildcareAppointmentInfo c where 1=1 and c.status not in ('未付款','用户取消')");
-		sb.append(" and c.organChildcareOpenResources.openDate >= :startDate");
+		sb.append("from UserChildcareAppointmentInfo c where 1=1 and c.status not in ('未付款','用户取消','挂号失败')");
+		sb.append(" and c.organChildcareOpenResources.openDate =  CURDATE()");
+		/*sb.append(" and c.organChildcareOpenResources.openDate >= '"+startDate+"'");
+		sb.append(" and c.organChildcareOpenResources.openDate <= '"+endDate+"'");*/
+		/*sb.append(" and c.organChildcareOpenResources.openDate >= :startDate");
 		sb.append(" and c.organChildcareOpenResources.openDate <= :endDate");
 		params.put("startDate", startDate);
-		params.put("endDate", endDate);
+		params.put("endDate", endDate);*/
 		return super.list(sb.toString(), -1, -1, params);
 	}
 	/**
@@ -123,10 +131,13 @@ public class DoctorOrderGathrerServiceImpl extends ServiceImpl implements Doctor
 		StringBuilder sb = new StringBuilder();
 		Map<String,Object> params = new HashMap<String,Object>();
 		sb.append("from OrderInfoClinic c where 1=1 and c.orderStatus not in ('未付款','用户取消')");
-		sb.append(" and c.appointmentDate >= :startDate");
-		sb.append(" and c.appointmentDate <= :endDate");
-		params.put("startDate", startDate);
-		params.put("endDate", endDate);
+		sb.append(" and c.appointmentDate =  CURDATE()");
+//		sb.append(" and c.appointmentDate >= '"+startDate+"'");
+//		sb.append(" and c.appointmentDate <= '"+endDate+"'");
+//		sb.append(" and c.appointmentDate >= :startDate");
+//		sb.append(" and c.appointmentDate <= :endDate");
+//		params.put("startDate", startDate);
+//		params.put("endDate", endDate);
 		return super.list(sb.toString(), -1, -1, params);
 	}
 	/**
@@ -136,11 +147,14 @@ public class DoctorOrderGathrerServiceImpl extends ServiceImpl implements Doctor
 	private List<OrderInfo> getCurrentDaySMFWOrders(String startDate, String endDate){
 		StringBuilder sb = new StringBuilder();
 		Map<String,Object> params = new HashMap<String,Object>();
-		sb.append("from OrderInfo c where 1=1 and c.orderStatus not in ('未付款','用户取消')");
-		sb.append(" and c.bespokeDate >= :startDate");
-		sb.append(" and c.bespokeDate <= :endDate");
-		params.put("startDate", startDate);
-		params.put("endDate", endDate);
+		sb.append("from OrderInfo c where 1=1 and c.doctorInfo <> null and c.orderStatus not in ('未付款','用户取消','医生取消','已退款')");
+		sb.append(" and c.bespokeDate =  CURDATE()");
+//		sb.append(" and c.bespokeDate >= '"+startDate+"'");
+//		sb.append(" and c.bespokeDate <= '"+endDate+"'");
+//		sb.append(" and c.bespokeDate >= :startDate");
+//		sb.append(" and c.bespokeDate <= :endDate");
+//		params.put("startDate", startDate);
+//		params.put("endDate", endDate);
 		return super.list(sb.toString(), -1, -1, params);
 	}
 	

@@ -43,6 +43,33 @@
         #header{
             border-bottom: 1px solid #e8e8e8;
         }
+        #search_box input {
+            width: 100%;
+            float: left;
+            border: none;
+            border-radius: 20px;
+            line-height: 16px;
+            padding: 10px 0;
+            text-align: center;
+        }
+        #search_box .searchf {
+            width: 88%;
+            height: 35px;
+            text-indent: 14px;
+            color: #666;
+            border-radius: 20px;
+            background: #ffffff;
+            overflow: hidden;
+            text-align: center;
+            margin: 4px auto;
+        }
+        #search {
+            display: inline-block;
+            width: 40px;
+            float: right;
+            height: 35px;
+            margin-right: 0;
+        }
     </style>
 </head>
 <body>
@@ -54,9 +81,9 @@
 </div>
 <!--header-->
 <div id="container" style="margin-bottom: 0">
-    <div id="searchbox">
-        <div class="searchf">
-            <input placeholder="请输入标题查询" type="text"/>
+    <div id="search_box">
+        <div class="searchf flex_cont">
+            <input class="flex_item" placeholder="请输入标题查询" type="text"/>
             <!--<img onclick="searchMessage()" src="images/iconfont-sousuo.png" alt=""/>-->
             <span id="search" onclick="searchMessage()"></span>
         </div>
@@ -115,7 +142,7 @@
         $("#plan_ul").scrollTop(topValue);
     });
     function searchMessage(){
-        var val=$('#searchbox input').val().trim();
+        var val=$('#search_box input').val().trim();
         var list=$('.plan_times');
         $('.plan_li').hide();
         if(val==''|| val == null){

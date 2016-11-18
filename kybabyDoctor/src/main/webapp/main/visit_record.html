@@ -261,7 +261,7 @@
                             html+='<tr data-tt="'+pediatricList[i].clinicBeganTime+'-'+pediatricList[i].clinicEndTime+'" data-status="'+pediatricList[i].orgClinicStatus+'" data-id="'+pediatricList[i].doctorMorePracticeOrgInfo.id+'" class="message_box"onclick="showCover(this,'+pediatricList[i].id+')" data-clinic="'+pediatricList[i].orgClinicStatus+'">' +
                                     '<td>'+pediatricList[i].clinicDate+'</td>' +
                                     '<td>'+pediatricList[i].clinicOrg+'</td> ' +
-                                    '<td><span style="font-size: 10px">儿科门诊<br/>'+pediatricList[i].orgClinicTimeShow+'</span></td>' +
+                                    '<td><span style="font-size: 10px">儿科门诊<br/>'+pediatricList[i].clinicBeganTime+'-'+pediatricList[i].clinicEndTime+'</span></td>' +
                                     '</tr>';
                         }
                         $('tbody').append(html);

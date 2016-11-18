@@ -41,6 +41,9 @@ public class UserChildcareAppointmentInfo implements java.io.Serializable {
 	 */
 	private FdServicePackage fdServicePackage;
 	
+	//页面显示用
+	private String userType;//用户身份类型
+	
 	//查询条件用
 	private String openBeginDate;
 	private String openEndDate;
@@ -224,6 +227,14 @@ public class UserChildcareAppointmentInfo implements java.io.Serializable {
 
 	public void setFdServicePackage(FdServicePackage fdServicePackage) {
 		this.fdServicePackage = fdServicePackage;
+	}
+
+	public String getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
 	}
 
 }

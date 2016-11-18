@@ -39,7 +39,8 @@ public class PeadiatricsScheduleStrategy extends ScheduleStrategy {
 					service.getPersistProxy().getOrmPersistence().findByHQLQuery(hql, new Object[]{clinicDate,clinicAddress});
 			if(!infos.isEmpty()){
 				booleanMsg.isTrue(false);
-				booleanMsg.setMsg("该排班已预约了"+infos.size()+"次,不能修改");
+				String msg = booleanMsg.getMsg();
+				booleanMsg.setMsg(StringUtils.isNotBlank(msg)?msg+";":";"+"该排班已预约了"+infos.size()+"次,不能修改");
 			}
 		}
 		return booleanMsg;

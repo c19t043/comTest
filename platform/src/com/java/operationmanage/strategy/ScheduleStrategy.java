@@ -3,6 +3,7 @@ package com.java.operationmanage.strategy;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -78,7 +79,7 @@ public abstract class ScheduleStrategy{
 		if(doctorMorePracticeOrgInfo==null) {
 			booleanMsg.setMsg(hospitalBasicInfo.getHospitalLname()+"没有配置多点执业,请配置之后在发布");
 			booleanMsg.isTrue(false);
-			return booleanMsg; 
+			//return booleanMsg; 
 		}
 		/*
 		 * 查找医院职称分成记录
@@ -87,13 +88,16 @@ public abstract class ScheduleStrategy{
 		HospitalPosition hospitalPosition = findHospitalPosition(doctorInfo.getId(),doctorInfo.getHospitalId(),
 				hospitalBasicInfo.getId(),businessType);
 		if(hospitalPosition==null){
-			booleanMsg.setMsg("社区医院‘"+hospitalBasicInfo.getHospitalLname()
+			String msg = booleanMsg.getMsg();
+			booleanMsg.setMsg(StringUtils.isNotBlank(msg)?msg+";":";"+"社区医院‘"+hospitalBasicInfo.getHospitalLname()
 					+"’没有配置医生‘"+doctorInfo.getDoctorName()+"’的医院职称分成记录");
 			booleanMsg.isTrue(false);
-			return booleanMsg;
+			//return booleanMsg;
 		}
-		booleanMsg.setObject(hospitalPosition);
-		booleanMsg.isTrue(true);
+		if(booleanMsg.isTrue()==null){
+			booleanMsg.setObject(hospitalPosition);
+			booleanMsg.isTrue(true);
+		}
 		return booleanMsg;
 	}
 	/**

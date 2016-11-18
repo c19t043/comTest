@@ -6,6 +6,8 @@ var select_id = '';
 //    装病种id
 var professionalId_arr = [],professionalOld_arr=[];
 var doctorLifeInfoId = '';//生活信息id
+//存手机号
+var user_tel = '';
 $(function(){
     var url_id = window.location.search.substring(1);
     if(url_id!=''){
@@ -22,7 +24,7 @@ $(function(){
         success: function (result) {
             if (result.mes == '请登录') {
                 ale('请登录', '24px');
-                link_to("login.html");
+                link_to("org_login.html");
             }
             else if (result.mes == '成功') {
                 //就职医院
@@ -65,7 +67,7 @@ $(function(){
         success: function (result) {
             if (result.mes == '请登录') {
                 ale('请登录', '24px');
-                link_to("login.html");
+                link_to("org_login.html");
             }
             else if (result.mes == "成功") {
                 var tag = "both";
@@ -84,68 +86,118 @@ $(function(){
                     if(doctorSex == "女"){
                         $("#woman").addClass("c_selected").prev("li").removeClass("c_selected");
                     }
-                    $("#doc_tel").val(info.doctorPhone);
+                    if(info.doctorPhone!=null){
+                        $("#doc_tel").val(info.doctorPhone);
+                        user_tel = info.doctorPhone;
+                    }
                     //头像
-                    var img_load = urlWay.hostName+result.uploadDir.substring(2)+'/'+info.doctorImage;
-                    $("#doc_portrait img.h_img").prop("src",img_load);
-                    $("#doc_hospital").text(info.doctorEmployer);
-                    $("#doc_department").text(info.department);
-                    $("#doc_title").text(info.doctorTitle);
-                    $("#doc_experience input").val(info.clinicalExperience);
+                    if(result.uploadDir!=null){
+                        var img_load = urlWay.hostName+result.uploadDir.substring(2)+'/'+info.doctorImage;
+                        $("#doc_portrait img.h_img").prop("src",img_load+"?"+Math.random());
+                    }
+                    if(info.doctorEmployer!=null&&info.doctorEmployer!=''){
+                        $("#doc_hospital").text(info.doctorEmployer);
+                    }else{
+                        $("#doc_hospital").text("请选择");
+                    }
+                    if(info.department!=null&&info.department!=''){
+                        $("#doc_department").text(info.department);
+                    }else{
+                        $("#doc_department").text("请选择");
+                    }
+                    if(info.doctorTitle!=null&&info.doctorTitle!=''){
+                        $("#doc_title").text(info.doctorTitle);
+                    }else{
+                        $("#doc_title").text("请选择");
+                    }
+                    if(info.doctorType!=null&&info.doctorType!=''){
+                        $("#doc_type").text(info.doctorType);
+                    }else{
+                        $("#doc_type").text("请选择");
+                    }
+                    if(info.clinicalExperience!=null&&info.clinicalExperience!=''){
+                        $("#doc_experience input").val(info.clinicalExperience);
+                    }else{
+                        $("#doc_experience input").val("");
+                    }
                     //主专业方向
                     if(info.major != null){
                         var firstmajor = info.major.id;//主专业方向
                         //var current_id='';
-                        for(var i=0;i<result.firstMajors.length;i++){
-                            var m_num = result.firstMajors[i].id.toString();
-                            if(firstmajor == m_num){
-                                $("#doc_direction").text(result.firstMajors[i].major);
+                        if(result.firstMajors!=null){
+                            for(var i=0;i<result.firstMajors.length;i++){
+                                var m_num = result.firstMajors[i].id.toString();
+                                if(firstmajor == m_num){
+                                    $("#doc_direction").text(result.firstMajors[i].major);
+                                }
                             }
+                        }else{
+                            $("#doc_direction").parent(".layer_choose").hide();
                         }
+                    }else{
+                        $("#doc_direction").text("请选择");
                     }
                     //亚专业
                     if(info.secondMajorIds != null){
-                        var secondMajor_arr = info.secondMajorIds.split("::");//亚专业数组
-                        var secondMajor='';//亚专业字符串
-                        for(var i=0;i<result.secondMajors.length;i++){
-                            var m_num = result.secondMajors[i].id.toString();
-                            if($.inArray(m_num, secondMajor_arr)!=-1){
-                                secondMajor += result.secondMajors[i].major+" ";
+                        if(info.secondMajorIds!=null&&info.secondMajorIds.length>0){
+                            var secondMajor_arr = info.secondMajorIds.split("::");//亚专业数组
+                            var secondMajor='';//亚专业字符串
+                            for(var i=0;i<result.secondMajors.length;i++){
+                                var m_num = result.secondMajors[i].id.toString();
+                                if($.inArray(m_num, secondMajor_arr)!=-1){
+                                    secondMajor += result.secondMajors[i].major+" ";
+                                }
                             }
+                            $("#doc_professional").text(secondMajor);
+                        }else{
+                            $("#doc_professional").parent(".layer_choose").hide();
                         }
-                        $("#doc_professional").text(secondMajor);
+                    }else{
+                        $("#doc_professional").text("请选择");
                     }
                     //病种
-                    if(info.thirdMajorIds != null){
-                        var thirdMajorId_arr = info.thirdMajorIds.split("::");//病种数组
-                        var thirdMajorId='';//病种字符串
-                        for(var i=0;i<result.thirdMajors.length;i++){
-                            var m_num = result.thirdMajors[i].id.toString();
-                            if($.inArray(m_num, thirdMajorId_arr)!=-1){
-                                thirdMajorId += result.thirdMajors[i].major+" ";
+                    if(info.thirdMajorIds!=null){
+                        if(info.thirdMajorIds!=null&&info.thirdMajorIds.length>0){
+                            var thirdMajorId_arr = info.thirdMajorIds.split("::");//病种数组
+                            var thirdMajorId='';//病种字符串
+                            for(var i=0;i<result.thirdMajors.length;i++){
+                                var m_num = result.thirdMajors[i].id.toString();
+                                if($.inArray(m_num, thirdMajorId_arr)!=-1){
+                                    thirdMajorId += result.thirdMajors[i].major+" ";
+                                }
                             }
+                            $("#doc_diseases").text(thirdMajorId);
+                        }else{
+                            $("#doc_diseases").parent(".layer_choose").hide();
                         }
-                        $("#doc_diseases").text(thirdMajorId);
+                    }else{
+                        $("#doc_diseases").text("请选择");
                     }
                     //个人擅长
                     if(info.doctorComment != ""&&info.doctorComment != null){
                         $("#good_at").text(info.doctorComment);
                     }
                     //开户行
-                    $("#doc_bank").text(info.bankAccountName);
+                    if(info.bankAccountName!=null&&info.bankAccountName!=''){
+                        $("#doc_bank").text(info.bankAccountName);
+                    }else{
+                        $("#doc_bank").text("请选择");
+                    }
                     //银行卡号
                     $("#doc_bankCard").val(info.bankCard);
                     //开通服务
                     if(info.serviceTypeIds != null){
                         var serviceType_arr = info.serviceTypeIds.split("::");
-                        for(var i=0;i<result.doctorServiceTypes.length;i++){
-                            var m_num = result.doctorServiceTypes[i].id.toString();
-                            if($.inArray(m_num, serviceType_arr)!=-1){
-                                $("#doc_service div").append('<span data-id="'+result.doctorServiceTypes[i].id+'" class="selected">'+result.doctorServiceTypes[i].parentDoctorServiceType.serviceTypeName+'</span>')
+                        if(result.doctorServiceTypes!=null){
+                            for(var i=0;i<result.doctorServiceTypes.length;i++){
+                                var m_num = result.doctorServiceTypes[i].id.toString();
+                                if($.inArray(m_num, serviceType_arr)!=-1){
+                                    $("#doc_service div").append('<span data-id="'+result.doctorServiceTypes[i].id+'" class="selected">'+result.doctorServiceTypes[i].serviceTypeName+'</span>')
+                                }
                             }
+                        }else{
+                            $("#doc_service").parent("div").hide();
                         }
-                    }else{
-                        $("#doc_service").parent("div").hide();
                     }
                     //推荐人
                     if(info.recommendPhone != null){
@@ -201,7 +253,7 @@ $(function(){
                     if(doctorLifeInfo != null){
                         $('#school').val(doctorLifeInfo.graduateSchool);
                         $('#salary>input').val(doctorLifeInfo.hospitalMonthlIncome);
-                        if(doctorLifeInfo.degree == ''){
+                        if(doctorLifeInfo.degree == ''||doctorLifeInfo.degree == null){
                             $('#degree').text('请选择');
                         }else{
                             $('#degree').text(doctorLifeInfo.degree);
@@ -226,11 +278,13 @@ $(function(){
                     }
                 }
                 if(result.doctorInfo.flowStatus=="已提交"||result.doctorInfo.flowStatus=="已通过"){
+                    $(".header-right span").remove();
                     tag = "pass";
-                    $("#good_at").attr("contenteditable",false);
+                    //$("#good_at").attr("contenteditable",false);
                     $(".basic input").each(function(){
                         $(this).attr("readonly","readonly");
                     })
+                    $("#practice_num").attr("readonly","readonly");
                     $("input#doc_bankCard").removeAttr("readonly");
                     $("#layer_list_bank li").click(function(){
                         layer_list_li(this);
@@ -245,29 +299,40 @@ $(function(){
                 else{//新建医生
                     //主专业
                     var firstMajors = '';
-                    for(var i=0;i<result.firstMajors.length;i++){
-                        var firstMajor = result.firstMajors[i];
-                        firstMajors += '<li data-id="'+firstMajor.id+'">'+firstMajor.major+'</li>'
+                    if(result.firstMajors!=null){
+                        for(var i=0;i<result.firstMajors.length;i++){
+                            var firstMajor = result.firstMajors[i];
+                            firstMajors += '<li data-id="'+firstMajor.id+'">'+firstMajor.major+'</li>'
+                        }
                     }
                     $("#layer_list_direction .layer_list>ul").html(firstMajors);
                     $(".direction_information li").click(function(){
                         layer_list_li(this);
                     })
-                    //亚专业
-                    var secondMajors = '';
-                    for(var j=0;j<result.secondMajors.length;j++){
-                        var secondMajor = result.secondMajors[j]
-                        secondMajors += '<li data-parentId="'+secondMajor.parent.id+'" data-id="'+secondMajor.id+'">'+secondMajor.major+'</li>'
+                    if(result.secondMajors!=null&&result.secondMajors.length>0){
+                        //亚专业
+                        var secondMajors = '';
+                        for(var j=0;j<result.secondMajors.length;j++){
+                            var secondMajor = result.secondMajors[j]
+                            secondMajors += '<li data-parentId="'+secondMajor.parent.id+'" data-id="'+secondMajor.id+'">'+secondMajor.major+'</li>'
+                        }
+                        $("#layer_list_professional .layer_list_two>ul").html(secondMajors);
+                        if(result.thirdMajors!=null&&result.thirdMajors.length>0) {
+                            //病种
+                            var thirdMajors = '';
+                            for(var k=0;k<result.thirdMajors.length;k++){
+                                var thirdMajor = result.thirdMajors[k];
+                                thirdMajors += '<li data-parentId="'+thirdMajor.parent.id+'" data-parentsId="'+thirdMajor.parent.parent.id+'" data-id="'+thirdMajor.id+'">'+thirdMajor.major+'</li>'
+                            }
+                            $("#layer_list_diseases .layer_list_two>ul").html(thirdMajors);
+                        }else{
+                            $("#doc_diseases").parent(".layer_choose").hide();
+                        }
+                        layer_list_two_li();
+                    }else{
+                        $("#doc_professional").parent(".layer_choose").hide();
+                        $("#doc_diseases").parent(".layer_choose").hide();
                     }
-                    $("#layer_list_professional .layer_list_two>ul").html(secondMajors);
-                    //病种
-                    var thirdMajors = '';
-                    for(var k=0;k<result.thirdMajors.length;k++){
-                        var thirdMajor = result.thirdMajors[k];
-                        thirdMajors += '<li data-parentId="'+thirdMajor.parent.id+'" data-parentsId="'+thirdMajor.parent.parent.id+'" data-id="'+thirdMajor.id+'">'+thirdMajor.major+'</li>'
-                    }
-                    $("#layer_list_diseases .layer_list_two>ul").html(thirdMajors);
-                    layer_list_two_li();
                     if(result.doctorInfo.authentication!=null){
                         //按结果设置默认选中项
                         $("#layer_list_hospital li").each(function(){
@@ -300,43 +365,58 @@ $(function(){
                                 $(this).addClass("green");
                             }
                         })
-                        var secondMajors_arr = info.secondMajorIds.split("::");
-                        if(result.doctorInfo.major!=null){
-                            $("#layer_list_professional .layer_list_two li").each(function(){
-                                if($(this).attr("data-parentid")!=result.doctorInfo.major.id){
+                        $("#layer_list_docType li").each(function(){
+                            if($(this).text()==$("#doc_type").text()){
+                                $(this).addClass("green");
+                            }
+                        })
+                        if(info.secondMajorIds!=null){
+                            var secondMajors_arr = info.secondMajorIds.split("::");
+                            if(result.doctorInfo.major!=null){
+                                $("#layer_list_professional .layer_list_two li").each(function(){
+                                    if($(this).attr("data-parentid")!=result.doctorInfo.major.id){
+                                        $(this).hide();
+                                    }
+                                    if($.inArray($(this).data("id").toString(), secondMajors_arr)>-1){
+                                        $(this).addClass("green");
+                                    }
+                                })
+                            }
+                        }
+                        if(info.thirdMajorIds!=null){
+                            var thirdMajorIds_arr = info.thirdMajorIds.split("::");
+                            $("#layer_list_diseases li").each(function(){
+                                if($.inArray($(this).attr("data-parentid").toString(), secondMajors_arr)==-1){
                                     $(this).hide();
                                 }
-                                if($.inArray($(this).data("id").toString(), secondMajors_arr)>-1){
+                                if($.inArray($(this).data("id").toString(), thirdMajorIds_arr)>-1){
                                     $(this).addClass("green");
                                 }
                             })
                         }
-                        var thirdMajorIds_arr = info.thirdMajorIds.split("::");
-                        $("#layer_list_diseases li").each(function(){
-                            if($.inArray($(this).attr("data-parentid").toString(), secondMajors_arr)==-1){
-                                $(this).hide();
-                            }
-                            if($.inArray($(this).data("id").toString(), thirdMajorIds_arr)>-1){
-                                $(this).addClass("green");
-                            }
-                        })
                     }
 //                    开通服务
                     $("#doc_service div").html("");
                     if(result.doctorInfo.authentication==null){//新添加
                         var doctorServiceTypes = '';
-                        for(var m=0;m<result.doctorServiceTypes.length;m++){
-                            doctorServiceTypes += '<span data-id="'+result.doctorServiceTypes[m].id+'">'+result.doctorServiceTypes[m].parentDoctorServiceType.serviceTypeName+'</span>';
+                        if(result.doctorServiceTypes!=null){
+                            for(var m=0;m<result.doctorServiceTypes.length;m++){
+                                doctorServiceTypes += '<span data-id="'+result.doctorServiceTypes[m].id+'">'+result.doctorServiceTypes[m].serviceTypeName+'</span>';
+                            }
                         }
                         $("#doc_service div").html(doctorServiceTypes);
                     }else{
-                        var serviceType_arr = result.doctorInfo.serviceTypeIds.split("::");
-                        for(var i=0;i<result.doctorServiceTypes.length;i++){
-                            var m_num = result.doctorServiceTypes[i].id.toString();
-                            if($.inArray(m_num, serviceType_arr)!=-1){
-                                $("#doc_service div").append('<span data-id="'+result.doctorServiceTypes[i].id+'" class="selected">'+result.doctorServiceTypes[i].parentDoctorServiceType.serviceTypeName+'</span>')
-                            }else{
-                                $("#doc_service div").append('<span data-id="'+result.doctorServiceTypes[i].id+'">'+result.doctorServiceTypes[i].parentDoctorServiceType.serviceTypeName+'</span>');
+                        if(result.doctorInfo.serviceTypeIds!=null){
+                            var serviceType_arr = result.doctorInfo.serviceTypeIds.split("::");
+                            if(result.doctorServiceTypes!=null){
+                                for(var i=0;i<result.doctorServiceTypes.length;i++){
+                                    var m_num = result.doctorServiceTypes[i].id.toString();
+                                    if($.inArray(m_num, serviceType_arr)!=-1){
+                                        $("#doc_service div").append('<span data-id="'+result.doctorServiceTypes[i].id+'" class="selected">'+result.doctorServiceTypes[i].serviceTypeName+'</span>')
+                                    }else{
+                                        $("#doc_service div").append('<span data-id="'+result.doctorServiceTypes[i].id+'">'+result.doctorServiceTypes[i].serviceTypeName+'</span>');
+                                    }
+                                }
                             }
                         }
                     }
@@ -364,6 +444,8 @@ $(function(){
     $("#layer_div>div").click(function(event){
         event.stopPropagation();
     })
+    //弹框搜索
+    search_box();
 })
 //弹出弹框
 function layer_choose(obj){
@@ -374,7 +456,7 @@ function layer_choose(obj){
             }
         }
         event.stopPropagation();
-        $("body").css("overflow","hidden");
+        //$("body").css("overflow","hidden");
         var index = $(this).data("id");
         //选中项为主专业方向或亚专业或病种
         if($(this).data("name")=="professional"){
@@ -415,14 +497,14 @@ function layer_choose(obj){
     });
 }
 window.document.onclick=function(){
-    $("body").css("overflow","auto");
+    //$("body").css("overflow","auto");
     $('#layer_box').hide();
 }
 //    选中弹框内容
 function layer_list_li(org){
     var index = $(org).parents(".layer_list").data("id");
     //弹框为主专业方向
-    if(index==3){
+    if(index==4){
         if(!$(org).hasClass("green")){
             //若亚专业和病种已被选择则会被清空
             if($("#doc_professional").text()!="请选择"||$("#doc_diseases").text()!="请选择"){
@@ -433,6 +515,8 @@ function layer_list_li(org){
                     return;
                 }
             }
+            $("#doc_professional").parent(".layer_choose").show();
+            $("#doc_diseases").parent(".layer_choose").show();
             $("#doc_professional").text("请选择");
             //清空亚专业选中项
             $("#layer_list_professional .layer_list_two li").each(function(){
@@ -448,14 +532,29 @@ function layer_list_li(org){
             $(org).addClass("green").siblings("li").removeClass("green");
             $(".layer_choose").eq(index).find(".text-right").text($(org).text());
             select_id = $("#layer_list_direction .layer_list li.green").attr("data-id");
+            var is_tag = 0;
             for(var i=0;i<$("#layer_list_professional .layer_list_two li").length;i++){
                 if($("#layer_list_professional .layer_list_two li").eq(i).attr("data-parentId")!=select_id){
                     $("#layer_list_professional .layer_list_two li").eq(i).hide();
+                }else{
+                    is_tag++;
                 }
             }
         }
-        $("#layer_list_direction").hide();
-        $("#layer_list_professional").show();
+        if($("#layer_list_professional").parent(".layer_choose").css("display")=="none"){
+            $("#layer_box").hide();
+            $("#doc_professional").parent(".layer_choose").hide();
+            $("#doc_diseases").parent(".layer_choose").hide();
+        }else{
+            if(is_tag!=undefined&&is_tag==0){
+                $("#layer_box").hide();
+                $("#doc_professional").parent(".layer_choose").hide();
+                $("#doc_diseases").parent(".layer_choose").hide();
+            }else{
+                $("#layer_list_direction").hide();
+                $("#layer_list_professional").show();
+            }
+        }
 //            控制ul高度
         var height = 45;
         if($("#layer_div>div").eq(index+1).find(".search_div").length!=0){
@@ -468,10 +567,21 @@ function layer_list_li(org){
     }else{
         $(org).addClass("green").siblings("li").removeClass("green");
         $(".layer_choose").eq(index).find(".text-right").text($(org).text());
-        $("body").css("overflow","auto");
+        //$("body").css("overflow","auto");
         $('#layer_box').hide();
     }
 }
+//window.onresize=function(){
+//    //            控制ul高度
+//    var height = 45;
+//    if($("#layer_div>div").eq(index+1).find(".search_div").length!=0){
+//        height += 68;
+//        if($("#layer_div>div").eq(index+1).find(".bottom_button").length!=0){
+//            height += 57;
+//        }
+//    }
+//    $("#layer_div ul").height($("#layer_div").height()-height);
+//}
 function layer_list_two_li(){
     //弹框为亚专业
     $("#layer_list_professional .layer_list_two li").click(function(){
@@ -522,16 +632,30 @@ function bottom_button(){
                 }else{
                     professionalOld_arr = professionalId_arr;
                 }
+                $("#doc_diseases").parent(".layer_choose").show();
                 $(".layer_choose").eq(index).find(".text-right").text(li_text);
+                var is_tag = 0;
                 for(var i=0;i<$("#layer_list_diseases .layer_list_two li").length;i++){
                     var diseases_id=parseInt($("#layer_list_diseases .layer_list_two li").eq(i).attr("data-parentid"));
                     if($.inArray(diseases_id, professionalId_arr)==-1){
                         $("#layer_list_diseases .layer_list_two li").eq(i).hide();
                         $("#layer_list_diseases .layer_list_two li").eq(i).removeClass("green");
+                    }else{
+                        is_tag++;
                     }
                 }
-                $("#layer_list_professional").hide();
-                $("#layer_list_diseases").show();
+                if($("#doc_diseases").parent(".layer_choose").css("display")=="none"){
+                    $("#layer_box").hide();
+                    $("#doc_diseases").parent(".layer_choose").hide();
+                }else{
+                    if(is_tag!=undefined&&is_tag==0){
+                        $("#layer_box").hide();
+                        $("#doc_diseases").parent(".layer_choose").hide();
+                    }else{
+                        $("#layer_list_professional").hide();
+                        $("#layer_list_diseases").show();
+                    }
+                }
             }
         }else{
             if(li_text==''||li_text==null){
@@ -541,7 +665,7 @@ function bottom_button(){
             }else{
                 $("#layer_list_diseases").hide();
                 $(".layer_choose").eq(index).find(".text-right").text(li_text);
-                $("body").css("overflow","auto");
+                //$("body").css("overflow","auto");
                 $('#layer_box').hide();
             }
         }
@@ -559,77 +683,129 @@ function bottom_button(){
 //保存医生信息
 function save_button(org){
     if($("#doc_name").val().trim()==""){
-        ale("请填写姓名");
+        ale('必选填写医生姓名');
         return;
     }
-    if($("#doc_tel").val().trim()==''){
-        ale("请填写手机号码");
+    if($("#doc_experience input").val() !='' && ($("#doc_experience input").val()<0||$("#doc_experience input").val()>60)){
+        ale("临床经验建议控制在0-60之间");
         return;
     }
-    //头像
-    if(doctorDataMan.doctorImg==null){
-        ale("请上传头像");
-        return;
-    }
-    if($('#doc_hospital').text()=='请选择'){
-        ale("请选择就职医院");
-        return;
-    }
-    if($('#doc_department').text()=='请选择'){
-        ale("请选择就职科室");
-        return;
-    }
-    if($('#doc_title').text()=='请选择'){
-        ale("请选择职称");
-        return;
-    }
-    if($("#doc_experience input").val().trim()==''){
-        ale("请填写临床经验");
-        return;
-    }else if($("#doc_experience input").val()<0||$("#doc_experience input").val()>100){
-        ale("请填写正确的临床经验");
-        return;
-    }
-    if($('#doc_direction').text()=='请选择'){
-        ale("请选择主专业方向");
-        return;
-    }
-    if($('#doc_professional').text()=='请选择'){
-        ale("请选择亚专业方向");
-        return;
-    }
-    if($('#doc_diseases').text()=='请选择'){
-        ale("请选择病种");
-        return;
-    }
-    if($("#good_at").text().trim()==''){
-        ale("请填写个人擅长");
-        return;
-    }
-    if($('#doc_service span.selected').length==0){
-        ale("请选择开通服务");
-        return;
-    }
+    //if($("#doc_name").val().trim()==""){
+    //    ale("请填写姓名");
+    //    return;
+    //}
+    //if($("#doc_tel").val().trim()==''){
+    //    ale("请填写手机号码");
+    //    return;
+    //}
+    ////头像
+    //if(doctorDataMan.doctorImg==null){
+    //    ale("请上传头像");
+    //    return;
+    //}
+    //if($('#doc_hospital').text()=='请选择'){
+    //    ale("请选择就职医院");
+    //    return;
+    //}
+    //if($('#doc_department').text()=='请选择'){
+    //    ale("请选择就职科室");
+    //    return;
+    //}
+    //if($('#doc_title').text()=='请选择'){
+    //    ale("请选择职称");
+    //    return;
+    //}
+    //if($("#doc_experience input").val().trim()==''){
+    //    ale("请填写临床经验");
+    //    return;
+    //}else if($("#doc_experience input").val()<0||$("#doc_experience input").val()>60){
+    //    ale("临床经验建议控制在0-60之间");
+    //    return;
+    //}
+    //if($('#doc_direction').text()=='请选择'){
+    //    ale("请选择主专业方向");
+    //    return;
+    //}
+    //if($("#doc_professional").parent(".layer_choose").css("display")!="none"){
+    //    if($('#doc_professional').text()=='请选择'){
+    //        ale("请选择亚专业方向");
+    //        return;
+    //    }
+    //}
+    //if($("#doc_diseases").parent(".layer_choose").css("display")!="none"){
+    //    if($('#doc_diseases').text()=='请选择'){
+    //        ale("请选择病种");
+    //        return;
+    //    }
+    //}
+    //if($('#doc_service span.selected').length==0){
+    //    ale("请选择开通服务");
+    //    return;
+    //}
+    //if($(org).text()=="提交"){
+    //    if($("#practice_num").val().trim()==''){
+    //        ale("请填写身份提交-执业证号");
+    //        return;
+    //    }
+    //}
     var name = $("#doc_name").val();
     var sex = $("#doc_sex li.c_selected .choose_item").text();
-    var phone = $("#doc_tel").val();
+    var phone = '';
+    //电话号码首次保存或修改时才作验证，未填写或未修改不作验证
+    if(($("#doc_tel").val().trim()!='' && user_tel == '')||($("#doc_tel").val().trim()!='' && user_tel != $("#doc_tel").val())){
+        if(doctorDataMan.checkMobile()){
+            phone = $("#doc_tel").val();
+        }else{
+            return;
+        }
+    }
+    phone = $("#doc_tel").val();
     //头像
     var hospital = $('#doc_hospital').text();
+    var hospitalId = '';
     var department = $('#doc_department').text();
     var title = $('#doc_title').text();
+    if(hospital == "请选择"){
+        hospital='';
+    }else{
+        hospitalId = $("#layer_list_hospital li.green").data("id");
+    }
+    if(department == "请选择"){
+        department='';
+    }
+    if(title == "请选择"){
+        title='';
+    }
+    var doc_type=$('#doc_type').text();
+    if(doc_type=='请选择'){
+        doc_type='';
+    }
     var experience = $('#doc_experience input').val();
     var firstMajorId = $("#layer_list_direction li.green").data("id");
+    if(firstMajorId == undefined){
+        firstMajorId = '';
+    }
     var secondMajorId_arr = [];
-    $("#layer_list_professional .layer_list_two li.green").each(function(){
-        secondMajorId_arr.push($(this).data("id"));
-    });
-    var secondMajorIds = secondMajorId_arr.join("::");
+    if($("#doc_professional").parent(".layer_choose").css("display")!="none"){
+        $("#layer_list_professional .layer_list_two li.green").each(function(){
+            secondMajorId_arr.push($(this).data("id"));
+        });
+        var secondMajorIds = secondMajorId_arr.join("::");
+    }
+    if(secondMajorIds == undefined){
+        secondMajorIds = '';
+    }
     //病种
     var thirdMajorId_arr = [];
-    $("#layer_list_diseases .layer_list_two li.green").each(function(){
-        thirdMajorId_arr.push($(this).data("id"));
-    });
-    var thirdMajorIds = thirdMajorId_arr.join("::");
+    if($("#doc_professional").parent(".layer_choose").css("display")!="none"){
+        $("#layer_list_diseases .layer_list_two li.green").each(function(){
+            thirdMajorId_arr.push($(this).data("id"));
+        });
+        var thirdMajorIds = thirdMajorId_arr.join("::");
+    }
+    if(thirdMajorIds == undefined){
+        thirdMajorIds = '';
+    }
     //var good_arr = [];
     //$("#good_at span.selected").each(function(){
     //    good_arr.push($(this).data("id"));
@@ -683,7 +859,9 @@ function save_button(org){
             "doctorInfo.doctorPhone":phone,
             "doctorInfo.doctorTitle":title,
             "doctorInfo.doctorEmployer":hospital,
+            "doctorInfo.hospitalId":hospitalId,
             "doctorInfo.department":department,
+            "doctorInfo.doctorType":doc_type,
             "doctorInfo.clinicalExperience":experience,
             "doctorInfo.major.id":firstMajorId,
             "doctorInfo.secondMajorIds":secondMajorIds,
@@ -710,7 +888,9 @@ function save_button(org){
         },
         success:function(result){
             if(result.mes=='成功'){
-                doctorDataMan.doctorInfoId=result.doctorInfo.id;
+                if(result.doctorInfo!=null){
+                    doctorDataMan.doctorInfoId=result.doctorInfo.id;
+                }
                 if($(org).text()=="提交"){
                     $.ajax({
                         type: 'post',
@@ -724,7 +904,7 @@ function save_button(org){
                         success: function (result) {
                             if (result.mes == '请登录') {
                                 ale('请登录', '24px');
-                                link_to("login.html");
+                                link_to("org_login.html");
                             }
                             else if (result.mes == "成功") {
                                 ale("提交成功");
@@ -739,6 +919,7 @@ function save_button(org){
                     });
                 }else{
                     ale("保存成功");
+                    user_tel = $("#doc_tel").val();
                 }
             }
         },
@@ -771,6 +952,29 @@ function save_button(org){
         }
     });
 }
+//弹框内搜索
+function search_box(){
+    $(".search_div>div.flex_cont>span").click(function(){
+        $(this).parents(".search_div").parent("div").find("li").each(function(){
+            $(this).show();
+        })
+        var searchName = $(this).prev("input").val().trim();
+        if (searchName == "") {
+            $(this).parents(".search_div").parent("div").find("li").each(function(){
+                $(this).show();
+            })
+        }else {
+            $(this).parents(".search_div").parent("div").find("li").each(function () {
+                var doc_name = $(this).text();
+                if (searchName.indexOf(doc_name) != -1 || doc_name.indexOf(searchName) != -1) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        }
+    })
+}
 /*
  *     下面是yjl添加的js
  * */
@@ -784,11 +988,12 @@ var doctorDataMan={
     checkMobile: function () {
         //检查手机号
         var doc_tel=$('#doc_tel').val().trim();
+        var tel = '';
         if((/^1[3|4|5|6|7|8][0-9]\d{4,8}$/.test(doc_tel)) && doc_tel.length==11){
             $.ajax({
                 type:"post",
                 url:urlWay.doctorDataGather+"doctorDataGather.action",
-                async:true,
+                async:false,
                 cache:false,
                 data:{
                     action:"checkDoctorPhone",
@@ -796,28 +1001,30 @@ var doctorDataMan={
                 },
                 success: function (result) {
                     if(result.mes=="成功"){
-
+                        tel=true;
                     }else{
                         ale(result.mes);
+                        tel=false;
                     }
                 },
                 error: function () {
 
                 }
             });
-            return false;
         }else{
             ale('请正确填写手机号');
+            tel=false;
         }
+        return tel;
     },
     changeNav: function () {
         //    是否离异
         $(".header_nav .flex_item").click(function(){
             var type=$(this).attr('data-type');
-            if(type != 'basic' && doctorDataMan.doctorInfoId==null){
-                ale('请先完善基本信息');
-                return;
-            }
+            //if(type != 'basic' && doctorDataMan.doctorInfoId==null){
+            //    ale('请先完善基本信息');
+            //    return;
+            //}
             //switch (type){
             //    case 'basic':
             //        $('.header-right').html('<span class="right_topButton" onclick="save_button()">保存</span>');
@@ -911,9 +1118,12 @@ var doctorDataMan={
                         '<form class="file" action="" method="post" enctype="multipart/form-data"> ' +
                         '<img src="images/menuicon/icon_add.png" class="h_img"/> ' +
                         '<canvas width="40" height="40" class="canvas"></canvas> ' +
-                        '<input type="file" class="input" accept="images/*" onchange="loadImage(this,\''+type+'\')"/> ' +
+                        '<input type="file" class="input" accept="images/*" name="productSmallFileElem" onchange="loadImage(this,\''+type+'\')" style="display:block;"/> ' +
                         '<canvas class="canvas1"></canvas> ' +
                         '</form> </div>');
+                    if(result.doctorInfo!=null){
+                        doctorDataMan.doctorInfoId=result.doctorInfo.id;
+                    }
                 }
             },
             error: function () {
@@ -1040,7 +1250,7 @@ function render(src, obj,type) {
         }
         var ctx = canvas.getContext("2d");  // 获取 canvas的 2d 环境对象,可以理解Context是管理员，canvas是房子
         var ctx1 = canvas1.getContext("2d");  // 获取 canvas的 2d 环境对象,可以理解Context是管理员，canvas是房子
-        ctx.clearRect(0, 0, canvas.width, canvas.height);// canvas清屏
+        ctx.clearRect(0, 0, 40, 40);// canvas清屏
         ctx1.clearRect(0, 0, canvas1.width, canvas1.height);// canvas清屏
         canvas1.width = image.width;  // 重置canvas宽高
         canvas1.height = image.height;
@@ -1050,7 +1260,7 @@ function render(src, obj,type) {
     image.src = src;  // 记住必须先绑定事件，才能设置src属性，否则会出同步问题。
     setTimeout(function () {
         sendImage(obj,type);
-    }, 2000);
+    }, 1000);
     $(obj).prev(".canvas").show();
 }
 function sendImage(obj,type) {
@@ -1063,6 +1273,7 @@ function sendImage(obj,type) {
     var imagedata = encodeURIComponent(dataurl);
     if(type=='头像'){
         doctorDataMan.doctorImg=imagedata;
+        $('#doc_portrait img').hide();
         $(obj).css({'zIndex':22});
         return;
     }

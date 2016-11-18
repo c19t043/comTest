@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package namespace="/orgOperatorManager" name="orgOperatorManagerActionJson" extends="struts-default">
+		<result-types>
+			<result-type name="json" class="org.apache.struts2.json.JSONResult" />
+		</result-types>
+		
+		<interceptors>
+			<interceptor name="json" class="org.apache.struts2.json.JSONInterceptor" />
+		</interceptors>
+		
+		<action name="json_" class="orgOperatorManagerAction" method="{1}">
+			<result name="success" type="json"></result>
+		</action>
+	</package>
+	
+	<package namespace="/orgOperatorManager" name="orgOperatorManagerAction" extends="com.java.platform">
+		<action name="orgOperatorManager" class="orgOperatorManagerAction">
+			<result name="list">/orgmanager/operatormanager/operatormanager_list.jsp</result>
+			<result name="list_action" type="stateRedirectAction">
+				<param name="actionName">orgOperatorManager.action</param>
+				<param name="action">queryOrganOperatorByPage</param>
+			</result>
+			<result name="toAddOrUpdate">/orgmanager/operatormanager/operatormanager_add.jsp</result>
+		</action>
+		<action name="orgRoleManager" class="organRoleAction">
+			<result name="list">/orgmanager/organRole/orgRole_list.jsp</result>
+			<result name="list_action" type="stateRedirectAction">
+				<param name="actionName">orgRoleManager.action</param>
+				<param name="action">queryOrganRoleByPage</param>
+			</result>
+			<result name="toAddOrUpdate">/orgmanager/organRole/orgRole_add.jsp</result>
+			<result name="selectOperatorPage">/orgmanager/organRole/orgOperator_select_list.jsp</result>
+			<result name="selectModulePage">/orgmanager/organRole/orgModule_select_list.jsp</result>
+		</action>
+		<action name="organModuleInfoManager" class="organModuleInfoAction">
+			<result name="list">/orgmanager/organModuleInfo/organModuleInfo_list.jsp</result>
+			<result name="list_action" type="stateRedirectAction">
+				<param name="actionName">organModuleInfoManager.action</param>
+				<param name="action">queryOrganModuleInfoByPage</param>
+			</result>
+			<result name="toAddOrUpdate">/orgmanager/organModuleInfo/organModuleInfo_add.jsp</result>
+		</action>
+	</package>
+</struts>

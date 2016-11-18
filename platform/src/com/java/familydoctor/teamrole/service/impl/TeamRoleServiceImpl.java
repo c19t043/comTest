@@ -102,17 +102,40 @@ public class TeamRoleServiceImpl extends ServiceImpl implements TeamRoleService{
 					hql.append(" AND c.doctorInfo.doctorName like :doctorName");
 				}
 			}
+			if(StringUtils.isNotEmpty(fdServiceMember.getSkilNames())){
+				params.put("skilNames", "%"+fdServiceMember.getSkilNames().trim()+"%");
+				hql.append(" AND c.skilNames like :skilNames");
+			}
 		}
 		if (fdServiceTeams != null) {
 			if (fdServiceTeams.getId() != null) {
 				params.put("teamId", fdServiceTeams.getId());
 				hql.append(" AND c.fdServiceTeams.id = :teamId");
 			}
+			if (StringUtils.isNotEmpty(fdServiceTeams.getTeamName())) {
+				params.put("teamName","%"+ fdServiceTeams.getTeamName()+"%");
+				hql.append(" AND c.fdServiceTeams.teamName like :teamName");
+			}
+			if(fdServiceTeams.getFdServicePackage() != null){
+				if(fdServiceTeams.getFdServicePackage().getHospitalBasicInfo() != null
+						&& StringUtils.isNotEmpty(fdServiceTeams.getFdServicePackage().getHospitalBasicInfo().getHospitalLname())){
+					params.put("hospitalLname","%"+ fdServiceTeams.getFdServicePackage().getHospitalBasicInfo().getHospitalLname()+"%");
+					hql.append(" AND c.fdServiceTeams.fdServicePackage.hospitalBasicInfo.hospitalLname like :hospitalLname");
+				}
+				if(StringUtils.isNotEmpty(fdServiceTeams.getFdServicePackage().getPackageShowName())){
+					params.put("packageShowName","%"+ fdServiceTeams.getFdServicePackage().getPackageShowName()+"%");
+					hql.append(" AND c.fdServiceTeams.fdServicePackage.packageShowName like :packageShowName");
+				}
+			}
 		}
 		if (fdRoleInfo != null) {
 			if (fdRoleInfo.getId() != null) {
 				params.put("roleId", fdRoleInfo.getId());
 				hql.append(" AND c.fdRoleInfo.id = :roleId");
+			}
+			if (StringUtils.isNotEmpty(fdRoleInfo.getRoleName())) {
+				params.put("roleName", "%"+fdRoleInfo.getRoleName()+"%");
+				hql.append(" AND c.fdRoleInfo.roleName like :roleName");
 			}
 		}
 		hql.append(" order by c.fdServiceTeams.id");

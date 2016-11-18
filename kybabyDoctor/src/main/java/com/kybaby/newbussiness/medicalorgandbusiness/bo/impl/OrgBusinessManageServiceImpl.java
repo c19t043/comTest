@@ -8,6 +8,7 @@ import com.kybaby.newbussiness.medicalorgandbusiness.dao.OrgBusinessManageDao;
 import com.kybaby.newbussiness.medicalorgandbusiness.domain.OrgBusinessRelation;
 import com.kybaby.newbussiness.medicalorgandbusiness.domain.OrganModuleInfo;
 import com.kybaby.newbussiness.medicalorgandbusiness.domain.OrganOperator;
+import com.kybaby.newbussiness.medicalorgandbusiness.domain.PageBean;
 import com.kybaby.newbussiness.medicalorgandbusiness.domain.UserChildcareAppointmentInfo;
 import com.kybaby.newbussiness.medicalorgandbusiness.domain.UserInoculationAppointmentInfo;
 import com.kybaby.newbussiness.medicalorgandbusiness.domain.VaccineInfo;
@@ -36,9 +37,10 @@ public class OrgBusinessManageServiceImpl implements OrgBusinessManageService {
 
 	@Override
 	public List<UserChildcareAppointmentInfo> getUserChildcareAppointmentInfoList(
-			HospitalBasicInfo hospitalBasicInfo,
-			UserChildcareAppointmentInfo userChildcareAppointmentInfo,Boolean isNowDate) {
-		return this.orgBusinessManageDao.getUserChildcareAppointmentInfoList(hospitalBasicInfo, userChildcareAppointmentInfo, isNowDate);
+			HospitalBasicInfo hospitalBasicInfo,UserChildcareAppointmentInfo userChildcareAppointmentInfo,
+			Boolean isNowDate,PageBean pageBean) {
+		return this.orgBusinessManageDao.getUserChildcareAppointmentInfoList(hospitalBasicInfo, 
+				userChildcareAppointmentInfo,isNowDate, pageBean);
 	}
 
 	@Override

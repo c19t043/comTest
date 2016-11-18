@@ -107,7 +107,7 @@ public class FdUserManage extends NewBaseAction{
 			userChildcareAppointmentInfo.setUserInfo(userInfo);
 			userChildcareAppointmentInfo.setStatus(ConstantManage.HASE_MEET_CLINIC_ORDER);
 			this.userChildcareAppointmentInfoList = 
-					this.orgBusinessManageService.getUserChildcareAppointmentInfoList(null, userChildcareAppointmentInfo, false);
+					this.orgBusinessManageService.getUserChildcareAppointmentInfoList(null, userChildcareAppointmentInfo, false,null);
 		}
 		/**
 		 * 得到当前用户的计免预约列表

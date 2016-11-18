@@ -172,7 +172,7 @@ body{
 .information_div>p,.information_div_img>p,.s_text{
     line-height: 55px;
 }
-.layer_choose>p{
+.layer_choose>p,.layer_list li, .layer_list_two li{
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

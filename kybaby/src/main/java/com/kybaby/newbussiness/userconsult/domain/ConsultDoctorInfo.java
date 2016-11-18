@@ -29,6 +29,10 @@ public class ConsultDoctorInfo implements java.io.Serializable {
 	 * 是否上线（Y/N）医生自己设置的，上线则表示能及时回复
 	 */
 	private String isOnline;
+	/**
+	 * 排序
+	 */
+	private Long sort;
 	
 	//页面使用
 	private HospitalBasicInfo hospitalBasicInfo;
@@ -136,6 +140,14 @@ public class ConsultDoctorInfo implements java.io.Serializable {
 
 	public void setIsOnline(String isOnline) {
 		this.isOnline = isOnline;
+	}
+
+	public Long getSort() {
+		return sort;
+	}
+
+	public void setSort(Long sort) {
+		this.sort = sort;
 	}
 
 }

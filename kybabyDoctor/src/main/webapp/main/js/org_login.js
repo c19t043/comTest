@@ -33,6 +33,7 @@ $(function () {
             $('#doctor').show();
             $('title,.header-center').text('签约登录');
         }
+        $('#username1,#username,#password1,#password').val('');
         $('#chooseLoginType>div').hide();
         $('#chooseLoginType>p').show();
     });

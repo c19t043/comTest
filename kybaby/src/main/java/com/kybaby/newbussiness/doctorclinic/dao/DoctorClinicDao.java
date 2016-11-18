@@ -7,6 +7,7 @@ import com.kybaby.newbussiness.doctorclinic.domain.DoctorMorePractice;
 import com.kybaby.newbussiness.doctorclinic.domain.DoctorMorePracticeOrgInfo;
 import com.kybaby.newbussiness.doctorclinic.domain.DoctorServiceType;
 import com.kybaby.newbussiness.doctorclinic.domain.HospitalBasicInfo;
+import com.kybaby.newbussiness.doctorclinic.domain.PageBean;
 import com.kybaby.newbussiness.medicalorgandbusiness.domain.UserType;
 
 public interface DoctorClinicDao {
@@ -44,7 +45,7 @@ public interface DoctorClinicDao {
 	 * @param doctorInfo
 	 * @return
 	 */
-	List<DoctorInfo> getClinicDoctorInfoList(DoctorInfo doctorInfo);
+	List<DoctorInfo> getClinicDoctorInfoList(DoctorInfo doctorInfo,PageBean pageBean);
 	/**
 	 * 得到医院信息
 	 * @param id

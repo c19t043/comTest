@@ -1,9 +1,12 @@
 package com.kybaby.newbussiness.doctorclinic.dao.impl;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
+import org.hibernate.Query;
+import org.hibernate.classic.Session;
 import org.springframework.beans.BeanUtils;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
@@ -13,6 +16,7 @@ import com.kybaby.newbussiness.doctorclinic.domain.DoctorMorePractice;
 import com.kybaby.newbussiness.doctorclinic.domain.DoctorMorePracticeOrgInfo;
 import com.kybaby.newbussiness.doctorclinic.domain.DoctorServiceType;
 import com.kybaby.newbussiness.doctorclinic.domain.HospitalBasicInfo;
+import com.kybaby.newbussiness.doctorclinic.domain.PageBean;
 import com.kybaby.newbussiness.medicalorgandbusiness.domain.UserType;
 import com.kybaby.util.ConstantManage;
 /**
@@ -122,29 +126,74 @@ public class DoctorClinicDaoImpl extends HibernateDaoSupport implements DoctorCl
 		return null;
 	}
 	
-	public List<DoctorInfo> getClinicDoctorInfoList(DoctorInfo doctorInfo) {
+	public List<DoctorInfo> getClinicDoctorInfoList(DoctorInfo doctorInfo,PageBean pageBean) {
 		List params = new ArrayList<>();
-		StringBuffer hql = new StringBuffer("select distinct a")
-		.append(" from DoctorInfo a,DoctorServiceContent b where 1=1")
-		.append(" and a.id=b.doctorInfo.id and b.doctorServiceType.parentDoctorServiceType.serviceTypeName='多点执业'")
-		.append(" and b.doctorServiceType.parentDoctorServiceType.isAvailable='Y'")
-		.append(" and b.doctorServiceType.isAvailable='Y'")
-		.append(" and a.doctorStatus='Y' and a.authentication='已通过' ");
+//		StringBuffer hql = new StringBuffer("select distinct a")
+//		.append(" from DoctorInfo a,DoctorServiceContent b where 1=1")
+//		.append(" and a.id=b.doctorInfo.id and b.doctorServiceType.parentDoctorServiceType.serviceTypeName='多点执业'")
+//		.append(" and b.doctorServiceType.parentDoctorServiceType.isAvailable='Y'")
+//		.append(" and b.doctorServiceType.isAvailable='Y'")
+//		.append(" and a.doctorStatus='Y' and a.authentication='已通过' ");
+//		if(doctorInfo != null){
+//			if(doctorInfo.getId() != null){
+//				hql.append(" and a.id=?");
+//				params.add(doctorInfo.getId());
+//			}
+//			if(doctorInfo.getDoctorEmployer() != null && !"".equals(doctorInfo.getDoctorEmployer().trim())){
+//				hql.append(" and( a.doctorEmployer like ?");
+//				params.add("%"+doctorInfo.getDoctorEmployer().trim()+"%");
+//			}
+//			if(doctorInfo.getDoctorName() != null && !"".equals(doctorInfo.getDoctorName().trim())){
+//				hql.append(" or a.doctorName like ?)");
+//				params.add("%"+doctorInfo.getDoctorName().trim()+"%");
+//			}
+//		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		StringBuffer sql = new StringBuffer("SELECT DISTINCT a.* ");
+		sql.append(" FROM doctor_info a LEFT JOIN doctor_service_content b ");
+		sql.append(" ON a.id=b.doctor_id LEFT JOIN doctor_service_type c ON b.service_type_id=c.id");
+		sql.append(" LEFT JOIN  doctor_service_type parentType ON parentType.id=c.parent_id");
+		sql.append(" LEFT JOIN doctor_more_practice doctorMoreOrg ON doctorMoreOrg.doctor_id=a.id");
+		sql.append(" WHERE 1=1	");
+		sql.append(" AND c.Is_available='Y' AND parentType.Is_available='Y'");
+		sql.append(" AND a.doctorStatus='Y' AND a.authentication='已通过'");
+		sql.append(" AND parentType.service_type_name='多点执业'");
 		if(doctorInfo != null){
 			if(doctorInfo.getId() != null){
-				hql.append(" and a.id=?");
+				sql.append(" and a.id=?");
 				params.add(doctorInfo.getId());
 			}
 			if(doctorInfo.getDoctorEmployer() != null && !"".equals(doctorInfo.getDoctorEmployer().trim())){
-				hql.append(" and( a.doctorEmployer like ?");
+				sql.append(" and( a.doctorEmployer like ?");
 				params.add("%"+doctorInfo.getDoctorEmployer().trim()+"%");
 			}
 			if(doctorInfo.getDoctorName() != null && !"".equals(doctorInfo.getDoctorName().trim())){
-				hql.append(" or a.doctorName like ?)");
+				sql.append(" or a.doctorName like ?)");
 				params.add("%"+doctorInfo.getDoctorName().trim()+"%");
 			}
 		}
-		List<DoctorInfo> list=getHibernateTemplate().find(hql.toString(),params.toArray());
+		sql.append(" ORDER BY doctorMoreOrg.clinic_date DESC");
+		List<DoctorInfo> list = new ArrayList<>();
+		Session session = this.getHibernateTemplate().getSessionFactory().openSession();
+		Query query = session.createSQLQuery(sql.toString()).addEntity(DoctorInfo.class);
+		for (int i = 0 ; i < params.size() ; i++){
+			query.setParameter( i, params.get(i));
+		}
+		if(pageBean != null){
+			query.setFirstResult((pageBean.getCurPage()-1)*pageBean.getPageSize());
+			query.setMaxResults(pageBean.getPageSize());
+		}
+		list = query.list();
+		session.close();
 		if(list.isEmpty()){
 			return null;
 		}

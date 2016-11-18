@@ -41,12 +41,6 @@
 
 		<!-- util 工具 js -->
 		<script type="text/javascript" src="${pageContext.request.contextPath}/product/theme/winxp/resource/js/wdate/WdatePicker.js"></script>	
-		
-		<script type="text/javascript">
-			window.addEvent('domready', function(){
-				
-			});
-  		</script>
 	</head>
 
 	<body>
@@ -67,8 +61,35 @@
 								<td width="12%" align="left">
 									<input name="doctorInfo.doctorName" id="doctorName" type="text" class="input1" value="${doctorInfo.doctorName}"/>		
 								</td>
+								
+								<td width="8%" height="41" align="right">医生电话：</td>
+								<td width="12%" align="left">
+									<input name="doctorInfo.doctorPhone" type="text" class="input1" value="${doctorInfo.doctorPhone}"/>		
+								</td>
+								
+								<td width="8%" height="41" align="right">认证状态：</td>
+								<td width="12%" align="left">
+									<s:select list="#{'已申请':'已申请','已通过':'已通过','未通过':'未通过'}"
+									headerKey="" headerValue=""
+									listKey="key" listValue="value"
+									theme="simple"
+									name="doctorInfo.authentication" value="doctorInfo.authentication"
+									></s:select>	
+								</td>
+								
+								<td width="8%" height="41" align="right">流程状态：</td>
+								<td width="12%" align="left">
+									<s:select list="#{'已提交':'已提交','已通过':'已通过','已驳回':'已驳回'}"
+									headerKey="" headerValue=""
+									listKey="key" listValue="value"
+									theme="simple"
+									name="doctorInfo.flowStatus" value="doctorInfo.flowStatus"
+									></s:select>	
+								</td>
+								
 								<td width="19%" align="left">
 									<a href="javascript:document.getElementById('query_list_form').submit();"><img src="${pageContext.request.contextPath}/product/theme/winxp/resource/skin/blue/usap/images/serch21.gif" width="65" height="23" border="0"></a>
+									<a href="javascript:void();" onclick="orderGather()">开单汇总</a>
 								</td>
 							</tr>
 						</table>
@@ -94,8 +115,13 @@
 									<com.java.ec:column property="doctorTitle" title="职称" width="5%"/>
 									<com.java.ec:column property="doctorPhone" title="手机号" width="5%"/>
 									<com.java.ec:column property="doctorEmployer" title="工作单位" width="10%"/>
-									<com.java.ec:column property="doctorStatus" title="认证状态" width="5%"/>
+									<com.java.ec:column property="authentication" title="认证状态" width="5%"/>
 									<com.java.ec:column property="registerTime" title="注册时间" width="10%"/>
+									<com.java.ec:column property="flowStatus" title="流程状态" width="10%"/>
+									<com.java.ec:column property="doctorRegisterMaintenance" title="维护人" width="10%"/>
+									<%-- <com.java.ec:column property="null" title="操作" width="10%">
+										<a href="javascript:void();" onclick="doDetail('${o.id}')">分配维护人</a>
+									</com.java.ec:column> --%>
 								</com.java.ec:row>
 							</com.java.ec:table>
 						</s:if>
@@ -108,31 +134,63 @@
 		</table>
   	</body>
 </html>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.6.2.js"></script>
 <script type="text/javascript">
-	// 显示详情 
-	function doDetail(id) {
-		var date = new Date();
-		var action = '<s:url namespace="/operationmanage" action="customerDetail" includeParams="true"/>';
-		environment.dialog.open({
-		url : action+'?customer.id=' + id + '&_t=' + date.getTime(),
-		width : window.getCoordinates().width-300,
-		height : window.getCoordinates().height-20,
-		icon : '${pageContext.request.contextPath}/product/theme/winxp/resource/skin/blue/images/display.gif',
-		title : '信息详情'
-	  });
+	var $j = jQuery.noConflict();
+	function orderGather(){
+		$j.ajax({
+			url:"${pageContext.request.contextPath}/doctorManager/jsonOp/doctorJson_doctorOrderGather.action",
+			type:"post",
+			success:function(data){
+				alert(data);
+			},
+			error:function(){
+				alert('调用失败');
+			}
+		});
 	}
-	// 新增信息 
-	function doAdd(action) {
-		window.location.href=action;
-	}
-	
-	// 编辑信息 
-	function doEdit(action) {
+	// 分配维护人
+	function doAllot(action) {
+		//获取要选择的医生记录
+		var $checked = $j("input:checked");
 		var items = EcTable.getRadioItem();
 		if(items == ""){
 			showMsg("请选择一项待修改的记录！");
 			return;
 		}
-		window.location.href=action + "?b2cGoods.id="+items;
+		//分配维护人
+ 		var page2page = "ID="+$checked.val();  //把这个page2page传到另外一个页面
+ 		environment.dialog.open({
+			url : '${pageContext.request.contextPath}/doctor/doctorBasicInfo/doctor_select_main.jsp?' + page2page, 
+			width : window.getCoordinates().width-300,
+		    height : window.getCoordinates().height-50,
+			icon : '${pageContext.request.contextPath}/product/theme/winxp/resource/skin/blue/images/display.gif',
+			title : '分配维护人'
+		});
+	}
+	
+	// 新增信息 
+	function doAdd(action) {
+		window.location.href=action+"?action=initDoctorInfoPage&pageFlag=save";
+	}
+	//医生数据审核
+	function doctorDataVerify(action){
+		var $checked = $j("input:checked");
+		var items = EcTable.getRadioItem();
+		if(items == ""){
+			showMsg("请选择一项待修改的记录！");
+			return;
+		}
+		window.location.href=action+"?action=initDoctorInfoPage&pageFlag=verify&doctorInfo.id="+$checked.val();
+	}
+	// 编辑信息 
+	function doEdit(action) {
+		var $checked = $j("input:checked");
+		var items = EcTable.getRadioItem();
+		if(items == ""){
+			showMsg("请选择一项待修改的记录！");
+			return;
+		}
+		window.location.href=action+"?action=initDoctorInfoPage&pageFlag=update&doctorInfo.id="+$checked.val();
 	}
 </script>

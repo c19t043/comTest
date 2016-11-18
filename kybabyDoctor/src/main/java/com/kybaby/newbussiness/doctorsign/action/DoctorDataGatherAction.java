@@ -36,7 +36,7 @@ import com.opensymphony.xwork2.ActionContext;
 @SuppressWarnings("serial")
 public class DoctorDataGatherAction extends NewBaseAction{
 	
-	private String uploadDir = "../kybabyBG/admin/images/doctorCertifiedPicture";// 保存上传文件的目录
+	private String uploadDir = "../kybabyBG/admin/images/doctorFaceIcon";// 保存上传文件的目录
 	private DoctorInfo doctorInfo;
 	private DoctorCardInfo doctorCardInfo;
 	private DoctorLifeInfo doctorLifeInfo;
@@ -154,8 +154,8 @@ public class DoctorDataGatherAction extends NewBaseAction{
 	 */
 	private void queryDoctorOrderSummary(){
 		Long logonUserID = organOperator.getId();
-		//签约的医生
-		List<DoctorInfo> doctorInfoByLogonUser = doctorRegisterDataGatherService.getMySignDoctorInfos(logonUserID);
+		//获取当前操作人有关联的医生数据
+		List<DoctorInfo> queryViewableDoctorInfos = doctorRegisterDataGatherService.queryViewableDoctorInfos(logonUserID);
 		//开单记录
 		List<DoctorOrderSummary> doctorOrderSummarys = doctorRegisterDataGatherService.getDoctorOrderSummarys(logonUserID);
 		this.doctorOrderSummarys = new ArrayList<TableList>();
@@ -166,9 +166,9 @@ public class DoctorDataGatherAction extends NewBaseAction{
 			this.doctorOrderSummarys.add(new TableList(key, dos.size()+"", dos));
 		}
 		//筛选出未开单的医生
-		doctorInfoByLogonUser = selectNoOrder(doctorInfoByLogonUser,doctorOrderSummarys);
+		queryViewableDoctorInfos = selectNoOrder(queryViewableDoctorInfos,doctorOrderSummarys);
 		//格式化组装医生信息
-		formatTableList(doctorInfoByLogonUser);
+		formatTableList(queryViewableDoctorInfos);
 	}
 	/**
 	 * 筛选出未开单的医生
@@ -215,6 +215,16 @@ public class DoctorDataGatherAction extends NewBaseAction{
 	private void commitApprove(){
 		//修改医生表中流程记录
 		doctorInfo = doctorRegisterDataGatherService.get(doctorInfo.getId(), DoctorInfo.class);
+		List<String> requiredFieldIsEmpty = doctorInfo.requiredFieldIsEmpty();
+		if(!requiredFieldIsEmpty.isEmpty()){
+			StringBuilder sb= new StringBuilder();
+			for (String str : requiredFieldIsEmpty) {
+				sb.append(str).append(",");
+			}
+			sb.append("不能为空,请补全资料后再提交");
+			mes = sb.toString();
+			return;
+		}
 		doctorInfo.setAuthentication("已申请");
 		doctorInfo.setFlowStatus("已提交");
 		doctorRegisterDataGatherService.update(doctorInfo);
@@ -243,6 +253,12 @@ public class DoctorDataGatherAction extends NewBaseAction{
 	 * 上传医生资格证书图片
 	 */
 	private void uploadDoctorImageInfo(){
+		if(doctorCardInfo.getDoctorInfo()==null||(doctorCardInfo.getDoctorInfo()!=null&&doctorCardInfo.getDoctorInfo().getId()==null)){
+			this.doctorInfo = new DoctorInfo();
+			doctorInfo.setOrganOperator(organOperator);
+			doctorRegisterDataGatherService.saveOrUpdateDoctorInfo(doctorInfo);
+			doctorCardInfo.setDoctorInfo(this.doctorInfo);
+		}
 		//上传证书图片
 		doctorCardInfo.setImgPath(uploadImage(doctorCardInfo.getId(), doctorCardInfo.getImgPath(), doctorCardInfo.getImgBase64()));
 		doctorRegisterDataGatherService.saveOrUpdateDoctorCardInfo(doctorCardInfo);
@@ -310,18 +326,32 @@ public class DoctorDataGatherAction extends NewBaseAction{
 	 * 添加or更新医生基础信息
 	 */
 	private void saveOrUpdateDoctorBasicInfo(){
-		//保存图片
-		String uploadImage = uploadImage(doctorInfo.getId(), doctorInfo.getDoctorImage(), doctorInfo.getImgBase64());
+		Long id = doctorInfo.getId();
+		String uploadImage = "";
+		if(id!=null){
+			DoctorInfo dctInfo =  doctorRegisterDataGatherService.get(doctorInfo.getId(), DoctorInfo.class);
+			String tmp_status = StringUtils.isNotBlank(dctInfo.getFlowStatus())?dctInfo.getFlowStatus():"未知";
+			if("未提交,已驳回".contains(tmp_status)){
+				//保存图片
+				uploadImage = uploadImage(doctorInfo.getId(), dctInfo.getDoctorImage(), doctorInfo.getImgBase64());
+			}
+		}else{
+			uploadImage = uploadImage(doctorInfo.getId(), doctorInfo.getDoctorImage(), doctorInfo.getImgBase64());
+		}
 		doctorInfo.setDoctorImage(uploadImage);
 		doctorInfo.setOrganOperator(organOperator);
 		doctorInfo = doctorRegisterDataGatherService.saveOrUpdateDoctorInfo(doctorInfo);
-		
+		//保存推荐人
 		if(StringUtils.isNotBlank(doctorInfo.getRecommendPhone())){
 			saveRecommedPerson(doctorInfo.getRecommendPhone());
 		}
 		//添加or更新医生生活信息 
 		saveOrUpdateDoctorLifInfo();
 	}
+	/**
+	 * 保存推荐人
+	 * @param recommendPhone
+	 */
 	private void saveRecommedPerson(String recommendPhone){
 		//注册成功之后，缺少推荐奖励的实现
 		//填写了推荐人信息，客户需求做到医生推荐医生，对于其他的情况，暂不处理，只需要添加记录
@@ -400,7 +430,7 @@ public class DoctorDataGatherAction extends NewBaseAction{
 	private String uploadImage(Long id,String imagePath,String imgBase64){
 		String tempDir = "";
 		if (id != null && StringUtils.isNotBlank(imagePath)) {
-			tempDir = imagePath;
+			tempDir = uploadDir + "/" + imagePath;
 		} else {
 			SimpleDateFormat df = new SimpleDateFormat("yyyyMMddhhmmss");
 			String current = df.format(new Date());

@@ -8,5 +8,29 @@
 		<action name="getDoctorInfoList" class="doctorInfoAction" method="getDoctorInfoList">
 			<result name="success">/doctor/doctorBasicInfo/doctor_list.jsp</result>
 		</action>
+		<!-- 跳转到医生信息添加页面 -->
+		<action name="doctorDataGather" class="doctorInfoAction">
+			<result name="success">/doctor/doctorBasicInfo/doctor_add.jsp</result>
+			<result name="oparatorList">/doctor/doctorBasicInfo/doctor_select_list.jsp</result>
+			<result name="getDoctorInfoList_action" type="stateRedirectAction">
+				<param name="actionName">getDoctorInfoList.action</param>
+			</result>
+		</action>
+		<!-- 跳转到医生信息添加页面 -->
+		<action name="getOrganOparatorList" class="doctorInfoAction" method="getOrganOparatorList">
+			<result name="success">/doctor/doctorBasicInfo/doctor_select_list.jsp</result>
+		</action>
+		<!-- 添加维护人 -->
+		<action name="addMaintenancePerson" class="doctorInfoAction" method="addMaintenancePerson">
+		</action>
+		<!-- 获取维护人 -->
+		<action name="getMaintenancePerson" class="doctorInfoAction" method="getMaintenancePerson">
+		</action>
 	</package>
+	<!-- <package namespace="/doctor/doctorManager" name="doctorDataGather" extends="struts-default">
+		<action name="doctorDataGather" class="doctorInfoAction">
+			<result name="getDoctorInfoList_action" type="re">/doctor/doctorBasicInfo/doctor_add.jsp</result>
+			<result name="fail">/doctor/doctorBasicInfo/doctor_add.jsp</result>
+		</action>
+	</package> -->
 </struts>

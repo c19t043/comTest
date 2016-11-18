@@ -1,4 +1,0 @@
-#author:yangc
-#description:struts global conversion
-com.java.jbpm.common.DeleteId=com.java.jbpm.common.DeleteIdConversion
-#com.java.dynamicform.action.FormAction.customElementList=com.java.dynamicbasic.CustomElementConversion

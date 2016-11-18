@@ -1,5 +1,6 @@
 package com.kybaby.newbussiness.doctorsign.bo.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -11,6 +12,7 @@ import com.kybaby.common.CommonServiceImpl;
 import com.kybaby.domain.DoctorGoodField;
 import com.kybaby.domain.DoctorInfo;
 import com.kybaby.domain.Position;
+import com.kybaby.newbussiness.doctorclinic.domain.DoctorServiceContent;
 import com.kybaby.newbussiness.doctorclinic.domain.DoctorServiceType;
 import com.kybaby.newbussiness.doctorclinic.domain.HospitalBasicInfo;
 import com.kybaby.newbussiness.doctorring.util.DateManage;
@@ -36,18 +38,31 @@ public class DoctorRegisterDataGatherServiceImpl extends CommonServiceImpl imple
 	@Override
 	public DoctorInfo saveOrUpdateDoctorInfo(DoctorInfo doctorInfo) {
 		Long id = doctorInfo.getId();
+		if(doctorInfo.getMajor()!=null&&doctorInfo.getMajor().getId()==null){
+			doctorInfo.setMajor(null);
+		}
+		String formatDateStr_yyyy_MM_dd_HH_mm_ss = DateManage.formatDateStr_yyyy_MM_dd_HH_mm_ss(new Date());
+		doctorInfo.setOpTime(formatDateStr_yyyy_MM_dd_HH_mm_ss);
 		if(id==null){
+			doctorInfo.setServiceMode("全部");
+			doctorInfo.setServiceArea(10L);
 			doctorInfo.setDoctorStatus("N");
 			doctorInfo.setAuthentication("未申请");
 			doctorInfo.setFlowStatus("未提交");
-			doctorInfo.setRegisterTime(DateManage.formatDateStr_yyyy_MM_dd_HH_mm_ss(new Date()));
+			doctorInfo.setRegisterTime(formatDateStr_yyyy_MM_dd_HH_mm_ss);
 			doctorInfo.setDoctorPassword(EncryptUtil.getMD5Str("123"));
 			doctorDataGatherDao.saveObject(doctorInfo);
+			//添加医生服务类型
+			addDoctorServiceContent(doctorInfo.getId(), doctorInfo.getServiceTypeIds());
 			LogUtil.debug("创建注册医生,ID为"+doctorInfo.getId());
 		}else{
 			DoctorInfo qryDoctorInfo = doctorDataGatherDao.getObjectByID(id, DoctorInfo.class);
 			if("未提交,已驳回".contains(qryDoctorInfo.getFlowStatus())){//所有字段都可以修改
 				qryDoctorInfo.allCopy(doctorInfo);
+				//根据医生ID删除服务类容
+				deleteDoctorServiceContent(qryDoctorInfo.getId());
+				//添加医生服务类型
+				addDoctorServiceContent(qryDoctorInfo.getId(), doctorInfo.getServiceTypeIds());
 			}else{//只能修改不必填字段
 				qryDoctorInfo.noAllCopy(doctorInfo);
 			}
@@ -55,6 +70,31 @@ public class DoctorRegisterDataGatherServiceImpl extends CommonServiceImpl imple
 			return qryDoctorInfo;
 		}
 		return doctorInfo;
+	}
+	/**
+	 * 添加医生服务类型
+	 * @param dctID 医生id
+	 * @param serviceTypeIds 服务类容串
+	 */
+	private void addDoctorServiceContent(Long dctID,String serviceTypeIds){
+		String[] serviceTypeIdArr = (serviceTypeIds+"::").split("::");
+		for (String serviceTypeId : serviceTypeIdArr) {
+			DoctorInfo doctorInfo = this.get(dctID, DoctorInfo.class);
+			DoctorServiceType doctorServiceType = this.get(Long.parseLong(serviceTypeId), DoctorServiceType.class);
+			if(doctorServiceType!=null&&doctorInfo!=null){
+				DoctorServiceContent dsc = new DoctorServiceContent();
+				dsc.setDoctorInfo(doctorInfo);
+				dsc.setDoctorServiceType(doctorServiceType);
+				this.save(dsc);
+			} 
+		}
+	}
+	/**
+	 * 根据医生ID删除服务类容
+	 * @param dctID
+	 */
+	private void deleteDoctorServiceContent(Long dctID){
+		doctorDataGatherDao.deleteDoctorServiceContent(dctID);
 	}
 	@Override
 	public List<DoctorInfo> queryMaintenanceAbleDoctorInfos(Long logonUserID){
@@ -142,8 +182,8 @@ public class DoctorRegisterDataGatherServiceImpl extends CommonServiceImpl imple
 	}
 	@Override
 	public List<DoctorOrderSummary> getDoctorOrderSummarys(Long id) {
-		//查询登陆用户签约的医生
-		List<DoctorInfo> doctorInfoByLogonUser = this.getMySignDoctorInfos(id);
+		//获取当前操作人有关联的医生数据
+		List<DoctorInfo> doctorInfoByLogonUser = this.queryViewableDoctorInfos(id);
 		
 		StringBuilder ids = new StringBuilder();
 		for (DoctorInfo doctorInfo : doctorInfoByLogonUser) {
@@ -152,11 +192,11 @@ public class DoctorRegisterDataGatherServiceImpl extends CommonServiceImpl imple
 		if(ids.length()!=0){
 			ids = ids.deleteCharAt(ids.length()-1);
 		}
-		
-		StringBuilder sb = new StringBuilder();
-		Map<String,Object> params = new HashMap<String,Object>();
-		sb.append("from DoctorOrderSummary c where c.doctorInfo.id in ("+ids.toString()+") ");
-		return doctorDataGatherDao.getObjectCollectionWithNoPage(sb.toString(), params, null);
+		if(ids.length()==0){
+			return new ArrayList<DoctorOrderSummary>();
+		}
+		//根据医生id串获取医生订单汇总数据
+		return doctorDataGatherDao.getDoctorOrderGather(ids.toString());
 	}
 	@Override
 	public void deleteDoctorCardInfo(Long id){

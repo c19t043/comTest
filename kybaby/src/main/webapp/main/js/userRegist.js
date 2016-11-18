@@ -156,10 +156,26 @@ function regist(){
     var today = (new Date()).getFullYear()+(new Date()).getMonth()+1+(new Date()).getDate();
 	var date_arr = babyBirthDay.split('-');
 	var date_time = parseInt(date_arr[0])+parseInt(date_arr[1])+parseInt(date_arr[2])+1;
-
-	var dyear = (new Date()).getFullYear();
-	var dmonth = (new Date().getMonth())+1;
-	var dday = (new Date().getDate());
+    var dyear = (new Date()).getFullYear();
+    var dmonth = (new Date().getMonth())+1;
+    var dday = (new Date().getDate());
+    $.ajax({
+        type:'post',
+        url:clinicHost+'clinicBooking.action',
+        cache:false,
+        async:false,
+        data:{action:"getCurrentTime"},
+        success:function(result){
+            if (result.mes == "成功") {
+                var date=result.currentTime.split(' ')[0].split('-');
+                dyear=date[0];
+                dmonth=date[1];
+                dday=date[2];
+            }
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+        }
+    });
 	var nyear = parseInt(date_arr[0]);
 	var nmonth = parseInt(date_arr[1]);
 	var nday = parseInt(date_arr[2]);

@@ -15,6 +15,21 @@
                 <comment>医生资格证号</comment>
             </column>
         </property>
+        <property name="recommendPhone" type="java.lang.String">
+            <column name="recommendPhone" length="30">
+                <comment>推荐人电话</comment>
+            </column>
+        </property>
+        <property name="authenticationTime" type="java.lang.String">
+            <column name="authentication_time" length="30">
+                <comment>认证通过时间</comment>
+            </column>
+        </property>
+        <property name="opTime" type="java.lang.String">
+            <column name="op_time" length="30">
+                <comment>操作时间</comment>
+            </column>
+        </property>
         <property name="doctorName" type="java.lang.String">
             <column name="doctorName" length="20">
                 <comment>医生姓名</comment>
@@ -238,8 +253,11 @@
             	<comment>技师服务地点及类型::分割</comment>
             </column>
         </property>
-        
-        
+        <property name="doctorType" type="java.lang.String">
+            <column name="doctor_type" length="200" >
+            	<comment>医生类型：康优儿保医生；康优儿科医生</comment>
+            </column>
+        </property>
    		<property name="idCardNum" type="java.lang.String">
             <column name="id_card_num" length="20" >
             	<comment>身份证号</comment>

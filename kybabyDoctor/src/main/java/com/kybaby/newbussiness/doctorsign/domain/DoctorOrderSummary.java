@@ -16,6 +16,9 @@ public class DoctorOrderSummary implements java.io.Serializable {
 	private String bussinessType;
 	private Long bussinessId;
 
+	//次数
+	private String count;
+	
 	// Constructors
 
 	/** default constructor */
@@ -23,6 +26,14 @@ public class DoctorOrderSummary implements java.io.Serializable {
 	}
 
 	// Property accessors
+
+	public String getCount() {
+		return count;
+	}
+
+	public void setCount(String count) {
+		this.count = count;
+	}
 
 	public DoctorInfo getDoctorInfo() {
 		return doctorInfo;

@@ -67,7 +67,7 @@ function payMoney(method){
                     },
                     success:function(result){
                         hf_loading(false);
-                        if(result.mess=='成功'){
+                        if(result.mess=='收费成功'){
                             ale('支付成功');
                         }else{
                             ale("支付失败");

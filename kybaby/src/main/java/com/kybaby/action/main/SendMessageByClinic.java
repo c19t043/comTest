@@ -20,7 +20,7 @@ public class SendMessageByClinic extends NewBaseAction {
 	
 	String uri = "http://send.18sms.com/msg/HttpBatchSendSM";//应用地址
 	String account = "003024";//账号
-	String pswd = "Qiyiguo1919";//密码
+	String pswd = "KYbaby_qiyico_19";//密码
 
 	String contecnt="";
 	boolean needstatus = true;//是否需要状态报告，需要true，不需要false

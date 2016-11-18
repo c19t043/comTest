@@ -10,6 +10,7 @@ import com.kybaby.newbussiness.doctorclinic.domain.DoctorMorePractice;
 import com.kybaby.newbussiness.doctorclinic.domain.DoctorMorePracticeOrgInfo;
 import com.kybaby.newbussiness.doctorclinic.domain.DoctorServiceType;
 import com.kybaby.newbussiness.doctorclinic.domain.HospitalBasicInfo;
+import com.kybaby.newbussiness.doctorclinic.domain.PageBean;
 import com.kybaby.newbussiness.medicalorgandbusiness.domain.UserType;
 import com.kybaby.util.DateManage;
 
@@ -68,8 +69,8 @@ public class DoctorClinicServiceImpl implements DoctorClinicService {
 	}
 
 	@Override
-	public List<DoctorInfo> getClinicDoctorInfoList(DoctorInfo doctorInfo) {
-		return this.doctorClinicDao.getClinicDoctorInfoList(doctorInfo);
+	public List<DoctorInfo> getClinicDoctorInfoList(DoctorInfo doctorInfo,PageBean pageBean) {
+		return this.doctorClinicDao.getClinicDoctorInfoList(doctorInfo, pageBean);
 	}
 
 	@Override

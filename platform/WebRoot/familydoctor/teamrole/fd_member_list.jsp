@@ -94,7 +94,32 @@
 								<td width="10%" align="left">
 									<input type="text" name="fdServiceMember.doctorInfo.doctorName" id="itemShowName" value="${fdServiceMember.doctorInfo.doctorName}" class="text3">
 								</td>
-								<td width="30%" align="left">
+								<td width="10%" height="41" align="right">所属机构：</td>
+								<td width="10%" align="left">
+									<input type="text" name="fdServiceTeams.fdServicePackage.hospitalBasicInfo.hospitalLname" id="hospitalLname" 
+										value="${fdServiceTeams.fdServicePackage.hospitalBasicInfo.hospitalLname}" class="text3">
+								</td>
+								<td width="10%" height="41" align="right">所属服务包：</td>
+								<td width="10%" align="left">
+									<input type="text" name="fdServiceTeams.fdServicePackage.packageShowName" id="packageShowName" 
+										value="${fdServiceTeams.fdServicePackage.packageShowName}" class="text3">
+								</td>
+								<td width="10%" height="41" align="right">所属团队：</td>
+								<td width="10%" align="left">
+									<input type="text" name="fdServiceTeams.teamName" id="packageShowName" 
+										value="${fdServiceTeams.teamName}" class="text3">
+								</td>
+							</tr>
+							<tr>
+								<td width="10%" height="41" align="right">服务技能：</td>
+								<td width="10%" align="left">
+									<input type="text" name="fdServiceMember.skilNames" id="itemShowName" value="${fdServiceMember.skilNames}" class="text3">
+								</td>
+								<td width="10%" height="41" align="right">角色名称：</td>
+								<td width="10%" align="left">
+									<input type="text" name="fdRoleInfo.roleName" id="itemShowName" value="${fdRoleInfo.roleName}" class="text3">
+								</td>
+								<td width="30%" align="left" colspan="4">
 									<a href="javascript:document.getElementById('query_list_form').submit();">
 										<img src="${pageContext.request.contextPath}/product/theme/winxp/resource/skin/blue/usap/images/serch21.gif" width="65" height="23" border="0">
 									</a>

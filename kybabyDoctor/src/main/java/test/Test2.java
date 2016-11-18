@@ -1,5 +1,7 @@
 package test;
 
+import java.util.ArrayList;
+
 import org.apache.commons.httpclient.Header;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpMethod;
@@ -10,7 +12,13 @@ import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.params.HttpMethodParams;
 
 public class Test2 {
-	public static void main(String[] args) throws Exception{
+	
+	public static void main(String[] args) {
+		ArrayList<String> al = new ArrayList<String>();
+		al.addAll(null);
+	}
+	
+	public static void main1(String[] args) throws Exception{
 		
 /*		String url="http://www.zuidaima.com/";  
 		Proxy proxy = new Proxy(java.net.Proxy.Type.HTTP,new InetSocketAddress("127.0.0.1", 8888));  

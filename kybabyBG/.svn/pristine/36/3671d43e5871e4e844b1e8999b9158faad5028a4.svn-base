@@ -1,7 +1,0 @@
-<span class="head_logo">康优宝贝后台管理系统</span>
-<div class="head_con">
-	<div class="head_user">
-		<span>欢迎登陆：<span id="head_name">hoolee</span></span>
-	</div>
-	<span class="head_out" onclick="logout()">退出</span>
-</div> 

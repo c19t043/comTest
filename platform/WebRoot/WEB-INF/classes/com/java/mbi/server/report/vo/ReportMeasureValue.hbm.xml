@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.java.mbi.server.report.vo.ReportMeasureValue" table="MBI_REPORT_MEASUREVALUE">
+        <id name="id" type="java.lang.String">
+            <column name="ID" length="32" />
+			<generator class="uuid"></generator>
+        </id>
+		<many-to-one name="report" class="com.java.mbi.server.report.vo.Report" fetch="select" not-found="ignore">
+        	<column name="REPORT_ID" length="32"/>
+        </many-to-one>
+		<!-- <many-to-one name="measureValue" class="com.java.mbi.server.measurevalueandgroup.vo.MeasureValue" fetch="select" not-found="ignore">
+        	<column name="MEASURE_VALUE_ID" length="32"/>
+        </many-to-one> -->
+    	<property name="sort" type="java.lang.Integer">
+            <column name="SORT" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -13,12 +13,14 @@ import com.kybaby.domain.DoctorInfo;
 import com.kybaby.newbussiness.doctorclinic.domain.HospitalBasicInfo;
 import com.kybaby.newbussiness.doctorring.action.NewBaseAction;
 import com.kybaby.newbussiness.doctorring.util.DateManage;
+import com.kybaby.newbussiness.medicalorgandbusiness.domain.ArchivesInfo;
 import com.kybaby.newbussiness.medicalorgandbusiness.domain.DoctorMoneyRecord;
 import com.kybaby.newbussiness.medicalorgandbusiness.domain.OrgBusinessRelation;
 import com.kybaby.newbussiness.medicalorgandbusiness.domain.OrgOpenBusiness;
 import com.kybaby.newbussiness.medicalorgandbusiness.domain.OrganChildcareOpenDoctor;
 import com.kybaby.newbussiness.medicalorgandbusiness.domain.OrganModuleInfo;
 import com.kybaby.newbussiness.medicalorgandbusiness.domain.OrganOperator;
+import com.kybaby.newbussiness.medicalorgandbusiness.domain.PageBean;
 import com.kybaby.newbussiness.medicalorgandbusiness.domain.UserChildcareAppointmentInfo;
 import com.kybaby.newbussiness.medicalorgandbusiness.domain.UserInoculationAppointmentInfo;
 import com.kybaby.newbussiness.medicalorgandbusiness.domain.VaccineInfo;
@@ -91,6 +93,10 @@ public class OrgBusinessManage extends NewBaseAction{
 	 * 数量统计信息
 	 */
 	private OrderCountInfo orderCountInfo = new OrderCountInfo();
+	/**
+	 * 翻页信息
+	 */
+	private PageBean pageBean;
 	
 	@Override
 	public String execute() {
@@ -128,7 +134,8 @@ public class OrgBusinessManage extends NewBaseAction{
 			this.getChildCareCount(userChildcareAppointmentInfo,true);
 			//用时间段分段显示
 			this.userChildcareAppointmentInfoList = 
-					this.orgBusinessManageService.getUserChildcareAppointmentInfoList(organOperator.getHospitalBasicInfo(), userChildcareAppointmentInfo,true);
+					this.orgBusinessManageService.getUserChildcareAppointmentInfoList(organOperator.getHospitalBasicInfo(),
+							userChildcareAppointmentInfo,true,null);
 			if(organChildcareOpenDoctor.getId() != null){
 				this.organChildcareOpenDoctor = childCareChargeService.getOrganChildcareOpenDoctorById(organChildcareOpenDoctor.getId());
 			}
@@ -205,16 +212,31 @@ public class OrgBusinessManage extends NewBaseAction{
 			ucai.setIsMoney("N");
 			ucai.setStatus(ConstantManage.HASE_REGISTER_VACCINE);
 			this.userChildcareAppointmentInfoList = 
-					this.orgBusinessManageService.getUserChildcareAppointmentInfoList(organOperator.getHospitalBasicInfo(), ucai,true);
+					this.orgBusinessManageService.getUserChildcareAppointmentInfoList(organOperator.getHospitalBasicInfo(), ucai,true,null);
 		}
 		/**
-		 * 儿保列表(查询列表用)
+		 * 儿保列表(查询列表用,分页查询)
 		 */
 		else if(action.equals("getChildCareAppointmentList")){
 			//统计数量
 			this.getChildCareCount(userChildcareAppointmentInfo,false);
+			if(pageBean == null){
+				pageBean = new PageBean();
+				pageBean.setPageSize(10);
+			}
 			this.userChildcareAppointmentInfoList = 
-					this.orgBusinessManageService.getUserChildcareAppointmentInfoList(organOperator.getHospitalBasicInfo(), userChildcareAppointmentInfo,false);
+					this.orgBusinessManageService.getUserChildcareAppointmentInfoList(organOperator.getHospitalBasicInfo(), 
+							userChildcareAppointmentInfo,false,pageBean);
+			ArchivesInfo archivesInfo = new ArchivesInfo();
+			if(userChildcareAppointmentInfoList != null){
+				for(UserChildcareAppointmentInfo uca : userChildcareAppointmentInfoList){
+					archivesInfo.setUserInfo(uca.getUserInfo());
+					List<ArchivesInfo> archivesInfoList = this.archivesInfoService.getArchivesInfoList(archivesInfo, null, null);
+					if(archivesInfoList != null){
+						uca.setUserType(archivesInfoList.get(0).getUserType());
+					}
+				}
+			}
 		}
 		/**
 		 * 计免列表(查询列表用)
@@ -434,7 +456,7 @@ public class OrgBusinessManage extends NewBaseAction{
 		}
 		//得到机构所有订单
 		List<UserChildcareAppointmentInfo> allList = this.orgBusinessManageService.
-				getUserChildcareAppointmentInfoList(organOperator.getHospitalBasicInfo(), uc, flag);
+				getUserChildcareAppointmentInfoList(organOperator.getHospitalBasicInfo(), uc, flag,null);
 		// 已预月人数
 		int bookingSum = 0;
 		// 已预检人数
@@ -564,5 +586,11 @@ public class OrgBusinessManage extends NewBaseAction{
 	}
 	public void setOrderCountInfo(OrderCountInfo orderCountInfo) {
 		this.orderCountInfo = orderCountInfo;
+	}
+	public PageBean getPageBean() {
+		return pageBean;
+	}
+	public void setPageBean(PageBean pageBean) {
+		this.pageBean = pageBean;
 	}
 }

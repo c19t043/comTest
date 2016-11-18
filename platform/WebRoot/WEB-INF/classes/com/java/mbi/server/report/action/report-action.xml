@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>	
+	<package namespace="/mbi/report" name="com.java.mbi.server.report" extends="com.java.platform">
+		<action name="tree" class="reportAction" method="getTree">
+		</action>
+		
+		<!-- 报表展现主界面  -->
+		<action name="getReportShowMain" class="reportAction" method="getReportShowMain">
+			<result name="success">/mbiserver/report/report_show_main.jsp</result>
+		</action>
+		<!-- 报表展现列表第一次  -->
+		<action name="reportShowListInit" class="reportAction" method="reportShowListInit">
+			<result name="success">/mbiserver/report/report_show_list_temp.jsp</result>
+		</action>
+		<!-- 报表展现列表  -->
+		<action name="reportShowList" class="reportAction" method="getReportShowList">
+			<result name="success">/mbiserver/report/report_show_list.jsp</result>
+		</action>
+		<!-- 展现选择的报表加载  -->
+		<action name="showReport" class="reportAction" method="showReport">
+			<result name="success">/mbiserver/report/report_show.jsp</result>
+		</action>
+		<!-- 显示图形  -->
+		<action name="doChart" class="reportAction" method="doChart">
+			<result name="success">/mbiserver/report/report_chart_show.jsp</result>
+		</action>
+		<!-- 显示图形(饼状图)  -->
+		<action name="doChartByPie" class="reportAction" method="doChartByPie">
+			<result name="success">/mbiserver/report/report_chart_pie.jsp</result>
+		</action>
+		<!-- 显示图形(柱状图)  -->
+		<action name="doChartByBar" class="reportAction" method="doChartByBar">
+			<result name="success">/mbiserver/report/report_chart_bar.jsp</result>
+		</action>
+		<!-- 显示图形(曲线图)  -->
+		<action name="doChartByCurve" class="reportAction" method="doChartByCurve">
+			<result name="success">/mbiserver/report/report_chart_curve.jsp</result>
+		</action>
+		<!-- 展现选择的报表  -->
+		<action name="showReportByFlexiGrid" class="reportAction" method="showReportByFlexiGrid">
+			<result name="json" type="com.java.framework.json"/>
+		</action>
+	</package>
+</struts>

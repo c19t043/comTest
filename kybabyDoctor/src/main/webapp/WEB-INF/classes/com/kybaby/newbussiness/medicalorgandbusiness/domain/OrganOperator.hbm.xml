@@ -25,6 +25,11 @@
                 <comment>密码</comment>
             </column>
         </property>
+        <property name="showName" type="java.lang.String">
+            <column name="show_name" length="50">
+                <comment>操作员名称</comment>
+            </column>
+        </property>
         <property name="homePageUrl" type="java.lang.String">
             <column name="home_page_url" length="100">
                 <comment>首页地址</comment>

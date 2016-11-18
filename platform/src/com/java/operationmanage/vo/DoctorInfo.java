@@ -1,7 +1,12 @@
 package com.java.operationmanage.vo;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
+
+import com.java.doctorinfo.vo.OrganOperator;
+import com.java.doctormanager.vo.DoctorMajor;
 
 /**
  * DoctorInfo entity. @author MyEclipse Persistence Tools
@@ -9,7 +14,8 @@ import org.apache.commons.lang.builder.ToStringStyle;
 
 public class DoctorInfo implements java.io.Serializable {
 
-	private static final long serialVersionUID = 1L;
+	// Fields
+
 	private Long id;
 	private String idCard;
 	private String doctorName;
@@ -50,6 +56,8 @@ public class DoctorInfo implements java.io.Serializable {
 	private String isLogin;
 	private String openId;
 	
+	private String authenticationTime;
+	private String opTime;
 	/**
 	 * 医生简介
 	 */
@@ -75,36 +83,153 @@ public class DoctorInfo implements java.io.Serializable {
 	 */
 	private String clinicalExperience;
 	/**
-	 * '医生类型：康优儿保医生；康优儿科医生';
+	 * 服务项目id串::分割
 	 */
+	private String serviceTypeIds;
+	/**
+	 * 技师服务地点及类型::分割
+	 */
+	private String serviceAddType;
+	/**
+	 * '身份证号',
+	 */
+	private String idCardNum; 
+	/**
+	 * '医生印象',
+	 */
+	private String   doctorImpression;
+	/**
+	 * '签约操作人id',
+	 */
+	private  OrganOperator organOperator;
+	/**
+	 * 主专业
+	 */
+	private DoctorMajor major;
+	/**
+	 * 亚专业ids（，隔开的多个）
+	 */
+	private String  secondMajorIds;
+	/**
+	 * 病种ids串,::隔开
+	 */
+	private String  thirdMajorIds;
+   /**
+    * '流程状态（草稿；已提交；已修改；已驳回；已通过）',
+    */
+	private String   flowStatus ;
+	/**
+	 * 推荐人
+	 */
+	private String recommendPhone;
+	//页面使用，传值
+	//医生类型
 	private String doctorType;
+	private String doctorRegisterMaintenance;
 	
-	@Override
-	public String toString() {
-		return new ToStringBuilder(this, ToStringStyle.SIMPLE_STYLE).append(this.doctorName).toString();
+	private String imgBase64;
+	public List<String> requiredFieldIsEmpty(){
+		List<String> list = new ArrayList<String>();
+		if(StringUtils.isBlank(this.getDoctorName())){
+			list.add("医生姓名");
+		};//医生姓名
+		if(StringUtils.isBlank(this.getDoctorSex())){
+			list.add("医生性别");
+		};//医生性别
+		if(StringUtils.isBlank(this.getDoctorPhone())){
+			list.add("电话");
+		};//电话
+		if(StringUtils.isBlank(this.getDoctorImage())){
+			list.add("图像");
+		};//图像
+		if(StringUtils.isBlank(this.getDoctorEmployer())){
+			list.add("工作单位");
+		};//工作单位
+		if(StringUtils.isBlank(this.getDepartment())){
+			list.add("科室");
+		};//科室
+		if(StringUtils.isBlank(this.getDoctorTitle())){
+			list.add("职称");
+		};//职称
+		if(StringUtils.isBlank(this.getClinicalExperience())){
+			list.add("临床经验");
+		};//临床经验
+		if(this.getMajor()==null||this.getMajor().getId()==null){
+			list.add("主专业");
+		};//主专业
+		if(StringUtils.isBlank(this.getIdCard())){
+			list.add("执业证号");
+		};//执业证号
+		if(StringUtils.isBlank(this.getServiceTypeIds())){
+			list.add("开通服务");
+		};//开通服务
+		if(StringUtils.isBlank(this.getDoctorType())){
+			list.add("医生类型");
+		};//医生类型
+		return list;
 	}
-	
-	@Override
-	public int hashCode() {
-		return (this.id != null ? this.id.hashCode() : 0);
+	public void allCopy(DoctorInfo doctorInfo){
+		this.setDoctorName(doctorInfo.getDoctorName());//医生姓名
+		this.setDoctorSex(doctorInfo.getDoctorSex());//医生姓名
+		this.setDoctorPhone(doctorInfo.getDoctorPhone());//电话
+		this.setDoctorImage(doctorInfo.getDoctorImage());//图像
+		this.setDoctorEmployer(doctorInfo.getDoctorEmployer());//工作单位
+		this.setHospitalId(doctorInfo.getHospitalId());//工作单位id
+		this.setDepartment(doctorInfo.getDepartment());//科室
+		this.setDoctorTitle(doctorInfo.getDoctorTitle());//职称
+		this.setClinicalExperience(doctorInfo.getClinicalExperience());//临床经验
+		this.setMajor(doctorInfo.getMajor());//主专业
+		this.setSecondMajorIds(doctorInfo.getSecondMajorIds());//亚专业
+		this.setThirdMajorIds(doctorInfo.getThirdMajorIds());//病种
+		this.setServiceTypeIds(doctorInfo.getServiceTypeIds());//开通服务
+		this.setBankAccountName(doctorInfo.getBankAccountName());//开户行
+		this.setBankCard(doctorInfo.getBankCard());//银行卡
+		this.setDoctorComment(doctorInfo.getDoctorComment());//个人擅长介绍
+		this.setRecommendPhone(doctorInfo.getRecommendPhone());//推荐人
+		this.setDoctorType(doctorInfo.getDoctorType());//医生类型
+		//保存身份证明
+		this.setIdCard(doctorInfo.getIdCard());//执业证号
+		this.setIdCardNum(doctorInfo.getIdCardNum());//身份证
+		//医生评价
+		this.setDoctorImpression(doctorInfo.getDoctorImpression());
 	}
-	
-	@Override
-	public boolean equals(Object o) {
-		if (o.getClass() != this.getClass())
-			return false;
-		else {
-			DoctorInfo base = (DoctorInfo) o;
-			return base.getId() != null && base.getId().equals(this.getId());
-		}
+	public void noAllCopy(DoctorInfo doctorInfo){
+		this.setDoctorComment(doctorInfo.getDoctorComment());//个人擅长介绍
+		this.setBankAccountName(doctorInfo.getBankAccountName());//开户行
+		this.setBankCard(doctorInfo.getBankCard());//银行卡
+		this.setRecommendPhone(doctorInfo.getRecommendPhone());//推荐人
+		//保存身份证明
+		this.setIdCardNum(doctorInfo.getIdCardNum());//身份证
+		//医生评价
+		this.setDoctorImpression(doctorInfo.getDoctorImpression());
 	}
-
 	// Constructors
 
 	/** default constructor */
 	public DoctorInfo() {
 	}
+	public String getDoctorRegisterMaintenance() {
+		return doctorRegisterMaintenance;
+	}
+	public void setDoctorRegisterMaintenance(String doctorRegisterMaintenance) {
+		this.doctorRegisterMaintenance = doctorRegisterMaintenance;
+	}
+	public String getRecommendPhone() {
+		return recommendPhone;
+	}
+	public void setRecommendPhone(String recommendPhone) {
+		this.recommendPhone = recommendPhone;
+	}
+	public DoctorInfo(Long id) {
+		this.id = id;
+	}
+	public String getThirdMajorIds() {
+		return thirdMajorIds;
+	}
 
+	public void setThirdMajorIds(String thirdMajorIds) {
+		this.thirdMajorIds = thirdMajorIds;
+	}
 	/** full constructor */
 	public DoctorInfo(String idCard, String doctorName, String doctorSex,
 			String doctorImage, String doctorPhone, String doctorTitle,
@@ -161,6 +286,14 @@ public class DoctorInfo implements java.io.Serializable {
 	}
 
 	// Property accessors
+
+	public String getImgBase64() {
+		return imgBase64;
+	}
+
+	public void setImgBase64(String imgBase64) {
+		this.imgBase64 = imgBase64;
+	}
 
 	public Long getId() {
 		return this.id;
@@ -298,6 +431,18 @@ public class DoctorInfo implements java.io.Serializable {
 		this.bankAccountName = bankAccountName;
 	}
 
+	public String getAuthenticationTime() {
+		return authenticationTime;
+	}
+	public void setAuthenticationTime(String authenticationTime) {
+		this.authenticationTime = authenticationTime;
+	}
+	public String getOpTime() {
+		return opTime;
+	}
+	public void setOpTime(String opTime) {
+		this.opTime = opTime;
+	}
 	public String getBankCard() {
 		return this.bankCard;
 	}
@@ -481,7 +626,7 @@ public class DoctorInfo implements java.io.Serializable {
 	public void setDoctorComment(String doctorComment) {
 		this.doctorComment = doctorComment;
 	}
-	
+
 	public String getIsRecommend() {
 		return isRecommend;
 	}
@@ -522,6 +667,22 @@ public class DoctorInfo implements java.io.Serializable {
 		this.clinicalExperience = clinicalExperience;
 	}
 
+	public String getServiceTypeIds() {
+		return serviceTypeIds;
+	}
+
+	public void setServiceTypeIds(String serviceTypeIds) {
+		this.serviceTypeIds = serviceTypeIds;
+	}
+
+	public String getServiceAddType() {
+		return serviceAddType;
+	}
+
+	public void setServiceAddType(String serviceAddType) {
+		this.serviceAddType = serviceAddType;
+	}
+
 	public String getDoctorType() {
 		return doctorType;
 	}
@@ -529,4 +690,53 @@ public class DoctorInfo implements java.io.Serializable {
 	public void setDoctorType(String doctorType) {
 		this.doctorType = doctorType;
 	}
+
+	public String getIdCardNum() {
+		return idCardNum;
+	}
+
+	public void setIdCardNum(String idCardNum) {
+		this.idCardNum = idCardNum;
+	}
+
+	public String getDoctorImpression() {
+		return doctorImpression;
+	}
+
+	public void setDoctorImpression(String doctorImpression) {
+		this.doctorImpression = doctorImpression;
+	}
+
+	public OrganOperator getOrganOperator() {
+		return organOperator;
+	}
+
+	public void setOrganOperator(OrganOperator organOperator) {
+		this.organOperator = organOperator;
+	}
+
+	public DoctorMajor getMajor() {
+		return major;
+	}
+
+	public void setMajor(DoctorMajor major) {
+		this.major = major;
+	}
+
+	public String getSecondMajorIds() {
+		return secondMajorIds;
+	}
+
+	public void setSecondMajorIds(String secondMajorIds) {
+		this.secondMajorIds = secondMajorIds;
+	}
+
+	public String getFlowStatus() {
+		return flowStatus;
+	}
+
+	public void setFlowStatus(String flowStatus) {
+		this.flowStatus = flowStatus;
+	}
+
 }

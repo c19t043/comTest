@@ -27,6 +27,7 @@ import com.kybaby.newbussiness.doctorclinic.domain.DoctorMorePracticeOrgInfo;
 import com.kybaby.newbussiness.doctorclinic.domain.DoctorServiceType;
 import com.kybaby.newbussiness.doctorclinic.domain.HospitalBasicInfo;
 import com.kybaby.newbussiness.doctorclinic.domain.OrderInfoClinic;
+import com.kybaby.newbussiness.doctorclinic.domain.PageBean;
 import com.kybaby.newbussiness.doctorclinic.fo.DoctorInfoFo;
 import com.kybaby.newbussiness.doctorclinic.fo.DoctorMorePracticeFo;
 import com.kybaby.newbussiness.medicalorgandbusiness.domain.ArchivesInfo;
@@ -82,7 +83,10 @@ public class DoctorClinicAction extends NewBaseAction{
 	/**
 	 * 门诊医生列表跳转页面标示（byOrg:通过机构看医生）
 	 */
-	private String toClinicListFlag;
+	private String toClinicListFlag;/**
+	 * 翻页信息
+	 */
+	private PageBean pageBean;
 	
 	public String execute(){
 		try {
@@ -181,27 +185,21 @@ public class DoctorClinicAction extends NewBaseAction{
 					//通过机构进入的看用户身份，不同的身份对应的医生不一样
 					doctorList = this.getDoctorInfoListByCurrentUserType(userId, hospitalBasicInfo);
 				}else{
-					doctorList = this.doctorClinicService.getClinicDoctorInfoList(doctorInfo);
+					if(pageBean == null){
+						pageBean = new PageBean();
+						pageBean.setPageSize(10);
+					}
+					doctorList = this.doctorClinicService.getClinicDoctorInfoList(doctorInfo,pageBean);
 				}
 				if(doctorList != null){
-					Map<Long,DoctorInfo> doctorMap = new HashMap<Long,DoctorInfo>();
+//					Map<Long,DoctorInfo> doctorMap = new HashMap<Long,DoctorInfo>();
+//					for(DoctorInfo doctor : doctorList){
+//						doctorMap.put(doctor.getId(), doctor);
+//					}
+//					for (Map.Entry<Long,DoctorInfo> entry : doctorMap.entrySet()) {  
 					for(DoctorInfo doctor : doctorList){
-						doctorMap.put(doctor.getId(), doctor);
-					}
-					for (Map.Entry<Long,DoctorInfo> entry : doctorMap.entrySet()) {  
-					//for(DoctorInfo doctor : doctorList){
-						DoctorInfo doctor = entry.getValue();
 						doctor.setDoctorPhone("");
 						DoctorInfoFo doctorFo = new DoctorInfoFo();
-//						List<DoctorMorePractice> doctorMorePracticeList = 
-//								this.doctorClinicService.getDoctorMorePracticeList(null, doctorInfo);
-//						if(doctorMorePracticeList != null){
-//							for(DoctorMorePractice dmp : doctorMorePracticeList){
-//								if(ConstantManage.CLINIC_ORG_TYPE_1.equals(dmp.getClinicOrgType())){
-//									
-//								}
-//							}
-//						}
 						doctorFo.setDoctorInfo(doctor);
 						//医生专业方向
 						List<String> majorNameList=majorBo.getMajorNameListByIdStr(doctor.getMajorId());
@@ -222,21 +220,21 @@ public class DoctorClinicAction extends NewBaseAction{
 						this.doctorInfoFoList.add(doctorFo);
 					}
 					//对门诊医生列表进行排序（有预约时间的放在前面）
-					if(doctorInfo == null){
-						   Collections.sort(doctorInfoFoList, new Comparator<DoctorInfoFo>() {  
-					            public int compare(DoctorInfoFo arg0, DoctorInfoFo arg1) {  
-					                int hits0 = arg0.getClinicBookingDateList()==null?0:arg0.getClinicBookingDateList().size();  
-					                int hits1 = arg1.getClinicBookingDateList()==null?0:arg1.getClinicBookingDateList().size();    
-					                if (hits1 < hits0) {  
-					                    return -1;  
-					                } else if (hits1 == hits0) {  
-					                    return 0;  
-					                } else {  
-					                    return 1;  
-					                }  
-					            }  
-					        }); 
-					}
+//					if(doctorInfo == null){
+//						   Collections.sort(doctorInfoFoList, new Comparator<DoctorInfoFo>() {  
+//					            public int compare(DoctorInfoFo arg0, DoctorInfoFo arg1) {  
+//					                int hits0 = arg0.getClinicBookingDateList()==null?0:arg0.getClinicBookingDateList().size();  
+//					                int hits1 = arg1.getClinicBookingDateList()==null?0:arg1.getClinicBookingDateList().size();    
+//					                if (hits1 < hits0) {  
+//					                    return -1;  
+//					                } else if (hits1 == hits0) {  
+//					                    return 0;  
+//					                } else {  
+//					                    return 1;  
+//					                }  
+//					            }  
+//					        }); 
+//					}
 					if(doctorInfo != null){
 						this.doctorInfoFo = doctorInfoFoList.get(0);
 					}
@@ -477,5 +475,11 @@ public class DoctorClinicAction extends NewBaseAction{
 	}
 	public String getCurrentWeekDate() {
 		return currentWeekDate;
+	}
+	public void setPageBean(PageBean pageBean) {
+		this.pageBean = pageBean;
+	}
+	public PageBean getPageBean() {
+		return pageBean;
 	}
 }
